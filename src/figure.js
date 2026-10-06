@@ -53,6 +53,6 @@ function beanie(P,sz,col,bo,y,s){
 function soulOrb(o,p,s){
   const k=o.soul==null?0:o.soul;if(k<=.02)return;
   const col=o.soulCol||[255,170,60];
-  glow(p,.55*s*(.6+k),col,.85*k);
-  glow(p,.18*s,[255,240,200],k);
+  glow(p,.38*s*(.6+k),col,.6*k);
+  glow(p,.1*s,[255,240,200],.8*k);
 }
