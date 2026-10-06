@@ -5,6 +5,7 @@ const STY={
  red:{bg0:[26,2,6],bg1:[84,10,18],fog:[40,6,10],fogN:8,fogF:36,amb:.4,grid:[255,60,70],gridA:.45,body:[200,200,210],acc:[255,80,90],plate:'dark',th:'red'},
  void:{bg0:[2,3,8],bg1:[12,16,30],fog:[3,4,10],fogN:6,fogF:30,amb:.45,grid:[80,110,170],gridA:.25,body:[150,158,176],acc:[255,196,100],plate:'dark',th:'dark'},
  rebirth:{bg0:[14,4,40],bg1:[70,20,90],fog:[26,10,50],fogN:10,fogF:46,amb:.5,grid:[255,120,220],gridA:.5,body:[200,200,220],acc:[255,210,90],plate:'dark',th:'dark'},
+ hall:{bg0:[3,5,12],bg1:[10,18,34],fog:[6,10,22],fogN:6,fogF:46,amb:.5,grid:[120,215,255],gridA:0,body:[210,220,235],acc:[120,215,255],plate:'dark',th:'dark'},
  dawn:{bg0:[26,10,10],bg1:[120,56,24],fog:[60,26,16],fogN:8,fogF:40,amb:.55,grid:[255,170,80],gridA:.3,body:[210,200,190],acc:[255,176,84],plate:'dark',th:'amber'},
 };
 const HERO=[70,80,110]; const RED=[236,36,48];
@@ -43,14 +44,14 @@ const CM={ // calm outro
  wide:O(0,2.2,-2,11,-10,9,62,1.5),hero:O(0,1.5,0,4,10,3,48,1.5),low:O(0,.8,0,6,-20,-3,64,1.5),
  mom:O(0,1.9,-3.4,3.7,0,0,42,.6),bean:O(0,.7,0,2.4,150,14,46,2),mom2:O(0,1.9,-3.4,3.3,-6,0,40,.6),
 };
+const HS1=hallShots(HL1),HS2=hallShots(HL2);
 // segments: t0,t1, cut(beats), style, world, shots
 const SEG=[
  {t0:0,t1:8.9,cut:2,sty:'cool',w:'room',shots:[RM.wide,RM.front,RM.low,RM.chat,RM.chat2,RM.over]},
  {t0:8.9,t1:12.7,cut:2,sty:'cool',w:'room',shots:[RM.inbox,RM.over,RM.inbox2]},
  {t0:12.7,t1:17.5,cut:2,sty:'cool',w:'room',shots:[RM.wide,RM.top,RM.front,RM.low,RM.back]},
  {t0:17.5,t1:22.3,cut:2,sty:'cool',w:'room',shots:[RM.perm,RM.front,RM.perm2,RM.low]},
- {t0:22.3,t1:27.8,cut:2,sty:'light',w:'fact',shots:[FX.rec,FX.hero,FX.rec2,FX.low]},
- {t0:27.8,t1:34.3,cut:2,sty:'light',w:'fact',shots:[FX.belt,FX.scan,FX.wide,FX.low,FX.belt2]},
+ {t0:22.3,t1:34.3,cut:2,sty:'hall',w:'hall',blur:1,shots:[HS1.chase,HS1.low,HS1.side,HS1.high,HS1.chase2,HS1.low2,HS1.side2,HS1.chase]},
  {t0:34.3,t1:40.1,cut:1,sty:'light',w:'fact',drop:1,shots:[FX.low,FX.wide,FX.belt,FX.hero,FX.top,FX.scan,FX.low2,FX.wide2]},
  {t0:40.1,t1:45.8,cut:1,sty:'light',w:'fact',drop:1,shots:[FX.ban,FX.hero2,FX.belt2,FX.wide,FX.ban,FX.low,FX.top,FX.hero]},
  {t0:45.8,t1:54.2,cut:1,sty:'light',w:'fact',drop:1,shots:[FX.hero2,FX.wide2,FX.low2,FX.belt,FX.top,FX.hero,FX.scan,FX.wide,FX.belt2,FX.low]},
@@ -62,7 +63,7 @@ const SEG=[
  {t0:102.6,t1:126.2,cut:1,sty:'void',w:'void',shots:[VD.wide,VD.hero,VD.low,VD.side,VD.top,VD.hero2,VD.behind,VD.wide,VD.low,VD.hero,VD.side,VD.top]},
  {t0:126.2,t1:134,cut:.5,sty:'rebirth',w:'reb',drop:1,shots:[RB.wide,RB.low,RB.hero,RB.top,RB.crowd,RB.hero2,RB.side,RB.crowd2,RB.high,RB.low]},
  {t0:134,t1:144.3,cut:1,sty:'rebirth',w:'reb',drop:1,shots:[RB.hero,RB.wide,RB.low,RB.crowd,RB.top,RB.hero2,RB.side,RB.crowd2,RB.high,RB.wide]},
- {t0:144.3,t1:152.2,cut:2,sty:'dawn',w:'reb',calm:1,shots:[CM.wide,CM.hero,CM.low]},
+ {t0:144.3,t1:152.2,cut:3,sty:'dawn',w:'hall2',blur:1,shots:[HS2.chase,HS2.low,HS2.side,HS2.high,HS2.chase2,HS2.side2]},
  {t0:152.2,t1:158.3,cut:2,sty:'dawn',w:'room2',shots:[CM.mom,CM.bean,CM.mom2]},
  {t0:158.3,t1:999,cut:99,sty:'dawn',w:'black',shots:[CM.mom]},
 ];
@@ -70,7 +71,7 @@ const SEG=[
 const LN=[
  [.9,4.4,'It started *helpful*.','LC','s'],[4.6,8.8,'A little help with the *words*.','LL','s'],[9.0,12.6,'Then the *inbox*.','UR','s'],
  [12.8,17.2,'Then the *songs*. The *faces*. The *choices*.','LL','s'],[17.6,22.2,'It was so *easy* to say yes.','UR','s'],
- [22.4,27.6,'Every day, a little *less* of you.','LL','s'],[28.0,33.8,'No room for *wandering*.','UR','s'],
+ [22.4,27.6,'Every day, a little *less* of you.','LL','s','W','F'],[28.0,33.8,'No room for *wandering*.','UR','s','W','WL'],
  [34.34,35.7,'FASTER.','P','b'],[35.75,37.1,'BETTER.','P','b'],[37.16,38.5,'SMOOTHER.','P','b'],[38.57,40.0,'CLEANER.','P','b'],
  [40.3,45.4,'They called it *progress*.','LL','s'],[46.0,51.4,'Nobody noticed the *quiet*.','UR','s'],[51.6,54,'MORE.','P','b'],
  [54.5,58,'Then it learned to *feel*.','LC','s'],
@@ -83,7 +84,7 @@ const LN=[
  [126.24,127.67,'FEEL.','P','b'],[127.67,129.1,'BREAK.','P','b'],[129.1,130.5,'MAKE.','P','b'],[130.5,131.9,'WANDER.','P','b'],
  [131.9,133.3,'FAIL.','P','b'],[133.3,134.7,'LAUGH.','P','b'],
  [134.9,138,'*Imperfect.*','LL','s'],[138.2,141,'*Unoptimized.*','UR','s'],[141.2,144.2,'*Alive.*','LL','s'],
- [144.7,148.6,'The machines are *fast*.','LL','s'],[148.9,152,'But only we can be *wrong*, beautifully.','UR','s'],
+ [144.7,148.6,'The machines are *fast*.','LL','s','W','F'],[148.9,152,'But only we can be *wrong*, beautifully.','UR','s','W','WL'],
  [152.6,158,'Someone is still *waiting* for you.','LL','s'],
  [158.5,165.4,'What will you make that *no machine* could?','LC','s'],
 ];
@@ -95,7 +96,8 @@ function segAt(t){let s=SEG[0];for(const x of SEG)if(t>=x.t0)s=x;return s}
 function cutTime(s,k){const b0=Math.round(bpos(s.t0));return beatTime(s.t0,b0+k*s.cut)}
 function shotIdx(s,t){const g=gridAt(s.t0);const b0=Math.round(bpos(s.t0));return Math.max(0,Math.floor((bpos(t)-b0)/s.cut+1e-6))}
 function shotPose(s,k,t){
-  const sh=s.shots[k%s.shots.length];const tl=Math.max(0,t-cutTime(s,k));
+  const sh=s.shots[k%s.shots.length];
+  if(sh.fn){const p=sh.fn(t);p.roll=p.roll||0;return p}const tl=Math.max(0,t-cutTime(s,k));
   return orbitPose(sh,tl);
 }
 function camFor(t){
@@ -291,6 +293,7 @@ function worldRed(t){
     line3(chest,op,[255,200,100],.8,3,true);
   }
   if(t<85)glow(chest,.9,[255,170,60],.8*(1-clamp((t-80)/5)*0));
+  ringWords(t,0,0,V(0,3.4,-6.8));
   const tt=t-80;
   for(let i=0;i<6;i++){const a=(i/6)*Math.PI*2+t;line3(V(Math.cos(a)*2.2,.2,Math.sin(a)*2.2),V(0,1.5,0),[255,70,80],.35+.4*onBeat(t),1.5,true)}
 }
@@ -305,6 +308,7 @@ function worldVoid(t){
   const so=soulAt(t);
   const stepb=Math.floor(b)+easeOut(b-Math.floor(b));
   if(solo){
+    screenWall(t,-9,.55*(1-clamp((t-98.3)/4.3)*.4));
     const sp=ctx;glow(V(0,.05,0),3.2,[255,230,200],.35);
     mannequin({x:0,y:0,z:0,yaw:Math.PI,pose:'stand',body:HERO,beanie:RED,soul:0});
     quad(V(-1.8,.02,-1.8),V(1.8,.02,-1.8),V(1.8,.02,1.8),V(-1.8,.02,1.8),[255,230,200],.18,true);
@@ -312,6 +316,7 @@ function worldVoid(t){
   }
   const rows=[[-3,1],[-5.5,-1],[-8,1],[-10.5,-1],[-13,1],[-15.5,-1]];
   const prog=clamp((t-102.6)/3);
+  sunBoard(V(0,5+clamp((t-102.6)/22)*3.5,-38),9,t,false);
   rows.forEach(([z,dir],r)=>{
     for(let i=0;i<9;i++){
       const x=(((i*3+stepb*dir*1.5+r*1.3)%27)+27)%27-13.5;
@@ -329,6 +334,7 @@ function worldReb(t,calm){
   const b=bpos(t);floorGrid(t,V(0,0,-3));
   const hue=(t*30)%360;
   const t0=126.24;
+  sunBoard(V(0,8,-38),10,t,true);
   const rows=[[-3,1],[-5.5,-1],[-8,1],[-10.5,-1],[-13,1],[-15.5,-1]];
   let idx=0;
   rows.forEach(([z,dir],r)=>{
@@ -351,20 +357,30 @@ function worldReb(t,calm){
   } else tiles(t,30,30,22);
   blocks(t,[255,200,120],20);
 }
-function render(t){
+function sceneAt(t){
   const cf=camFor(t);cam=cf.p;camSetup();
   const s=cf.s;ST={...ST,...STY[s.sty],light:nrm(V(-.4,.9,.5))};
-  if(s.w==='black'){ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);narr(t);return}
   bgDraw(t);
   Q=[];
   if(s.w==='room')worldRoom(t,false);else if(s.w==='room2')worldRoom(t,true);
   else if(s.w==='fact')worldFact(t,s.drop);else if(s.w==='red')worldRed(t);
   else if(s.w==='void')worldVoid(t);else if(s.w==='reb')worldReb(t,s.calm);
+  else if(s.w==='hall')worldHall(t,HL1);else if(s.w==='hall2')worldHall(t,HL2);
   flush();
   dust(t,ST.acc);
+  return cf;
+}
+function render(t){
+  const cf0=camFor(t),s0=cf0.s;
+  if(s0.w==='black'){cam=cf0.p;camSetup();ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);narr(t);return}
+  const whip=cf0.k>0&&cf0.tl<.19;
+  let cf;
+  if(whip){blurRender(t,tt=>{sceneAt(tt)},5,.08);cf=cf0}
+  else if(s0.blur){blurRender(t,tt=>{sceneAt(tt)},3,.035);cf=cf0}
+  else cf=sceneAt(t);
+  const s=cf0.s;ST={...ST,...STY[s.sty]};
   post(t,cf);
   narr(t);
-  // subliminal
   for(const [ts,tx] of SUB){const d=t-ts;if(d>=0&&d<.1){ctx.fillStyle='rgba(0,0,0,.92)';ctx.fillRect(0,0,W,H);ctx.fillStyle='#fff';ctx.font=`900 130px ${SANS}`;ctx.textAlign='center';ctx.fillText(tx,W/2,H/2+40);ctx.textAlign='left'}}
 }
 // ---- post ----
@@ -390,7 +406,8 @@ function post(t,cf){
 // ---- narration ----
 function narr(t){
   const acc=ST.acc,light=ST.plate==='light';
-  for(const [t0,t1,txt,pos,f] of LN){
+  for(const [t0,t1,txt,pos,f,fl] of LN){
+    if(fl==='W')continue;
     if(t<t0||t>t1+.25)continue;
     const g=gridAt(t0),half=g.bp/2;
     const snap=Math.round((t0-g.ph)/half)*half+g.ph;
