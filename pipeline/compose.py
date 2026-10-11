@@ -12,9 +12,10 @@ audio = f"{song}/work/song.wav"
 def run(cmd): print(" ".join(cmd)[:200], flush=True); subprocess.run(cmd, check=True)
 chunks = sorted(glob.glob(f"{R}/chunk_*.mp4"))
 open(f"{R}/list.txt", "w").write("".join(f"file '{c}'\n" for c in chunks))
-run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", f"{R}/list.txt", "-c", "copy", f"{R}/video_only.mp4"])
+if not os.path.exists(f"{R}/video_only.mp4") or os.environ.get("REMUX"):
+    run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", f"{R}/list.txt", "-c", "copy", f"{R}/video_only.mp4"])
 AUD = ["-c:a", "aac", "-b:a", "256k"]
-V = ["-c:v", "libx264", "-preset", "slow", "-crf", "15", "-pix_fmt", "yuv420p", "-movflags", "+faststart"]
+V = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "17", "-pix_fmt", "yuv420p", "-movflags", "+faststart"]
 def master(kind):
     out = f"{R}/{name}_{kind}.mp4"
     if kind == "clean":
@@ -28,4 +29,4 @@ def master(kind):
         fc.append(f"[{k+2}:v]format=rgba,fade=t=in:st={s['t0']}:d=0.3:alpha=1,fade=t=out:st={s['t1']-0.3}:d=0.3:alpha=1[o{k}]")
         fc.append(f"[{last}][o{k}]overlay=enable='between(t,{s['t0']},{s['t1']})':shortest=0[v{k}]"); last = f"v{k}"
     run(cmd + ["-filter_complex", ";".join(fc), "-map", f"[{last}]", "-map", "1:a", *V, *AUD, "-t", str(dur), out]); return out
-for kind in ("clean", "keyed", "labeled"): master(kind)
+for kind in (sys.argv[2:] or ("clean", "keyed", "labeled")): master(kind)
