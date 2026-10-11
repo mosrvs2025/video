@@ -240,17 +240,17 @@ function drawBand(t, seg, segIdx) {
   // beat dots
   const bp = beatPos(t); for (let i = 0; i < 4; i++) { const on = Math.floor(bp / 2) % 4 === i; g0.circ(px1 - 70 + i * 18, y1 - 50, on ? 5 + 2 * thump(t) : 3.5, on ? P.rose : '#3a2656'); }
 
-  // lyric text
-  let txt = null, tStart = 0, mode = 'line';
-  if (seg.line >= 0) {
-    const l = L[seg.line];
+  // lyric text: chosen by TIME (not by scene segment, which starts 0.35 s early for the camera push)
+  let txt = null, tStart = 0, mode = 'line', tseg = seg;
+  let lj = -1; for (let i = L.length - 1; i >= 0; i--) if (t >= L[i].start - .07) { lj = i; break; }
+  if (lj >= 0) {
+    const l = L[lj]; tseg = { ...seg, keys: (SPEC.lines[lj] || {}).keys || [] };
     if (l.mode === 'chunks') {
-      mode = 'chunk';
-      let ch = null; for (const k of l.chunks) if (t >= k.t) ch = k;
+      mode = 'chunk'; let ch = null; for (const k of l.chunks) if (t >= k.t) ch = k;
       if (ch && t < l.end + .22) { txt = ch.text; tStart = ch.t; }
-    } else if (t >= l.start - .07 && t < l.end + .35) { txt = l.text; tStart = l.start - .07; }
-  } else if (seg.line === -2 || seg.line === -1) { txt = null; }
-  if (txt) drawLyric(t, txt, tStart, seg, mode);
+    } else if (t < l.end + .35) { txt = l.text; tStart = l.start - .07; }
+  }
+  if (txt) drawLyric(t, txt, tStart, tseg, mode);
   else { // idle ornament between lines: breathing cage glyph
     const k = .8 + .2 * Math.sin(t * 2); c.save(); c.globalAlpha = .35; c.translate(360, 1050); c.scale(.28 * k, .28 * k); const gg = g0; gg.cage(0, -150, 1, {}); c.restore(); }
 }
