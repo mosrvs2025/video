@@ -2,9 +2,29 @@
   "title": "The Price of Free",
   "artist": "Mo",
   "versions": [
-    {"id": "aviary-clean",   "label": "Aviary · clean",   "src": "media/price_of_free/aviary_clean_30mb.mp4",   "note": "No YOU windows.", "pending": true},
-    {"id": "aviary-labeled", "label": "Aviary · labeled", "src": "media/price_of_free/aviary_labeled_30mb.mp4", "note": "Slot number, time range and direction in each window.", "pending": true},
-    {"id": "aviary-keyed",   "label": "Aviary · keyed",   "src": "media/price_of_free/aviary_keyed_30mb.mp4",   "note": "Pure #00ff00 windows for your Seedance clips.", "pending": true},
-    {"id": "suno",           "label": "Suno original",    "src": "media/price_of_free/suno_original.mp4",       "note": "Your export with Suno's burned-in captions. Use it to judge the new lyric timing in the panel on the right."}
+    {
+      "id": "aviary-clean",
+      "label": "Aviary \u00b7 clean",
+      "src": "media/price_of_free/aviary_clean_30mb.mp4",
+      "note": "No YOU windows."
+    },
+    {
+      "id": "aviary-labeled",
+      "label": "Aviary \u00b7 labeled",
+      "src": "media/price_of_free/aviary_labeled_30mb.mp4",
+      "note": "Slot number, time range and direction in each window."
+    },
+    {
+      "id": "aviary-keyed",
+      "label": "Aviary \u00b7 keyed",
+      "src": "media/price_of_free/aviary_keyed_30mb.mp4",
+      "note": "Pure #00ff00 windows for your Seedance clips."
+    },
+    {
+      "id": "suno",
+      "label": "Suno original",
+      "src": "media/price_of_free/suno_original.mp4",
+      "note": "Your export with Suno's burned-in captions. Use it to judge the new lyric timing in the panel on the right."
+    }
   ]
 }
