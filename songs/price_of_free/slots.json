@@ -1,0 +1,69 @@
+{
+ "style": "Portrait 3:4, one man (Mo) shot on 35 mm, warm lantern key light from camera left, deep aubergine shadows, brass-gold highlights, a hint of rose in the practical lights, shallow depth of field, slow push-in, subtle film grain. Plain dark violet backdrop. No text, no captions, no logos, no green anywhere in frame, mouth mostly closed unless stated.",
+ "slots": [
+  {
+   "n": 1,
+   "t0": 15.0,
+   "t1": 21.6,
+   "section": "Intro",
+   "direction": "Quiet, conversational. Mo looks straight into the lens, almost smiling, as if about to say \"funny thing about a cage\".",
+   "prompt": "Close-up, Mo seated in a dim room, soft blue notification glow flickering across his face, he slowly looks up from a phone into the lens and gives a small knowing half-smile. Slow push-in. 6 seconds. Portrait 3:4, one man (Mo) shot on 35 mm, warm lantern key light from camera left, deep aubergine shadows, brass-gold highlights, a hint of rose in the practical lights, shallow depth of field, slow push-in, subtle film grain. Plain dark violet backdrop. No text, no captions, no logos, no green anywhere in frame, mouth mostly closed unless stated."
+  },
+  {
+   "n": 2,
+   "t0": 36.0,
+   "t1": 43.0,
+   "section": "Instrumental build",
+   "direction": "Beat is about to drop. Stillness, then a head turn on the last second.",
+   "prompt": "Medium close-up, Mo standing very still, eyes closed, chest rising with a slow heartbeat; on the final second he opens his eyes and turns his head sharply to camera. 7 seconds. Portrait 3:4, one man (Mo) shot on 35 mm, warm lantern key light from camera left, deep aubergine shadows, brass-gold highlights, a hint of rose in the practical lights, shallow depth of field, slow push-in, subtle film grain. Plain dark violet backdrop. No text, no captions, no logos, no green anywhere in frame, mouth mostly closed unless stated."
+  },
+  {
+   "n": 3,
+   "t0": 90.6,
+   "t1": 97.4,
+   "section": "Pre-Chorus 1",
+   "direction": "Aching, half-sung. \"We built ourselves a kingdom out of things we couldn't keep.\"",
+   "prompt": "Medium shot, Mo sitting on a stack of cardboard boxes like a throne, holding a paper crown in both hands, looking at it with tired tenderness, then placing it down beside him. Slow dolly in. 7 seconds. Portrait 3:4, one man (Mo) shot on 35 mm, warm lantern key light from camera left, deep aubergine shadows, brass-gold highlights, a hint of rose in the practical lights, shallow depth of field, slow push-in, subtle film grain. Plain dark violet backdrop. No text, no captions, no logos, no green anywhere in frame, mouth mostly closed unless stated."
+  },
+  {
+   "n": 4,
+   "t0": 120.2,
+   "t1": 127.0,
+   "section": "Beat switch gap",
+   "direction": "Raw, restless energy before verse 2.",
+   "prompt": "Handheld medium close-up, Mo walking toward camera down a dark street at night, hood up, streetlights sweeping his face, he looks off-lens, then at camera, jaw set. 7 seconds. Portrait 3:4, one man (Mo) shot on 35 mm, warm lantern key light from camera left, deep aubergine shadows, brass-gold highlights, a hint of rose in the practical lights, shallow depth of field, slow push-in, subtle film grain. Plain dark violet backdrop. No text, no captions, no logos, no green anywhere in frame, mouth mostly closed unless stated."
+  },
+  {
+   "n": 5,
+   "t0": 158.3,
+   "t1": 164.6,
+   "section": "Pre-Chorus 2: \"there's a door\"",
+   "direction": "The slot is the door itself. Mo steps toward it.",
+   "prompt": "Mo in a dark room facing a bright doorway (light spills toward camera), he reaches for the handle, pauses, then steps forward into the light; end on his back-lit silhouette. Locked-off camera. 6 seconds. Portrait 3:4, one man (Mo) shot on 35 mm, warm lantern key light from camera left, deep aubergine shadows, brass-gold highlights, a hint of rose in the practical lights, shallow depth of field, slow push-in, subtle film grain. Plain dark violet backdrop. No text, no captions, no logos, no green anywhere in frame, mouth mostly closed unless stated."
+  },
+  {
+   "n": 6,
+   "t0": 204.6,
+   "t1": 209.2,
+   "section": "Silence before verse 3",
+   "direction": "Abrupt silence, heartbeat. Pure presence.",
+   "prompt": "Extreme close-up of Mo's eyes and nose bridge, completely still, a single slow blink, a faint pulse visible at the temple. 4 seconds, no movement of the camera. Portrait 3:4, one man (Mo) shot on 35 mm, warm lantern key light from camera left, deep aubergine shadows, brass-gold highlights, a hint of rose in the practical lights, shallow depth of field, slow push-in, subtle film grain. Plain dark violet backdrop. No text, no captions, no logos, no green anywhere in frame, mouth mostly closed unless stated."
+  },
+  {
+   "n": 7,
+   "t0": 262.0,
+   "t1": 269.0,
+   "section": "Outro 1",
+   "direction": "Release. The weight comes off.",
+   "prompt": "Medium shot, Mo puts a phone face-down on a table, exhales, shoulders drop, he looks out of a window at soft dawn light and smiles for real. 7 seconds. Portrait 3:4, one man (Mo) shot on 35 mm, warm lantern key light from camera left, deep aubergine shadows, brass-gold highlights, a hint of rose in the practical lights, shallow depth of field, slow push-in, subtle film grain. Plain dark violet backdrop. No text, no captions, no logos, no green anywhere in frame, mouth mostly closed unless stated."
+  },
+  {
+   "n": 8,
+   "t0": 275.0,
+   "t1": 283.0,
+   "section": "Outro 2: the answer",
+   "direction": "Direct address. This is the last thing the viewer sees of you.",
+   "prompt": "Close-up, Mo looks into the lens and gives a slow, calm nod, then a small shrug as if to say \"your move\"; warm light brightens on his face. Hold the last second. 8 seconds. Portrait 3:4, one man (Mo) shot on 35 mm, warm lantern key light from camera left, deep aubergine shadows, brass-gold highlights, a hint of rose in the practical lights, shallow depth of field, slow push-in, subtle film grain. Plain dark violet backdrop. No text, no captions, no logos, no green anywhere in frame, mouth mostly closed unless stated."
+  }
+ ]
+}

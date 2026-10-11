@@ -1,0 +1,753 @@
+{
+ "lines": {
+  "0": {
+   "scene": "cozy",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "cage"
+   ]
+  },
+  "1": {
+   "scene": "cozy",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "comfortable"
+   ]
+  },
+  "2": {
+   "scene": "cozy",
+   "v": 2,
+   "c": 0,
+   "keys": [
+    "decorating"
+   ]
+  },
+  "3": {
+   "scene": "alarm",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "screaming",
+    "siren"
+   ]
+  },
+  "4": {
+   "scene": "feed",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "violence",
+    "silence"
+   ]
+  },
+  "5": {
+   "scene": "feed",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "thumb",
+    "scroll"
+   ]
+  },
+  "6": {
+   "scene": "windows",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "windows",
+    "soul"
+   ]
+  },
+  "7": {
+   "scene": "coffee",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "coffee",
+    "phrase"
+   ]
+  },
+  "8": {
+   "scene": "coffee",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "best",
+    "wage"
+   ]
+  },
+  "9": {
+   "scene": "notifs",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "notifications",
+    "connection"
+   ]
+  },
+  "10": {
+   "scene": "camlens",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "camera",
+    "attention"
+   ]
+  },
+  "11": {
+   "scene": "platform",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "platform",
+    "stance"
+   ]
+  },
+  "12": {
+   "scene": "platform",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "opinions"
+   ]
+  },
+  "13": {
+   "scene": "platform",
+   "v": 2,
+   "c": 0,
+   "keys": [
+    "adamant",
+    "camera"
+   ]
+  },
+  "14": {
+   "scene": "algo",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "algorithm",
+    "damage"
+   ]
+  },
+  "15": {
+   "scene": "reactions",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "reactions",
+    "chemical"
+   ]
+  },
+  "16": {
+   "scene": "reactions",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "engagement",
+    "factions"
+   ]
+  },
+  "17": {
+   "scene": "mirror_ads",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "mirror",
+    "ads"
+   ]
+  },
+  "18": {
+   "scene": "cloudbag",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "cloud",
+    "bag"
+   ]
+  },
+  "19": {
+   "scene": "kingdom",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "kingdom"
+   ]
+  },
+  "20": {
+   "scene": "sleep",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "sleep"
+   ]
+  },
+  "21": {
+   "scene": "tag",
+   "v": 0,
+   "c": 1,
+   "keys": [
+    "price",
+    "free"
+   ]
+  },
+  "22": {
+   "scene": "lock",
+   "v": 0,
+   "c": 1,
+   "keys": [
+    "lock",
+    "key"
+   ]
+  },
+  "23": {
+   "scene": "reflection",
+   "v": 0,
+   "c": 1,
+   "keys": [
+    "reflection"
+   ]
+  },
+  "24": {
+   "scene": "clones",
+   "v": 0,
+   "c": 1,
+   "keys": [
+    "individuality"
+   ]
+  },
+  "25": {
+   "scene": "globe",
+   "v": 0,
+   "c": 1,
+   "keys": [
+    "world"
+   ]
+  },
+  "26": {
+   "scene": "globe",
+   "v": 1,
+   "c": 1,
+   "keys": [
+    "slipping"
+   ]
+  },
+  "27": {
+   "scene": "goldcage",
+   "v": 0,
+   "c": 1,
+   "keys": [
+    "gold"
+   ]
+  },
+  "28": {
+   "scene": "goldcage",
+   "v": 1,
+   "c": 1,
+   "keys": [
+    "chains"
+   ]
+  },
+  "50": {
+   "scene": "tag",
+   "v": 0,
+   "c": 2,
+   "keys": [
+    "price",
+    "free"
+   ]
+  },
+  "51": {
+   "scene": "lock",
+   "v": 0,
+   "c": 2,
+   "keys": [
+    "lock",
+    "key"
+   ]
+  },
+  "52": {
+   "scene": "reflection",
+   "v": 0,
+   "c": 2,
+   "keys": [
+    "reflection"
+   ]
+  },
+  "53": {
+   "scene": "clones",
+   "v": 0,
+   "c": 2,
+   "keys": [
+    "individuality"
+   ]
+  },
+  "54": {
+   "scene": "globe",
+   "v": 0,
+   "c": 2,
+   "keys": [
+    "world"
+   ]
+  },
+  "55": {
+   "scene": "globe",
+   "v": 1,
+   "c": 2,
+   "keys": [
+    "slipping"
+   ]
+  },
+  "56": {
+   "scene": "goldcage",
+   "v": 0,
+   "c": 2,
+   "keys": [
+    "gold"
+   ]
+  },
+  "57": {
+   "scene": "goldcage",
+   "v": 1,
+   "c": 2,
+   "keys": [
+    "chains"
+   ]
+  },
+  "80": {
+   "scene": "tag",
+   "v": 0,
+   "c": 3,
+   "keys": [
+    "price",
+    "free"
+   ]
+  },
+  "81": {
+   "scene": "lock",
+   "v": 0,
+   "c": 3,
+   "keys": [
+    "couldn't",
+    "key"
+   ]
+  },
+  "82": {
+   "scene": "reflection",
+   "v": 0,
+   "c": 3,
+   "keys": [
+    "mirror"
+   ]
+  },
+  "83": {
+   "scene": "clones",
+   "v": 0,
+   "c": 3,
+   "keys": [
+    "real"
+   ]
+  },
+  "84": {
+   "scene": "globe",
+   "v": 0,
+   "c": 3,
+   "keys": [
+    "world"
+   ]
+  },
+  "85": {
+   "scene": "globe",
+   "v": 1,
+   "c": 3,
+   "keys": [
+    "leave"
+   ]
+  },
+  "86": {
+   "scene": "goldcage",
+   "v": 0,
+   "c": 3,
+   "keys": [
+    "gold"
+   ]
+  },
+  "87": {
+   "scene": "goldcage",
+   "v": 1,
+   "c": 3,
+   "keys": [
+    "refuse",
+    "need"
+   ]
+  },
+  "29": {
+   "scene": "neon_free",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "free"
+   ]
+  },
+  "30": {
+   "scene": "vendor",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "selling",
+    "freedom"
+   ]
+  },
+  "31": {
+   "scene": "vendor",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "buying",
+    "dreams"
+   ]
+  },
+  "32": {
+   "scene": "corner",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "constitution"
+   ]
+  },
+  "33": {
+   "scene": "corner",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "begging",
+    "solution"
+   ]
+  },
+  "34": {
+   "scene": "billboard",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "happiness"
+   ]
+  },
+  "35": {
+   "scene": "billboard",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "luxury",
+    "digit"
+   ]
+  },
+  "36": {
+   "scene": "classroom",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "test"
+   ]
+  },
+  "37": {
+   "scene": "classroom",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "deciding"
+   ]
+  },
+  "38": {
+   "scene": "mother",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "doubles"
+   ]
+  },
+  "39": {
+   "scene": "mother",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "congratulated",
+    "thirty"
+   ]
+  },
+  "40": {
+   "scene": "rec",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "recording"
+   ]
+  },
+  "41": {
+   "scene": "rec",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "pain",
+    "rewarding"
+   ]
+  },
+  "42": {
+   "scene": "rec",
+   "v": 2,
+   "c": 0,
+   "keys": [
+    "caption",
+    "filter"
+   ]
+  },
+  "43": {
+   "scene": "rec",
+   "v": 3,
+   "c": 0,
+   "keys": [
+    "numbers",
+    "hated"
+   ]
+  },
+  "44": {
+   "scene": "megaphone",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "rebel"
+   ]
+  },
+  "45": {
+   "scene": "megaphone",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "monetized"
+   ]
+  },
+  "46": {
+   "scene": "megaphone",
+   "v": 2,
+   "c": 0,
+   "keys": [
+    "system-owned"
+   ]
+  },
+  "47": {
+   "scene": "megaphone",
+   "v": 3,
+   "c": 0,
+   "keys": [
+    "louder",
+    "price"
+   ]
+  },
+  "48": {
+   "scene": "door",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "freedom"
+   ]
+  },
+  "49": {
+   "scene": "door",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "door",
+    "walk"
+   ]
+  },
+  "58": {
+   "scene": "blame",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "politicians"
+   ]
+  },
+  "59": {
+   "scene": "blame",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "billionaires"
+   ]
+  },
+  "60": {
+   "scene": "blame",
+   "v": 2,
+   "c": 0,
+   "keys": [
+    "heads"
+   ]
+  },
+  "61": {
+   "scene": "blame",
+   "v": 3,
+   "c": 0,
+   "keys": [
+    "chairs"
+   ]
+  },
+  "62": {
+   "scene": "fire",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "fire"
+   ]
+  },
+  "63": {
+   "scene": "fire",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "side"
+   ]
+  },
+  "64": {
+   "scene": "fire",
+   "v": 2,
+   "c": 0,
+   "keys": [
+    "headline"
+   ]
+  },
+  "65": {
+   "scene": "fire",
+   "v": 3,
+   "c": 0,
+   "keys": [
+    "verified"
+   ]
+  },
+  "66": {
+   "scene": "gears",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "gear"
+   ]
+  },
+  "67": {
+   "scene": "gears",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "machine"
+   ]
+  },
+  "68": {
+   "scene": "city",
+   "v": 0,
+   "c": 0,
+   "keys": [
+    "phone",
+    "breathe"
+   ]
+  },
+  "69": {
+   "scene": "city",
+   "v": 1,
+   "c": 0,
+   "keys": [
+    "stranger"
+   ]
+  },
+  "70": {
+   "scene": "city",
+   "v": 2,
+   "c": 0,
+   "keys": [
+    "voted",
+    "earned"
+   ]
+  },
+  "71": {
+   "scene": "city",
+   "v": 3,
+   "c": 0,
+   "keys": [
+    "learned"
+   ]
+  },
+  "72": {
+   "scene": "city",
+   "v": 4,
+   "c": 0,
+   "keys": [
+    "conversation",
+    "corporation"
+   ]
+  },
+  "73": {
+   "scene": "city",
+   "v": 5,
+   "c": 0,
+   "keys": [
+    "recommendation",
+    "sensation"
+   ]
+  },
+  "74": {
+   "scene": "city",
+   "v": 6,
+   "c": 0,
+   "keys": [
+    "world",
+    "transition"
+   ]
+  },
+  "75": {
+   "scene": "city",
+   "v": 7,
+   "c": 0,
+   "keys": [
+    "human"
+   ]
+  },
+  "76": {
+   "scene": "city",
+   "v": 8,
+   "c": 0,
+   "keys": [
+    "revolution"
+   ]
+  },
+  "77": {
+   "scene": "city",
+   "v": 9,
+   "c": 0,
+   "keys": [
+    "enemy"
+   ]
+  },
+  "78": {
+   "scene": "city",
+   "v": 10,
+   "c": 0,
+   "keys": [
+    "savior"
+   ]
+  },
+  "79": {
+   "scene": "city",
+   "v": 11,
+   "c": 0,
+   "keys": [
+    "courage",
+    "discipline"
+   ]
+  }
+ },
+ "gaps": [
+  {
+   "t0": 204.6,
+   "t1": 209.1,
+   "scene": "silence"
+  }
+ ]
+}

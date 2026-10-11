@@ -1,0 +1,45 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>engine</title>
+<style>
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:400;src:url(fonts/fraunces-latin-400-normal.woff2)}
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:400;src:url(fonts/fraunces-latin-400-italic.woff2)}
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:900;src:url(fonts/fraunces-latin-900-normal.woff2)}
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:900;src:url(fonts/fraunces-latin-900-italic.woff2)}
+@font-face{font-family:"DM Mono";font-weight:400;src:url(fonts/dm-mono-latin-400-normal.woff2)}
+@font-face{font-family:"DM Mono";font-weight:500;src:url(fonts/dm-mono-latin-500-normal.woff2)}
+body{margin:0;background:#000}
+</style></head>
+<body><canvas id="cv"></canvas>
+<script src="core.js"></script>
+<script src="scenes/price_of_free_a.js"></script>
+<script src="scenes/price_of_free_b.js"></script>
+<script>
+window.__ready = (async () => {
+  await Promise.all(['400 40px Fraunces','italic 400 40px Fraunces','900 40px Fraunces','italic 900 40px Fraunces','400 20px "DM Mono"','500 20px "DM Mono"'].map(f => document.fonts.load(f)));
+  await document.fonts.ready;
+  window.__engine.initCanvas(document.getElementById('cv'));
+  window.__engine.initSong(window.SONG);
+  return true;
+})();
+window.frameAt = t => { window.__engine.renderFrame(t); return document.getElementById('cv').toDataURL('image/jpeg', 0.93); };
+window.overlay = (kind, slot) => { // transparent 1080x1920 overlay for keyed / labeled versions
+  const cv = document.getElementById('cv'), c = cv.getContext('2d'); c.setTransform(1.5,0,0,1.5,0,0); c.clearRect(0,0,720,1280);
+  const x=120,y=70,w=480,h=640;
+  c.save(); c.shadowColor='rgba(0,0,0,.6)'; c.shadowBlur=24; c.shadowOffsetY=10; c.fillStyle='#b97d1c'; c.beginPath(); c.roundRect(x-14,y-14,w+28,h+28,16); c.fill(); c.restore();
+  c.fillStyle='#f0b43c'; c.beginPath(); c.roundRect(x-9,y-9,w+18,h+18,12); c.fill();
+  c.fillStyle='#ffe39a'; c.beginPath(); c.roundRect(x-4,y-4,w+8,h+8,8); c.fill();
+  for (const [rx,ry] of [[x-11,y-11],[x+w+11,y-11],[x-11,y+h+11],[x+w+11,y+h+11]]) { c.fillStyle='#7a4a0c'; c.beginPath(); c.arc(rx,ry,5,0,6.3); c.fill(); }
+  if (kind==='keyed') { c.fillStyle='#00ff00'; c.fillRect(x,y,w,h); return cv.toDataURL('image/png'); }
+  c.fillStyle='#1b0c2c'; c.fillRect(x,y,w,h);
+  c.strokeStyle='rgba(240,180,60,.25)'; c.lineWidth=2; for (let i=-h;i<w;i+=40){ c.beginPath(); c.moveTo(x+i,y+h); c.lineTo(x+i+h,y); c.stroke(); }
+  c.textAlign='center'; c.fillStyle='#f0b43c'; c.font='500 30px "DM Mono"'; c.fillText('YOUR CLIP GOES HERE',x+w/2,y+60);
+  c.fillStyle='#ff4f8b'; c.font='italic 900 124px Fraunces'; c.fillText('YOU '+slot.n,x+w/2,y+210);
+  const f=t=>`${Math.floor(t/60)}:${(t%60).toFixed(1).padStart(4,'0')}`;
+  c.fillStyle='#eadff6'; c.font='500 34px "DM Mono"'; c.fillText(`${f(slot.t0)} – ${f(slot.t1)}  (${(slot.t1-slot.t0).toFixed(1)}s)`,x+w/2,y+310);
+  c.fillStyle='#a58bd0'; c.font='500 22px "DM Mono"'; c.fillText(slot.section.toUpperCase(),x+w/2,y+352);
+  c.fillStyle='#eadff6'; c.font='italic 400 27px Fraunces'; c.textAlign='left';
+  const words=slot.direction.split(' '); let line='', yy=y+410; for (const wd of words){ const tt=line+wd+' '; if (c.measureText(tt).width>w-60){ c.fillText(line,x+30,yy); yy+=36; line=wd+' ';} else line=tt; } c.fillText(line,x+30,yy);
+  c.fillStyle='#8a7aa8'; c.font='400 18px "DM Mono"'; c.textAlign='center'; c.fillText('3:4 window · 480×640 design px · 720×960 at 1080p',x+w/2,y+h-18);
+  return cv.toDataURL('image/png');
+};
+</script></body></html>
