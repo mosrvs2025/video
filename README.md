@@ -1,6 +1,6 @@
 # Suno music-video engine
 
-Turns a Suno song + exact lyrics into a beat-synced lyric music video, with 8 numbered green-key **YOU** windows for your own
+**v2: real-time-style 3D + 2D mix.** Turns a Suno song + exact lyrics into a beat-synced lyric music video, with 8 numbered green-key **YOU** windows for your own
 Seedance clips. First song: **The Price of Free** (look: *The Aviary* — a paper-cut shadow-box inside a gilded birdcage).
 
 ```
@@ -11,6 +11,12 @@ web/        static player site (deploy to Vercel with Root Directory = web)
 tools/      contact sheets, screenshots
 SKILL.md    the workflow in checklist form (reuse for new songs)
 ```
+
+## Seeing the music
+`pipeline/music.py` splits the instrumental from the vocals and extracts kick/snare/hat onsets, bass, cello/strings level + pitch class and
+the vocal level. In the video: kicks fire floor shockwaves and flash the lights, snares/hats burst particles, bass heaves the terrain and the
+cage, the 5 strings vibrate when the cello plays (the note picks which string glows), the top rail is a live 64-band EQ, key lyric words
+burst rose sparks. Everything is a pure function of time, so renders parallelise.
 
 ## Lyric sync (how, and how sure)
 Vocals isolated (UVR-MDX-NET-Voc_FT) → Montreal Forced Aligner against the **exact lyrics**, then 3 per-line refinement passes →

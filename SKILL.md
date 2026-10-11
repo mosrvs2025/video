@@ -42,7 +42,22 @@ arrives. **Look at the debug page** around every line the report flags and add `
 (`{"32": {"window": [126.6,129.8], "reason": "..."}}`) for lines the aligner smeared across instrumental gaps. Never trust a
 single whole-song alignment; never choose windows by likelihood alone. Tell the user which lines are estimated/low confidence.
 
+## 2b. Music features (so the visuals follow the actual audio)
+```
+python pipeline/music.py songs/<n>          # work/music.json: 64 spectrum bands, kick/snare/hat onset events+envelopes, bass,
+                                            # string/cello level + chroma + pitch height (harmonic part of mix - vocals), vocal level
+```
+`engine/audio.js` exposes stateless accessors (`AU.kick(t)`, `AU.band(k,t)`, `AU.recent('snare', t, win)`...) so any frame can render
+independently (chunks render in parallel). Don't drive visuals from a fixed BPM grid; trap 808s and rolls are off-grid.
+
 ## 3. Scenes + render
+- **3D world** (`engine/world.js`, Three.js r149 UMD in `engine/vendor/`): gilded cage whose 48 bars bow/glow with the spectrum, a terrain that
+  scrolls the last 3 s of the spectrum, 5 vibrating cello strings (note = chroma), kick shockwave rings, snare/hat/key-word particle bursts,
+  vocal halo, choreographed camera rigs per section. The 2D scene is drawn into 3 depth layers (g.L depth <.45 far, <.8 mid, else near) that
+  become textured planes inside a 3D shadow-box (a real 2D+3D mix).
+- Headless Chromium needs `--use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader`. Gotchas that cost hours: (1) never
+  `drawImage(webglCanvas)` into a 2D canvas (≈1 s/frame in SwiftShader) — `gl.readPixels` into an ImageData (render opaque) instead;
+  (2) create 2D contexts with `{willReadFrequently:true}` to keep them CPU-rasterised; (3) 3D at 0.8x resolution is plenty with the cheap bloom.
 - `engine/core.js` — beat helpers (`pulse`, `thump` = half-time kick), paper-cut kit (`g.paper/L/cage/person/phone/...`), bar-sweep
   transitions, caption band, stamped lyrics. `engine/scenes/<song>_*.js` register `SC.name = g => {...}`.
 - `songs/<n>/scenes.json`: `{"lines": {"<i>": {"scene","v","c","keys":[key words]}}, "gaps":[{t0,t1,scene}]}` — one scene per lyric line,
@@ -52,7 +67,7 @@ single whole-song alignment; never choose windows by likelihood alone. Tell the 
 python pipeline/build_data.py songs/<n>
 node engine/render.js songs/<n> --stills out/ 12 60 100      # check stills first (python tools/contact.py = contact sheets)
 node engine/render.js songs/<n> --overlays songs/<n>/render/overlays
-for i in 0 1 2 3; do node engine/render.js songs/<n> $((i*2167)) $(((i+1)*2167)) songs/<n>/render/chunk_$i.mp4 30 & done   # ~5 fps each
+for i in 0 1 2 3; do node engine/render.js songs/<n> $((i*2167)) $(((i+1)*2167)) songs/<n>/render/chunk_$i.mp4 30 & done   # v2 (3D): ~1-2 fps each, ~30 min total
 python pipeline/compose.py songs/<n>         # clean / keyed / labeled masters
 pipeline/compress.sh in.mp4 out_30mb.mp4     # 720x1280, ~640 kbps -> < 30 MiB for ~5 min
 python pipeline/slot_sheet.py songs/<n> songs/<n>/slot_sheet.html
