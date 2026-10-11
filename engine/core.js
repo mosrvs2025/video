@@ -24,13 +24,23 @@ function initSong(song) {
   S = song; TL = song.timeline; SLOTS = song.slots || []; SPEC = song.spec;
   BEATS = song.beats.beats; PER = song.beats.period; HALF = song.beats.half_parity; PH = BEATS[0];
   LOW = song.beats.low30; HIGH = song.beats.high30;
-  buildSegments();
+  if (song.music) AU.init(song.music);
+  buildSegments(); buildSections();
+  const hits = []; TL.lines.forEach((l, i) => { const keys = new Set(((SPEC.lines[i] || {}).keys || []).map(k => k.toLowerCase()));
+    l.words.forEach(w => { if (keys.has(w.w.toLowerCase().replace(/[^a-z'-]/g, ''))) hits.push(w.t0); }); });
+  window.World.setWordHits(hits);
 }
+let SECS = [];
+function buildSections() { SECS = [{ name: 'Overture', t0: 0 }]; TL.lines.forEach(l => { if (SECS[SECS.length - 1].name !== l.section) SECS.push({ name: l.section, t0: l.start }); });
+  SECS.push({ name: 'Outro', t0: TL.lines[TL.lines.length - 1].end + 1 }); }
+const secIdxAt = t => { let k = 0; SECS.forEach((s, i) => { if (t >= s.t0 - .35) k = i; }); return k; };
 const beatPos = t => (t - PH) / PER;                         // 128 BPM pulses
-const pulse = t => { const b = beatPos(t); return Math.exp(-(b - Math.floor(b)) * 5.5); };
-const thump = t => { const b = beatPos(t) - HALF; const h = b / 2; return Math.exp(-(h - Math.floor(h)) * 7); };   // half-time kick
-const lowAt = t => LOW[clamp(Math.floor(t * 30), 0, LOW.length - 1)] || 0;
-const highAt = t => HIGH[clamp(Math.floor(t * 30), 0, HIGH.length - 1)] || 0;
+const gridPulse = t => { const b = beatPos(t); return Math.exp(-(b - Math.floor(b)) * 5.5); };
+const pulse = t => AU.ready ? Math.max(AU.kick(t), AU.snare(t) * .7) : gridPulse(t);
+const gridThump = t => { const b = beatPos(t) - HALF; const h = b / 2; return Math.exp(-(h - Math.floor(h)) * 7); };
+const thump = t => AU.ready ? AU.kick(t) : gridThump(t);   // real kick envelope (from the audio), not a grid
+const lowAt = t => AU.ready ? AU.bass(t) : (LOW[clamp(Math.floor(t * 30), 0, LOW.length - 1)] || 0);
+const highAt = t => AU.ready ? AU.hat(t) : (HIGH[clamp(Math.floor(t * 30), 0, HIGH.length - 1)] || 0);
 const swing = t => Math.sin(beatPos(t) * Math.PI / 2 - HALF * Math.PI / 2);   // one full swing per 2 pulses
 
 // ---------- segments: one scene per lyric line (+ fillers) ----------
@@ -63,18 +73,25 @@ const segAt = t => { for (let i = SEGS.length - 1; i >= 0; i--) if (t >= SEGS[i]
 const slotAt = t => SLOTS.find(s => t >= s.t0 && t < s.t1);
 
 // ---------- canvas ----------
-let cv, c, grain;
+let worldFlat, worldFlatCx, cv, c, grain, CUR = null, CP = null, layerCv = [], layerCx = [], worldCv, glowCv, glowCx;
 function initCanvas(canvas) {
-  cv = canvas; cv.width = 1080; cv.height = 1920; c = cv.getContext('2d');
+  cv = canvas; cv.width = 1080; cv.height = 1920; c = cv.getContext('2d', { willReadFrequently: true });
   grain = document.createElement('canvas'); grain.width = grain.height = 256;
   const gx = grain.getContext('2d'), id = gx.createImageData(256, 256);
   for (let i = 0; i < id.data.length; i += 4) { const v = rnd(i * .37) * 255; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
   gx.putImageData(id, 0, 0);
+  for (let i = 0; i < 3; i++) { const l = document.createElement('canvas'); l.width = 864; l.height = 996; layerCv.push(l); layerCx.push(l.getContext('2d', { willReadFrequently: true })); }
+  CUR = layerCx[1];
+  CP = new Proxy({}, { get: (_, k) => { const v = CUR[k]; return typeof v === 'function' ? v.bind(CUR) : v; }, set: (_, k, v) => { CUR[k] = v; return true; } });
+  worldCv = document.createElement('canvas'); worldCv.width = 864; worldCv.height = 996;
+  worldFlat = document.createElement('canvas'); worldFlat.width = 864; worldFlat.height = 996; worldFlatCx = worldFlat.getContext('2d', { willReadFrequently: true });
+  glowCv = document.createElement('canvas'); glowCv.width = 216; glowCv.height = 249; glowCx = glowCv.getContext('2d', { willReadFrequently: true });
+  window.World.init(worldCv, layerCv);
 }
 
 // ---------- drawing kit (g = per-frame graphics context handed to scenes) ----------
 function makeKit(t, u, seg, cam) {
-  const g = { c, W, SH, t, u, p: seg, cam, bp: beatPos(t), P, mix, rnd, clamp, lerp, ease, easeIO, pulse: pulse(t), thump: thump(t), low: lowAt(t), high: highAt(t), sw: swing(t) };
+  const g = { c, W, SH, t, u, p: seg, cam, bp: beatPos(t), P, mix, rnd, clamp, lerp, ease, easeIO, pulse: pulse(t), thump: thump(t), low: lowAt(t), str: AU.strings(t), voc: AU.vocal(t), snare: AU.snare(t), high: highAt(t), sw: swing(t) };
   g.rr = (x, y, w, h, r) => { c.beginPath(); c.roundRect(x, y, w, h, r); };
   g.paper = (fn, fill, o = {}) => {
     c.save();
@@ -84,7 +101,7 @@ function makeKit(t, u, seg, cam) {
     if (o.edge) { c.strokeStyle = o.edge; c.lineWidth = o.lw || 1.5; c.stroke(); }
     c.restore();
   };
-  g.L = (depth, fn) => { c.save(); c.translate(-cam.x * depth * 1.6, -cam.y * depth * 1.6); fn(); c.restore(); };
+  g.L = (depth, fn) => { const prev = CUR; CUR = layerCx[depth < .45 ? 0 : depth < .8 ? 1 : 2]; CUR.save(); CUR.translate(-cam.x * depth * .7, -cam.y * depth * .7); fn(); CUR.restore(); CUR = prev; };   // depth -> which parallax plane in the 3D diorama
   g.txt = (s, x, y, size, col, o = {}) => {
     c.save(); c.translate(x, y); if (o.rot) c.rotate(o.rot);
     c.font = `${o.italic ? 'italic ' : ''}${o.w || 900} ${size}px ${o.mono ? FM : FH}`;
@@ -95,8 +112,8 @@ function makeKit(t, u, seg, cam) {
   g.circ = (x, y, r, col) => { if (!(r > 0)) return; c.fillStyle = col; c.beginPath(); c.arc(x, y, r, 0, TAU); c.fill(); };
   g.ring = (x, y, r, lw, col) => { if (!(r > 0)) return; c.strokeStyle = col; c.lineWidth = lw; c.beginPath(); c.arc(x, y, r, 0, TAU); c.stroke(); };
   g.line = (x1, y1, x2, y2, lw, col, cap = 'round') => { c.strokeStyle = col; c.lineWidth = lw; c.lineCap = cap; c.beginPath(); c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke(); };
-  g.glow = (x, y, r, col, a = .5) => { const gr = c.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, col); gr.addColorStop(1, 'rgba(0,0,0,0)'); c.save(); c.globalAlpha = a; c.fillStyle = gr; c.fillRect(x - r, y - r, r * 2, r * 2); c.restore(); };
-  g.bg = (top, bot) => { const gr = c.createLinearGradient(0, 0, 0, SH); gr.addColorStop(0, top); gr.addColorStop(1, bot); c.fillStyle = gr; c.fillRect(-60, -60, W + 120, SH + 120); };
+  g.glow = (x, y, r, col, a = .5) => { const gr = c.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, col); gr.addColorStop(1, 'rgba(0,0,0,0)'); c.save(); c.globalCompositeOperation = 'lighter'; c.globalAlpha = a; c.fillStyle = gr; c.fillRect(x - r, y - r, r * 2, r * 2); c.restore(); };
+  g.bg = (top, bot) => { const prev = CUR; CUR = layerCx[0]; const gr = CUR.createLinearGradient(0, 0, 0, SH); gr.addColorStop(0, top); gr.addColorStop(1, bot); CUR.fillStyle = gr; CUR.fillRect(-60, -60, W + 120, SH + 120); CUR = prev; };
   g.sparkle = (x, y, r, col) => { g.paper(ctx => { for (let i = 0; i < 4; i++) { const a = i * Math.PI / 2; ctx.moveTo(x, y); ctx.quadraticCurveTo(x + Math.cos(a + .6) * r * .25, y + Math.sin(a + .6) * r * .25, x + Math.cos(a) * r, y + Math.sin(a) * r); ctx.quadraticCurveTo(x + Math.cos(a - .6) * r * .25, y + Math.sin(a - .6) * r * .25, x, y); } }, col, { sh: false }); };
   g.person = (x, y, s, col, o = {}) => { // y = feet
     g.paper(ctx => { ctx.arc(x, y - s * 1.55, s * .3, 0, TAU); }, col, { blur: 8, dy: 4 });
@@ -152,7 +169,7 @@ function cage(g, x, y, s, o = {}) {
     for (const [lw, col, off] of [[5.4, P.brassD, 0], [2.6, P.brass, -.9]]) {
       c.strokeStyle = col; c.lineWidth = lw; c.lineCap = 'round'; c.beginPath();
       if (broken) { c.moveTo(bx + off, h); c.quadraticCurveTo(a * w * .62, h * .72, a * w * .52, h * .62); c.moveTo(a * w * .3 + off, h * .28); c.quadraticCurveTo(a * w * .17, h * .22, tx + off, 54); }
-      else { c.moveTo(bx + off, h); c.quadraticCurveTo(a * w * .62 + off, h * .46, tx + off, 54); }
+      else { c.moveTo(bx + off, h); c.quadraticCurveTo(a * w * .62 + off + Math.sin(g.t * 41 + a * 6) * g.str * 3.2, h * .46, tx + off, 54); }
       c.stroke();
     }
     c.restore();
@@ -194,20 +211,14 @@ function addBird(g) { g.bird = (x, y, s, col, flap) => bird(g, x, y, s, col, fla
 
 // ---------- frame composition ----------
 let _lastErr = {};
-function stageBars(g, t, tr, thumpV) {
-  // foreground cage bars; on a scene change they rush toward the camera (push-through wipe)
-  const n = 7, zoom = 1 + tr * tr * 2.4, al = (1 - tr * .65) * .88;
-  c.save(); c.globalAlpha = al; c.translate(W / 2, SH * .55); c.scale(zoom, 1); c.translate(-W / 2, -SH * .55);
-  for (let i = 0; i < n; i++) {
-    const x = (i + .5) * W / n, bow = Math.sin((i / (n - 1)) * Math.PI) * thumpV * 7 * (i % 2 ? 1 : -1) * .6;
-    for (const [lw, col, off] of [[6, '#2a1340', 0], [3.6, P.brassD, 0], [1.9, P.brass, -.7], [.7, P.brassL, -1.1]]) {
-      c.strokeStyle = col; c.lineWidth = lw; c.beginPath(); c.moveTo(x + off, -10); c.quadraticCurveTo(x + off + bow * 2, SH * .5, x + off, SH + 6); c.stroke(); }
-  }
-  c.restore();
-  // top ring + bottom rail (the cage frame)
-  g.paper(ctx => ctx.rect(-10, -14, W + 20, 30), P.brass, { blur: 8, dy: 4, edge: P.brassD });
+function stageRails(g, t) {
+  // top rail = live 64-band equalizer of the music; bottom rail = brass base with a kick lamp
+  const kick = AU.kick(t);
+  g.paper(ctx => ctx.rect(-10, -14, W + 20, 44), '#1b0c2c', { blur: 10, dy: 4 }); g.line(-10, 28, W + 10, 28, 4, P.brassD); g.line(-10, 26, W + 10, 26, 1.6, P.brass);
+  for (let i = 0; i < 64; i++) { const b = AU.band(i, t), h = 2 + b * 22, x = 10 + i * 11.1, col = b > .7 ? P.rose : b > .4 ? P.brassL : P.brass; c.fillStyle = col; c.fillRect(x, 24 - h, 7, h); }
   g.paper(ctx => ctx.rect(-10, SH - 8, W + 20, 26), P.brass, { blur: 14, dy: 8, edge: P.brassD, lw: 2 });
   for (let i = 0; i < 14; i++) g.circ(i * 56 + 14, SH + 5, 4, P.brassD);
+  g.glow(360, SH + 5, 60 + 60 * kick, '#ff4f8b', .5 * kick); g.circ(360, SH + 5, 5 + 3 * kick, kick > .3 ? P.rose : P.brassD);
 }
 
 function bandText(g, t, seg, line, sizeBase) {
@@ -291,44 +302,53 @@ function drawLyric(t, text, tStart, seg, mode) {
 }
 
 let g0 = null, prevT = -1;
+const drawMotif = (t, u, seg, segIdx, slot, cam) => {
+  // the 2D paper-cut scene is drawn into 3 depth layers (far/mid/near) that become textured planes in the 3D diorama
+  const mainC = c; c = CP;
+  for (const cx of layerCx) { cx.setTransform(1.2, 0, 0, 1.2, 0, 0); cx.clearRect(-100, -100, W + 200, SH + 200); }
+  CUR = layerCx[1];
+  const gradFar = layerCx[0].createLinearGradient(0, 0, 0, SH); gradFar.addColorStop(0, '#1b0c2c'); gradFar.addColorStop(1, '#2e1448'); layerCx[0].fillStyle = gradFar; layerCx[0].fillRect(-60, -60, W + 120, SH + 120);
+  const fn = window.SC[seg.scene] || window.SC.cozy;
+  const gg = makeKit(t, u, seg, cam); addBird(gg); g0 = gg;
+  try { fn(gg); } catch (e) { if (!_lastErr[seg.scene]) { _lastErr[seg.scene] = 1; console.error('scene ' + seg.scene + ': ' + e.stack); } }
+  c = mainC; return gg;
+};
 function renderFrame(t) {
-  const segIdx = segAt(t); let seg = SEGS[segIdx];
-  const slot = slotAt(t);
+  const segIdx = segAt(t); const seg = SEGS[segIdx], slot = slotAt(t);
   const u = clamp((t - seg.t0) / Math.max(.01, seg.t1 - seg.t0));
-  const cam = { x: Math.sin(t * .31 + segIdx) * 20 + (rnd(segIdx) - .5) * 30, y: Math.cos(t * .23 + segIdx * .7) * 9, z: 1 + .018 * Math.sin(t * .2) };
-  const kick = thump(t);
-  // transition progress (0..1 over first .32 s of a new scene id)
-  const prev = SEGS[segIdx - 1];
-  const sceneNew = prev && (prev.scene !== seg.scene);
-  const tin = t - seg.t0, trIn = sceneNew ? clamp(1 - tin / .32) : 0;
+  const cam = { x: Math.sin(t * .31 + segIdx) * 20 + (rnd(segIdx) - .5) * 30, y: Math.cos(t * .23 + segIdx * .7) * 9, z: 1 };
+  const prev = SEGS[segIdx - 1], sceneNew = !!prev && prev.scene !== seg.scene, tin = t - seg.t0;
+  const si = secIdxAt(t), sec = SECS[si].name, prevSec = SECS[Math.max(0, si - 1)].name, secT = SECS[si].t0;
+  const kick = AU.kick(t);
+  const _T = [performance.now()];
+  // 1) 2D scene -> depth layers (skipped during a YOU slot: the window sits where the diorama would be)
+  let gk;
+  if (!slot) gk = drawMotif(t, u, seg, segIdx, slot, cam); else { c = c; gk = makeKit(t, u, seg, cam); addBird(gk); g0 = gk; }
+  _T.push(performance.now());
+  // 2) 3D world
+  window.World.update(t, { seg, segIdx, u, tin, sceneNew, slot, sec, prevSec, secT, prevSeg: prev });
+  window.World.readInto(worldFlatCx);
+  _T.push(performance.now());
+  // 3) composite
   c.setTransform(1.5, 0, 0, 1.5, 0, 0);
+  const M = window.World.MOODS[sec] || window.World.MOODS.default;
   c.fillStyle = P.aub; c.fillRect(0, 0, W, H);
-  const g = makeKit(t, u, seg, cam); addBird(g); g0 = g;
   c.save(); c.beginPath(); c.rect(0, 0, W, SH); c.clip();
-  // zoom + kick punch
-  const z = cam.z * (1 + .012 * kick) * (1 + .06 * trIn * trIn);
-  c.translate(W / 2, SH / 2); c.scale(z, z); c.translate(-W / 2, -SH / 2);
-  const draw = (sg, alpha) => {
-    const fn = (slot && !sg.keepScene) ? window.SC.ambient : (window.SC[sg.scene] || window.SC.cozy);
-    c.save(); c.globalAlpha = alpha;
-    const gg = makeKit(t, clamp((t - sg.t0) / Math.max(.01, sg.t1 - sg.t0)), (slot && fn === window.SC.ambient) ? { ...sg, v: slot.n, amb: slot } : sg, cam); addBird(gg);
-    try { fn(gg); } catch (e) { if (!_lastErr[sg.scene]) { _lastErr[sg.scene] = 1; console.error('scene ' + sg.scene + ': ' + e.stack); } }
-    c.restore();
-  };
-  if (sceneNew && tin < .22 && !slot) draw(prev, 1);
-  draw(seg, sceneNew && !slot ? clamp(tin / .22) : 1);
-  // lantern + vignette
-  const lx = 360 + Math.sin(t * .17) * 170, ly = 240 + Math.cos(t * .13) * 60;
-  g.glow(lx, ly, 520, '#ffcf80', .16 + .05 * kick);
-  const vg = c.createRadialGradient(W / 2, SH * .48, 220, W / 2, SH * .48, 640); vg.addColorStop(0, 'rgba(10,3,20,0)'); vg.addColorStop(1, 'rgba(10,3,20,.72)'); c.fillStyle = vg; c.fillRect(-60, -60, W + 120, SH + 120);
-  // slot frame glow hint (clean: nothing)
+  if (!window.__opt || !window.__opt.noWorldDraw) c.drawImage(worldFlat, 0, 0, W, SH);
+  // cheap bloom: shrink, boost contrast, add back softly
+  if (!window.__opt || !window.__opt.noGlow) { glowCx.clearRect(0, 0, 216, 249); glowCx.filter = 'brightness(1.1) contrast(1.6)'; glowCx.drawImage(worldFlat, 0, 0, 216, 249); glowCx.filter = 'none'; }
+  c.globalCompositeOperation = 'lighter'; c.globalAlpha = .3 + .25 * kick; c.imageSmoothingQuality = 'high'; c.drawImage(glowCv, 0, 0, W, SH); c.globalAlpha = 1; c.globalCompositeOperation = 'source-over';
+  const vg = c.createRadialGradient(W / 2, SH * .48, 260, W / 2, SH * .48, 700); vg.addColorStop(0, 'rgba(10,3,20,0)'); vg.addColorStop(1, 'rgba(10,3,20,.6)'); c.fillStyle = vg; c.fillRect(0, 0, W, SH);
+  if (kick > .25) { c.fillStyle = `rgba(255,200,230,${(kick - .25) * .12})`; c.fillRect(0, 0, W, SH); }   // kick flash
   c.restore();
-  stageBars(g, t, trIn, kick);
+  _T.push(performance.now());
+  stageRails(gk, t);
   drawBand(t, seg, segIdx);
-  // global grain (static pattern, shifts per frame) + fade in/out
-  c.save(); c.globalAlpha = .055; c.globalCompositeOperation = 'overlay'; const pat = c.createPattern(grain, 'repeat'); c.setTransform(1, 0, 0, 1, Math.floor(rnd(Math.floor(t * 24)) * 256), Math.floor(rnd(Math.floor(t * 24) + 7) * 256)); c.fillStyle = pat; c.fillRect(-300, -300, 1500, 2300); c.restore();
+  // grain + fade in/out
+  c.save(); c.globalAlpha = .045; c.globalCompositeOperation = 'overlay'; const pat = c.createPattern(grain, 'repeat'); c.setTransform(1, 0, 0, 1, Math.floor(rnd(Math.floor(t * 24)) * 256), Math.floor(rnd(Math.floor(t * 24) + 7) * 256)); c.fillStyle = pat; c.fillRect(-300, -300, 1500, 2300); c.restore();
   c.setTransform(1.5, 0, 0, 1.5, 0, 0);
   const fade = Math.min(clamp(t / 1.2), clamp((TL.dur - t) / 1.6)); if (fade < 1) { c.fillStyle = `rgba(21,10,34,${1 - fade})`; c.fillRect(0, 0, W, H); }
+  _T.push(performance.now()); window.__tm = _T.slice(1).map((x, i) => +(x - _T[i]).toFixed(1));
   return cv;
 }
-window.__engine = { initSong, initCanvas, renderFrame, SEGS: () => SEGS, P, W, H, SH };
+window.__engine = { layers: () => layerCv, initSong, initCanvas, renderFrame, SEGS: () => SEGS, P, W, H, SH };

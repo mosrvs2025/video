@@ -5,5 +5,6 @@ import json, os, sys
 song = os.path.abspath(sys.argv[1]); work = f"{song}/work"
 T = json.load(open(f"{work}/timeline.json")); B = json.load(open(f"{work}/beats.json"))
 spec = json.load(open(f"{song}/scenes.json")); sl = json.load(open(f"{song}/slots.json"))
-json.dump({"timeline": T, "beats": B, "spec": spec, "slots": sl["slots"]}, open(f"{work}/data.json", "w"))
+M = json.load(open(f"{work}/music.json")) if os.path.exists(f"{work}/music.json") else None
+json.dump({"timeline": T, "beats": B, "spec": spec, "slots": sl["slots"], "music": M}, open(f"{work}/data.json", "w"))
 print("wrote data.json", os.path.getsize(f"{work}/data.json") // 1024, "KB")

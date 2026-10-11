@@ -136,7 +136,7 @@ SC.platform = g => {
     g.person(360, 520, 70, P2.bone, { arm: v === 2 ? .3 + Math.sin(t * 6) * .3 : 1.1 + Math.sin(t * 4) * .3 }); });
   for (let i = 0; i < 12; i++) g.person(30 + i * 62, 840, 36 + (i % 3) * 6, '#1a0b27');
   if (v === 1) { const gl = ['!', '?', '@', '#', '%', '+1']; for (let i = 0; i < 7; i++) { const k = (t * .35 + i / 7) % 1; g.L(.9, () => g.bubble(g.lerp(80, 640, g.rnd(i)), 600 - k * 560, 90, 50, [P2.rose, P2.brass, P2.lilac][i % 3], { text: gl[i % 6], size: 28 })); } }
-  if (v === 2) { const f = Math.floor(t * 3) % 3 === 0 && g.pulse > .3; if (f) { g.c.fillStyle = 'rgba(255,255,255,.55)'; g.c.fillRect(0, 0, 720, 830); } g.L(.9, () => { g.paper(cc => cc.roundRect(520, 540, 120, 80, 12), '#2a1740', { edge: P2.brass, lw: 3 }); g.circ(580, 580, 22, '#111'); g.ring(580, 580, 22, 4, P2.brass); }); }
+  if (v === 2) { if (g.pulse > .55) { g.c.fillStyle = `rgba(255,255,255,${(g.pulse - .55) * .35})`; g.c.fillRect(0, 0, 720, 830); } g.L(.9, () => { g.paper(cc => cc.roundRect(520, 540, 120, 80, 12), '#2a1740', { edge: P2.brass, lw: 3 }); g.circ(580, 580, 22, '#111'); g.ring(580, 580, 22, 4, P2.brass); }); }
   g.cage(110, 80, .5, { swing: g.sw * .05 });
 };
 

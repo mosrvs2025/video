@@ -10,6 +10,9 @@
 body{margin:0;background:#000}
 </style></head>
 <body><canvas id="cv"></canvas>
+<script src="vendor/three.min.js"></script>
+<script src="audio.js"></script>
+<script src="world.js"></script>
 <script src="core.js"></script>
 <script src="scenes/price_of_free_a.js"></script>
 <script src="scenes/price_of_free_b.js"></script>
@@ -21,6 +24,7 @@ window.__ready = (async () => {
   window.__engine.initSong(window.SONG);
   return true;
 })();
+window.__dumpLayers = () => window.__engine.layers().map(c => c.toDataURL('image/png'));
 window.frameAt = t => { window.__engine.renderFrame(t); return document.getElementById('cv').toDataURL('image/jpeg', 0.93); };
 window.overlay = (kind, slot) => { // transparent 1080x1920 overlay for keyed / labeled versions
   const cv = document.getElementById('cv'), c = cv.getContext('2d'); c.setTransform(1.5,0,0,1.5,0,0); c.clearRect(0,0,720,1280);
