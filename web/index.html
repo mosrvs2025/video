@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Price of Free — Player</title>
+<meta name="description" content="Watch the beat-synced lyric video, check the lyric timing, and grab the YOU-slot prompts.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect x=%277%27 y=%275%27 width=%2718%27 height=%2722%27 rx=%279%27 fill=%27none%27 stroke=%27%23f0b43c%27 stroke-width=%273%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="cage" aria-hidden="true"></span><div><h1 id="title">The Price of Free</h1><p id="sub">music video player</p></div></div>
+  <nav class="tabs" id="songTabs" aria-label="Sections">
+    <button data-pane="lyrics" class="on">Lyrics &amp; timing</button>
+    <button data-pane="slots">YOU slots</button>
+    <button data-pane="notes">Notes</button>
+  </nav>
+</header>
+
+<main class="layout">
+  <section class="stage" aria-label="Video">
+    <div class="versions" id="versions" role="tablist"></div>
+    <div class="phone">
+      <video id="v" playsinline preload="metadata"></video>
+      <div class="bars" aria-hidden="true"></div>
+      <div class="msg" id="msg" hidden></div>
+      <div class="chunk" id="chunk" aria-live="off"></div>
+    </div>
+    <p class="note" id="vnote"></p>
+    <div class="ctrl">
+      <button id="play" aria-label="Play / pause">▶</button>
+      <span class="time" id="time">0:00 / 0:00</span>
+      <div class="speeds" id="speeds"><button data-s="0.5">0.5×</button><button data-s="1" class="on">1×</button></div>
+      <label class="chk"><input type="checkbox" id="loop"> loop line</label>
+      <label class="chk"><input type="checkbox" id="ovl" checked> show timing overlay</label>
+    </div>
+    <div class="map" id="map" title="Click to seek">
+      <canvas id="wave" width="1200" height="120"></canvas>
+      <div class="secbar" id="secbar"></div>
+      <div class="head" id="head"></div>
+    </div>
+    <div class="legend"><i class="g"></i>high <i class="a"></i>medium <i class="r"></i>low alignment confidence <i class="s"></i>YOU slot</div>
+    <p class="keys">Space play · ←/→ 5 s · [ / ] previous / next line · L loop line</p>
+  </section>
+
+  <aside class="side">
+    <div class="pane on" id="pane-lyrics">
+      <div class="seg" id="lyrics"></div>
+    </div>
+    <div class="pane" id="pane-slots"><div id="slots"><p class="empty">The 8 YOU slots appear here once the Aviary render exists: per-slot time range, direction and a copyable Seedance prompt.</p></div></div>
+    <div class="pane" id="pane-notes">
+      <h3>How the lyric timing was made</h3>
+      <p>Vocals isolated from your Suno export, then forced-aligned to your exact lyrics with Montreal Forced Aligner (per-line refinement). Fast bars are shown as 2–3 word chunks that appear 70&nbsp;ms before the vocal onset. Lines are colour-coded by alignment confidence.</p>
+      <ul>
+        <li>Not Demucs / WhisperX: those model weights were unreachable in the build sandbox.</li>
+        <li>Word boundaries inside fast bars can be off by roughly 30–80&nbsp;ms; line starts are the most reliable.</li>
+        <li>Two lines were placed by hand (see <a href="doc.html?f=data/price_of_free/timing_report.md">timing report</a>).</li>
+      </ul>
+      <p><a href="doc.html?f=data/price_of_free/timing_report.md">Timing report</a> · <a href="debug/debug.html">Waveform + word-marker debug view</a> · <a href="doc.html?f=data/price_of_free/style_brief.md">Style brief</a></p>
+    </div>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

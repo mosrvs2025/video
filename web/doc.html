@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Document</title>
+<link rel="stylesheet" href="style.css">
+<style>main{max-width:900px;margin:0 auto;padding:20px}table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0}td,th{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}th{color:var(--brass)}h1,h2{font-style:italic}code{font-family:"DM Mono",monospace;color:var(--rose)}</style>
+<main><p><a href="./">← player</a></p><div id="o">Loading…</div></main>
+<script>
+const f=new URLSearchParams(location.search).get('f')||'';
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const inl=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<i>$1</i>').replace(/`(.+?)`/g,'<code>$1</code>');
+fetch(f).then(r=>r.ok?r.text():Promise.reject()).then(t=>{
+  const L=t.split('\n');let h='',i=0,list=false;
+  while(i<L.length){const l=L[i];
+    if(/^\|/.test(l)){const rows=[];while(i<L.length&&/^\|/.test(L[i])){rows.push(L[i]);i++}
+      h+='<table>'+rows.filter(r=>!/^\|[-| ]+\|$/.test(r)).map((r,k)=>'<tr>'+r.replace(/^\||\|$/g,'').split('|').map(c=>k?'<td>'+inl(c.trim())+'</td>':'<th>'+inl(c.trim())+'</th>').join('')+'</tr>').join('')+'</table>';continue}
+    if(/^- /.test(l)){if(!list){h+='<ul>';list=true}h+='<li>'+inl(l.slice(2))+'</li>'}
+    else{if(list){h+='</ul>';list=false}
+      const m=l.match(/^(#{1,3}) (.*)/);h+=m?`<h${m[1].length}>${inl(m[2])}</h${m[1].length}>`:l.trim()?'<p>'+inl(l)+'</p>':''}
+    i++}
+  if(list)h+='</ul>';document.getElementById('o').innerHTML=h;document.title=f.split('/').pop()}).catch(()=>document.getElementById('o').textContent='Could not load '+f);
+</script>

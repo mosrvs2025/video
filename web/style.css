@@ -1,0 +1,65 @@
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/fraunces-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/fraunces-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:900;font-display:swap;src:url(fonts/fraunces-latin-900-normal.woff2) format("woff2")}
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:900;font-display:swap;src:url(fonts/fraunces-latin-900-italic.woff2) format("woff2")}
+@font-face{font-family:"DM Mono";font-weight:400;font-display:swap;src:url(fonts/dm-mono-latin-400-normal.woff2) format("woff2")}
+:root{--bg:#150a22;--bg2:#1f1031;--card:#25143a;--brass:#f0b43c;--rose:#ff4f8b;--bone:#eadff6;--mute:#9b8bb3;--g:#3ddc84;--a:#ffb300;--r:#ff5252;--line:#3a2656}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--bone);font:15px/1.45 "Fraunces",Georgia,"Times New Roman",serif}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--brass)}
+.top{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--line);background:linear-gradient(var(--bg2),var(--bg))}
+.brand{display:flex;gap:12px;align-items:center}
+.brand h1{margin:0;font-size:22px;font-weight:900;font-style:italic;letter-spacing:.2px}
+.brand p{margin:0;color:var(--mute);font:12px "DM Mono",ui-monospace,monospace;text-transform:uppercase;letter-spacing:.12em}
+.cage{width:26px;height:34px;border:2px solid var(--brass);border-radius:13px 13px 4px 4px;background:repeating-linear-gradient(90deg,transparent 0 4px,var(--brass) 4px 5px);position:relative}
+.cage:before{content:"";position:absolute;left:50%;top:-8px;width:2px;height:8px;background:var(--brass)}
+.tabs{display:flex;gap:6px}
+.tabs button,.versions button,.speeds button{background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--mute)}
+.tabs button.on,.versions button.on,.speeds button.on{background:var(--brass);color:#1a0d00;border-color:var(--brass);font-weight:700}
+.versions button[disabled]{opacity:.45;cursor:not-allowed}
+.layout{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:28px;padding:20px;max-width:1200px;margin:0 auto}
+.stage{min-width:0}
+.versions{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.phone{position:relative;aspect-ratio:9/16;background:#000;border-radius:18px;overflow:hidden;border:2px solid var(--brass);box-shadow:0 0 0 6px var(--bg2),0 20px 60px #0009}
+.phone video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+.bars{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 22px,#f0b43c1c 22px 23px)}
+.msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;background:#150a22ee;color:var(--bone)}
+.chunk{position:absolute;left:8%;right:8%;bottom:7%;text-align:center;font-weight:900;font-style:italic;font-size:clamp(20px,5.2vw,30px);line-height:1.15;text-shadow:0 2px 14px #000,0 0 3px #000;pointer-events:none}
+.chunk b{color:var(--rose)}
+.note{color:var(--mute);font-size:13px;margin:8px 2px 0;min-height:1.4em}
+.ctrl{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+#play{width:44px;height:44px;border-radius:50%;border:0;background:var(--brass);color:#1a0d00;font-size:16px}
+.time{font:13px "DM Mono",ui-monospace,monospace;color:var(--mute);min-width:92px}
+.chk{font-size:12px;color:var(--mute);display:flex;gap:4px;align-items:center}
+.speeds{display:flex;gap:4px}.speeds button{padding:4px 10px;font-size:12px}
+.map{position:relative;margin-top:14px;height:96px;background:var(--card);border-radius:10px;border:1px solid var(--line);cursor:pointer;overflow:hidden}
+.map canvas{position:absolute;inset:0 0 14px 0;width:100%;height:calc(100% - 14px)}
+.secbar{position:absolute;left:0;right:0;bottom:0;height:14px}
+.secbar i{position:absolute;top:2px;height:10px;border-radius:2px}
+.secbar i.slot{top:0;height:14px;background:transparent;border:1px solid var(--brass);border-radius:3px}
+.head{position:absolute;top:0;bottom:0;width:2px;background:#fff;left:0;pointer-events:none}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--mute);margin-top:6px;align-items:center}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px}
+.legend .g{background:var(--g)}.legend .a{background:var(--a)}.legend .r{background:var(--r)}.legend .s{background:transparent;border:1px solid var(--brass)}
+.keys{font-size:12px;color:var(--mute);margin:8px 0 0}
+.side{min-width:0}
+.pane{display:none}.pane.on{display:block}
+.sech{position:sticky;top:0;margin:18px 0 6px;padding:6px 0;background:var(--bg);font:12px "DM Mono",ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);border-bottom:1px solid var(--line)}
+.ln{display:grid;grid-template-columns:54px 8px 1fr;gap:10px;align-items:baseline;padding:7px 8px;border-radius:8px;cursor:pointer}
+.ln:hover{background:var(--card)}
+.ln.on{background:var(--card);outline:1px solid var(--brass)}
+.ln .t{font:12px "DM Mono",ui-monospace,monospace;color:var(--mute)}
+.ln .d{width:8px;height:8px;border-radius:50%;align-self:center}
+.ln .d.high{background:var(--g)}.ln .d.medium{background:var(--a)}.ln .d.low{background:var(--r)}
+.ln .x{color:var(--bone)}
+.ln .w{display:inline;padding:0 1px;border-radius:3px}
+.ln.on .w.now{background:var(--rose);color:#fff}
+.ln .why{display:block;font:11px "DM Mono",ui-monospace,monospace;color:var(--a);margin-top:2px}
+.empty,.pane p,.pane li{color:var(--mute)}
+.pane h3{margin:0 0 8px}
+.slot{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 12px}
+.slot h4{margin:0 0 4px}.slot .m{font:12px "DM Mono",monospace;color:var(--brass)}
+.slot textarea{width:100%;min-height:92px;margin-top:8px;background:#150a22;color:var(--bone);border:1px solid var(--line);border-radius:8px;padding:8px;font:12px/1.4 "DM Mono",monospace;resize:vertical}
+.slot button{margin-top:6px;border:1px solid var(--brass);background:transparent;border-radius:999px;padding:4px 12px;color:var(--brass)}
+@media (max-width:820px){.layout{grid-template-columns:1fr;padding:14px}.phone{max-width:420px;margin:0 auto}.stage{max-width:420px;margin:0 auto;width:100%}}
