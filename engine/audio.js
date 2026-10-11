@@ -11,6 +11,9 @@ window.AU = (() => {
     bass: t => M ? api.at(M.bass, t) : 0, strings: t => M ? api.at(M.strings, t) : 0, pitch: t => M ? api.at(M.pitch, t) : 0, vocal: t => M ? api.at(M.vocal, t) : 0,
     band(k, t) { if (!M) return 0; const i = cl(Math.round(t * M.fps), 0, M.n - 1); return M.bands[i * 64 + cl(k, 0, 63)] / 255; },
     chroma(k, t) { if (!M) return 0; const i = cl(Math.round(t * M.fps), 0, M.n - 1); return M.chroma[i * 12 + k] / 255; },
+    // upcoming events (the audio is known offline, so characters can anticipate a hit): events with t in (now, now + win]
+    upcoming(name, t, win) { const L = M ? M[name] : []; let lo = 0, hi = L.length; while (lo < hi) { const m = (lo + hi) >> 1; if (L[m][0] <= t) lo = m + 1; else hi = m; }
+      const out = []; for (let i = lo; i < L.length && L[i][0] <= t + win; i++) out.push(L[i]); return out; },
     // events [t, strength] with t in (now - win, now]; binary search on sorted list
     recent(name, t, win) { const L = M ? M[name] : []; let lo = 0, hi = L.length; while (lo < hi) { const m = (lo + hi) >> 1; if (L[m][0] <= t) lo = m + 1; else hi = m; }
       const out = []; for (let i = lo - 1; i >= 0 && L[i][0] > t - win; i--) out.push(L[i]); return out; },

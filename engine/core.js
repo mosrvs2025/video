@@ -28,7 +28,7 @@ function initSong(song) {
   buildSegments(); buildSections();
   const hits = []; TL.lines.forEach((l, i) => { const keys = new Set(((SPEC.lines[i] || {}).keys || []).map(k => k.toLowerCase()));
     l.words.forEach(w => { if (keys.has(w.w.toLowerCase().replace(/[^a-z'-]/g, ''))) hits.push(w.t0); }); });
-  window.World.setWordHits(hits);
+  window.World.setWordHits(hits); window.Crew.init(TL, SPEC, song.visemes);
 }
 let SECS = [];
 function buildSections() { SECS = [{ name: 'Overture', t0: 0 }]; TL.lines.forEach(l => { if (SECS[SECS.length - 1].name !== l.section) SECS.push({ name: l.section, t0: l.start }); });
@@ -310,7 +310,7 @@ const drawMotif = (t, u, seg, segIdx, slot, cam) => {
   const gradFar = layerCx[0].createLinearGradient(0, 0, 0, SH); gradFar.addColorStop(0, '#1b0c2c'); gradFar.addColorStop(1, '#2e1448'); layerCx[0].fillStyle = gradFar; layerCx[0].fillRect(-60, -60, W + 120, SH + 120);
   const fn = window.SC[seg.scene] || window.SC.cozy;
   const gg = makeKit(t, u, seg, cam); addBird(gg); g0 = gg;
-  try { fn(gg); } catch (e) { if (!_lastErr[seg.scene]) { _lastErr[seg.scene] = 1; console.error('scene ' + seg.scene + ': ' + e.stack); } }
+  try { fn(gg); if (!['overture', 'outro', 'silence'].includes(seg.scene)) { CUR = layerCx[2]; window.Crew.draw(gg, t); CUR = layerCx[1]; } } catch (e) { if (!_lastErr[seg.scene]) { _lastErr[seg.scene] = 1; console.error('scene ' + seg.scene + ': ' + e.stack); } }
   c = mainC; return gg;
 };
 function renderFrame(t) {
