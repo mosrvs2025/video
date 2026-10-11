@@ -1,0 +1,12 @@
+{
+  "name": "suno-mv-engine",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Beat-synced lyric music-video engine for Suno songs (per-frame canvas renderer in headless Chromium)",
+  "dependencies": {
+    "@fontsource/dm-mono": "^5.3.0",
+    "@fontsource/fraunces": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0",
+    "playwright-core": "^1.48.0"
+  }
+}

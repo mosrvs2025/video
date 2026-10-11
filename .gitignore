@@ -4,3 +4,4 @@ songs/*/work/
 songs/*/render/
 __pycache__/
 node_modules/
+.mamba/

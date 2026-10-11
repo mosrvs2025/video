@@ -1,0 +1,4 @@
+{
+  "32": {"window": [126.6, 129.8], "reason": "aligner smeared the first words back over the beat-switch gap; Suno caption prior ~127.8 s"},
+  "68": {"window": [209.3, 212.7], "reason": "first Verse 3 line sat in the bridge tail at 201 s (poor fit); voice resumes at 209.5 s after the beat-switch silence"}
+}

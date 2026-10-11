@@ -1,0 +1,55 @@
+<!doctype html><meta charset="utf-8"><title>Sync debug</title>
+<style>
+body{margin:0;background:#111;color:#ddd;font:13px system-ui}
+#bar{padding:8px 12px;display:flex;gap:12px;align-items:center;position:sticky;top:0;background:#111;z-index:2}
+canvas{display:block;width:100%;background:#181818}
+#cur{font-size:15px;color:#fff}
+</style>
+<div id="bar"><audio id="a" src="vocals.mp3" controls></audio>
+<label>window <select id="win"><option>8</option><option selected>12</option><option>20</option></select> s</label>
+<span id="cur"></span></div>
+<canvas id="c" width="1800" height="420"></canvas>
+<canvas id="ov" width="1800" height="110"></canvas>
+<script>
+const D=/*DATA*/null, a=document.getElementById('a'), c=document.getElementById('c'), x=c.getContext('2d');
+const ov=document.getElementById('ov'), ox=ov.getContext('2d');
+const COL={high:'#3ddc84',medium:'#ffb300',low:'#ff5252'};
+let W=12, t0=0;
+const words=[];D.lines.forEach(l=>l.words.forEach((w,k)=>words.push({...w,line:l.i,k})));
+function draw(){
+  W=+document.getElementById('win').value;
+  const t=a.currentTime; t0=Math.max(0,Math.min(D.dur-W,t-W*0.35));
+  const w=c.width,h=c.height,mid=h*0.42,px=s=>(s-t0)/W*w;
+  x.clearRect(0,0,w,h);
+  // beat ticks
+  D.beats.forEach((b,i)=>{ if(b<t0||b>t0+W)return; const half=(i%2)==D.half; x.strokeStyle=half?'#555':'#2a2a2a'; x.lineWidth=half?2:1; x.beginPath(); x.moveTo(px(b),0); x.lineTo(px(b),h); x.stroke();});
+  // waveform
+  x.fillStyle='#6fa8ff';
+  for(let i=Math.floor(t0*D.pk);i<Math.min(D.peaks.length,(t0+W)*D.pk);i++){const p=D.peaks[i]*mid*0.9; x.fillRect(px(i/D.pk),mid-p,Math.max(1,w/W/D.pk),p*2);}
+  // words
+  let row=0;
+  words.forEach(o=>{ if(o.t1<t0||o.t0>t0+W)return; const X=px(o.t0),Wd=Math.max(2,px(o.t1)-X), Y=h*0.72+(row++%3)*22;
+    x.fillStyle=COL[o.conf]+'55'; x.fillRect(X,Y,Wd,19); x.strokeStyle=COL[o.conf]; x.strokeRect(X+.5,Y+.5,Wd-1,18);
+    x.fillStyle='#fff'; x.font='12px system-ui'; x.fillText(o.w,X+2,Y+14);
+    x.strokeStyle=COL[o.conf]; x.beginPath(); x.moveTo(X,Y); x.lineTo(X,mid+mid*0.9); x.stroke(); });
+  // chunk onsets
+  D.lines.forEach(l=>l.chunks.forEach(ct=>{ if(ct<t0||ct>t0+W)return; x.strokeStyle='#4aa3ff'; x.setLineDash([4,3]); x.beginPath(); x.moveTo(px(ct),0); x.lineTo(px(ct),h*0.7); x.stroke(); x.setLineDash([]);}));
+  // time axis
+  x.fillStyle='#888'; x.font='11px system-ui';
+  for(let s=Math.ceil(t0);s<t0+W;s++){x.fillText(s+'s',px(s)+2,12); x.fillRect(px(s),0,1,6);}
+  // playhead
+  x.fillStyle='#fff'; x.fillRect(px(t),0,2,h);
+  const cur=D.lines.find(l=>l.words[0].t0<=t+0.3&&l.words[l.words.length-1].t1>=t-0.3);
+  document.getElementById('cur').textContent=t.toFixed(2)+'s  '+(cur?('['+cur.i+' '+cur.conf+'] '+cur.text):'');
+  // overview
+  const ow=ov.width,oh=ov.height; ox.clearRect(0,0,ow,oh);
+  for(let i=0;i<D.peaks.length;i+=10){const p=D.peaks[i]*oh*0.4; ox.fillStyle='#456'; ox.fillRect(i/D.pk/D.dur*ow,oh/2-p,2,p*2);}
+  D.lines.forEach(l=>{ox.fillStyle=COL[l.conf]; ox.fillRect(l.words[0].t0/D.dur*ow,oh-14,Math.max(2,(l.words[l.words.length-1].t1-l.words[0].t0)/D.dur*ow),10);});
+  ox.fillStyle='#fff'; ox.fillRect(t/D.dur*ow,0,2,oh);
+  ox.fillStyle='#fff3'; ox.fillRect(t0/D.dur*ow,0,W/D.dur*ow,oh);
+}
+c.onclick=e=>{const r=c.getBoundingClientRect(); a.currentTime=t0+(e.clientX-r.left)/r.width*W;};
+ov.onclick=e=>{const r=ov.getBoundingClientRect(); a.currentTime=(e.clientX-r.left)/r.width*D.dur;};
+function loop(){draw();requestAnimationFrame(loop)} loop();
+window.seek=s=>{a.currentTime=s;draw()}; window.setWin=v=>{document.getElementById('win').value=v};
+</script>
