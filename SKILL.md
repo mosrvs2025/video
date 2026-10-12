@@ -5,6 +5,18 @@ description: Build a beat-synced lyric music video from a Suno song (mp4/audio +
 
 # Suno music-video engine — workflow
 
+## HARD RULES (read first; every one was learned the hard way, see docs/LEARNINGS.md)
+1. **Platform safe zones.** Vertical video is watched under Shorts/Reels/TikTok UI. Lyrics and faces must stay inside the contract in `engine/layout.json`
+   (caption y 14-66 %, x 6-84 %; YOU windows y 6-72 %). Bottom 34 %, top 14 % and right 14 % are ambience only. See docs/PLATFORM_SAFE_ZONES.md.
+   **Gate:** `python pipeline/safezone_check.py songs/<n> --every 2` must PASS before a full render, and you must LOOK at
+   `python tools/platform_mock.py <video> out.png t1 t2 t3` (red = real UI) before delivering. (Engine layout v2 FAILS this gate: fix with layout v3 before the next song.)
+2. Never drive visuals from a fixed BPM grid: use `pipeline/music.py` onsets/envelopes. Let characters anticipate events (audio is known offline).
+3. Caption text is selected by time, not by scene segment.
+4. Deliver ONE stitched file per version (clean / keyed / labeled + a <30 MiB copy). Send a 20 s preview early; check frames of the FINAL files.
+5. Ops: `setsid nohup ... & disown`; never `pkill -f`/`pgrep -f` with a pattern that appears in your own command; absolute paths for MFA.
+6. Ambition: the artist compares against the best vertical music videos online. Don't stop at "works": run through the backlog in docs/LEARNINGS.md and
+   add at least one meaningful upgrade per song. Append new lessons to docs/LEARNINGS.md at the end of every project.
+
 Everything lives in this repo. A song = a folder `songs/<name>/` with `lyrics.txt`, `scenes.json`, `slots.json`, `overrides.json`.
 New song = new `scenes.json` (+ new scene modules / style), **not** new plumbing.
 
@@ -75,6 +87,12 @@ python pipeline/swap.py songs/<n> clips/ final.mp4   # chroma-key swap of the ar
 ```
 Keyed/labeled = the clean master + an overlay (brass frame + pure #00ff00 or labeled panel) per slot with 0.3 s fades, so all three
 are identical outside the windows.
+
+## 3b. Safe-zone + quality gates (before delivery)
+```
+python pipeline/safezone_check.py songs/<n> --every 2     # must print SAFE-ZONE CHECK PASSED
+python tools/platform_mock.py final.mp4 mock.png 20 72 106 # look at it: nothing important in the red
+```
 
 ## 4. Deliver
 Check frames of the FINAL files (a slot window, a lyric plate, the end), the duration, and the file sizes (< 30 MiB for chat).

@@ -298,6 +298,7 @@ function drawLyric(t, text, tStart, seg, mode) {
   });
   c.restore();
   // brass underline that draws in
+  window.__lastText = { x0: 360 - Math.max(...lines.map(l => l.w)) / 2, x1: 360 + Math.max(...lines.map(l => l.w)) / 2, y0: top - lh / 2, y1: top + (lines.length - 1) * lh + lh / 2 + 22, lines: lines.length, size };
   const uw = 140 * ease(dt / .35); g0.line(360 - uw / 2, cy + lines.length * lh / 2 + 14, 360 + uw / 2, cy + lines.length * lh / 2 + 14, 3, P.brass);
 }
 
@@ -314,6 +315,7 @@ const drawMotif = (t, u, seg, segIdx, slot, cam) => {
   c = mainC; return gg;
 };
 function renderFrame(t) {
+  window.__lastText = null;
   const segIdx = segAt(t); const seg = SEGS[segIdx], slot = slotAt(t);
   const u = clamp((t - seg.t0) / Math.max(.01, seg.t1 - seg.t0));
   const cam = { x: Math.sin(t * .31 + segIdx) * 20 + (rnd(segIdx) - .5) * 30, y: Math.cos(t * .23 + segIdx * .7) * 9, z: 1 };

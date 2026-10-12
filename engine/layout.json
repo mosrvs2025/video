@@ -1,0 +1,16 @@
+{
+  "design": [720, 1280],
+  "_comment": "Platform safe zones as fractions of the 9:16 frame (x from left, y from top). 'measured' = read off a real YouTube Shorts screenshot (Mo, Oct 2026, one phone). 'contract' = the stricter universal rule every video must satisfy (covers Reels/TikTok, whose bottom UI is taller). Re-calibrate when you get screenshots from other apps/phones.",
+  "measured": {
+    "source": "YouTube Shorts, Android, screenshot 2026-10-11",
+    "topChipsBottom": 0.052,
+    "rightRail": { "xFrom": 0.877, "yFrom": 0.55 },
+    "bottomUiFrom": 0.79
+  },
+  "contract": {
+    "caption": { "top": 0.14, "bottom": 0.66, "left": 0.06, "right": 0.84 },
+    "window":  { "top": 0.06, "bottom": 0.72, "left": 0.05, "right": 0.86 },
+    "keyVisual": { "top": 0.10, "bottom": 0.70, "left": 0.04, "right": 0.90 }
+  },
+  "youWindow": { "x": 120, "y": 70, "w": 480, "h": 640 }
+}

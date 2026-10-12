@@ -12,6 +12,10 @@ tools/      contact sheets, screenshots
 SKILL.md    the workflow in checklist form (reuse for new songs)
 ```
 
+## Platform safe zones & lessons
+`docs/PLATFORM_SAFE_ZONES.md` (what Shorts/Reels cover, the contract, gates), `docs/LEARNINGS.md` (what we learned + backlog to beat what's online).
+`pipeline/safezone_check.py` fails when captions/faces land under platform UI; `tools/platform_mock.py` overlays a mock Shorts UI on frames.
+
 ## Seeing the music
 `pipeline/music.py` splits the instrumental from the vocals and extracts kick/snare/hat onsets, bass, cello/strings level + pitch class and
 the vocal level. In the video: kicks fire floor shockwaves and flash the lights, snares/hats burst particles, bass heaves the terrain and the
