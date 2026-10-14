@@ -1,0 +1,15 @@
+{
+  "clips": {"R": "road.mp4", "B": "beach.mp4", "S": "surf.mp4"},
+  "dur": {"R": 53.1667, "B": 20.1667, "S": 57.6667},
+  "endCard": 4.0,
+  "segs": [
+    {"clip": "R", "in": 0.0,  "out": 8.2,   "trans": "whip"},
+    {"clip": "R", "in": 10.4, "out": 29.0,  "trans": "zoom"},
+    {"clip": "R", "in": 36.0, "out": 40.8,  "trans": "whip"},
+    {"clip": "R", "in": 44.2, "out": 47.0,  "trans": "wave"},
+    {"clip": "B", "in": 0.0,  "out": 13.8,  "trans": "flash"},
+    {"clip": "S", "in": 0.0,  "out": 13.5,  "trans": "zoom"},
+    {"clip": "S", "in": 17.5, "out": 35.6,  "trans": "whip"},
+    {"clip": "S", "in": 39.0, "out": 57.6667, "trans": "none"}
+  ]
+}
