@@ -17,7 +17,7 @@ const transFor = (seg: Seg, lf: number) => {
   return {tin, tout};
 };
 
-const SegLayer: React.FC<{seg: Seg}> = ({seg}) => {
+const SegLayer: React.FC<{seg: Seg; lite?: boolean; bloom?: boolean}> = ({seg, lite, bloom = true}) => {
   const lf = useCurrentFrame();
   const {tin, tout} = transFor(seg, lf);
   const prevT = seg.i > 0 ? SEGS[seg.i - 1].trans : 'none';
@@ -48,7 +48,14 @@ const SegLayer: React.FC<{seg: Seg}> = ({seg}) => {
           <feBlend in="ca" in2="glow2" mode="screen" />
         </filter>
       </svg>
-      <AbsoluteFill style={{transform: `translateX(${tx}px) scale(${sc})`, filter: `url(#${id}) contrast(1.07) saturate(1.16) brightness(${br})`}}>
+      <svg width={0} height={0} style={{position: 'absolute'}}>
+        <filter id={`${id}b`} x="0" y="0" width="100%" height="100%" colorInterpolationFilters="sRGB">
+          <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 -0.66  0 1 0 0 -0.66  0 0 1 0 -0.66  0 0 0 1 0" result="hi" />
+          <feGaussianBlur in="hi" stdDeviation="22" result="glow" />
+          <feBlend in="SourceGraphic" in2="glow" mode="screen" />
+        </filter>
+      </svg>
+      <AbsoluteFill style={{transform: `translateX(${tx}px) scale(${sc})`, filter: (lite || !bloom) && !(bx || ca) ? `contrast(1.07) saturate(1.16) brightness(${br})` : `url(#${bx || ca ? id : id + 'b'}) contrast(1.07) saturate(1.16) brightness(${br})`}}>
         <OffthreadVideo src={staticFile(seg.file)} startFrom={Math.round(seg.in * FPS)} playbackRate={seg.rate} muted style={{width: W, height: H, objectFit: 'cover'}} />
       </AbsoluteFill>
     </AbsoluteFill>
@@ -99,7 +106,7 @@ const WaveWipe: React.FC<{frame: number}> = ({frame}) => {
 };
 
 // ---------------- main ----------------
-export const Main: React.FC = () => {
+export const Main: React.FC<{lite?: boolean; bloom?: boolean; grain?: boolean}> = ({lite, bloom = true, grain = true}) => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
   const S = srcState(frame);
@@ -115,7 +122,7 @@ export const Main: React.FC = () => {
   return (
     <AbsoluteFill style={{background: 'linear-gradient(120deg,#ff8a3d,#ffcf5a 40%,#4cc9f0)', opacity: fadeIn * fadeOut}}>
       <AbsoluteFill style={{transformOrigin: `${ox}px ${oy}px`, transform: `scale(${s})`}}>
-        {SEGS.map((sg) => <Sequence key={sg.i} from={sg.sf} durationInFrames={sg.nf}><SegLayer seg={sg} /></Sequence>)}
+        {SEGS.map((sg) => <Sequence key={sg.i} from={sg.sf} durationInFrames={sg.nf}><SegLayer seg={sg} lite={lite} bloom={bloom} /></Sequence>)}
         <Sequence from={CUT_FRAMES}>
           <Freeze frame={0}><OffthreadVideo src={staticFile('gull.mp4')} startFrom={Math.round(84.9 * FPS)} muted style={{width: W, height: H, objectFit: 'cover'}} /></Freeze>
         </Sequence>
@@ -127,7 +134,7 @@ export const Main: React.FC = () => {
 
       <AbsoluteFill style={{background: tint, mixBlendMode: 'soft-light'}} />
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, transparent 52%, rgba(0,0,0,.45) 100%)'}} />
-      <Grain frame={frame} />
+      {!lite && grain && <Grain frame={frame} />}
 
       {/* HUD */}
       {clip === 'R' && <>

@@ -4,7 +4,10 @@
   "version": "1.0.0",
   "scripts": {
     "studio": "remotion studio src/index.ts",
-    "render": "remotion render src/index.ts Main out/silent.mp4 --muted --browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell"
+    "analyze": "python3 tools/build_audio.py",
+    "draft": "remotion render src/index.ts Main out/draft.mp4 --scale=0.5 --concurrency=4 --muted --props='{\"lite\":true}' --browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell",
+    "final": "python3 tools/render_chunks.py",
+    "mix": "python3 tools/make_sfx.py && tools/mix.sh out/silent.mp4 out/final.mp4"
   },
   "dependencies": {
     "@react-three/fiber": "^8.15.19",
