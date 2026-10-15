@@ -186,6 +186,24 @@ def contact_sheets(frames, outdir, fps=2):
             sheet.paste(im, (x, y)); d.rectangle([x, y, x + 52, y + 14], fill=(0, 0, 0)); d.text((x + 3, y + 2), f't={(s + i) / fps:.1f}', fill=(255, 255, 0))
         sheet.save(os.path.join(outdir, f'sheet_{s // per}.jpg'), quality=76)
 
+def detect_caption_bar(frames):
+    """Find a burned-in caption bar (e.g. Snapchat text strip): two static horizontal edges in the top 30% of the frame that persist
+    across time while the video behind them changes. Returns {'y0','y1'} as fractions of frame height, or None."""
+    if len(frames) < 8: return None
+    step = max(1, len(frames) // 60); acc = None; n = 0; H = 0
+    for f in frames[::step]:
+        g = cv2.cvtColor(cv2.imread(f), cv2.COLOR_BGR2GRAY).astype(np.float32); H = g.shape[0]
+        d = np.abs(g[2:] - g[:-2]).mean(1); acc = d if acc is None else acc + d; n += 1
+    prof = acc / n; top = int(H * 0.30); p = prof[:top]
+    base = np.median(prof) + 1e-6; thr = max(3.0 * base, np.percentile(p, 90))
+    peaks = [i for i in range(2, top - 2) if p[i] >= thr and p[i] == p[max(0, i - 3):i + 4].max()]
+    best = None
+    for a in peaks:
+        for b in peaks:
+            if 0.03 * H <= b - a <= 0.12 * H and (best is None or (p[a] + p[b]) > best[0]): best = (p[a] + p[b], a, b)
+    if not best: return None
+    return {'y0': round((best[1] + 1) / H, 4), 'y1': round((best[2] + 1) / H, 4)}
+
 def smooth(a, k):
     return np.convolve(a, np.ones(k) / k, 'same')
 
@@ -204,7 +222,7 @@ def analyze(path, outdir, force=False):
     speech = transcribe(x) if meta['audio'] and len(x) > SR else []
     cov = sum(s['b'] - s['a'] for s in speech) / max(meta['dur'], 1e-6)
     frames = sample_frames(path, tmp); vm, hue = visual_metrics(frames)
-    cuts = scene_cuts(path)
+    cuts = scene_cuts(path); bar = detect_caption_bar(frames)
     contact_sheets(frames, outdir)
     # highlight score per 0.5 s
     n = len(vm); t = np.arange(n) / 2
@@ -224,7 +242,7 @@ def analyze(path, outdir, force=False):
     kind = 'music' if tstr > 0.3 else 'speech' if cov > 0.3 else 'ambient'
     res = {'file': os.path.basename(path), **meta, 'kind': kind, 'bpm': round(bpm, 1), 'beat_regularity': round(reg, 2), 'tempo_strength': round(tstr, 3), 'speech_coverage': round(cov, 3),
            'beats': [round(b, 3) for b in beats], 'rms_db': [round(float(v), 1) for v in rms[::1]], 'speech': speech, 'cuts': cuts,
-           'samples': vm, 'score': [round(float(v), 3) for v in score], 'accent_hue': hue}
+           'caption_bar': bar, 'samples': vm, 'score': [round(float(v), 3) for v in score], 'accent_hue': hue}
     json.dump(res, open(jf, 'w'))
     return res
 

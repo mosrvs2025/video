@@ -25,7 +25,11 @@ def cmd_analyze(name, force=False):
     p = pdir(name); cd = os.path.join(p, 'public', 'clips')
     for f in sorted(os.listdir(cd)):
         stem = os.path.splitext(f)[0]; od = os.path.join(p, 'analysis', stem)
-        analyze.analyze(os.path.join(cd, f), od, force=force); tracks.track_clip(os.path.join(cd, f), od, force=force)
+        A = analyze.analyze(os.path.join(cd, f), od, force=force); tracks.track_clip(os.path.join(cd, f), od, force=force)
+        if 'caption_bar' not in A:   # patch older analyses
+            fr = sorted(glob.glob(os.path.join(od, 'tmp', 's', '*.jpg')))
+            A['caption_bar'] = analyze.detect_caption_bar(fr) if fr else None; json.dump(A, open(os.path.join(od, 'analysis.json'), 'w'))
+        print('  caption bar:', A['caption_bar'])
     write_report(name)
 
 def write_report(name):

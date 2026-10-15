@@ -97,12 +97,18 @@ def plan(pdir):
                 w['clip'] = s; wins.append(w)
         for sk in D.get('skip', []):
             wins = [w for w in wins if not (w['clip'] == sk['clip'] and not (w['b'] < sk['a'] or w['a'] > sk['b']))]
-        cap = {s: max(6.0, 0.4 * budget) for s in stems}; used = {s: 0.0 for s in stems}; picked = []
+        cap = {s: (budget * 1.05 if len(stems) == 1 else max(6.0, 0.4 * budget)) for s in stems}; used = {s: 0.0 for s in stems}; picked = []
         # coverage first: best window of each clip
         for s in stems:
             cw = [w for w in wins if w['clip'] == s]
             if cw:
                 w = max(cw, key=lambda w: w['score'] * (1 + 0.1 * min(w['b'] - w['a'], 6))); picked.append(w); used[s] += w['b'] - w['a']
+        # narrative arc: keep the hook (first speech window) and the payoff (last speech window) of long clips
+        for s in stems:
+            cw = sorted([w for w in wins if w['clip'] == s and w['speech']], key=lambda w: w['a'])
+            if cw and AN[s]['dur'] > 25:
+                for w in (cw[0], cw[-1]):
+                    if w not in picked and used[s] + (w['b'] - w['a']) <= cap[s]: picked.append(w); used[s] += w['b'] - w['a']
         total = sum(w['b'] - w['a'] for w in picked)
         for w in sorted([w for w in wins if w not in picked], key=lambda w: -w['score']):
             d = w['b'] - w['a']
@@ -184,9 +190,9 @@ def plan(pdir):
     pol = pol[:4]
     end = {'title': D.get('end', {}).get('title', title), 'subtitle': D.get('end', {}).get('subtitle', P.get('subtitle', '')), 'polaroids': D.get('end', {}).get('polaroids', pol), 'footer': D.get('end', {}).get('footer', '')}
     clips = {ids[s]: {'file': f"clips/{s}{os.path.splitext(f)[1]}", 'w': AN[s]['w'], 'h': AN[s]['h'], 'fps': AN[s]['fps'], 'dur': AN[s]['dur'], 'kind': AN[s]['kind'], 'name': s,
-                      'beats': AN[s]['beats'], 'bpm': AN[s]['bpm']} for s in stems for f in os.listdir(clips_dir) if os.path.splitext(f)[0] == s}
+                      'beats': AN[s]['beats'], 'bpm': AN[s]['bpm'], 'bar': AN[s].get('caption_bar'), 'bar_text': D.get('bar_text', {}).get(s, '')} for s in stems for f in os.listdir(clips_dir) if os.path.splitext(f)[0] == s}
     theme = dict(THEMES.get(P.get('style', 'sunny'), THEMES['sunny']))
-    edit = {'version': 1, 'fps': 30, 'w': 1080, 'h': 1920, 'mode': mode, 'title': title, 'theme': theme, 'endCard': END_CARD, 'clips': clips, 'segs': segs, 'overlays': ov, 'tracks': used_tracks, 'end': end,
+    edit = {'version': 1, 'fps': 30, 'w': 1080, 'h': 1920, 'mode': mode, 'title': title, 'brand': P.get('brand', title), 'theme': theme, 'endCard': END_CARD, 'clips': clips, 'segs': segs, 'overlays': ov, 'tracks': used_tracks, 'end': end,
             'music': os.path.basename(music_bed) if music_bed else None, 'flags': {'beatPulse': mode in ('music', 'bed')}}
     json.dump(edit, open(os.path.join(pdir, 'edit.json'), 'w'), indent=1)
     tot = sum((s['out'] - s['in']) / s['rate'] for s in segs)

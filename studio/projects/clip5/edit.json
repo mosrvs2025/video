@@ -1,0 +1,790 @@
+{
+ "version": 1,
+ "fps": 30,
+ "w": 1080,
+ "h": 1920,
+ "mode": "story",
+ "title": "Round Two",
+ "brand": "SEAGULL SESSIONS",
+ "theme": {
+  "accent": "#ffc933",
+  "accent2": "#ff5a4a",
+  "cool": "#19d3c5",
+  "ink": "#07101f",
+  "navy": "#0a1a33"
+ },
+ "endCard": 3.0,
+ "clips": {
+  "A": {
+   "file": "clips/9c0e1963-Snapchat-628480900.mp4",
+   "w": 428,
+   "h": 762,
+   "fps": 30.0,
+   "dur": 128.22,
+   "kind": "speech",
+   "name": "9c0e1963-Snapchat-628480900",
+   "beats": [
+    0.384,
+    0.912,
+    1.36,
+    1.904,
+    2.4,
+    2.944,
+    3.488,
+    3.984,
+    4.608,
+    5.136,
+    5.584,
+    5.984,
+    6.4,
+    6.944,
+    7.376,
+    7.76,
+    8.208,
+    8.64,
+    9.168,
+    9.68,
+    10.16,
+    10.816,
+    11.264,
+    11.744,
+    12.24,
+    12.72,
+    13.248,
+    13.728,
+    14.224,
+    14.704,
+    15.12,
+    15.568,
+    15.984,
+    16.4,
+    16.928,
+    17.392,
+    17.888,
+    18.4,
+    18.928,
+    19.44,
+    19.904,
+    20.4,
+    20.896,
+    21.408,
+    21.952,
+    22.464,
+    22.976,
+    23.504,
+    24.048,
+    24.56,
+    24.992,
+    25.664,
+    26.192,
+    26.688,
+    27.184,
+    27.632,
+    28.144,
+    28.688,
+    29.216,
+    29.616,
+    30.08,
+    30.544,
+    31.008,
+    31.488,
+    32.064,
+    32.544,
+    33.04,
+    33.584,
+    34.08,
+    34.608,
+    35.136,
+    35.632,
+    36.16,
+    36.672,
+    37.216,
+    37.744,
+    38.304,
+    38.768,
+    39.232,
+    39.712,
+    40.176,
+    40.736,
+    41.264,
+    41.808,
+    42.416,
+    42.896,
+    43.392,
+    43.84,
+    44.336,
+    44.768,
+    45.328,
+    45.84,
+    46.368,
+    46.864,
+    47.392,
+    47.856,
+    48.352,
+    48.864,
+    49.264,
+    49.728,
+    50.16,
+    50.64,
+    51.136,
+    51.696,
+    52.208,
+    52.688,
+    53.296,
+    53.84,
+    54.368,
+    54.912,
+    55.408,
+    55.92,
+    56.384,
+    56.848,
+    57.36,
+    57.888,
+    58.448,
+    58.912,
+    59.424,
+    60.048,
+    60.672,
+    61.088,
+    61.6,
+    62.032,
+    62.448,
+    62.88,
+    63.488,
+    64.048,
+    64.56,
+    65.136,
+    65.632,
+    66.16,
+    66.672,
+    67.12,
+    67.584,
+    68.16,
+    68.64,
+    69.104,
+    69.536,
+    69.984,
+    70.4,
+    70.864,
+    71.36,
+    71.952,
+    72.464,
+    72.944,
+    73.424,
+    73.936,
+    74.416,
+    74.896,
+    75.36,
+    75.84,
+    76.256,
+    76.736,
+    77.216,
+    77.664,
+    78.144,
+    78.576,
+    79.104,
+    79.616,
+    80.224,
+    80.72,
+    81.184,
+    81.648,
+    82.24,
+    82.768,
+    83.296,
+    83.792,
+    84.272,
+    84.784,
+    85.232,
+    85.728,
+    86.24,
+    86.672,
+    87.152,
+    87.6,
+    88.128,
+    88.592,
+    89.024,
+    89.472,
+    89.92,
+    90.336,
+    90.832,
+    91.328,
+    91.84,
+    92.352,
+    92.848,
+    93.376,
+    93.92,
+    94.512,
+    95.04,
+    95.488,
+    95.872,
+    96.336,
+    96.768,
+    97.28,
+    97.776,
+    98.288,
+    98.816,
+    99.392,
+    99.92,
+    100.432,
+    100.928,
+    101.456,
+    101.968,
+    102.496,
+    102.976,
+    103.408,
+    103.904,
+    104.4,
+    104.928,
+    105.44,
+    105.936,
+    106.4,
+    106.864,
+    107.344,
+    107.872,
+    108.352,
+    108.912,
+    109.408,
+    109.952,
+    110.384,
+    110.848,
+    111.44,
+    112.0,
+    112.496,
+    113.136,
+    113.632,
+    114.144,
+    114.672,
+    115.12,
+    115.6,
+    116.064,
+    116.544,
+    117.008,
+    117.44,
+    117.856,
+    118.32,
+    118.864,
+    119.376,
+    119.872,
+    120.4,
+    120.912,
+    121.344,
+    121.824,
+    122.4,
+    122.912,
+    123.44,
+    124.0,
+    124.512,
+    125.024,
+    125.488,
+    126.0,
+    126.56,
+    127.088,
+    127.488,
+    128.0
+   ],
+   "bpm": 117.2,
+   "bar": {
+    "y0": 0.0807,
+    "y1": 0.1368
+   },
+   "bar_text": "What lesson can we learn here?"
+  }
+ },
+ "segs": [
+  {
+   "clip": "A",
+   "in": 0.65,
+   "out": 9.8,
+   "rate": 1.0,
+   "trans": "whip"
+  },
+  {
+   "clip": "A",
+   "in": 16.0,
+   "out": 22.5,
+   "rate": 1.0,
+   "trans": "whip"
+  },
+  {
+   "clip": "A",
+   "in": 41.9,
+   "out": 50.5,
+   "rate": 1.0,
+   "trans": "whip"
+  },
+  {
+   "clip": "A",
+   "in": 55.7,
+   "out": 67.6,
+   "rate": 1.0,
+   "trans": "whip"
+  },
+  {
+   "clip": "A",
+   "in": 108.7,
+   "out": 119.4,
+   "rate": 1.0,
+   "trans": "whip"
+  },
+  {
+   "clip": "A",
+   "in": 121.2,
+   "out": 128.2,
+   "rate": 1.0,
+   "trans": "none"
+  }
+ ],
+ "overlays": [
+  {
+   "type": "title",
+   "clip": "A",
+   "a": 0.8500000000000001,
+   "b": 4.05,
+   "text": "Round Two",
+   "sub": "FEEDING THE SEAGULLS"
+  },
+  {
+   "type": "chapter",
+   "clip": "A",
+   "at": 3.95,
+   "n": "01",
+   "title": "ROUND TWO",
+   "sub": "FEEDING THE SEAGULLS"
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 0.9,
+   "b": 2.04,
+   "text": "Okay, round two.",
+   "hi": [
+    "round"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 1.79,
+   "b": 2.74,
+   "text": "Look, this guy,",
+   "hi": []
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 2.62,
+   "b": 4.19,
+   "text": "he's already got some.",
+   "hi": [
+    "already"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 3.94,
+   "b": 5.46,
+   "text": "Hello, what's your name?",
+   "hi": [
+    "name?"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 5.21,
+   "b": 6.97,
+   "text": "We can give him a name,",
+   "hi": []
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 6.85,
+   "b": 8.99,
+   "text": "but we gotta give some to his",
+   "hi": [
+    "gotta"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 8.74,
+   "b": 9.69,
+   "text": "friend. So, look.",
+   "hi": [
+    "friend."
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 15.97,
+   "b": 18.01,
+   "text": "I'm giving you food bro.",
+   "hi": [
+    "giving"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 17.76,
+   "b": 19.51,
+   "text": "I'm giving you food.",
+   "hi": [
+    "giving"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 19.26,
+   "b": 20.7,
+   "text": "Come here.",
+   "hi": []
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 21.06,
+   "b": 22.5,
+   "text": "Come here birdie.",
+   "hi": [
+    "birdie."
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 42.15,
+   "b": 43.9,
+   "text": "There you go. Yeah,",
+   "hi": [
+    "there"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 43.86,
+   "b": 46.22,
+   "text": "see? That's all you gotta do.",
+   "hi": [
+    "see?"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 45.97,
+   "b": 48.32,
+   "text": "This guy's a little chicken",
+   "hi": [
+    "chicken"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 48.07,
+   "b": 50.43,
+   "text": "over here. This guy's cool.",
+   "hi": []
+  },
+  {
+   "type": "burst",
+   "clip": "A",
+   "a": 43.35,
+   "b": 44.55,
+   "text": "YEAH!",
+   "x": 0.74,
+   "y": 0.32
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 55.91,
+   "b": 58.69,
+   "text": "Nope. You're a scaredy cat.",
+   "hi": [
+    "scaredy"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 58.44,
+   "b": 59.81,
+   "text": "Sorry bro. Look,",
+   "hi": [
+    "sorry"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 59.76,
+   "b": 62.25,
+   "text": "you gotta like teach him a",
+   "hi": [
+    "gotta"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 62.0,
+   "b": 62.81,
+   "text": "lesson.",
+   "hi": [
+    "lesson."
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 63.17,
+   "b": 64.32,
+   "text": "Cheers.",
+   "hi": [
+    "cheers."
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 65.38,
+   "b": 67.39,
+   "text": "See this guy trusts me now.",
+   "hi": [
+    "trusts"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 67.56,
+   "b": 67.6,
+   "text": "You",
+   "hi": []
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 108.9,
+   "b": 110.06,
+   "text": "We're friends now.",
+   "hi": [
+    "friends"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 109.81,
+   "b": 111.87,
+   "text": "I gave you three pieces of",
+   "hi": [
+    "pieces"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 111.62,
+   "b": 112.78,
+   "text": "cheese cracker.",
+   "hi": [
+    "cracker."
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 112.53,
+   "b": 113.91,
+   "text": "That means we're friends,",
+   "hi": [
+    "friends,"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 113.82,
+   "b": 114.3,
+   "text": "right?",
+   "hi": [
+    "right?"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 115.08,
+   "b": 116.16,
+   "text": "No?",
+   "hi": [
+    "no?"
+   ]
+  },
+  {
+   "type": "burst",
+   "clip": "A",
+   "a": 115.08,
+   "b": 116.28,
+   "text": "NO!",
+   "x": 0.74,
+   "y": 0.32
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 116.93,
+   "b": 119.08,
+   "text": "Am I just a means to your",
+   "hi": [
+    "means"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 118.83,
+   "b": 119.36,
+   "text": "ends?",
+   "hi": [
+    "ends?"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 121.32,
+   "b": 123.18,
+   "text": "Why did you perk up when I",
+   "hi": []
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 122.93,
+   "b": 123.64,
+   "text": "said that?",
+   "hi": [
+    "that?"
+   ]
+  },
+  {
+   "type": "caption",
+   "clip": "A",
+   "a": 126.18,
+   "b": 128.2,
+   "text": "Me just talking to birds.",
+   "hi": [
+    "talking"
+   ]
+  },
+  {
+   "type": "pin",
+   "clip": "A",
+   "a": 3.0,
+   "b": 5.2,
+   "x": 0.5,
+   "y": 0.2,
+   "label": "SUBJECT #1",
+   "dx": 140,
+   "dy": -150
+  },
+  {
+   "type": "burst",
+   "clip": "A",
+   "a": 42.6,
+   "b": 43.8,
+   "text": "GOT IT!",
+   "x": 0.5,
+   "y": 0.4,
+   "r": 190
+  },
+  {
+   "type": "meter",
+   "clip": "A",
+   "a": 55.9,
+   "b": 58.5,
+   "label": "TRUST LEVEL",
+   "fillFrom": 56.1,
+   "fillDur": 1.8,
+   "endText": "LOW",
+   "color": "#ff5a4a"
+  },
+  {
+   "type": "meter",
+   "clip": "A",
+   "a": 65.2,
+   "b": 67.6,
+   "label": "TRUST LEVEL",
+   "fillFrom": 65.3,
+   "fillDur": 1.6,
+   "endText": "HIGH"
+  },
+  {
+   "type": "burst",
+   "clip": "A",
+   "a": 66.2,
+   "b": 67.4,
+   "text": "TRUST!",
+   "x": 0.74,
+   "y": 0.4,
+   "r": 160
+  },
+  {
+   "type": "confetti",
+   "clip": "A",
+   "a": 67.0,
+   "x": 0.5,
+   "y": 0.45
+  },
+  {
+   "type": "burst",
+   "clip": "A",
+   "a": 126.3,
+   "b": 127.7,
+   "text": "BIRD WHISPERER",
+   "x": 0.5,
+   "y": 0.45,
+   "r": 230,
+   "rot": -5
+  },
+  {
+   "type": "brackets",
+   "clip": "A",
+   "a": 42.0,
+   "b": 43.6,
+   "x": 0.4,
+   "y": 0.32,
+   "w": 0.28,
+   "h": 0.2,
+   "label": "SEAGULL",
+   "sub": "LOCKED ON"
+  }
+ ],
+ "tracks": {},
+ "end": {
+  "title": "Round Two",
+  "subtitle": "FEEDING THE SEAGULLS",
+  "polaroids": [
+   {
+    "clip": "A",
+    "t": 57.0,
+    "label": "ROUND TWO"
+   }
+  ],
+  "footer": "THE LESSON: BE NICE TO BIRDS"
+ },
+ "music": null,
+ "flags": {
+  "beatPulse": false
+ }
+}

@@ -17,9 +17,9 @@ export const smooth = (x: number) => { const c = clamp(x); return c * c * (3 - 2
 export const prog = (t: number, a: number, d: number, fn: (x: number) => number = easeOutCubic) => fn((t - a) / d);
 export const win = (t: number, a: number, b: number, fi = 0.2, fo = 0.2) => clamp((t - a) / fi) * clamp((b - t) / fo);
 
-export type ClipMeta = {file: string; w: number; h: number; fps: number; dur: number; kind: string; name: string; beats: number[]; bpm: number};
+export type ClipMeta = {bar?: {y0: number; y1: number} | null; bar_text?: string; file: string; w: number; h: number; fps: number; dur: number; kind: string; name: string; beats: number[]; bpm: number};
 export type SegIn = {clip: string; in: number; out: number; rate: number; trans: string; mute?: boolean; follow?: string};
-export type Edit = {fps: number; mode: string; title: string; theme: any; endCard: number; clips: Record<string, ClipMeta>; segs: SegIn[]; overlays: any[]; tracks: Record<string, {a: number; fps: number; boxes: number[][]}>; end: any; flags: {beatPulse: boolean}; spectrum?: number[][]};
+export type Edit = {fps: number; mode: string; title: string; brand?: string; theme: any; endCard: number; clips: Record<string, ClipMeta>; segs: SegIn[]; overlays: any[]; tracks: Record<string, {a: number; fps: number; boxes: number[][]}>; end: any; flags: {beatPulse: boolean}; spectrum?: number[][]};
 export type Seg = SegIn & {i: number; sf: number; nf: number};
 export type Timeline = {segs: Seg[]; cut: number; total: number; beatsOut: number[]};
 

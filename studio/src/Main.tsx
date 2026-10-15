@@ -2,7 +2,7 @@ import React, {useMemo} from 'react';
 import {AbsoluteFill, OffthreadVideo, Sequence, staticFile, useCurrentFrame} from 'remotion';
 import {FPS, W, H, Edit, Seg, Timeline, buildTimeline, srcState, setTheme, isVertical, trackBox, clamp, lerp, smooth, easeInCubic, easeOutCubic} from './lib';
 import {Grain} from './ui';
-import {ChapterSystem, LogoPill, HudOverlays, CamOverlays, ClipCaptions, EndCard} from './overlays';
+import {ChapterSystem, LogoPill, HudOverlays, CamOverlays, ClipCaptions, EndCard, HeaderCover} from './overlays';
 
 const KF: Record<string, number> = {whip: 6, zoom: 8, flash: 5, wave: 0, none: 0};
 
@@ -99,7 +99,8 @@ export const Main: React.FC<{edit: Edit; lite?: boolean}> = ({edit, lite}) => {
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, transparent 52%, rgba(0,0,0,.45) 100%)'}} />
       {!lite && <Grain frame={frame} />}
       {S.seg && <>
-        <LogoPill t={t} title={edit.title} />
+        <HeaderCover edit={edit} S={S} />
+        <LogoPill t={t} title={edit.brand || edit.title} />
         <HudOverlays {...ctx} />
         <ClipCaptions {...ctx} />
         <ChapterSystem {...ctx} />

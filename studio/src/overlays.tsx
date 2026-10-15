@@ -24,7 +24,7 @@ export const ChapterSystem: React.FC<Ctx> = ({edit, S}) => {
           {cur.sub && <Kinetic text={cur.sub} t={lt} a={0.5} x={W / 2} y={big ? 262 : 292} size={30} weight={500} font={MONO} tracking={10} color="rgba(255,255,255,.9)" stagger={0.015} dur={0.5} />}
         </div>
       )}
-      <div style={{position: 'absolute', left: 50, top: 154, opacity: dock, transform: `translateX(${(1 - dock) * -80}px)`}}>
+      <div style={{position: 'absolute', left: 50, top: (() => { const bar = edit.clips[S.clip!]?.bar; return bar ? Math.max(154, bar.y1 * H + 22) : 154; })(), opacity: dock, transform: `translateX(${(1 - dock) * -80}px)`}}>
         <Glass x={0} y={0} r={36} tint={`${CORAL}BB`} style={{position: 'relative', height: 70, padding: '0 30px 0 26px', display: 'flex', alignItems: 'center', gap: 14}}>
           <span style={{fontFamily: MONO, fontSize: 24, letterSpacing: 4, color: SUN, fontWeight: 700}}>{cur.n}</span>
           <span style={{fontFamily: SANS, fontWeight: 800, fontSize: 34, letterSpacing: 1.5, color: '#fff'}}>{cur.title}</span>
@@ -37,7 +37,7 @@ export const ChapterSystem: React.FC<Ctx> = ({edit, S}) => {
 export const LogoPill: React.FC<{t: number; title: string}> = ({t, title}) => (
   <Glass x={50} y={52} r={34} style={{height: 66, padding: '0 28px 0 22px', display: 'flex', alignItems: 'center', gap: 14, maxWidth: 800}}>
     <svg width={34} height={34} viewBox="-20 -20 40 40"><circle r={9} fill={SUN} />{Array.from({length: 8}).map((_, i) => <line key={i} x1={0} y1={-13} x2={0} y2={-18} stroke={SUN} strokeWidth={3} strokeLinecap="round" transform={`rotate(${i * 45 + t * 20})`} />)}</svg>
-    <span style={{fontFamily: SANS, fontWeight: 900, fontSize: 30, letterSpacing: 3, color: '#fff', whiteSpace: 'nowrap'}}>{title.slice(0, 22)}</span>
+    <span style={{fontFamily: SANS, fontWeight: 900, fontSize: 30, letterSpacing: 3, color: '#fff', whiteSpace: 'nowrap'}}>{title.slice(0, 24)}</span>
   </Glass>
 );
 
@@ -205,5 +205,16 @@ export const EndCard: React.FC<{edit: Edit; lt: number}> = ({edit, lt}) => {
       {edit.end.footer && <Glass x={110} y={1590} w={860} h={120} r={60} style={{opacity: easeOutExpo((lt - 1.3) / 0.5), display: 'flex', alignItems: 'center', justifyContent: 'center'}} tint="rgba(10,26,51,.5)"><span style={{fontFamily: SANS, fontWeight: 900, fontSize: 48, color: '#fff'}}>{edit.end.footer}</span></Glass>}
       <Confetti t={lt} a={0.2} dur={2.6} x={W / 2} y={560} />
     </AbsoluteFill>
+  );
+};
+
+/** Covers a burned-in caption bar (e.g. Snapchat) with a styled header; shows the original caption text restyled. */
+export const HeaderCover: React.FC<{edit: Edit; S: SrcState}> = ({edit, S}) => {
+  const m = S.clip ? edit.clips[S.clip] : null; if (!m || !m.bar || Math.abs(m.w / m.h - 9 / 16) > 0.12) return null;
+  const h = m.bar.y1 * H + 14;
+  return (
+    <div style={{position: 'absolute', left: 0, top: 0, width: W, height: h + 40, background: `linear-gradient(180deg, ${NAVY}F5 0%, ${NAVY}F2 ${Math.round(h / (h + 40) * 100)}%, ${NAVY}00 100%)`}}>
+      {m.bar_text && <div style={{position: 'absolute', left: 40, width: W - 80, top: (m.bar.y0 + m.bar.y1) / 2 * H - 20, textAlign: 'center', fontFamily: MONO, fontSize: 30, letterSpacing: 6, color: 'rgba(255,255,255,.92)', textTransform: 'uppercase', whiteSpace: 'nowrap'}}>{m.bar_text}</div>}
+    </div>
   );
 };

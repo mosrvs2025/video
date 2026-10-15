@@ -1,0 +1,130 @@
+{
+ "bar_text": {
+  "9c0e1963-Snapchat-628480900": "What lesson can we learn here?"
+ },
+ "titles": {
+  "9c0e1963-Snapchat-628480900": "ROUND TWO"
+ },
+ "subs": {
+  "9c0e1963-Snapchat-628480900": "FEEDING THE SEAGULLS"
+ },
+ "overlays": [
+  {
+   "type": "pin",
+   "clip": "A",
+   "a": 3.0,
+   "b": 5.2,
+   "x": 0.5,
+   "y": 0.2,
+   "label": "SUBJECT #1",
+   "dx": 140,
+   "dy": -150
+  },
+  {
+   "type": "burst",
+   "clip": "A",
+   "a": 42.6,
+   "b": 43.8,
+   "text": "GOT IT!",
+   "x": 0.5,
+   "y": 0.4,
+   "r": 190
+  },
+  {
+   "type": "meter",
+   "clip": "A",
+   "a": 55.9,
+   "b": 58.5,
+   "label": "TRUST LEVEL",
+   "fillFrom": 56.1,
+   "fillDur": 1.8,
+   "endText": "LOW",
+   "color": "#ff5a4a"
+  },
+  {
+   "type": "meter",
+   "clip": "A",
+   "a": 65.2,
+   "b": 67.6,
+   "label": "TRUST LEVEL",
+   "fillFrom": 65.3,
+   "fillDur": 1.6,
+   "endText": "HIGH"
+  },
+  {
+   "type": "burst",
+   "clip": "A",
+   "a": 66.2,
+   "b": 67.4,
+   "text": "TRUST!",
+   "x": 0.74,
+   "y": 0.4,
+   "r": 160
+  },
+  {
+   "type": "confetti",
+   "clip": "A",
+   "a": 67.0,
+   "x": 0.5,
+   "y": 0.45
+  },
+  {
+   "type": "burst",
+   "clip": "A",
+   "a": 126.3,
+   "b": 127.7,
+   "text": "BIRD WHISPERER",
+   "x": 0.5,
+   "y": 0.45,
+   "r": 230,
+   "rot": -5
+  },
+  {
+   "type": "brackets",
+   "clip": "A",
+   "a": 42.0,
+   "b": 43.6,
+   "x": 0.4,
+   "y": 0.32,
+   "w": 0.28,
+   "h": 0.2,
+   "label": "SEAGULL",
+   "sub": "LOCKED ON"
+  }
+ ],
+ "end": {
+  "footer": "THE LESSON: BE NICE TO BIRDS"
+ },
+ "force_segs": [
+  {
+   "clip": "A",
+   "in": 0.65,
+   "out": 9.8
+  },
+  {
+   "clip": "A",
+   "in": 16.0,
+   "out": 22.5
+  },
+  {
+   "clip": "A",
+   "in": 41.9,
+   "out": 50.5
+  },
+  {
+   "clip": "A",
+   "in": 55.7,
+   "out": 67.6
+  },
+  {
+   "clip": "A",
+   "in": 108.7,
+   "out": 119.4
+  },
+  {
+   "clip": "A",
+   "in": 121.2,
+   "out": 128.2
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+# Analysis report: clip5
+
+## 9c0e1963-Snapchat-628480900
+- 428x762 @ 30fps, 128.2s, kind **speech**, tempo 117.2 (strength 0.138), speech coverage 67%, cuts 1
+- contact sheets: analysis/9c0e1963-Snapchat-628480900/sheet_*.jpg (2 fps, timestamped)
+- tracks: [(1, 4.0, 7.867), (2, 58.667, 72.233), (3, 64.8, 72.367), (4, 92.8, 106.867), (5, 93.067, 107.133), (6, 97.333, 111.4), (7, 100.8, 114.867), (8, 122.133, 125.7), (9, 126.933, 128.2)]
+- transcript:
+  - [0.9-9.4] Okay, round two. Look, this guy, he's already got some. Hello, what's your name? We can give him a name, but we gotta give some to his friend. So, look.
+  - [10.0-14.1] Hey buddy, come here. If you run, oh look, he's running away.
+  - [14.7-15.4] Left.
+  - [16.0-20.4] I'm giving you food bro. I'm giving you food. Come here.
+  - [21.1-22.4] Come here birdie.
+  - [23.0-23.9] Come here!
+  - [24.8-32.4] I know you can hear me. Yeah, look, look, look, look, look, watch. Watch your friend. Come on, you already did it once.
+  - [37.1-38.0] Come on!
+  - [38.6-40.0] I'm not gonna hurt ya.
+  - [42.1-50.2] There you go. Yeah, see? That's all you gotta do. This guy's a little chicken over here. This guy's cool.
+  - [55.9-62.6] Nope. You're a scaredy cat. Sorry bro. Look, you gotta like teach him a lesson.
+  - [63.2-64.1] Cheers.
+  - [65.4-67.1] See this guy trusts me now.
+  - [67.6-69.2] You want one? Come here.
+  - [70.1-73.2] Look, let's see if we can get his friend. Come here.
+  - [75.8-77.2] Come here buddy.
+  - [78.2-81.8] or you want it? if he's not gonna get it look
+  - [83.8-91.4] Look, if he doesn't see, your friend just took it from you. I offered it to you, but you didn't take it.
+  - [92.7-98.4] So yeah, this bird's happy. He'll eat here. He'll stay all day, huh? Here, come perch on my arm.
+  - [103.0-105.5] Come here! Let me say adio!
+  - [107.3-108.0] Clear!
+  - [108.9-114.0] We're friends now. I gave you three pieces of cheese cracker. That means we're friends, right?
+  - [115.1-115.9] No?
+  - [116.9-119.1] Am I just a means to your ends?
+  - [121.3-123.4] Why did you perk up when I said that?
+  - [126.2-128.2] Me just talking to birds.
