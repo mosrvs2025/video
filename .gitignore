@@ -1,1 +1,17 @@
 dist.html
+
+# --- media stays out of git; only tiny compressed archives live in previews/ ---
+*.mp4
+*.mov
+*.m4v
+*.mkv
+*.webm
+*.m4a
+*.wav
+*.mp3
+!previews/*.mp4
+**/out/
+**/chunks/
+**/stills/
+**/node_modules/
+**/.venv/

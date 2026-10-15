@@ -4,6 +4,7 @@
   studio.py make <name> [--draft] [--target 45-60] run analyze -> plan -> audio -> render -> mix
   studio.py analyze|plan|audio|render|mix <name>   run a single stage
   studio.py redo <name> <frameA>-<frameB>          re-render only a frame range (chunk cache)
+  studio.py compress <file|name> [--preset share|small|tiny] [--target-mb N] [-o out.mp4]
 Outputs: projects/<name>/out/final.mp4 (+ preview.mp4), edit.json (the editable plan), director.json (your notes)."""
 import json, os, shutil, subprocess, sys, glob
 ROOT = os.path.dirname(os.path.abspath(__file__)); PY = os.path.join(ROOT, '.venv', 'bin', 'python')
@@ -78,9 +79,11 @@ def mix(name, silent=None):
     music = next(iter(glob.glob(os.path.join(p, 'public', 'music.*'))), None)
     fl = f"[1:a]asplit[o][sc];[2:a]volume=0.6[s];[s][sc]sidechaincompress=threshold=0.05:ratio=3:attack=10:release=300[sd];[o][sd]amix=inputs=2:normalize=0,afade=t=out:st={T - 1.2}:d=1.2,alimiter=limit=0.95[a]"
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', silent, '-i', os.path.join(p, 'audio', 'combined.wav'), '-i', os.path.join(p, 'audio', 'sfx.wav'), '-filter_complex', fl, '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', final], check=True)
-    prev = os.path.join(p, 'out', 'preview.mp4')
-    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', final, '-c:v', 'libx264', '-crf', '28', '-vf', 'scale=720:-2', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', prev], check=True)
-    print('final ->', final, '| preview ->', prev)
+    import compress
+    prev = os.path.join(p, 'out', 'preview.mp4'); arch = os.path.join(p, 'out', 'archive.mp4')
+    compress.compress(final, prev, 'share', target_mb=24)          # sendable anywhere (<30 MB chat limit)
+    compress.compress(final, arch, 'tiny', target_mb=max(2.0, T / 60 * 4.5))  # tiny AV1 copy: the only video worth committing
+    print('final ->', final, '| preview ->', prev, '| archive ->', arch)
 
 def cmd_still(name, frames):
     p = pdir(name); os.makedirs(os.path.join(p, 'out', 'stills'), exist_ok=True); outs = []
@@ -103,6 +106,13 @@ def cmd_review(name):
                    'titles': {c['name']: f"PART {i + 1:02d}" for i, c in enumerate(E['clips'].values())}, 'subs': {}, 'overlays': [], 'skip': [], 'end': {'footer': ''}}, open(dj, 'w'), indent=1)
     print('review ->', os.path.join(p, 'out', 'review.jpg'), '| clips:', {k: v['name'] for k, v in E['clips'].items()}, '| segs:', [(s['clip'], s['in'], s['out']) for s in E['segs']])
 
+def cmd_compress(a):
+    import compress
+    tgt = a[a.index('--target-mb') + 1] if '--target-mb' in a else None; preset = a[a.index('--preset') + 1] if '--preset' in a else 'share'
+    src = a[0] if os.path.exists(a[0]) else os.path.join(pdir(a[0]), 'out', 'final.mp4')
+    out = a[a.index('-o') + 1] if '-o' in a else None
+    compress.compress(src, out, preset, float(tgt) if tgt else None)
+
 def main():
     a = sys.argv[1:]
     if not a: print(__doc__); return
@@ -115,6 +125,7 @@ def main():
     elif c == 'mix': mix(a[1])
     elif c == 'still': cmd_still(a[1], [int(x) for x in a[2:]])
     elif c == 'review': cmd_review(a[1])
+    elif c == 'compress': cmd_compress(a[1:])
     elif c == 'redo': x, y = map(int, a[2].split('-')); render(a[1], frames=(x, y)); mix(a[1])
     elif c == 'make':
         name = a[1]; draft = '--draft' in a; tgt = None

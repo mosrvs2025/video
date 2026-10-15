@@ -31,6 +31,12 @@ Segments are `{clip, in, out, rate, mute, trans, follow}` in **source seconds**.
 Overlay types: `title chapter caption burst pin brackets meter alert lowerthird ticker scoreboard confetti flash text replay eq viz3d leak`.
 Coordinates `x,y` for `burst/confetti/text/alert` are screen fractions; for `pin/brackets` they are **source-frame fractions** (or give `track: "A:3"` to follow an auto-track). `rate<1` on a segment gives slow-mo with letterbox bars.
 
+## Compression & what to commit
+`studio.py make` writes `out/final.mp4` (full quality, big), `out/preview.mp4` (H.264 ≤24 MB, sendable anywhere) and `out/archive.mp4` (AV1, ≈4.5 MB/min).
+`studio.py compress <file> --preset share|small|tiny [--target-mb N]` compresses any video and prints size + SSIM vs the original.
+Measured on a 51 s, 98.7 MB render: share 15.9 MB (SSIM .979) · small/HEVC 8.4 MB (.967) · tiny/AV1 6.9 MB (.974) · tiny @4 MB (.956) · tiny @2.5 MB (.936).
+**Git rule:** never commit media. Copy `archive.mp4` to `previews/<name>.mp4` (the only whitelisted videos). Source clips, wavs and renders stay local (see .gitignore).
+
 ## Speed notes (4 cores)
 Draft ≈ 1–2 min per minute of video. Final ≈ 10 min per minute (bloom filter dominates; it runs the light path except on 6-frame transitions). Fix a scene with `redo`.
 
