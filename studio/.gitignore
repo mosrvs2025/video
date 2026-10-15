@@ -1,0 +1,10 @@
+.venv
+node_modules
+__pycache__
+projects/*/out
+projects/*/chunks
+projects/*/audio
+projects/*/props*.json
+projects/*/total.json
+projects/*/public/clips
+projects/*/analysis/*/tmp

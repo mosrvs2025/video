@@ -1,0 +1,4 @@
+numpy<2.3
+pillow
+opencv-contrib-python-headless==4.10.0.84
+sherpa-onnx

@@ -1,0 +1,25 @@
+{
+  "titles": {"road": "THE ROAD", "beach": "THE BEACH", "surf": "SURF REPORT", "gull": "FEEDING TIME"},
+  "subs":   {"road": "SUN'S OUT", "beach": "FEET IN THE WATER", "surf": "LIVE COMMENTARY", "gull": "THE SEAGULL SESSIONS"},
+  "append_segs": [
+    {"clip": "gull", "in": 82.0, "out": 83.4},
+    {"clip": "gull", "in": 83.4, "out": 85.0, "rate": 0.5, "mute": true}
+  ],
+  "overlays": [
+    {"type": "lowerthird", "clip": "A", "a": 18.5, "b": 21.0, "kicker": "DRIVER", "title": "MARK"},
+    {"type": "meter", "clip": "A", "a": 23.6, "b": 25.6, "label": "CHILL LEVEL", "fillFrom": 23.8, "fillDur": 1.2},
+    {"type": "burst", "clip": "A", "a": 45.9, "b": 47.1, "text": "ARRIVED!", "x": 0.5, "y": 0.33, "r": 220},
+    {"type": "alert", "clip": "B", "a": 0.7, "b": 2.4, "text": "INCOMING WAVE", "sub": "BRACE FOR IMPACT"},
+    {"type": "burst", "clip": "B", "a": 1.4, "b": 2.6, "text": "SPLASH!", "x": 0.74, "y": 0.4, "c1": "#8fe8ff", "c2": "#4cc9f0"},
+    {"type": "scoreboard", "clip": "C", "a": 19.5, "b": 35.0, "left": "MARK", "right": "OCEAN", "events": [{"t": 29.7, "side": "l"}]},
+    {"type": "burst", "clip": "C", "a": 28.4, "b": 29.7, "text": "WHOA!", "x": 0.28, "y": 0.34, "c1": "#8fe8ff", "c2": "#4cc9f0"},
+    {"type": "replay", "clip": "C", "a": 28.0, "b": 31.0, "from": 27.0, "rate": 0.6},
+    {"type": "confetti", "clip": "C", "a": 32.4, "x": 0.62, "y": 0.52},
+    {"type": "burst", "clip": "D", "a": 18.4, "b": 19.7, "text": "FRENZY!", "x": 0.26, "y": 0.35},
+    {"type": "meter", "clip": "D", "a": 18.8, "b": 21.6, "label": "FRENZY LEVEL", "fillFrom": 19.0, "fillDur": 2.2, "endText": "MAX"},
+    {"type": "caption", "clip": "D", "a": 82.1, "b": 83.4, "text": "Take it!", "hi": ["it!"]},
+    {"type": "burst", "clip": "D", "a": 83.75, "b": 84.5, "text": "GOT IT!", "x": 0.52, "y": 0.33, "r": 200},
+    {"type": "flash", "clip": "D", "a": 83.72}
+  ],
+  "end": {"footer": "MARK 1 – 1 OCEAN"}
+}
