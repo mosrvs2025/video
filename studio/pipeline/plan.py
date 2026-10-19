@@ -3,6 +3,10 @@ project.json (all optional): {title, mode:'auto|story|music', target:[45,60], or
 director.json (optional):   {titles:{stem:'CHAPTER TITLE'}, overlays:[raw overlay dicts], force_segs:[...], skip:[{clip,a,b}], end:{title,subtitle,polaroids:[...]}}"""
 import json, os, re, sys, glob
 import numpy as np
+try:
+    from analyze import words_for as _wf
+except Exception:
+    _wf = None
 
 END_CARD = 3.0
 THEMES = {
@@ -142,7 +146,10 @@ def plan(pdir):
         st = inv[s['clip']]
         for ph in AN[st]['speech']:
             if ph['b'] < s['in'] - 0.05 or ph['a'] > s['out'] + 0.05: continue
-            words = [w for w in ph['words'] if w['b'] > s['in'] and w['a'] < s['out']]
+            ptxt = ph['text']; pw = ph['words']
+            for k_, v_ in D.get('fixes', {}).items():
+                if k_ in ptxt and _wf: ptxt = ptxt.replace(k_, v_); pw = _wf(ptxt, ph['a'], ph['b'])
+            words = [w for w in pw if w['b'] > s['in'] and w['a'] < s['out']]
             if not words: continue
             for pg in split_pages(words):
                 a, b = pg[0]['a'], min(pg[-1]['b'] + 0.25, s['out'])
@@ -172,6 +179,8 @@ def plan(pdir):
                 wid = float(np.mean([b[2] for b in t['boxes']]))
                 if 0.08 < wid < 0.45 and t['b'] - t['a'] >= 2 and not (t['b'] < s['in'] or t['a'] > s['out']):
                     ov.append({'type': 'brackets', 'clip': s['clip'], 'track': f"{s['clip']}:{t['id']}", 'a': round(max(t['a'], s['in']) + 0.1, 2), 'b': round(min(t['b'], s['out']) - 0.1, 2), 'label': P.get('names', {}).get(f"{st}:{t['id']}", 'SUBJECT'), 'sub': 'LIVE'})
+    if 'chapters' in D:
+        ov = [o for o in ov if o['type'] != 'chapter'] + [{'type': 'chapter', **c} for c in D['chapters']]
     ov += D.get('overlays', [])
     # tracks used
     used_tracks = {}
@@ -190,7 +199,7 @@ def plan(pdir):
     pol = pol[:4]
     end = {'title': D.get('end', {}).get('title', title), 'subtitle': D.get('end', {}).get('subtitle', P.get('subtitle', '')), 'polaroids': D.get('end', {}).get('polaroids', pol), 'footer': D.get('end', {}).get('footer', '')}
     clips = {ids[s]: {'file': f"clips/{s}{os.path.splitext(f)[1]}", 'w': AN[s]['w'], 'h': AN[s]['h'], 'fps': AN[s]['fps'], 'dur': AN[s]['dur'], 'kind': AN[s]['kind'], 'name': s,
-                      'beats': AN[s]['beats'], 'bpm': AN[s]['bpm'], 'bar': AN[s].get('caption_bar'), 'bar_text': D.get('bar_text', {}).get(s, '')} for s in stems for f in os.listdir(clips_dir) if os.path.splitext(f)[0] == s}
+                      'beats': AN[s]['beats'], 'bpm': AN[s]['bpm'], 'bar': (AN[s].get('caption_bar') if D.get('bar_text', {}).get(s) else None), 'fy': D.get('focus', {}).get(s, P.get('focus', {}).get(s) if isinstance(P.get('focus'), dict) else None), 'bar_text': D.get('bar_text', {}).get(s, '')} for s in stems for f in os.listdir(clips_dir) if os.path.splitext(f)[0] == s}
     theme = dict(THEMES.get(P.get('style', 'sunny'), THEMES['sunny']))
     edit = {'version': 1, 'fps': 30, 'w': 1080, 'h': 1920, 'mode': mode, 'title': title, 'brand': P.get('brand', title), 'theme': theme, 'endCard': END_CARD, 'clips': clips, 'segs': segs, 'overlays': ov, 'tracks': used_tracks, 'end': end,
             'music': os.path.basename(music_bed) if music_bed else None, 'flags': {'beatPulse': mode in ('music', 'bed')}}

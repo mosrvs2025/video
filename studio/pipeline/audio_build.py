@@ -11,7 +11,10 @@ def build(pdir):
     for i, s in enumerate(E['segs']):
         rate = s.get('rate', 1.0); d = round((s['out'] - s['in']) / rate * 30) / 30; ci = idx[s['clip']]
         base = f"[{ci}:a]highpass=f=60,loudnorm=I=-15:TP=-1.5:LRA=9,aformat=sample_rates=44100:channel_layouts=stereo,atrim={s['in']}:{s['out']},asetpts=N/SR/TB"
-        if rate != 1.0: base += f",atempo={rate}"
+        if rate != 1.0:
+            r_ = rate; chain = []
+            while r_ > 2.0: chain.append('atempo=2.0'); r_ /= 2.0
+            chain.append(f'atempo={r_}'); base += ',' + ','.join(chain)
         if s.get('mute'): base += ',volume=0'
         flt.append(f"{base},atrim=0:{d},afade=t=in:d=0.05,afade=t=out:st={max(0, d - 0.05)}:d={0.05},apad=whole_dur={d}[a{i}]")
         cum += d

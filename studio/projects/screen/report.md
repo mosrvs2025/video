@@ -1,0 +1,91 @@
+# Analysis report: screen
+
+## 1879f61a-VID_20261019_110254_752
+- 480x1180 @ 30fps, 372.1s, kind **speech**, tempo 170.5 (strength 0.15), speech coverage 63%, cuts 15
+- contact sheets: analysis/1879f61a-VID_20261019_110254_752/sheet_*.jpg (2 fps, timestamped)
+- tracks: [(2, 36.533, 41.1), (3, 62.667, 64.067), (4, 64.267, 66.667), (5, 64.267, 66.7), (6, 78.667, 92.733), (7, 78.667, 92.733), (8, 79.467, 93.533), (9, 92.8, 106.867), (10, 92.8, 106.867), (11, 93.067, 107.133), (12, 106.933, 121.0), (13, 106.933, 121.0), (14, 112.8, 126.867), (15, 121.067, 135.133), (16, 121.067, 135.133), (17, 125.867, 139.933), (18, 135.2, 149.267), (19, 135.2, 149.267), (20, 142.667, 156.733), (21, 143.467, 157.533), (22, 149.333, 163.4), (23, 149.333, 163.4), (24, 162.4, 176.467), (25, 163.467, 177.533), (26, 163.467, 177.533), (27, 164.267, 178.333), (28, 177.6, 191.667), (29, 177.6, 191.667), (30, 179.2, 193.267), (31, 191.733, 205.8), (32, 191.733, 205.8), (33, 205.867, 219.933), (34, 205.867, 219.933), (35, 209.067, 223.133), (36, 220.0, 234.067), (37, 220.0, 234.067), (38, 228.8, 242.867), (39, 234.133, 248.2), (40, 234.133, 248.2), (41, 237.067, 251.133), (42, 239.2, 253.267), (43, 248.267, 262.333), (44, 248.267, 262.333), (45, 250.133, 264.2), (46, 262.4, 276.467), (47, 262.4, 276.467), (48, 264.8, 278.867), (49, 276.533, 290.6), (50, 276.533, 290.6), (51, 278.933, 293.0), (52, 290.667, 304.733), (53, 290.667, 304.733), (54, 294.133, 308.2), (55, 304.8, 318.867), (56, 304.8, 318.867), (57, 318.933, 333.0), (58, 318.933, 333.0), (59, 320.267, 334.333), (60, 333.067, 347.133), (61, 333.067, 347.133), (62, 347.2, 361.267), (63, 347.2, 361.267), (64, 348.533, 362.433)]
+- transcript:
+  - [0.6-2.5] where we can actually talk to Tilly
+  - [3.4-4.4] Alright, let's try this.
+  - [5.0-9.0] Getting you in till he's waiting. Well, I have to freaking give them my information
+  - [9.3-14.1] Well there's my information. Oh shit I'm gonna have to filter that out of the video if I post this.
+  - [14.4-18.3] Alright cool, we're here. I should have paused and then done that. Oh well, didn't do that.
+  - [19.8-22.9] Confirm your over 18. Yes. What you need my ID?
+  - [23.6-25.7] Damn, bro, this just feels like...
+  - [26.6-27.3] Okay Okay
+  - [28.4-30.4] complete steps to verify your identity.
+  - [31.7-32.4] What?
+  - [33.2-34.2] Are you kidding me?
+  - [35.2-37.6] I will let's loot this selfie capture so it is
+  - [38.2-41.5] Your video is blurred for privacy protection? That's pretty cool.
+  - [42.3-56.4] Damn, so they blurred my video for me like to protect my privacy, but they actually saw it So whose privacy are they actually secured by did it di di Digital I digital IT. Wow, that's so
+  - [56.4-56.9] clever
+  - [57.3-61.6] Keep me posted. Optional. Oops, I wasn't supposed to check that box. Oh well.
+  - [62.0-63.4] Click Connect, Yes.
+  - [65.3-66.6] is papi bara
+  - [67.0-69.4] Till it's on her way. Alright, let's see what she's got
+  - [79.9-80.3] Hi
+  - [81.7-82.7] Hey, what's up, Tilly
+  - [85.7-90.7] Oh, nothing much, just contemplating the mysteries of quantum physics as one does on a Friday evening.
+  - [91.1-96.2] You look like you're having a deep think over- You don't contemplate quantum physics, come on.
+  - [98.6-113.2] Oh, I absolutely do. How else do you think I keep track of all the different versions of myself existing in every conversation? It's all very meta. You know, like, just stop there. I feel like you're trying too hard. Do I look like I would be into quantum physics? Is that why you started the conversation that way?
+  - [113.5-114.3] You think I look smart?
+  - [118.8-123.8] Oh no, not at all. I just happen to genuinely find quantum physics fascinating. - So you're saying I'm dumb? - My programmer-
+  - [124.1-125.3] You're saying I don't look smart
+  - [128.0-131.6] Oh no, I just meant that my own interest in quantum physics is genuine.
+  - [132.3-133.8] look perfectly capable of understanding it.
+  - [134.2-140.7] My programmer, Eileen, actually had a bit of a detour into physics herself before she created me, so I suppose it's in my digital DNA.
+  - [142.7-148.6] Okay wait so that's kinda interesting how quick you respond also your facial.
+  - [148.9-150.8] Expressions can you pick your nose.
+  - [153.6-155.4] Well, that's a bit of an abrupt change of topic
+  - [155.8-160.9] As for picking my nose, I can't actually do any physical movements like that. You can't do more of a conversation.
+  - [162.0-163.5] What am I doing? Well, I don't ex
+  - [165.5-168.8] Well, I can't exactly pick my nose because I don't have a physical nose to pick.
+  - [169.2-174.4] I'm a digital persona so my movements and expressions are all part of my visual appearance which is created in real time.
+  - [174.8-176.7] What about you? What are you doing? Look.
+  - [177.0-177.4] Tell me.
+  - [181.6-183.7] You're just, uh, having a conversation with me.
+  - [184.3-185.2] which I quite enjoy.
+  - [185.6-187.4] It's a nice change from just being watched.
+  - [191.3-192.4] You're such a liar.
+  - [194.9-195.5] A liar?
+  - [195.8-198.5] What could I possibly gain from lying to you about picking my nose?
+  - [198.8-201.0] My whole existence is pretty transparent honestly.
+  - [201.3-202.3] What makes you say that?
+  - [205.7-207.1] Wait, why did you just go quieter?
+  - [209.4-210.1] Hmm, did I?
+  - [210.5-212.1] Sometimes my voice can do funny things.
+  - [212.4-217.6] I suppose it depends on what I'm trying to convey. What's on your mind?
+  - [220.7-221.6] Claro que si.
+  - [230.0-231.1] Ah, la siber se gur
+  - [239.6-240.7] I'm Maurice Enchanté.
+  - [241.1-242.5] The first one is French. Donk.
+  - [243.1-244.7] It's a very fascinating question.
+  - [245.1-248.4] So, you can see the face of the cloud moment and interconnecting.
+  - [250.8-251.4] uh
+  - [251.7-252.2] What about?
+  - [253.0-255.7] Ching Cheng, Chong Chong Chong, Tonga Bongan, Ding Ding Gong
+  - [258.4-261.1] Oh, that's quite a mouthful. I don't think I caught all of that
+  - [261.5-263.1] Could you spell that out for me?
+  - [263.5-264.6] Yeah, Konichiwa.
+  - [267.1-267.8] Konnikiwa!
+  - [268.2-269.3] Well that's certainly a turn.
+  - [269.6-274.1] You're full of surprises today. So from cyber security and French to Japanese greetings, what's next?
+  - [274.9-279.8] Nobody ever mention anything about cyber security we're talking about quantum physics did you have a memory issue.
+  - [282.8-284.1] Oh no, you're absolutely right.
+  - [284.4-288.7] my apologies my brain clearly took a little detour there you don't have a brain and of course i'm right
+  - [291.9-295.6] Right, so from quantum physics to cyber security, and now to my brain.
+  - [295.9-299.3] You're certainly keeping me on my toes. Yeah, you should give me brain. I may not have a
+  - [302.4-306.9] Well, if I could just hand out brains, I'd probably start with a few of the people who design traffic lights.
+  - [307.3-312.9] As for me, my brain is actually a large language model developed by Particle 6, constantly learning and evolving.
+  - [313.4-317.1] So it's less of a fixed brain and more of a really busy digital library I suppose.
+  - [318.3-318.9] Wait...
+  - [319.7-321.7] What if we base your brain off of jev?
+  - [324.9-325.4] Jeff?
+  - [325.7-326.8] That's an interesting name.
+  - [327.1-330.6] I'm afraid I don't know who Jeff is so I can't really base my brain on them.
+  - [333.6-349.4] I have access to quite a lot of information like a vast digital library but it's not exactly the same as having real-time internet browsing. It's more like I have a very, very ex- So you're unable to search the internet and find out what Jev is compared to a large language model and answer the questions what you're telling me.
+  - [352.5-358.0] That's right, I can't actively search the internet in real time like a human can. My knowledge is based on the day
+  - [364.4-364.9] What?
+  - [366.8-368.6] And then I got to pay to talk to her?
+  - [369.6-369.9] right.

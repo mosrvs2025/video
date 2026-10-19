@@ -14,4 +14,6 @@ description: Turn uploaded videos (vlogs, trips, talking clips, music videos) in
 7. **Final:** `studio.py make <name>` (chunk-cached, ~10 min per minute of video; run it in the background and poll `projects/<name>/render.log`) → `out/final.mp4` + `out/preview.mp4` (720p). Fix scenes with `studio.py redo <name> A-B`.
 8. **Deliver:** SendUserFile `out/preview.mp4` (≤24 MB). **Never commit full renders, source clips or .wav files** — copy only `out/archive.mp4` (tiny AV1, ~4 MB) to `previews/<name>.mp4` and commit that. `studio.py compress <file> --preset tiny --target-mb N` compresses anything. Tell the user what you assumed (names, captions you were unsure of) and what the cut dropped.
 
+**Privacy first:** for screen recordings / anything with emails, IDs, addresses, faces of others: scan the footage at ≥2 fps (and a frame-diff scan for popups), then use `redact` in director.json, and VERIFY on the final MP4 frames before delivering. Never rely on overlay-only blur.
+
 Gotchas: never `pkill -f` with a pattern that matches your own bash command; use a unique process id. Don't claim you watched the video — you inspected stills. Keep captions honest (don't invent quotes); profanity: leave out of on-screen captions.

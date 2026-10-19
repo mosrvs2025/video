@@ -44,7 +44,7 @@ const SegLayer: React.FC<{seg: Seg; edit: Edit; tl: Timeline; lite?: boolean}> =
         </filter>
       </svg>
       <AbsoluteFill style={{transform: `translateX(${tx}px) scale(${sc})`, filter: lite && !heavy ? `contrast(1.07) saturate(1.16) brightness(${br})` : `url(#${heavy ? id : id + 'b'}) contrast(1.07) saturate(1.16) brightness(${br})`}}>
-        {vert ? vid({width: W, height: H, objectFit: 'cover'}) : (
+        {vert ? vid({width: W, height: H, objectFit: 'cover', objectPosition: `50% ${(meta.fy ?? 0.5) * 100}%`}) : (
           <>
             <AbsoluteFill style={{filter: 'blur(36px) brightness(.55) saturate(1.3)', transform: 'scale(1.3)'}}>{vid({width: W, height: H, objectFit: 'cover'})}</AbsoluteFill>
             <div style={{position: 'absolute', left: 0, top: (H - W / ar) / 2, width: W, height: W / ar, boxShadow: '0 0 80px rgba(0,0,0,.5)'}}>{vid({width: '100%', height: '100%', objectFit: 'cover'})}</div>

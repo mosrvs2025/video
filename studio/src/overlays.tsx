@@ -156,13 +156,21 @@ export const HudOverlays: React.FC<Ctx> = (ctx) => {
 
 // overlays that must stay glued to footage (inside the camera transform)
 export const CamOverlays: React.FC<Ctx> = ({edit, S}) => {
-  const t = S.ct; const out: React.ReactNode[] = [];
+  const t = S.ct; const out: React.ReactNode[] = []; const out2 = out;
   edit.overlays.forEach((o, k) => {
     if (o.clip !== S.clip || t < o.a || t >= o.b) return;
     const m = edit.clips[o.clip];
     if (o.type === 'pin') {
       const [x, y] = o.track ? (() => { const b = trackBox(edit, o.track, t); return b ? [b.x, b.y] : [0, 0]; })() : toScreen(m, o.x, o.y);
       out.push(<Pin key={k} x={x} y={y} label={o.label} t={t} a={o.a} b={o.b} dx={o.dx} dy={o.dy} color={o.color} />);
+    }
+    if (o.type === 'privacy') {
+      const [x, y] = toScreen(m, o.x ?? 0.5, o.y ?? 0.5); const p = easeOutBack((t - o.a) / 0.5), out = clamp((o.b - t) / 0.3);
+      out2.push(<div key={k} style={{position: 'absolute', left: x - 250, top: y - 60, width: 500, height: 120, opacity: out * clamp(p * 2), transform: `scale(${0.7 + 0.3 * p})`}}>
+        <Glass x={0} y={0} w={500} h={120} r={60} tint={`${CORAL}88`} style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 20}}>
+          <svg width={44} height={52} viewBox="0 0 44 52"><rect x={4} y={22} width={36} height={26} rx={7} fill="#fff" /><path d="M12 22 V15 a10 10 0 0 1 20 0 V22" fill="none" stroke="#fff" strokeWidth={5} /><circle cx={22} cy={35} r={4} fill={NAVY} /></svg>
+          <div><div style={{fontFamily: SANS, fontWeight: 900, fontSize: 38, color: '#fff', letterSpacing: 2, lineHeight: 1}}>{o.label ?? 'PRIVATE'}</div><div style={{fontFamily: MONO, fontSize: 18, color: '#fff', letterSpacing: 4, marginTop: 6}}>BLURRED FOR PRIVACY</div></div>
+        </Glass></div>);
     }
     if (o.type === 'brackets') {
       const b = o.track ? trackBox(edit, o.track, t) : (() => { const [x, y] = toScreen(m, o.x, o.y); return {x, y, w: (o.w ?? 0.3) * W, h: (o.h ?? 0.2) * H}; })();
@@ -186,7 +194,7 @@ const Polaroid: React.FC<{t: number; a: number; edit: Edit; clip: string; at: nu
       <div style={{position: 'absolute', left: PW / 2 - 60, top: -18, width: 120, height: 36, background: 'rgba(255,220,120,.7)', transform: 'rotate(-3deg)'}} />
       <div style={{position: 'relative', width: PW - 28, height: PH - 90, overflow: 'hidden', background: '#000'}}>
         <Freeze frame={Math.round(at * m.fps)}>
-          <OffthreadVideo src={staticFile(m.file)} muted style={vert ? {position: 'absolute', left: (PW - 28) / 2 - 270, top: (PH - 90) / 2 - 480, width: 540, height: 960, objectFit: 'cover'} : {width: '100%', height: '100%', objectFit: 'cover'}} />
+          <OffthreadVideo src={staticFile(m.file)} muted style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: `50% ${(m.fy ?? 0.5) * 100}%`}} />
         </Freeze>
       </div>
       <div style={{fontFamily: SANS, fontWeight: 900, color: NAVY, fontSize: 30, textAlign: 'center', marginTop: 14, letterSpacing: 1}}>{label}</div>
@@ -199,7 +207,7 @@ export const EndCard: React.FC<{edit: Edit; lt: number}> = ({edit, lt}) => {
   return (
     <AbsoluteFill>
       <div style={{position: 'absolute', inset: 0, background: `linear-gradient(180deg, ${NAVY}${Math.round(0.8 * bg * 255).toString(16).padStart(2, '0')}, rgba(255,120,60,${0.55 * bg}))`, backdropFilter: `blur(${bg * 18}px)`}} />
-      <Kinetic text={edit.end.title.toUpperCase().split(' ').slice(0, 2).join(' ')} t={lt} a={0.1} x={W / 2} y={190} size={170} tracking={-8} stagger={0.04} dur={0.6} />
+      <Kinetic text={edit.end.title.toUpperCase()} t={lt} a={0.1} x={W / 2} y={190} size={Math.min(170, Math.floor(1000 / (edit.end.title.length * 0.62)))} tracking={-6} stagger={0.03} dur={0.6} />
       {edit.end.subtitle && <Kinetic text={edit.end.subtitle} t={lt} a={0.4} x={W / 2} y={420} size={34} weight={500} font={MONO} tracking={14} color={SUN} stagger={0.015} dur={0.5} />}
       {pol.map((p: any, i: number) => <Polaroid key={i} t={lt} a={0.2 + i * 0.2} edit={edit} clip={p.clip} at={p.t} x={pos[i][0]} y={pos[i][1]} rot={pos[i][2]} label={p.label} />)}
       {edit.end.footer && <Glass x={110} y={1590} w={860} h={120} r={60} style={{opacity: easeOutExpo((lt - 1.3) / 0.5), display: 'flex', alignItems: 'center', justifyContent: 'center'}} tint="rgba(10,26,51,.5)"><span style={{fontFamily: SANS, fontWeight: 900, fontSize: 48, color: '#fff'}}>{edit.end.footer}</span></Glass>}

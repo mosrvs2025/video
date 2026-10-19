@@ -46,6 +46,7 @@ def cmd_plan(name, target=None):
     p = pdir(name); pj = os.path.join(p, 'project.json'); P = json.load(open(pj)) if os.path.exists(pj) else {}
     if target: P['target'] = target; json.dump(P, open(pj, 'w'), indent=1)
     plan.plan(p)
+    import redact; redact.apply(p)
 
 def cmd_audio(name):
     import audio_build, sfx

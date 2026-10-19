@@ -71,10 +71,12 @@ def run(pdir):
         elif ty == 'lowerthird': t0 = O(c, o['a']); whoosh(t0, 0.5, True, 0.35 * gm); ping(t0 + 0.4 if t0 is not None else None, 0.3 * gm)
         elif ty == 'scoreboard':
             for ev in o.get('events', []): t0 = O(c, ev['t']); chime(t0, [659, 784, 988, 1319] if ev['side'] == 'l' else [392, 330, 262], 0.25 * gm, 0.07)
+        elif ty == 'privacy': t0 = O(c, o['a']); pop(t0, 0.3 * gm, 300, 700); tick(t0 + 0.2 if t0 is not None else None, 0.2 * gm, 1800)
         elif ty == 'confetti': t0 = O(c, o['a']); pop(t0, 0.45 * gm, 500, 1300)
         elif ty == 'replay': t0 = O(c, o['a']); sweepdown(t0, 0.8, 0.35 * gm)
         elif ty == 'flash': t0 = O(c, o['a']); thud(t0, 0.5 * gm); pop(t0, 0.4 * gm, 400, 1400)
     for s in segs:
+        if s['rate'] > 1: whoosh(s['start'] - 0.05, 0.4, True, 0.5); whoosh(s['start'] + s['d'] - 0.3, 0.4, False, 0.5)
         if s['rate'] < 1:  # slow-mo time warp
             riser(s['start'] - 0.8, 0.8, 0.4); sweepdown(s['start'], 0.9, 0.45); whoosh(s['start'], 0.5, True, 0.3)
             n = int(s['d'] * SR); add(lp(rng.standard_normal(n), 700) * np.sin(np.pi * np.linspace(0, 1, n)) * 0.5, s['start'], 0.5)

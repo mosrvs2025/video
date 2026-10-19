@@ -17,7 +17,7 @@ export const smooth = (x: number) => { const c = clamp(x); return c * c * (3 - 2
 export const prog = (t: number, a: number, d: number, fn: (x: number) => number = easeOutCubic) => fn((t - a) / d);
 export const win = (t: number, a: number, b: number, fi = 0.2, fo = 0.2) => clamp((t - a) / fi) * clamp((b - t) / fo);
 
-export type ClipMeta = {bar?: {y0: number; y1: number} | null; bar_text?: string; file: string; w: number; h: number; fps: number; dur: number; kind: string; name: string; beats: number[]; bpm: number};
+export type ClipMeta = {fy?: number; bar?: {y0: number; y1: number} | null; bar_text?: string; file: string; w: number; h: number; fps: number; dur: number; kind: string; name: string; beats: number[]; bpm: number};
 export type SegIn = {clip: string; in: number; out: number; rate: number; trans: string; mute?: boolean; follow?: string};
 export type Edit = {fps: number; mode: string; title: string; brand?: string; theme: any; endCard: number; clips: Record<string, ClipMeta>; segs: SegIn[]; overlays: any[]; tracks: Record<string, {a: number; fps: number; boxes: number[][]}>; end: any; flags: {beatPulse: boolean}; spectrum?: number[][]};
 export type Seg = SegIn & {i: number; sf: number; nf: number};
@@ -39,10 +39,10 @@ export const srcState = (tl: Timeline, frame: number): SrcState => {
   return {seg, clip: seg.clip, ct: seg.in + lt * seg.rate, lt, rem: (seg.nf - (frame - seg.sf)) / FPS};
 };
 
-export const isVertical = (m: ClipMeta) => Math.abs(m.w / m.h - 9 / 16) < 0.12;
-/** map normalized source-frame coords to screen px, honoring cover (vertical) vs blur-fit (landscape) layouts */
+/** tall/portrait sources (phone video, screen recordings) fill the 9:16 frame with object-fit: cover; fy = vertical focus 0..1 (which part is kept when cropping) */
+export const isVertical = (m: ClipMeta) => m.w / m.h < 0.7;
 export const toScreen = (m: ClipMeta, fx: number, fy: number): [number, number] => {
-  if (isVertical(m)) { const sc = Math.max(W / m.w, H / m.h); return [fx * m.w * sc - (m.w * sc - W) / 2, fy * m.h * sc - (m.h * sc - H) / 2]; }
+  if (isVertical(m)) { const sc = Math.max(W / m.w, H / m.h); const p = m.fy ?? 0.5; return [fx * m.w * sc - p * 0 - (m.w * sc - W) / 2, fy * m.h * sc - p * (m.h * sc - H)]; }
   const vh = W * m.h / m.w; return [fx * W, (H - vh) / 2 + fy * vh];
 };
 export const trackBox = (e: Edit, key: string, ct: number) => {
