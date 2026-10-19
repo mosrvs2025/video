@@ -13,7 +13,7 @@
   "ink": "#080614",
   "navy": "#120a2a"
  },
- "endCard": 3.0,
+ "endCard": 0.0,
  "clips": {
   "A": {
    "file": "redacted/1879f61a-VID_20261019_110254_752.mp4",
@@ -1093,785 +1093,911 @@
  "segs": [
   {
    "clip": "A",
-   "in": 0.4,
-   "out": 8.1,
-   "trans": "whip",
-   "rate": 1.0
+   "in": 0.45,
+   "out": 14.34,
+   "rate": 1.0,
+   "trans": "none"
   },
   {
    "clip": "A",
-   "in": 8.1,
-   "out": 14.2,
-   "trans": "zoom",
-   "rate": 1.0
+   "in": 14.34,
+   "out": 18.53,
+   "rate": 1.0,
+   "trans": "none"
   },
   {
    "clip": "A",
-   "in": 14.2,
-   "out": 38.0,
-   "rate": 4.0,
-   "mute": true,
-   "trans": "whip"
+   "in": 19.71,
+   "out": 25.89,
+   "rate": 1.0,
+   "trans": "none"
   },
   {
    "clip": "A",
-   "in": 38.2,
-   "out": 48.8,
-   "trans": "zoom",
-   "rate": 1.0
+   "in": 31.62,
+   "out": 34.43,
+   "rate": 1.0,
+   "trans": "none"
   },
   {
    "clip": "A",
-   "in": 79.8,
-   "out": 96.4,
-   "trans": "whip",
-   "rate": 1.0
+   "in": 38.14,
+   "out": 57.15,
+   "rate": 1.0,
+   "trans": "none"
   },
   {
    "clip": "A",
-   "in": 148.2,
-   "out": 161.0,
-   "trans": "flash",
-   "rate": 1.0
+   "in": 57.22,
+   "out": 63.62,
+   "rate": 1.0,
+   "trans": "none"
   },
   {
    "clip": "A",
-   "in": 191.2,
-   "out": 198.6,
-   "trans": "zoom",
-   "rate": 1.0
+   "in": 79.81,
+   "out": 96.45,
+   "rate": 1.0,
+   "trans": "none"
   },
   {
    "clip": "A",
-   "in": 318.3,
-   "out": 327.6,
-   "trans": "whip",
-   "rate": 1.0
+   "in": 98.53,
+   "out": 114.53,
+   "rate": 1.0,
+   "trans": "none"
   },
   {
    "clip": "A",
-   "in": 363.8,
-   "out": 370.4,
-   "trans": "none",
-   "rate": 1.0
+   "in": 118.66,
+   "out": 125.51,
+   "rate": 1.0,
+   "trans": "none"
+  },
+  {
+   "clip": "A",
+   "in": 142.62,
+   "out": 161.12,
+   "rate": 1.0,
+   "trans": "none"
+  },
+  {
+   "clip": "A",
+   "in": 165.41,
+   "out": 177.63,
+   "rate": 1.0,
+   "trans": "none"
+  },
+  {
+   "clip": "A",
+   "in": 181.54,
+   "out": 187.62,
+   "rate": 1.0,
+   "trans": "none"
+  },
+  {
+   "clip": "A",
+   "in": 191.23,
+   "out": 202.5,
+   "rate": 1.0,
+   "trans": "none"
+  },
+  {
+   "clip": "A",
+   "in": 205.57,
+   "out": 212.32,
+   "rate": 1.0,
+   "trans": "none"
+  },
+  {
+   "clip": "A",
+   "in": 274.78,
+   "out": 284.29,
+   "rate": 1.0,
+   "trans": "none"
+  },
+  {
+   "clip": "A",
+   "in": 318.21,
+   "out": 330.85,
+   "rate": 1.0,
+   "trans": "none"
+  },
+  {
+   "clip": "A",
+   "in": 364.32,
+   "out": 370.18,
+   "rate": 1.0,
+   "trans": "none"
   }
  ],
  "overlays": [
   {
-   "type": "title",
+   "type": "cap",
    "clip": "A",
-   "a": 0.6000000000000001,
-   "b": 3.8,
-   "text": "Talking to Tilly",
-   "sub": "I CALLED AN AI CHARACTER"
+   "a": 0.53,
+   "b": 2.83,
+   "text": "\u2026where we can actually talk to Tilly.",
+   "spk": "U",
+   "first": true
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 0.55,
-   "b": 2.42,
-   "text": "where we can actually talk to",
-   "hi": [
-    "actually"
-   ]
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 2.17,
-   "b": 2.78,
-   "text": "Tilly",
-   "hi": [
-    "tilly"
-   ]
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 3.4,
-   "b": 4.64,
+   "a": 3.38,
+   "b": 4.69,
    "text": "Alright, let's try this.",
-   "hi": [
-    "alright,"
-   ]
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 5.0,
-   "b": 5.92,
-   "text": "Getting you in.",
-   "hi": [
-    "getting"
-   ]
+   "a": 4.98,
+   "b": 6.34,
+   "text": "Getting you in. Tilly's waiting.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 5.67,
-   "b": 6.6,
-   "text": "Tilly's waiting.",
-   "hi": [
-    "waiting."
-   ]
+   "a": 6.32,
+   "b": 9.3,
+   "text": "Well, I have to freaking give them my information",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 6.35,
-   "b": 8.1,
-   "text": "Well, I have to freaking give",
-   "hi": [
-    "freaking"
-   ]
+   "a": 9.3,
+   "b": 10.73,
+   "text": "Well, there's my information.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 7.98,
-   "b": 8.1,
-   "text": "them",
-   "hi": []
+   "a": 10.71,
+   "b": 12.96,
+   "text": "Oh sh*t, I'm gonna have to filter that out of",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 7.98,
-   "b": 9.24,
-   "text": "them my information",
-   "hi": [
-    "information"
-   ]
+   "a": 12.94,
+   "b": 14.34,
+   "text": "the video if I post this.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 9.32,
-   "b": 10.94,
-   "text": "Well there's my information.",
-   "hi": [
-    "information."
-   ]
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 10.69,
-   "b": 12.31,
-   "text": "Oh sh*t I'm gonna have to",
-   "hi": [
-    "gonna"
-   ]
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 12.06,
-   "b": 13.68,
-   "text": "filter that out of the video",
-   "hi": [
-    "filter"
-   ]
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 13.43,
-   "b": 14.2,
-   "text": "if I post this.",
-   "hi": []
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 14.44,
-   "b": 15.91,
+   "a": 14.42,
+   "b": 15.65,
    "text": "Alright cool, we're here.",
-   "hi": [
-    "alright"
-   ]
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 15.66,
-   "b": 17.18,
-   "text": "I should have paused and then",
-   "hi": [
-    "should"
-   ]
+   "a": 15.63,
+   "b": 17.39,
+   "text": "I should have paused and then done that.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 16.93,
-   "b": 17.97,
-   "text": "done that. Oh well,",
-   "hi": []
+   "a": 17.37,
+   "b": 18.53,
+   "text": "Oh well, didn't do that.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 17.83,
-   "b": 18.56,
-   "text": "didn't do that.",
-   "hi": [
-    "didn't"
-   ]
+   "a": 19.79,
+   "b": 21.7,
+   "text": "Confirm you're over 18, yes.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 19.81,
-   "b": 21.63,
-   "text": "Confirm your over 18.",
-   "hi": [
-    "confirm"
-   ]
+   "a": 21.68,
+   "b": 23.25,
+   "text": "What, you need my ID?",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 21.38,
-   "b": 23.2,
-   "text": "Yes. What you need my ID?",
-   "hi": [
-    "id?"
-   ]
+   "a": 23.63,
+   "b": 25.89,
+   "text": "Damn bro, this just feels like...",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "burst",
+   "type": "cap",
    "clip": "A",
-   "a": 21.38,
-   "b": 22.58,
-   "text": "YES!",
-   "x": 0.74,
-   "y": 0.32
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 23.65,
-   "b": 25.44,
-   "text": "Damn, bro, this just feels",
-   "hi": [
-    "feels"
-   ]
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 25.19,
-   "b": 25.92,
-   "text": "like...",
-   "hi": []
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 26.63,
-   "b": 27.52,
-   "text": "Okay Okay",
-   "hi": []
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 28.39,
-   "b": 30.05,
-   "text": "complete steps to verify your",
-   "hi": [
-    "complete"
-   ]
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 29.8,
-   "b": 30.68,
-   "text": "identity.",
-   "hi": [
-    "identity."
-   ]
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 31.72,
-   "b": 32.67,
+   "a": 31.7,
+   "b": 32.72,
    "text": "What?",
-   "hi": [
-    "what?"
-   ]
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 33.25,
-   "b": 34.46,
+   "a": 33.23,
+   "b": 34.43,
    "text": "Are you kidding me?",
-   "hi": [
-    "me?"
-   ]
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 35.21,
-   "b": 36.76,
-   "text": "I will let's loot this selfie",
-   "hi": [
-    "selfie"
-   ]
+   "a": 38.22,
+   "b": 40.7,
+   "text": "Your video is blurred for privacy protection.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 36.51,
-   "b": 37.88,
-   "text": "capture so it is",
-   "hi": [
-    "capture"
-   ]
+   "a": 40.68,
+   "b": 41.78,
+   "text": "That's pretty cool",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 38.25,
-   "b": 39.83,
-   "text": "Your video is blurred for",
-   "hi": [
-    "blurred"
-   ]
+   "a": 42.32,
+   "b": 44.26,
+   "text": "Damn. So they blurred my video for me,",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 39.58,
-   "b": 40.96,
-   "text": "privacy protection?",
-   "hi": [
-    "protection?"
-   ]
+   "a": 44.24,
+   "b": 46.01,
+   "text": "like to protect my privacy,",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 40.71,
-   "b": 41.72,
-   "text": "That's pretty cool.",
-   "hi": [
-    "pretty"
-   ]
+   "a": 45.99,
+   "b": 47.26,
+   "text": "but they actually saw it.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 42.34,
-   "b": 44.65,
-   "text": "Damn, so they blurred my video",
-   "hi": [
-    "blurred"
-   ]
+   "a": 47.24,
+   "b": 49.74,
+   "text": "So whose privacy are they actually...",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 44.4,
-   "b": 46.55,
-   "text": "for me like to protect my",
-   "hi": [
-    "protect"
-   ]
+   "a": 49.68,
+   "b": 51.35,
+   "text": "Secured by Didit?",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 46.3,
-   "b": 48.8,
-   "text": "privacy, but they actually saw",
-   "hi": [
-    "actually"
-   ]
+   "a": 51.31,
+   "b": 53.17,
+   "text": "D-I-D-I-T",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 48.6,
-   "b": 48.8,
-   "text": "it",
-   "hi": []
+   "a": 53.14,
+   "b": 57.15,
+   "text": "Digital IT. Wow, that's so clever.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 79.91,
-   "b": 80.51,
-   "text": "Hi",
-   "hi": []
+   "a": 57.3,
+   "b": 58.84,
+   "text": "Keep me posted. Optional.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 81.67,
-   "b": 82.53,
-   "text": "Hey, what's up,",
-   "hi": [
-    "what's"
-   ]
+   "a": 58.83,
+   "b": 61.94,
+   "text": "Oops, I wasn't supposed to check that box. Oh well.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 82.39,
-   "b": 82.97,
-   "text": "Tilly",
-   "hi": [
-    "tilly"
-   ]
+   "a": 61.94,
+   "b": 63.62,
+   "text": "Click connect. Yes.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 85.73,
-   "b": 86.75,
-   "text": "Oh, nothing much,",
-   "hi": [
-    "nothing"
-   ]
+   "a": 79.89,
+   "b": 80.69,
+   "text": "Hi.",
+   "spk": "T",
+   "first": true
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 86.61,
-   "b": 87.84,
-   "text": "just contemplating the",
-   "hi": [
-    "contemplating"
-   ]
+   "a": 81.65,
+   "b": 83.03,
+   "text": "Hey, what's up Tilly?",
+   "spk": "U",
+   "first": true
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 87.59,
-   "b": 89.15,
-   "text": "mysteries of quantum physics",
-   "hi": [
-    "mysteries"
-   ]
+   "a": 85.71,
+   "b": 87.54,
+   "text": "Oh, nothing much, just contemplating the",
+   "spk": "T",
+   "first": true
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 88.9,
-   "b": 90.45,
-   "text": "as one does on a Friday",
-   "hi": [
-    "friday"
-   ]
+   "a": 87.52,
+   "b": 88.93,
+   "text": "mysteries of quantum physics,",
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 90.2,
-   "b": 90.94,
-   "text": "evening.",
-   "hi": [
-    "evening."
-   ]
+   "a": 88.91,
+   "b": 90.99,
+   "text": "as one does on a Friday evening.",
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 91.08,
-   "b": 93.06,
-   "text": "You look like you're having a",
-   "hi": [
-    "having"
-   ]
+   "a": 91.06,
+   "b": 93.14,
+   "text": "You look like you're having a deep think over",
+   "spk": "U",
+   "first": true
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 92.81,
-   "b": 94.22,
-   "text": "deep think over- You don't",
-   "hi": [
-    "think"
-   ]
+   "a": 94.1,
+   "b": 96.45,
+   "text": "Quantum physics, come on.",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 93.97,
-   "b": 95.76,
-   "text": "contemplate quantum physics,",
-   "hi": [
-    "contemplate"
-   ]
+   "a": 98.61,
+   "b": 100.08,
+   "text": "Oh, I absolutely do.",
+   "spk": "T",
+   "first": true
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 95.65,
-   "b": 96.4,
-   "text": "come on.",
-   "hi": []
+   "a": 100.05,
+   "b": 102.32,
+   "text": "How else do you think I keep track of all the",
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 148.02,
-   "b": 148.83,
-   "text": "facial.",
-   "hi": [
-    "facial."
-   ]
+   "a": 102.3,
+   "b": 105.14,
+   "text": "different versions of myself existing in every",
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 148.93,
-   "b": 150.67,
-   "text": "Expressions can you pick your",
-   "hi": [
-    "expressions"
-   ]
+   "a": 105.12,
+   "b": 107.34,
+   "text": "conversation? It's all very meta.",
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 150.42,
-   "b": 151.1,
-   "text": "nose.",
-   "hi": []
+   "a": 107.09,
+   "b": 108.93,
+   "text": "Just stop there. I feel like you're trying too",
+   "spk": "U",
+   "first": true
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 153.64,
-   "b": 154.75,
-   "text": "Well, that's a bit of an",
-   "hi": [
-    "that's"
-   ]
+   "a": 108.91,
+   "b": 110.9,
+   "text": "hard. Do I look like I would be into quantum",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 154.5,
-   "b": 155.64,
-   "text": "abrupt change of topic",
-   "hi": [
-    "abrupt"
-   ]
+   "a": 110.88,
+   "b": 112.26,
+   "text": "physics? Is that why you started the",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 155.78,
-   "b": 157.03,
-   "text": "As for picking my nose,",
-   "hi": [
-    "picking"
-   ]
+   "a": 112.24,
+   "b": 113.49,
+   "text": "conversation that way?",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 156.88,
-   "b": 158.28,
-   "text": "I can't actually do any",
-   "hi": [
-    "actually"
-   ]
+   "a": 113.52,
+   "b": 114.53,
+   "text": "You think I look smart?",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 158.03,
-   "b": 159.57,
+   "a": 118.74,
+   "b": 121.94,
+   "text": "Oh no, not at all! I just happened to genuinely",
+   "spk": "T",
+   "first": true
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 121.92,
+   "b": 124.08,
+   "text": "find quantum physics fascinating.",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 124.08,
+   "b": 125.51,
+   "text": "You're saying I don't look smart",
+   "spk": "U",
+   "first": true
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 142.7,
+   "b": 145.27,
+   "text": "Okay, wait, so that's kind of interesting how",
+   "spk": "U",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 145.17,
+   "b": 147.12,
+   "text": "quick you respond.",
+   "spk": "U",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 147.09,
+   "b": 148.88,
+   "text": "Also your facial.",
+   "spk": "U",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 148.91,
+   "b": 151.15,
+   "text": "Expressions. Can you pick your nose?",
+   "spk": "U",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 153.62,
+   "b": 155.7,
+   "text": "Well, that's a bit of an abrupt change of topic",
+   "spk": "T",
+   "first": true
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 155.76,
+   "b": 157.8,
+   "text": "As for picking my nose, I can't actually do any",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 157.78,
+   "b": 158.95,
    "text": "physical movements like that.",
-   "hi": [
-    "movements"
-   ]
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 159.32,
-   "b": 160.57,
-   "text": "You can't do more of a",
-   "hi": []
+   "a": 158.93,
+   "b": 161.12,
+   "text": "You can't do it. I'm more of a conversationalist.",
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 160.32,
-   "b": 161.0,
-   "text": "conversation.",
-   "hi": [
-    "conversation."
-   ]
+   "a": 165.49,
+   "b": 167.38,
+   "text": "Well, I can't exactly pick my nose because I",
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 191.33,
-   "b": 192.64,
+   "a": 167.36,
+   "b": 169.11,
+   "text": "don't have a physical nose to pick.",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 169.14,
+   "b": 171.12,
+   "text": "I'm a digital persona so my movements and",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 171.1,
+   "b": 173.23,
+   "text": "expressions are all part of my visual appearance",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 173.21,
+   "b": 174.67,
+   "text": "which is created in real time.",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 174.74,
+   "b": 177.01,
+   "text": "What about you? What are you doing? Look!",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 177.01,
+   "b": 177.63,
+   "text": "Tell me.",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 181.62,
+   "b": 183.95,
+   "text": "You're just having a conversation with me.",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 184.27,
+   "b": 185.49,
+   "text": "you know, I quite enjoy.",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 185.58,
+   "b": 187.62,
+   "text": "It's a nice change from just being watched.",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 191.31,
+   "b": 192.69,
    "text": "You're such a liar.",
-   "hi": [
-    "you're"
-   ]
+   "spk": "U",
+   "first": true
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 194.92,
-   "b": 195.74,
+   "a": 194.9,
+   "b": 195.79,
    "text": "A liar?",
-   "hi": [
-    "liar?"
-   ]
+   "spk": "T",
+   "first": true
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 195.85,
-   "b": 197.14,
-   "text": "What could I possibly gain",
-   "hi": [
-    "possibly"
-   ]
+   "a": 195.82,
+   "b": 197.48,
+   "text": "What could I possibly gain from lying to you",
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 196.89,
-   "b": 198.03,
-   "text": "from lying to you about",
-   "hi": [
-    "lying"
-   ]
+   "a": 197.46,
+   "b": 198.83,
+   "text": "about picking my nose?",
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 197.78,
-   "b": 198.6,
-   "text": "picking my nose?",
-   "hi": [
-    "nose?"
-   ]
+   "a": 198.83,
+   "b": 201.27,
+   "text": "My whole existence is pretty transparent honestly.",
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 318.31,
-   "b": 319.13,
+   "a": 201.3,
+   "b": 202.5,
+   "text": "What makes you say that?",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 205.65,
+   "b": 207.41,
+   "text": "Wait, why did you just go quieter?",
+   "spk": "U",
+   "first": true
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 209.42,
+   "b": 210.39,
+   "text": "Hmm, did I?",
+   "spk": "T",
+   "first": true
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 210.51,
+   "b": 212.32,
+   "text": "Sometimes my voice can do funny things.",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 274.86,
+   "b": 276.47,
+   "text": "Nobody ever mentioned anything about",
+   "spk": "U",
+   "first": true
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 276.45,
+   "b": 278.3,
+   "text": "cybersecurity. We were talking about quantum",
+   "spk": "U",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 278.28,
+   "b": 280.08,
+   "text": "physics. Did you have a memory issue?",
+   "spk": "U",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 282.74,
+   "b": 284.29,
+   "text": "Oh no, you're absolutely right!",
+   "spk": "T",
+   "first": true
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 318.29,
+   "b": 319.19,
    "text": "Wait...",
-   "hi": []
+   "spk": "U",
+   "first": true
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 319.69,
-   "b": 321.52,
-   "text": "What if we base your brain off",
-   "hi": [
-    "brain"
-   ]
+   "a": 319.66,
+   "b": 321.97,
+   "text": "What if we base your brain off of Jeff?",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 321.27,
-   "b": 321.92,
-   "text": "of Jeff?",
-   "hi": [
-    "jeff?"
-   ]
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 324.9,
-   "b": 325.63,
+   "a": 324.88,
+   "b": 325.68,
    "text": "Jeff?",
-   "hi": [
-    "jeff?"
-   ]
+   "spk": "T",
+   "first": true
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 325.73,
-   "b": 327.04,
+   "a": 325.71,
+   "b": 327.09,
    "text": "That's an interesting name.",
-   "hi": [
-    "interesting"
-   ]
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 327.14,
-   "b": 327.6,
-   "text": "I'm afraid",
-   "hi": [
-    "afraid"
-   ]
+   "a": 327.12,
+   "b": 329.22,
+   "text": "I'm afraid I don't know who Jeff is so I can't",
+   "spk": "T",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 364.42,
-   "b": 365.18,
+   "a": 329.2,
+   "b": 330.85,
+   "text": "really base my brain on them.",
+   "spk": "T",
+   "first": false
+  },
+  {
+   "type": "cap",
+   "clip": "A",
+   "a": 364.4,
+   "b": 365.23,
    "text": "What?",
-   "hi": [
-    "what?"
-   ]
+   "spk": "U",
+   "first": true
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 366.82,
-   "b": 368.5,
-   "text": "And then I got to pay to talk",
-   "hi": []
+   "a": 366.8,
+   "b": 368.91,
+   "text": "And then I gotta pay to talk to her?",
+   "spk": "U",
+   "first": false
   },
   {
-   "type": "caption",
+   "type": "cap",
    "clip": "A",
-   "a": 368.25,
-   "b": 368.86,
-   "text": "to her?",
-   "hi": [
-    "her?"
-   ]
-  },
-  {
-   "type": "caption",
-   "clip": "A",
-   "a": 369.61,
-   "b": 370.2,
-   "text": "right.",
-   "hi": [
-    "right."
-   ]
+   "a": 369.17,
+   "b": 370.18,
+   "text": "Yeah right.",
+   "spk": "U",
+   "first": false
   },
   {
    "type": "chapter",
    "clip": "A",
-   "at": 3.7,
+   "at": 0.6,
    "n": "01",
    "title": "SIGN IN",
-   "sub": "THEY WANT MY INFO"
+   "sub": "LET'S TRY THIS"
   },
   {
    "type": "chapter",
    "clip": "A",
-   "at": 14.3,
+   "at": 19.8,
    "n": "02",
    "title": "AGE CHECK",
    "sub": "SELFIE + ID"
@@ -1879,26 +2005,34 @@
   {
    "type": "chapter",
    "clip": "A",
-   "at": 80.0,
+   "at": 38.3,
    "n": "03",
-   "title": "THE CALL",
-   "sub": "FIVE MINUTES WITH AN AI"
+   "title": "WHOSE PRIVACY?",
+   "sub": ""
   },
   {
    "type": "chapter",
    "clip": "A",
-   "at": 148.4,
+   "at": 79.9,
    "n": "04",
-   "title": "TESTING HER",
-   "sub": "PUSHING BUTTONS"
+   "title": "THE CALL",
+   "sub": ""
   },
   {
    "type": "chapter",
    "clip": "A",
-   "at": 364.0,
+   "at": 142.7,
    "n": "05",
+   "title": "TESTING HER",
+   "sub": ""
+  },
+  {
+   "type": "chapter",
+   "clip": "A",
+   "at": 364.4,
+   "n": "06",
    "title": "THE CATCH",
-   "sub": "CALL ENDED"
+   "sub": ""
   },
   {
    "type": "privacy",
@@ -1906,100 +2040,27 @@
    "a": 8.4,
    "b": 12.9,
    "x": 0.5,
-   "y": 0.58,
+   "y": 0.42,
    "label": "PRIVATE"
-  },
-  {
-   "type": "lowerthird",
-   "clip": "A",
-   "a": 15.0,
-   "b": 37.5,
-   "kicker": "FAST FORWARD  4x",
-   "title": "VERIFYING MY IDENTITY",
-   "y": 1090
-  },
-  {
-   "type": "lowerthird",
-   "clip": "A",
-   "a": 80.4,
-   "b": 84.6,
-   "kicker": "TODAY'S GUEST",
-   "title": "TILLY \u00b7 AI CHARACTER",
-   "y": 1090
-  },
-  {
-   "type": "burst",
-   "clip": "A",
-   "a": 150.4,
-   "b": 151.7,
-   "text": "NOSE?!",
-   "x": 0.74,
-   "y": 0.3,
-   "r": 170
-  },
-  {
-   "type": "meter",
-   "clip": "A",
-   "a": 191.4,
-   "b": 194.6,
-   "label": "LIAR DETECTOR",
-   "fillFrom": 191.6,
-   "fillDur": 1.3,
-   "endText": "SUS",
-   "color": "#ff5a4a",
-   "y": 420
-  },
-  {
-   "type": "burst",
-   "clip": "A",
-   "a": 324.9,
-   "b": 326.3,
-   "text": "JEFF?",
-   "x": 0.26,
-   "y": 0.3,
-   "r": 160
-  },
-  {
-   "type": "burst",
-   "clip": "A",
-   "a": 364.3,
-   "b": 365.7,
-   "text": "PAYWALL!",
-   "x": 0.5,
-   "y": 0.3,
-   "r": 200
   }
  ],
  "tracks": {},
  "end": {
   "title": "Talking to Tilly",
-  "subtitle": "I CALLED AN AI CHARACTER",
+  "subtitle": "",
   "polaroids": [
    {
     "clip": "A",
-    "t": 88.0,
-    "label": "HI TILLY"
-   },
-   {
-    "clip": "A",
-    "t": 151.5,
-    "label": "NOSE CHECK"
-   },
-   {
-    "clip": "A",
-    "t": 193.0,
-    "label": "LIAR?"
-   },
-   {
-    "clip": "A",
-    "t": 362.0,
-    "label": "PAYWALL"
+    "t": 39.5,
+    "label": "PART 01"
    }
   ],
-  "footer": "5 MINUTES. ONE AI. ONE PAYWALL."
+  "footer": ""
  },
  "music": null,
  "flags": {
-  "beatPulse": false
+  "beatPulse": false,
+  "light": true,
+  "push": false
  }
 }

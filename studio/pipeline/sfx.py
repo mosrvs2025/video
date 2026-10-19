@@ -48,8 +48,10 @@ def run(pdir):
     def water(t0, dur=1.2, g=0.5):
         n = int(dur * SR); add(lp(rng.standard_normal(n), 2500) * np.sin(np.pi * np.linspace(0, 1, n)) ** 1.2 * 3, t0, g)
     music = E['mode'] in ('music', 'bed'); gm = 0.5 if music else 1.0
+    light = E.get('flags', {}).get('light')
+    if light: gm = 0.55
     # transitions
-    for s in segs[:-1]:
+    for s in ([] if light else segs[:-1]):
         b = s['start'] + s['d']; k = s['trans']
         if k == 'whip': whoosh(b - 0.12, 0.35, True, 0.6 * gm); thud(b, 0.3 * gm, 70)
         elif k == 'zoom': whoosh(b - 0.2, 0.45, True, 0.55 * gm); thud(b, 0.4 * gm, 60)
@@ -57,6 +59,7 @@ def run(pdir):
         elif k == 'wave': water(b - 0.55, 1.2, 0.65); whoosh(b - 0.5, 0.8, True, 0.35)
     for o in E['overlays']:
         ty = o['type']; c = o.get('clip')
+        if light and ty not in ('chapter', 'privacy'): continue
         if ty == 'title': t0 = O(c, o['a']); thud(t0, 0.9 * gm); whoosh(t0 - 0.1 if t0 else None, 0.35, True, 0.45 * gm)
         elif ty == 'chapter': t0 = O(c, o['at']); pop(t0 + 0.1 if t0 is not None else None, 0.35 * gm, 600, 1300); whoosh(t0, 0.4, True, 0.3 * gm)
         elif ty == 'burst': t0 = O(c, o['a']); pop(t0, 0.5 * gm, 350, 1000); thud(t0, 0.3 * gm)
@@ -75,18 +78,19 @@ def run(pdir):
         elif ty == 'confetti': t0 = O(c, o['a']); pop(t0, 0.45 * gm, 500, 1300)
         elif ty == 'replay': t0 = O(c, o['a']); sweepdown(t0, 0.8, 0.35 * gm)
         elif ty == 'flash': t0 = O(c, o['a']); thud(t0, 0.5 * gm); pop(t0, 0.4 * gm, 400, 1400)
-    for s in segs:
+    for s in ([] if light else segs):
         if s['rate'] > 1: whoosh(s['start'] - 0.05, 0.4, True, 0.5); whoosh(s['start'] + s['d'] - 0.3, 0.4, False, 0.5)
         if s['rate'] < 1:  # slow-mo time warp
             riser(s['start'] - 0.8, 0.8, 0.4); sweepdown(s['start'], 0.9, 0.45); whoosh(s['start'], 0.5, True, 0.3)
             n = int(s['d'] * SR); add(lp(rng.standard_normal(n), 700) * np.sin(np.pi * np.linspace(0, 1, n)) * 0.5, s['start'], 0.5)
     # end card
-    thud(CUT, 1.0 * gm, 70); whoosh(CUT - 0.1, 0.5, True, 0.5 * gm); chime(CUT + 0.15, [392, 494, 587, 784], 0.25 * gm, 0.1)
-    for i in range(min(4, len(E['end']['polaroids']))): whoosh(CUT + 0.1 + i * 0.2, 0.25, True, 0.3 * gm); pop(CUT + 0.35 + i * 0.2, 0.3 * gm, 500, 900)
-    n = int(E['endCard'] * SR); t = tt(n); pad = np.zeros(n)
-    for f in (130.8, 196, 261.6, 329.6, 392):
-        for d in (-0.4, 0.4): pad += np.sin(2 * np.pi * (f + d) * t) + 0.25 * np.sin(4 * np.pi * (f + d) * t)
-    add(lp(pad, 1800) / 10 * np.sin(np.pi * np.linspace(0, 1, n)) ** 1.2, CUT, 0.35)
+    if E['endCard'] > 0 and not light:
+        thud(CUT, 1.0 * gm, 70); whoosh(CUT - 0.1, 0.5, True, 0.5 * gm); chime(CUT + 0.15, [392, 494, 587, 784], 0.25 * gm, 0.1)
+        for i in range(min(4, len(E['end']['polaroids']))): whoosh(CUT + 0.1 + i * 0.2, 0.25, True, 0.3 * gm); pop(CUT + 0.35 + i * 0.2, 0.3 * gm, 500, 900)
+        n = int(E['endCard'] * SR); t = tt(n); pad = np.zeros(n)
+        for f in (130.8, 196, 261.6, 329.6, 392):
+            for d in (-0.4, 0.4): pad += np.sin(2 * np.pi * (f + d) * t) + 0.25 * np.sin(4 * np.pi * (f + d) * t)
+        add(lp(pad, 1800) / 10 * np.sin(np.pi * np.linspace(0, 1, n)) ** 1.2, CUT, 0.35)
     pk = max(abs(L).max(), abs(R).max(), 1e-6); L /= pk; R /= pk
     pcm = (np.stack([L, R], 1) * 0.9 * 32767).astype(np.int16)
     out = os.path.join(pdir, 'audio', 'sfx.wav'); w = wave.open(out, 'wb'); w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(pcm.tobytes()); w.close()

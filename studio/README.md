@@ -31,6 +31,9 @@ Segments are `{clip, in, out, rate, mute, trans, follow}` in **source seconds**.
 Overlay types: `title chapter caption burst pin brackets meter alert lowerthird ticker scoreboard confetti flash text replay eq viz3d leak`.
 Coordinates `x,y` for `burst/confetti/text/alert` are screen fractions; for `pin/brackets` they are **source-frame fractions** (or give `track: "A:3"` to follow an auto-track). `rate<1` on a segment gives slow-mo with letterbox bars.
 
+## Light style (`"light": true` in project.json)
+For talky/screen-recording content where the footage should carry itself: no bursts/meters/title cards/camera push, hard cuts, a top timeline with chapter dots, a small chapter banner, and clean phrase captions (sentence case, speaker colour: Tilly pink / "ME" white). `director.json`: `"cuts": [{"clip":"A","in":..,"out":..}]` (auto-snapped to speech pauses), `"tilly": [[a,b],...]` speaker ranges (pitch alone is unreliable when the user is excited), `"fixes"` for ASR errors. `pipeline/retranscribe.py` re-runs speech with the bigger `medium.en` model for much better captions. Aim ≤180 s for Shorts.
+
 ## Privacy redaction
 `director.json` → `"redact": [{"clip":"<stem>","a":8.1,"b":13.3,"x":0,"y":0.285,"w":1,"h":0.55}]` bakes a blur **into the clip pixels** (`public/redacted/`) before anything renders, so the original text can't appear in any frame, preview or polaroid. Add `{"type":"privacy",...}` overlays for the "PRIVATE · blurred" tag. Always verify by viewing frames of the redacted clip across the window edges. Originals are never modified. Tall/portrait sources (screen recordings) fill the 9:16 frame via cover; `"focus": {"<stem>": 0.4}` picks which vertical part is kept. `"fixes"` corrects ASR mistakes in captions; `"chapters"` replaces auto chapters.
 

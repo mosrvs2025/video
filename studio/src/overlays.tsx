@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Freeze, OffthreadVideo, Sequence, staticFile} from 'remotion';
-import {W, H, FPS, NAVY, SUN, CORAL, AQUA, SKY, INK, SANS, MONO, clamp, lerp, easeOutExpo, easeOutCubic, easeOutBack, easeInCubic, easeInOutCubic, toScreen, trackBox, Edit, Timeline, SrcState} from './lib';
+import {srcToOut, W, H, FPS, NAVY, SUN, CORAL, AQUA, SKY, INK, SANS, MONO, clamp, lerp, easeOutExpo, easeOutCubic, easeOutBack, easeInCubic, easeInOutCubic, toScreen, trackBox, Edit, Timeline, SrcState} from './lib';
 import {Kinetic, Glass, Captions, Burst, Pin, Brackets, Meter, Confetti, LightLeak, sp} from './ui';
 import {Viz3D} from './Viz3D';
 
@@ -224,5 +224,58 @@ export const HeaderCover: React.FC<{edit: Edit; S: SrcState}> = ({edit, S}) => {
     <div style={{position: 'absolute', left: 0, top: 0, width: W, height: h + 40, background: `linear-gradient(180deg, ${NAVY}F5 0%, ${NAVY}F2 ${Math.round(h / (h + 40) * 100)}%, ${NAVY}00 100%)`}}>
       {m.bar_text && <div style={{position: 'absolute', left: 40, width: W - 80, top: (m.bar.y0 + m.bar.y1) / 2 * H - 20, textAlign: 'center', fontFamily: MONO, fontSize: 30, letterSpacing: 6, color: 'rgba(255,255,255,.92)', textTransform: 'uppercase', whiteSpace: 'nowrap'}}>{m.bar_text}</div>}
     </div>
+  );
+};
+
+// ================= light style =================
+const TILLY = '#ffb8ec';
+/** clean phrase captions: sentence case, calm fade, 2 lines max, speaker colour + tiny label at the start of a turn */
+export const CapsV2: React.FC<Ctx> = ({edit, S}) => {
+  const caps = edit.overlays.filter((o) => o.type === 'cap' && o.clip === S.clip) as any[];
+  const c = caps.find((k) => S.ct >= k.a - 0.02 && S.ct < k.b + 0.12); if (!c) return null;
+  const lt = S.ct - c.a, o = clamp(lt / 0.14) * clamp((c.b + 0.1 - S.ct) / 0.12);
+  const tilly = c.spk === 'T'; const col = tilly ? TILLY : '#ffffff';
+  return (
+    <div style={{position: 'absolute', left: 50, width: W - 100, top: 1060, display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: o, transform: `translateY(${(1 - easeOutCubic(lt / 0.16)) * 14}px)`}}>
+      {c.first && edit.flags.light && <div style={{alignSelf: tilly ? 'flex-start' : 'flex-end', marginBottom: 10, fontFamily: MONO, fontSize: 22, letterSpacing: 6, fontWeight: 700, color: col, textShadow: '0 2px 8px rgba(0,0,0,.8)'}}>{tilly ? 'TILLY' : 'ME'}</div>}
+      <div style={{background: 'rgba(8,10,22,.58)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', borderRadius: 30, padding: '20px 34px 22px', maxWidth: 960, border: `2px solid ${tilly ? 'rgba(255,184,236,.5)' : 'rgba(255,255,255,.22)'}`}}>
+        <div style={{fontFamily: SANS, fontWeight: 700, fontSize: 56, lineHeight: 1.2, letterSpacing: -0.5, color: col, textAlign: 'center', textShadow: '0 3px 12px rgba(0,0,0,.55)'}}>{c.text}</div>
+      </div>
+    </div>
+  );
+};
+
+/** top timeline: progress + chapter ticks + current chapter name */
+export const TimelineBar: React.FC<Ctx & {frame: number}> = ({edit, tl, S, frame}) => {
+  const chs = edit.overlays.filter((o) => o.type === 'chapter').map((o) => ({...o, out: srcToOut(tl, o.clip, o.at)})).filter((o) => o.out !== null).sort((a, b) => a.out - b.out) as any[];
+  const t = frame / FPS, tot = tl.cut / FPS; const cur = [...chs].reverse().find((c) => t >= c.out - 0.01);
+  const x0 = 360, x1 = 1000, X = (tt: number) => x0 + (x1 - x0) * clamp(tt / tot);
+  return (
+    <Glass x={40} y={120} w={1000} h={84} r={42} style={{overflow: 'hidden'}}>
+      <svg width={1000} height={84} style={{position: 'absolute', left: 0, top: 0}}>
+        <line x1={x0 - 40} y1={42} x2={x1 - 40} y2={42} stroke="rgba(255,255,255,.3)" strokeWidth={6} strokeLinecap="round" />
+        <line x1={x0 - 40} y1={42} x2={X(t) - 40} y2={42} stroke={SUN} strokeWidth={6} strokeLinecap="round" />
+        {chs.map((c, i) => <circle key={i} cx={X(c.out) - 40} cy={42} r={t >= c.out ? 9 : 7} fill={t >= c.out ? SUN : 'rgba(255,255,255,.75)'} stroke={t >= c.out ? '#fff' : 'none'} strokeWidth={2} />)}
+        <circle cx={X(t) - 40} cy={42} r={11} fill="#fff" style={{filter: `drop-shadow(0 0 8px ${SUN})`}} />
+      </svg>
+      <div style={{position: 'absolute', left: 30, top: 0, height: 84, display: 'flex', alignItems: 'center', gap: 14}}>
+        <span style={{fontFamily: MONO, fontSize: 20, letterSpacing: 4, color: SUN, fontWeight: 700}}>{cur ? cur.n : '00'}</span>
+        <span style={{fontFamily: SANS, fontWeight: 800, fontSize: 30, letterSpacing: 1, color: '#fff', whiteSpace: 'nowrap'}}>{cur ? cur.title : edit.brand || edit.title}</span>
+      </div>
+    </Glass>
+  );
+};
+
+/** small chapter banner under the timeline for ~2.2 s */
+export const ChapterBanner: React.FC<Ctx> = ({edit, tl, S, frame}) => {
+  const t = frame / FPS; const chs = edit.overlays.filter((o) => o.type === 'chapter').map((o) => ({...o, out: srcToOut(tl, o.clip, o.at)})).filter((o) => o.out !== null) as any[];
+  const c = chs.find((k) => t >= k.out && t < k.out + 2.4); if (!c) return null;
+  const lt = t - c.out, p = easeOutExpo(lt / 0.5), o = clamp((2.4 - lt) / 0.4);
+  return (
+    <Glass x={40} y={226 + (1 - p) * -20} r={36} tint={`${CORAL}AA`} style={{opacity: o * p, height: 76, padding: '0 34px', display: 'flex', alignItems: 'center', gap: 16}}>
+      <span style={{fontFamily: MONO, fontSize: 22, letterSpacing: 5, color: SUN, fontWeight: 700}}>CHAPTER {c.n}</span>
+      <span style={{fontFamily: SANS, fontWeight: 800, fontSize: 36, color: '#fff', letterSpacing: 1}}>{c.title}</span>
+      {c.sub && <span style={{fontFamily: MONO, fontSize: 20, letterSpacing: 4, color: 'rgba(255,255,255,.85)'}}>· {c.sub}</span>}
+    </Glass>
   );
 };

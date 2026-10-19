@@ -2,7 +2,7 @@ import React, {useMemo} from 'react';
 import {AbsoluteFill, OffthreadVideo, Sequence, staticFile, useCurrentFrame} from 'remotion';
 import {FPS, W, H, Edit, Seg, Timeline, buildTimeline, srcState, setTheme, isVertical, trackBox, clamp, lerp, smooth, easeInCubic, easeOutCubic} from './lib';
 import {Grain} from './ui';
-import {ChapterSystem, LogoPill, HudOverlays, CamOverlays, ClipCaptions, EndCard, HeaderCover} from './overlays';
+import {ChapterSystem, LogoPill, HudOverlays, CamOverlays, ClipCaptions, EndCard, HeaderCover, CapsV2, TimelineBar, ChapterBanner} from './overlays';
 
 const KF: Record<string, number> = {whip: 6, zoom: 8, flash: 5, wave: 0, none: 0};
 
@@ -77,7 +77,7 @@ export const Main: React.FC<{edit: Edit; lite?: boolean}> = ({edit, lite}) => {
   // camera: slow push, optional follow of a tracked subject, beat pulse
   let s = 1, ox = W / 2, oy = H * 0.5;
   if (S.seg) {
-    const k = S.lt / Math.max(0.1, S.seg.nf / FPS); s = 1 + 0.06 * smooth(k);
+    const k = S.lt / Math.max(0.1, S.seg.nf / FPS); s = edit.flags.push === false ? 1 : 1 + 0.06 * smooth(k);
     if (S.seg.follow) { const b = trackBox(edit, S.seg.follow, S.ct); if (b) { s = 1.25 + 0.1 * smooth(k); ox = b.x; oy = b.y; } }
     if (edit.flags.beatPulse) { const bt = tl.beatsOut.filter((b) => b <= t).slice(-1)[0]; if (bt !== undefined) s += 0.022 * Math.exp(-(t - bt) * 9); }
   }
@@ -98,7 +98,13 @@ export const Main: React.FC<{edit: Edit; lite?: boolean}> = ({edit, lite}) => {
       <AbsoluteFill style={{background: tint, mixBlendMode: 'soft-light'}} />
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, transparent 52%, rgba(0,0,0,.45) 100%)'}} />
       {!lite && <Grain frame={frame} />}
-      {S.seg && <>
+      {S.seg && (edit.flags.light ? <>
+        <HeaderCover edit={edit} S={S} />
+        <TimelineBar {...ctx} frame={frame} />
+        <ChapterBanner {...ctx} frame={frame} />
+        <HudOverlays {...ctx} />
+        <CapsV2 {...ctx} />
+      </> : <>
         <HeaderCover edit={edit} S={S} />
         <LogoPill t={t} title={edit.brand || edit.title} />
         <HudOverlays {...ctx} />
@@ -109,10 +115,10 @@ export const Main: React.FC<{edit: Edit; lite?: boolean}> = ({edit, lite}) => {
           <div style={{position: 'absolute', left: 0, bottom: 0, width: W, height: 250 * slow, background: '#000'}} />
           <div style={{position: 'absolute', left: 0, width: W, bottom: 96, textAlign: 'center', opacity: slow}}><span style={{fontFamily: 'monospace', fontSize: 30, letterSpacing: 14, color: edit.theme.accent}}>SLOW MOTION  {S.seg.rate.toFixed(1)}×</span></div>
         </>}
-      </>}
+      </>)}
       <WaveWipe frame={frame} tl={tl} />
       {barFlash > 0.002 && <AbsoluteFill style={{background: '#fff', opacity: barFlash, mixBlendMode: 'overlay'}} />}
-      {inEnd && <EndCard edit={edit} lt={elt} />}
+      {inEnd && edit.endCard > 0 && <EndCard edit={edit} lt={elt} />}
     </AbsoluteFill>
   );
 };

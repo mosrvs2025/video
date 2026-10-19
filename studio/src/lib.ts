@@ -19,7 +19,7 @@ export const win = (t: number, a: number, b: number, fi = 0.2, fo = 0.2) => clam
 
 export type ClipMeta = {fy?: number; bar?: {y0: number; y1: number} | null; bar_text?: string; file: string; w: number; h: number; fps: number; dur: number; kind: string; name: string; beats: number[]; bpm: number};
 export type SegIn = {clip: string; in: number; out: number; rate: number; trans: string; mute?: boolean; follow?: string};
-export type Edit = {fps: number; mode: string; title: string; brand?: string; theme: any; endCard: number; clips: Record<string, ClipMeta>; segs: SegIn[]; overlays: any[]; tracks: Record<string, {a: number; fps: number; boxes: number[][]}>; end: any; flags: {beatPulse: boolean}; spectrum?: number[][]};
+export type Edit = {fps: number; mode: string; title: string; brand?: string; theme: any; endCard: number; clips: Record<string, ClipMeta>; segs: SegIn[]; overlays: any[]; tracks: Record<string, {a: number; fps: number; boxes: number[][]}>; end: any; flags: {beatPulse: boolean; light?: boolean; push?: boolean}; spectrum?: number[][]};
 export type Seg = SegIn & {i: number; sf: number; nf: number};
 export type Timeline = {segs: Seg[]; cut: number; total: number; beatsOut: number[]};
 
@@ -57,4 +57,10 @@ export const interp = (keys: number[][], t: number): number[] => {
   if (t <= keys[0][0]) return keys[0].slice(1);
   for (let i = 0; i < keys.length - 1; i++) if (t < keys[i + 1][0]) { const u = smooth((t - keys[i][0]) / (keys[i + 1][0] - keys[i][0])); return keys[i].slice(1).map((v, k) => lerp(v, keys[i + 1][k + 1], u)); }
   return keys[keys.length - 1].slice(1);
+};
+
+/** output time (s) at which source time ct of clip appears (first segment containing it), or null */
+export const srcToOut = (tl: Timeline, clip: string, ct: number): number | null => {
+  for (const s of tl.segs) if (s.clip === clip && ct >= s.in - 1e-6 && ct <= s.out + 1e-6) return s.sf / FPS + (ct - s.in) / s.rate;
+  return null;
 };

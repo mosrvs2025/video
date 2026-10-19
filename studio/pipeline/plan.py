@@ -4,11 +4,13 @@ director.json (optional):   {titles:{stem:'CHAPTER TITLE'}, overlays:[raw overla
 import json, os, re, sys, glob
 import numpy as np
 try:
-    from analyze import words_for as _wf
+    from analyze import words_for as _wf, load_audio as _load_audio
+    import speaker as _spk
 except Exception:
-    _wf = None
+    _wf = None; _load_audio = None; _spk = None
 
 END_CARD = 3.0
+SR_ = 16000
 THEMES = {
     'sunny': {'accent': '#ffc933', 'accent2': '#ff5a4a', 'cool': '#19d3c5', 'ink': '#07101f', 'navy': '#0a1a33'},
     'neon':  {'accent': '#ff3df2', 'accent2': '#7a5cff', 'cool': '#27e8ff', 'ink': '#080614', 'navy': '#120a2a'},
@@ -61,6 +63,52 @@ def candidate_windows(A):
         if any(not (b < oa or a > ob) for oa, ob in occupied): continue
         chosen.append(t); out.append({'a': a, 'b': b, 'speech': False, 'score': float(sc[i])})
         if len(chosen) >= 6: break
+    return out
+
+def light_caps(segs, inv, AN, pdir, stems, D):
+    """clean phrase captions with per-word speaker (pitch) and tidy page splits"""
+    out = []; audio = {}
+    for sg in segs:
+        st = inv[sg['clip']]
+        if st not in audio and _load_audio:
+            audio[st] = _load_audio(os.path.join(pdir, 'public', 'clips', [f for f in os.listdir(os.path.join(pdir, 'public', 'clips')) if os.path.splitext(f)[0] == st][0]), os.path.join(pdir, 'analysis', st, 'tmp'))
+    last_spk = {}
+    for sg in segs:
+        st = inv[sg['clip']]; x = audio.get(st)
+        for ph in AN[st]['speech']:
+            if ph['b'] < sg['in'] - 0.05 or ph['a'] > sg['out'] + 0.05: continue
+            ptxt = ph['text']; pw = ph['words']
+            for k_, v_ in D.get('fixes', {}).items():
+                if k_ in ptxt and _wf: ptxt = ptxt.replace(k_, v_); pw = _wf(ptxt, ph['a'], ph['b'])
+            words = [dict(w) for w in pw]
+            # speaker: explicit Tilly ranges (director) else phrase-level median pitch
+            TR = D.get('tilly')
+            if TR is not None:
+                for w in words: m_ = (w['a'] + w['b']) / 2; w['spk'] = 'T' if any(a_ <= m_ <= b_ for a_, b_ in TR) else 'U'
+            else:
+                f = _spk.f0_median(x, SR_, ph['a'], ph['b']) if (x is not None and _spk) else 0.0
+                for w in words: w['spk'] = 'T' if f >= D.get('pitch_split', 180) else 'U'
+            words = [w for w in words if w['b'] > sg['in'] and w['a'] < sg['out']]
+            if not words: continue
+            # pages: split at speaker change, at punctuation once a line is long enough, and by length; merge tiny orphans
+            L_ = lambda g: len(' '.join(x_['w'] for x_ in g))
+            pages = []; cur = []
+            for w in words:
+                if cur and (w['spk'] != cur[-1]['spk'] or L_(cur) + len(w['w']) + 1 > 48 or (re.search(r'[.?!,;:]$', cur[-1]['w']) and L_(cur) >= 24)):
+                    pages.append(cur); cur = []
+                cur.append(w)
+            if cur: pages.append(cur)
+            k_ = 1
+            while k_ < len(pages):
+                if len(pages[k_]) <= 2 and pages[k_][0]['spk'] == pages[k_ - 1][0]['spk'] and L_(pages[k_ - 1]) + L_(pages[k_]) + 1 <= 60: pages[k_ - 1] += pages.pop(k_)
+                else: k_ += 1
+            for i, pg in enumerate(pages):
+                a = max(pg[0]['a'] - 0.04, sg['in']); b = min(pg[-1]['b'] + 0.3, sg['out'])
+                if i + 1 < len(pages): b = min(b, pages[i + 1][0]['a'] - 0.02)
+                b = max(b, a + 0.8) if i + 1 == len(pages) else max(b, a + 0.5)
+                first = (last_spk.get(st) != pg[0]['spk']) and i == 0
+                out.append({'type': 'cap', 'clip': sg['clip'], 'a': round(a, 2), 'b': round(min(b, sg['out']), 2), 'text': ' '.join(w['w'] for w in pg), 'spk': pg[0]['spk'], 'first': bool(first)})
+            last_spk[st] = pages[-1][-1]['spk']
     return out
 
 def plan(pdir):
@@ -122,6 +170,15 @@ def plan(pdir):
         for w in picked:
             if segs and segs[-1]['clip'] == ids[w['clip']] and w['a'] - segs[-1]['out'] < 0.6: segs[-1]['out'] = round(w['b'], 3)
             else: segs.append({'clip': ids[w['clip']], 'in': round(w['a'], 3), 'out': round(w['b'], 3)})
+    if D.get('cuts'):
+        segs = []
+        for c in D['cuts']:
+            cid = ids.get(c.get('clip', stems[0]), ids[stems[0]]); st = inv0 = {v: k for k, v in ids.items()}[cid]
+            phr = AN[st]['speech']; a, b = c['in'], c['out']
+            ca = [p_['a'] for p_ in phr if abs(p_['a'] - a) <= 1.0]; cb = [p_['b'] for p_ in phr if abs(p_['b'] - b) <= 1.0]
+            if ca and not c.get('exact'): a = min(ca, key=lambda v: abs(v - a)) - 0.12
+            if cb and not c.get('exact'): b = min(cb, key=lambda v: abs(v - b)) + 0.22
+            segs.append({'clip': cid, 'in': round(max(0, a), 3), 'out': round(min(AN[st]['dur'], b), 3), 'rate': c.get('rate', 1.0), 'trans': c.get('trans', 'none'), **({'mute': True} if c.get('mute') else {})})
     if D.get('force_segs'): segs = D['force_segs']
     for extra in D.get('append_segs', []):
         e = dict(extra); e['clip'] = ids.get(e['clip'], e['clip']); segs.append(e)
@@ -131,6 +188,7 @@ def plan(pdir):
         nxt = segs[i + 1] if i + 1 < len(segs) else None
         s['trans'] = 'none' if not nxt else (s.get('trans') or ('whip' if nxt['clip'] == s['clip'] else pat[i % len(pat)]))
     # overlays
+    light = bool(P.get('light'))
     inv = {v: k for k, v in ids.items()}
     ov = []
     first = segs[0]
@@ -142,24 +200,29 @@ def plan(pdir):
         seen.add(s['clip']); n += 1
         st = inv[s['clip']]
         ov.append({'type': 'chapter', 'clip': s['clip'], 'at': round(s['in'] + (3.3 if s is first else 0.15), 2), 'n': f'{n:02d}', 'title': D.get('titles', {}).get(st, f'PART {n:02d}'), 'sub': D.get('subs', {}).get(st, '')})
-    for s in segs:
-        st = inv[s['clip']]
-        for ph in AN[st]['speech']:
-            if ph['b'] < s['in'] - 0.05 or ph['a'] > s['out'] + 0.05: continue
-            ptxt = ph['text']; pw = ph['words']
-            for k_, v_ in D.get('fixes', {}).items():
-                if k_ in ptxt and _wf: ptxt = ptxt.replace(k_, v_); pw = _wf(ptxt, ph['a'], ph['b'])
-            words = [w for w in pw if w['b'] > s['in'] and w['a'] < s['out']]
-            if not words: continue
-            for pg in split_pages(words):
-                a, b = pg[0]['a'], min(pg[-1]['b'] + 0.25, s['out'])
-                txt = ' '.join(w['w'] for w in pg)
-                ov.append({'type': 'caption', 'clip': s['clip'], 'a': round(a, 2), 'b': round(b, 2), 'text': txt, 'hi': hi_words(pg)})
-            for w in words:
-                key = re.sub(r'\W', '', w['w'].lower())
-                if BURST_WORDS.get(key): ov.append({'type': 'burst', 'clip': s['clip'], 'a': round(w['a'], 2), 'b': round(w['a'] + 1.2, 2), 'text': BURST_WORDS[key], 'x': 0.74, 'y': 0.32})
+    if light:
+        ov = [o for o in ov if o['type'] not in ('title',)]
+        ov += light_caps(segs, inv, AN, pdir, stems, D)
+    else:
+        for s in segs:
+            st = inv[s['clip']]
+            for ph in AN[st]['speech']:
+                if ph['b'] < s['in'] - 0.05 or ph['a'] > s['out'] + 0.05: continue
+                ptxt = ph['text']; pw = ph['words']
+                for k_, v_ in D.get('fixes', {}).items():
+                    if k_ in ptxt and _wf: ptxt = ptxt.replace(k_, v_); pw = _wf(ptxt, ph['a'], ph['b'])
+                words = [w for w in pw if w['b'] > s['in'] and w['a'] < s['out']]
+                if not words: continue
+                for pg in split_pages(words):
+                    a, b = pg[0]['a'], min(pg[-1]['b'] + 0.25, s['out'])
+                    txt = ' '.join(w['w'] for w in pg)
+                    ov.append({'type': 'caption', 'clip': s['clip'], 'a': round(a, 2), 'b': round(b, 2), 'text': txt, 'hi': hi_words(pg)})
+                for w in words:
+                    key = re.sub(r'\W', '', w['w'].lower())
+                    if BURST_WORDS.get(key): ov.append({'type': 'burst', 'clip': s['clip'], 'a': round(w['a'], 2), 'b': round(w['a'] + 1.2, 2), 'text': BURST_WORDS[key], 'x': 0.74, 'y': 0.32})
+
     # beat grid (global, output time) is filled by the timeline builder later; here just record per clip
-    music_clips = [ids[s] for s in stems if AN[s]['kind'] == 'music']
+    music_clips = [ids[s] for s in stems if AN[s]['kind'] == 'music' and not light]
     for cid in music_clips: ov.append({'type': 'eq', 'clip': cid, 'a': 0, 'b': 9999, 'label': '♪ ON THE RADIO' if mode == 'story' else '♪ SPECTRUM'})
     if mode in ('music', 'bed'):
         first = segs[0]; st0 = inv[first['clip']]; A0 = AN[st0]; rms = np.array(A0['rms_db'])
@@ -201,8 +264,8 @@ def plan(pdir):
     clips = {ids[s]: {'file': f"clips/{s}{os.path.splitext(f)[1]}", 'w': AN[s]['w'], 'h': AN[s]['h'], 'fps': AN[s]['fps'], 'dur': AN[s]['dur'], 'kind': AN[s]['kind'], 'name': s,
                       'beats': AN[s]['beats'], 'bpm': AN[s]['bpm'], 'bar': (AN[s].get('caption_bar') if D.get('bar_text', {}).get(s) else None), 'fy': D.get('focus', {}).get(s, P.get('focus', {}).get(s) if isinstance(P.get('focus'), dict) else None), 'bar_text': D.get('bar_text', {}).get(s, '')} for s in stems for f in os.listdir(clips_dir) if os.path.splitext(f)[0] == s}
     theme = dict(THEMES.get(P.get('style', 'sunny'), THEMES['sunny']))
-    edit = {'version': 1, 'fps': 30, 'w': 1080, 'h': 1920, 'mode': mode, 'title': title, 'brand': P.get('brand', title), 'theme': theme, 'endCard': END_CARD, 'clips': clips, 'segs': segs, 'overlays': ov, 'tracks': used_tracks, 'end': end,
-            'music': os.path.basename(music_bed) if music_bed else None, 'flags': {'beatPulse': mode in ('music', 'bed')}}
+    edit = {'version': 1, 'fps': 30, 'w': 1080, 'h': 1920, 'mode': mode, 'title': title, 'brand': P.get('brand', title), 'theme': theme, 'endCard': P.get('end_card', END_CARD), 'clips': clips, 'segs': segs, 'overlays': ov, 'tracks': used_tracks, 'end': end,
+            'music': os.path.basename(music_bed) if music_bed else None, 'flags': {'beatPulse': mode in ('music', 'bed'), 'light': light, 'push': not light}}
     json.dump(edit, open(os.path.join(pdir, 'edit.json'), 'w'), indent=1)
     tot = sum((s['out'] - s['in']) / s['rate'] for s in segs)
     print(f'mode={mode} segs={len(segs)} cut={tot:.1f}s total={tot + END_CARD:.1f}s overlays={len(ov)} tracks={len(used_tracks)}')
