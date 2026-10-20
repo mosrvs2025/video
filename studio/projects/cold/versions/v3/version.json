@@ -1,0 +1,64 @@
+{
+ "version": 3,
+ "createdAt": "2026-10-20T09:53:58Z",
+ "note": "v3: 3D story world - Jasmine and you in a car, living room, sunset lookout; voice tone waves go flat; memories then the same places empty and cold",
+ "status": "needs human review",
+ "kind": "mv",
+ "duration": 191.616,
+ "fps": 30,
+ "chapters": [
+  {
+   "t": 0,
+   "label": "Warm"
+  },
+  {
+   "t": 16.5,
+   "label": "Verse"
+  },
+  {
+   "t": 47,
+   "label": "Unanswered"
+  },
+  {
+   "t": 104,
+   "label": "Typing"
+  },
+  {
+   "t": 132,
+   "label": "Shatter"
+  },
+  {
+   "t": 172.5,
+   "label": "Battery"
+  }
+ ],
+ "lines": [
+  {
+   "t0": 16.7,
+   "t1": 20.1,
+   "text": "I hear it in your tone"
+  },
+  {
+   "t0": 23.2,
+   "t1": 26.6,
+   "text": "You slowly let it go"
+  },
+  {
+   "t0": 30.4,
+   "t1": 34.5,
+   "text": "Are you turning off your phone?"
+  },
+  {
+   "t0": 38.8,
+   "t1": 41.3,
+   "text": "Feelings turn cold"
+  },
+  {
+   "t0": 42.7,
+   "t1": 46.0,
+   "text": "So cold, for you"
+  }
+ ],
+ "clips": {},
+ "video": "projects/cold/out/v3.mp4"
+}

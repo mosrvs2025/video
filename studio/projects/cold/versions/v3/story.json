@@ -1,0 +1,675 @@
+{
+ "stem": "0310f176-So_Cold_For_You",
+ "file": "0310f176-So_Cold_For_You.mp4",
+ "title": "So Cold, For You",
+ "artist": "@professorfungi",
+ "theme": {
+  "warm": "#ffb869",
+  "cold": "#8fd8ff",
+  "deep": "#07121f",
+  "ice": "#e8f7ff"
+ },
+ "sections": [
+  {
+   "a": 0,
+   "b": 16.5,
+   "name": "WARM",
+   "mood": 0.0
+  },
+  {
+   "a": 16.5,
+   "b": 47,
+   "name": "VERSE",
+   "mood": 0.45
+  },
+  {
+   "a": 47,
+   "b": 104,
+   "name": "UNANSWERED",
+   "mood": 0.8
+  },
+  {
+   "a": 104,
+   "b": 132,
+   "name": "TYPING",
+   "mood": 0.95
+  },
+  {
+   "a": 132,
+   "b": 172.5,
+   "name": "SHATTER",
+   "mood": 1.0
+  },
+  {
+   "a": 172.5,
+   "b": 191.7,
+   "name": "BATTERY",
+   "mood": 1.0
+  }
+ ],
+ "lines": [
+  {
+   "t0": 16.7,
+   "t1": 20.1,
+   "text": "I hear it in your tone",
+   "hold": 2.0
+  },
+  {
+   "t0": 23.2,
+   "t1": 26.6,
+   "text": "You slowly let it go",
+   "hold": 2.2
+  },
+  {
+   "t0": 30.4,
+   "t1": 34.5,
+   "text": "Are you turning off your phone?",
+   "hold": 2.2
+  },
+  {
+   "t0": 38.8,
+   "t1": 41.3,
+   "text": "Feelings turn cold",
+   "hold": 1.2
+  },
+  {
+   "t0": 42.7,
+   "t1": 46.0,
+   "text": "So cold, for you",
+   "hold": 2.5
+  }
+ ],
+ "chat": [
+  {
+   "t": 3.0,
+   "type": "sep",
+   "text": "Monday 9:12 PM"
+  },
+  {
+   "t": 4.2,
+   "from": "a",
+   "text": "I can't stop smiling about last night",
+   "tone": "warm"
+  },
+  {
+   "t": 6.6,
+   "from": "m",
+   "text": "me neither"
+  },
+  {
+   "t": 8.8,
+   "from": "a",
+   "text": "text me when you're home!!",
+   "tone": "warm"
+  },
+  {
+   "t": 11.0,
+   "from": "m",
+   "text": "just got in. miss you already"
+  },
+  {
+   "t": 13.4,
+   "from": "a",
+   "text": "miss you too xx",
+   "tone": "warm"
+  },
+  {
+   "t": 15.4,
+   "type": "sep",
+   "text": "Thursday"
+  },
+  {
+   "t": 17.6,
+   "from": "a",
+   "text": "hey! sorry, long day",
+   "tone": "friendly"
+  },
+  {
+   "t": 20.4,
+   "from": "m",
+   "text": "no worries. call tonight?"
+  },
+  {
+   "t": 22.4,
+   "type": "sep",
+   "text": "Sunday"
+  },
+  {
+   "t": 24.0,
+   "from": "a",
+   "text": "can't tonight. rain check?",
+   "tone": "polite"
+  },
+  {
+   "t": 27.0,
+   "from": "m",
+   "text": "of course. thinking of you"
+  },
+  {
+   "t": 30.6,
+   "type": "sys",
+   "text": "Jasmine muted notifications"
+  },
+  {
+   "t": 33.0,
+   "from": "m",
+   "text": "are you okay?",
+   "status": "Delivered"
+  },
+  {
+   "t": 35.6,
+   "type": "sep",
+   "text": "Tuesday 8:15 AM"
+  },
+  {
+   "t": 38.4,
+   "from": "a",
+   "text": "Yeah. I'm fine.",
+   "tone": "flat"
+  },
+  {
+   "t": 48.0,
+   "type": "sep",
+   "text": "Two weeks later"
+  },
+  {
+   "t": 49.8,
+   "from": "m",
+   "text": "heard our song today",
+   "status": "Read 9:41 PM"
+  },
+  {
+   "t": 59.5,
+   "from": "a",
+   "text": "that's sweet.",
+   "tone": "distant"
+  },
+  {
+   "t": 63.5,
+   "from": "m",
+   "text": "do you want to talk?"
+  },
+  {
+   "t": 68.6,
+   "from": "a",
+   "text": "I think I need some space.",
+   "tone": "distant"
+  },
+  {
+   "t": 73.4,
+   "from": "m",
+   "text": "okay."
+  },
+  {
+   "t": 88.0,
+   "type": "sep",
+   "text": "A month later"
+  },
+  {
+   "t": 90.0,
+   "from": "a",
+   "text": "Hope you're doing well.",
+   "tone": "flat"
+  },
+  {
+   "t": 93.8,
+   "from": "m",
+   "text": "you too."
+  },
+  {
+   "t": 98.2,
+   "type": "sys",
+   "text": "Jasmine turned off read receipts"
+  },
+  {
+   "t": 124.4,
+   "from": "m",
+   "text": "I understand."
+  },
+  {
+   "t": 133.0,
+   "from": "a",
+   "text": "Thank you.",
+   "tone": "flat"
+  },
+  {
+   "t": 138.0,
+   "from": "m",
+   "text": "take care of yourself",
+   "status": "Delivered"
+  },
+  {
+   "t": 160.4,
+   "from": "a",
+   "text": "Take care.",
+   "tone": "flat"
+  },
+  {
+   "t": 163.6,
+   "type": "sep",
+   "text": "Now"
+  }
+ ],
+ "typing": [
+  {
+   "a": 104.5,
+   "b": 109.5
+  },
+  {
+   "a": 111.0,
+   "b": 114.0
+  },
+  {
+   "a": 116.5,
+   "b": 125.0
+  },
+  {
+   "a": 127.0,
+   "b": 132.6
+  }
+ ],
+ "temp": [
+  {
+   "t": 0,
+   "v": 72
+  },
+  {
+   "t": 8,
+   "v": 71
+  },
+  {
+   "t": 17,
+   "v": 64
+  },
+  {
+   "t": 22,
+   "v": 55
+  },
+  {
+   "t": 28,
+   "v": 47
+  },
+  {
+   "t": 34,
+   "v": 38
+  },
+  {
+   "t": 38.8,
+   "v": 19
+  },
+  {
+   "t": 47,
+   "v": 12
+  },
+  {
+   "t": 70,
+   "v": 4
+  },
+  {
+   "t": 104,
+   "v": -8
+  },
+  {
+   "t": 132,
+   "v": -30
+  },
+  {
+   "t": 172,
+   "v": -40
+  }
+ ],
+ "status": [
+  {
+   "t": 0,
+   "text": "Active now"
+  },
+  {
+   "t": 30.6,
+   "text": "Active 2h ago"
+  },
+  {
+   "t": 48,
+   "text": "Active yesterday"
+  },
+  {
+   "t": 104.2,
+   "text": "typing..."
+  },
+  {
+   "t": 126.0,
+   "text": "typing..."
+  },
+  {
+   "t": 132.8,
+   "text": "Active yesterday"
+  },
+  {
+   "t": 150,
+   "text": ""
+  }
+ ],
+ "narr": [
+  {
+   "a": 5,
+   "b": 10,
+   "text": "It started *warm*.",
+   "pos": "left"
+  },
+  {
+   "a": 53,
+   "b": 57,
+   "text": "Same words. *Different* tone.",
+   "pos": "left"
+  },
+  {
+   "a": 60,
+   "b": 64,
+   "text": "Polite. Kind. *Further away*.",
+   "pos": "left"
+  },
+  {
+   "a": 70,
+   "b": 74,
+   "text": "You asked for *nothing*.",
+   "pos": "left"
+  },
+  {
+   "a": 75,
+   "b": 79,
+   "text": "You said *okay*.",
+   "pos": "left"
+  },
+  {
+   "a": 81,
+   "b": 86,
+   "text": "And typed the *truth*.",
+   "pos": "left"
+  },
+  {
+   "a": 98.5,
+   "b": 103,
+   "text": "Read receipts: *off*.",
+   "pos": "left"
+  },
+  {
+   "a": 106,
+   "b": 111,
+   "text": "They were *typing*.",
+   "pos": "left"
+  },
+  {
+   "a": 113,
+   "b": 118,
+   "text": "For a long *time*.",
+   "pos": "left"
+  },
+  {
+   "a": 121,
+   "b": 126,
+   "text": "Then: *nothing*.",
+   "pos": "left"
+  },
+  {
+   "a": 126.5,
+   "b": 131,
+   "text": "So you said it *yourself*.",
+   "pos": "left"
+  },
+  {
+   "a": 134,
+   "b": 140,
+   "text": "And they said *thank you*.",
+   "pos": "left"
+  },
+  {
+   "a": 146,
+   "b": 152,
+   "text": "You read it *twice*.",
+   "pos": "left"
+  },
+  {
+   "a": 153,
+   "b": 158,
+   "text": "Hoping for *more*.",
+   "pos": "left"
+  },
+  {
+   "a": 158.5,
+   "b": 160.4,
+   "text": "Their last words:",
+   "pos": "left"
+  },
+  {
+   "a": 176,
+   "b": 181,
+   "text": "Letting go is *quiet*.",
+   "pos": "left"
+  },
+  {
+   "a": 183,
+   "b": 188,
+   "text": "You never sent the *last one*.",
+   "pos": "left"
+  }
+ ],
+ "motif": [
+  {
+   "t": 50.0
+  },
+  {
+   "t": 87.0
+  },
+  {
+   "t": 141.0
+  },
+  {
+   "t": 165.0
+  }
+ ],
+ "subliminal": [
+  {
+   "t": 12.5,
+   "text": "STILL HERE"
+  },
+  {
+   "t": 36.3,
+   "text": "ANSWER"
+  },
+  {
+   "t": 49.3,
+   "text": "READ"
+  },
+  {
+   "t": 101.2,
+   "text": "STAY"
+  },
+  {
+   "t": 131.0,
+   "text": "NOW"
+  },
+  {
+   "t": 169.6,
+   "text": "BREATHE"
+  }
+ ],
+ "end": {
+  "final": "So cold, for you.",
+  "credit": "by @professorfungi  \u00b7  made with Suno",
+  "last": "Take care.",
+  "lastAt": 160.6
+ },
+ "contact": {
+  "name": "Jasmine",
+  "initial": "J",
+  "heartUntil": 38.8,
+  "greyFrom": 140
+ },
+ "toneReveal": 16.7,
+ "drafts": [
+  {
+   "a": 40.6,
+   "text": "I miss the way you said my name",
+   "delAt": 44.6,
+   "endAt": 47.0
+  },
+  {
+   "a": 76.0,
+   "text": "please don't go",
+   "delAt": 82.5,
+   "endAt": 86.0
+  },
+  {
+   "a": 100.0,
+   "text": "I'm still here",
+   "delAt": 103.0,
+   "endAt": 106.0
+  },
+  {
+   "a": 118.0,
+   "text": "I understand.",
+   "delAt": 999,
+   "endAt": 124.3
+  },
+  {
+   "a": 174.0,
+   "text": "I let go too.",
+   "delAt": 9999,
+   "endAt": 9999
+  }
+ ],
+ "world": [
+  {
+   "a": 0,
+   "b": 8,
+   "set": "drive",
+   "v": "together"
+  },
+  {
+   "a": 8,
+   "b": 16.5,
+   "set": "room",
+   "v": "dance"
+  },
+  {
+   "a": 16.5,
+   "b": 23.2,
+   "set": "room",
+   "v": "couch_phone"
+  },
+  {
+   "a": 23.2,
+   "b": 30.4,
+   "set": "room",
+   "v": "letgo"
+  },
+  {
+   "a": 30.4,
+   "b": 38.8,
+   "set": "drive",
+   "v": "quiet"
+  },
+  {
+   "a": 38.8,
+   "b": 47,
+   "set": "room",
+   "v": "leave"
+  },
+  {
+   "a": 47,
+   "b": 60,
+   "set": "lookout",
+   "v": "memory"
+  },
+  {
+   "a": 60,
+   "b": 75,
+   "set": "room",
+   "v": "alone"
+  },
+  {
+   "a": 75,
+   "b": 88,
+   "set": "drive",
+   "v": "memory_day"
+  },
+  {
+   "a": 88,
+   "b": 104,
+   "set": "drive",
+   "v": "alone_snow"
+  },
+  {
+   "a": 104,
+   "b": 132,
+   "set": "room",
+   "v": "typing"
+  },
+  {
+   "a": 132,
+   "b": 141,
+   "set": "lookout",
+   "v": "freeze"
+  },
+  {
+   "a": 141,
+   "b": 160.6,
+   "set": "lookout",
+   "v": "shatter"
+  },
+  {
+   "a": 160.6,
+   "b": 172.5,
+   "set": "lookout",
+   "v": "alone"
+  },
+  {
+   "a": 172.5,
+   "b": 191.7,
+   "set": "room",
+   "v": "dark"
+  }
+ ],
+ "phone": [
+  {
+   "t": 0,
+   "m": "pip"
+  },
+  {
+   "t": 104,
+   "m": "hero"
+  },
+  {
+   "t": 132,
+   "m": "pip"
+  },
+  {
+   "t": 146,
+   "m": "hero"
+  },
+  {
+   "t": 162.5,
+   "m": "pip"
+  },
+  {
+   "t": 174,
+   "m": "hero"
+  }
+ ],
+ "memories": [
+  {
+   "a": 47,
+   "b": 60,
+   "label": "JULY \u00b7 THE LOOKOUT"
+  },
+  {
+   "a": 75,
+   "b": 88,
+   "label": "AUGUST \u00b7 ROAD TRIP"
+  },
+  {
+   "a": 0,
+   "b": 16.5,
+   "label": "MAY \u00b7 LAST NIGHT"
+  }
+ ]
+}
