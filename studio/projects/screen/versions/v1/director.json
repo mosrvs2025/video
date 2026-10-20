@@ -1,0 +1,216 @@
+{
+ "redact": [
+  {
+   "clip": "1879f61a-VID_20261019_110254_752",
+   "a": 8.1,
+   "b": 13.3,
+   "x": 0.0,
+   "y": 0.285,
+   "w": 1.0,
+   "h": 0.55
+  }
+ ],
+ "focus": {
+  "1879f61a-VID_20261019_110254_752": 0.4
+ },
+ "cuts": [
+  {
+   "clip": "A",
+   "in": 0.4,
+   "out": 14.1
+  },
+  {
+   "clip": "A",
+   "in": 14.5,
+   "out": 18.3
+  },
+  {
+   "clip": "A",
+   "in": 19.8,
+   "out": 25.7
+  },
+  {
+   "clip": "A",
+   "in": 31.7,
+   "out": 34.2
+  },
+  {
+   "clip": "A",
+   "in": 38.3,
+   "out": 56.9
+  },
+  {
+   "clip": "A",
+   "in": 57.3,
+   "out": 63.4
+  },
+  {
+   "clip": "A",
+   "in": 79.9,
+   "out": 96.2
+  },
+  {
+   "clip": "A",
+   "in": 98.7,
+   "out": 114.4
+  },
+  {
+   "clip": "A",
+   "in": 118.8,
+   "out": 125.3
+  },
+  {
+   "clip": "A",
+   "in": 142.7,
+   "out": 161.0
+  },
+  {
+   "clip": "A",
+   "in": 165.5,
+   "out": 177.4
+  },
+  {
+   "clip": "A",
+   "in": 181.7,
+   "out": 187.4
+  },
+  {
+   "clip": "A",
+   "in": 191.3,
+   "out": 202.3
+  },
+  {
+   "clip": "A",
+   "in": 205.7,
+   "out": 212.1
+  },
+  {
+   "clip": "A",
+   "in": 274.9,
+   "out": 284.1
+  },
+  {
+   "clip": "A",
+   "in": 318.3,
+   "out": 330.6
+  },
+  {
+   "clip": "A",
+   "in": 364.4,
+   "out": 370.0
+  }
+ ],
+ "fixes": {
+  "Getting you in till he's waiting": "Getting you in. Tilly's waiting",
+  "Oh shit": "Oh sh*t",
+  "Jev?": "Jeff?",
+  "Jev": "Jeff",
+  "blurred my video from me": "blurred my video for me",
+  "quick use respond": "quick you respond",
+  "Secured by did it?": "Secured by Didit?",
+  "D I D I": "D-I-D-I-T",
+  "Gyrank!": "",
+  "where we can actually talk to Tilly.": "\u2026where we can actually talk to Tilly."
+ },
+ "chapters": [
+  {
+   "clip": "A",
+   "at": 0.6,
+   "n": "01",
+   "title": "SIGN IN",
+   "sub": "LET'S TRY THIS"
+  },
+  {
+   "clip": "A",
+   "at": 19.8,
+   "n": "02",
+   "title": "AGE CHECK",
+   "sub": "SELFIE + ID"
+  },
+  {
+   "clip": "A",
+   "at": 38.3,
+   "n": "03",
+   "title": "WHOSE PRIVACY?",
+   "sub": ""
+  },
+  {
+   "clip": "A",
+   "at": 79.9,
+   "n": "04",
+   "title": "THE CALL",
+   "sub": ""
+  },
+  {
+   "clip": "A",
+   "at": 142.7,
+   "n": "05",
+   "title": "TESTING HER",
+   "sub": ""
+  },
+  {
+   "clip": "A",
+   "at": 364.4,
+   "n": "06",
+   "title": "THE CATCH",
+   "sub": ""
+  }
+ ],
+ "overlays": [
+  {
+   "type": "privacy",
+   "clip": "A",
+   "a": 8.4,
+   "b": 12.9,
+   "x": 0.5,
+   "y": 0.42,
+   "label": "PRIVATE"
+  }
+ ],
+ "tilly": [
+  [
+   79.8,
+   80.9
+  ],
+  [
+   85.4,
+   91.0
+  ],
+  [
+   98.4,
+   107.1
+  ],
+  [
+   118.5,
+   123.9
+  ],
+  [
+   153.5,
+   161.5
+  ],
+  [
+   165.3,
+   177.8
+  ],
+  [
+   181.5,
+   187.8
+  ],
+  [
+   194.7,
+   202.6
+  ],
+  [
+   209.2,
+   212.5
+  ],
+  [
+   282.6,
+   284.3
+  ],
+  [
+   324.7,
+   331.0
+  ]
+ ]
+}

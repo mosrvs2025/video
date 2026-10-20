@@ -17,6 +17,13 @@ THEMES = {
     'noir':  {'accent': '#e9e9e9', 'accent2': '#ff3b3b', 'cool': '#9db4c8', 'ink': '#050505', 'navy': '#0e1116'},
 }
 
+PRIV_DEFAULT = [(r'[\w.+-]+@[\w-]+\.[\w.-]+', '[email]'), (r'(?<!\d)(?:\+?1[ -.]?)?\(?\d{3}\)?[ -.]\d{3}[ -.]\d{4}(?!\d)', '[phone]'), (r'(?<!\d)\d{9,}(?!\d)', '[number]')]
+_PRIV_EXTRA = []
+def scrub(t):
+    """remove emails/phones/long numbers (+ project privacy.json replacements) from caption text"""
+    for pat, rep in PRIV_DEFAULT + _PRIV_EXTRA: t = re.sub(pat, rep, t, flags=re.I)
+    return t
+
 def load(p, default):
     return json.load(open(p)) if os.path.exists(p) else default
 
@@ -107,12 +114,13 @@ def light_caps(segs, inv, AN, pdir, stems, D):
                 if i + 1 < len(pages): b = min(b, pages[i + 1][0]['a'] - 0.02)
                 b = max(b, a + 0.8) if i + 1 == len(pages) else max(b, a + 0.5)
                 first = (last_spk.get(st) != pg[0]['spk']) and i == 0
-                out.append({'type': 'cap', 'clip': sg['clip'], 'a': round(a, 2), 'b': round(min(b, sg['out']), 2), 'text': ' '.join(w['w'] for w in pg), 'spk': pg[0]['spk'], 'first': bool(first)})
+                out.append({'type': 'cap', 'clip': sg['clip'], 'a': round(a, 2), 'b': round(min(b, sg['out']), 2), 'text': scrub(' '.join(w['w'] for w in pg)), 'spk': pg[0]['spk'], 'first': bool(first)})
             last_spk[st] = pages[-1][-1]['spk']
     return out
 
 def plan(pdir):
     P = load(os.path.join(pdir, 'project.json'), {}); D = load(os.path.join(pdir, 'director.json'), {})
+    _PRIV_EXTRA.clear(); _PRIV_EXTRA.extend([(r['pattern'], r['replacement']) for r in load(os.path.join(pdir, 'privacy.json'), {}).get('replacements', [])])
     clips_dir = os.path.join(pdir, 'public', 'clips')
     stems = sorted(os.path.splitext(f)[0] for f in os.listdir(clips_dir) if f.lower().endswith(('.mp4', '.mov', '.m4v', '.webm', '.mkv')))
     if P.get('order'): stems = [s for s in P['order'] if s in stems] + [s for s in stems if s not in P['order']]
@@ -215,7 +223,7 @@ def plan(pdir):
                 if not words: continue
                 for pg in split_pages(words):
                     a, b = pg[0]['a'], min(pg[-1]['b'] + 0.25, s['out'])
-                    txt = ' '.join(w['w'] for w in pg)
+                    txt = scrub(' '.join(w['w'] for w in pg))
                     ov.append({'type': 'caption', 'clip': s['clip'], 'a': round(a, 2), 'b': round(b, 2), 'text': txt, 'hi': hi_words(pg)})
                 for w in words:
                     key = re.sub(r'\W', '', w['w'].lower())

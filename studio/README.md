@@ -31,6 +31,16 @@ Segments are `{clip, in, out, rate, mute, trans, follow}` in **source seconds**.
 Overlay types: `title chapter caption burst pin brackets meter alert lowerthird ticker scoreboard confetti flash text replay eq viz3d leak`.
 Coordinates `x,y` for `burst/confetti/text/alert` are screen fractions; for `pin/brackets` they are **source-frame fractions** (or give `track: "A:3"` to follow an auto-track). `rate<1` on a segment gives slow-mo with letterbox bars.
 
+## Review workflow (inspired by Imaginative-Prompting/wip)
+- `studio.py version <name> "note"` snapshots the cut as `versions/vN/` (edit, director, story + `version.json` with chapters and caption lines) and keeps `out/vN.mp4`. **Never overwrite a prior attempt**; iterate by making v2, v3.
+- `studio.py frameref <name> <sec>` prints an exact, copy-pasteable reference for feedback: project, version, output frame (0-based), fps, and the **source clip + source time**. Use it when asking for or giving fixes ("v3 frame 3015 = surf clip 151.15s").
+- `studio.py wip <name>` exports `wip-workspace/` (a WIP-app workspace: current cut with chapters + caption lines, one entry per version). Open it with the WIP app: `git clone https://github.com/Imaginative-Prompting/wip && cd wip && npm ci && node bin/wip.mjs serve --config <studio>/wip-workspace/wip.json`. Validated with `wip validate`.
+- Status is always **needs human review**: a successful render never means approved.
+- Privacy: captions auto-scrub emails/phone numbers/long numbers (+ `projects/<name>/privacy.json` `{"replacements":[{"pattern":"...","replacement":"..."}]}`); `studio.py privacy <name>` lists risky transcript moments. Text rules cannot see pixels: still review screen recordings visually and use `redact`.
+
+## Generative music video (`studio.py mv`)
+For a song with no useful footage: write `projects/<name>/story.json` (sections + mood 0..1 for the colour arc, sung `lines` with t0/t1, a `chat` timeline, `narr`, `motif`, `subliminal`, `temp`...), then `mv build` → `mv still <name> <sec...>` (look!) → `mv render` (chunked, ~2.5 min per 5 s of video on 4 cores) → `mv mix`. Beat grid, spectrum and word reveals are computed from the audio. Composition: `src/mv/MV.tsx` (React + SVG + three.js).
+
 ## Light style (`"light": true` in project.json)
 For talky/screen-recording content where the footage should carry itself: no bursts/meters/title cards/camera push, hard cuts, a top timeline with chapter dots, a small chapter banner, and clean phrase captions (sentence case, speaker colour: Tilly pink / "ME" white). `director.json`: `"cuts": [{"clip":"A","in":..,"out":..}]` (auto-snapped to speech pauses), `"tilly": [[a,b],...]` speaker ranges (pitch alone is unreliable when the user is excited), `"fixes"` for ASR errors. `pipeline/retranscribe.py` re-runs speech with the bigger `medium.en` model for much better captions. Aim ≤180 s for Shorts.
 

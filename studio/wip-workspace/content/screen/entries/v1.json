@@ -1,0 +1,23 @@
+{
+ "id": "v1",
+ "title": "v1 \u2014 light cut: ~3min, emails blurred, speaker-coloured captions",
+ "summary": "Version 1",
+ "tags": [
+  "renders"
+ ],
+ "body": "**Status: needs human review.** light cut: ~3min, emails blurred, speaker-coloured captions\n\n- Length: 174.8s at 30 fps\n- Chapters: Sign In (0s), Age Check (18s), Whose Privacy? (27s), The Call (53s), Testing Her (92s), The Catch (169s)\n- Captions/lines: 86\n\nPassing renders or checks does not mean this cut is approved.",
+ "format": "markdown",
+ "status": "needs review",
+ "createdAt": "2026-10-20T00:28:23Z",
+ "updatedAt": "2026-10-20T00:28:23Z",
+ "order": -1,
+ "revision": 1,
+ "media": [
+  {
+   "type": "video",
+   "src": "/media/studio/screen/out/v1.mp4",
+   "title": "v1",
+   "fps": 30
+  }
+ ]
+}

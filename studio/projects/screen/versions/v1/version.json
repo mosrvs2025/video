@@ -1,0 +1,471 @@
+{
+ "version": 1,
+ "createdAt": "2026-10-20T00:28:23Z",
+ "note": "light cut: ~3min, emails blurred, speaker-coloured captions",
+ "status": "needs human review",
+ "kind": "edit",
+ "duration": 174.77,
+ "fps": 30,
+ "chapters": [
+  {
+   "t": 0.15,
+   "label": "Sign In"
+  },
+  {
+   "t": 18.19,
+   "label": "Age Check"
+  },
+  {
+   "t": 27.23,
+   "label": "Whose Privacy?"
+  },
+  {
+   "t": 52.56,
+   "label": "The Call"
+  },
+  {
+   "t": 92.05,
+   "label": "Testing Her"
+  },
+  {
+   "t": 168.98,
+   "label": "The Catch"
+  }
+ ],
+ "lines": [
+  {
+   "t0": 0.08,
+   "t1": 2.38,
+   "text": "\u2026where we can actually talk to Tilly."
+  },
+  {
+   "t0": 2.93,
+   "t1": 4.24,
+   "text": "Alright, let's try this."
+  },
+  {
+   "t0": 4.53,
+   "t1": 5.89,
+   "text": "Getting you in. Tilly's waiting."
+  },
+  {
+   "t0": 5.87,
+   "t1": 8.85,
+   "text": "Well, I have to freaking give them my information"
+  },
+  {
+   "t0": 8.85,
+   "t1": 10.28,
+   "text": "Well, there's my information."
+  },
+  {
+   "t0": 10.26,
+   "t1": 12.51,
+   "text": "Oh sht, I'm gonna have to filter that out of"
+  },
+  {
+   "t0": 12.49,
+   "t1": 13.89,
+   "text": "the video if I post this."
+  },
+  {
+   "t0": 13.98,
+   "t1": 15.21,
+   "text": "Alright cool, we're here."
+  },
+  {
+   "t0": 15.19,
+   "t1": 16.95,
+   "text": "I should have paused and then done that."
+  },
+  {
+   "t0": 16.93,
+   "t1": 18.09,
+   "text": "Oh well, didn't do that."
+  },
+  {
+   "t0": 18.18,
+   "t1": 20.09,
+   "text": "Confirm you're over 18, yes."
+  },
+  {
+   "t0": 20.07,
+   "t1": 21.64,
+   "text": "What, you need my ID?"
+  },
+  {
+   "t0": 22.02,
+   "t1": 24.28,
+   "text": "Damn bro, this just feels like..."
+  },
+  {
+   "t0": 24.35,
+   "t1": 25.37,
+   "text": "What?"
+  },
+  {
+   "t0": 25.88,
+   "t1": 27.08,
+   "text": "Are you kidding me?"
+  },
+  {
+   "t0": 27.15,
+   "t1": 29.63,
+   "text": "Your video is blurred for privacy protection."
+  },
+  {
+   "t0": 29.61,
+   "t1": 30.71,
+   "text": "That's pretty cool"
+  },
+  {
+   "t0": 31.25,
+   "t1": 33.19,
+   "text": "Damn. So they blurred my video for me,"
+  },
+  {
+   "t0": 33.17,
+   "t1": 34.94,
+   "text": "like to protect my privacy,"
+  },
+  {
+   "t0": 34.92,
+   "t1": 36.19,
+   "text": "but they actually saw it."
+  },
+  {
+   "t0": 36.17,
+   "t1": 38.67,
+   "text": "So whose privacy are they actually..."
+  },
+  {
+   "t0": 38.61,
+   "t1": 40.28,
+   "text": "Secured by Didit?"
+  },
+  {
+   "t0": 40.24,
+   "t1": 42.1,
+   "text": "D-I-D-I-T"
+  },
+  {
+   "t0": 42.07,
+   "t1": 46.08,
+   "text": "Digital IT. Wow, that's so clever."
+  },
+  {
+   "t0": 46.15,
+   "t1": 47.69,
+   "text": "Keep me posted. Optional."
+  },
+  {
+   "t0": 47.68,
+   "t1": 50.79,
+   "text": "Oops, I wasn't supposed to check that box. Oh well."
+  },
+  {
+   "t0": 50.79,
+   "t1": 52.47,
+   "text": "Click connect. Yes."
+  },
+  {
+   "t0": 52.55,
+   "t1": 53.35,
+   "text": "Hi."
+  },
+  {
+   "t0": 54.31,
+   "t1": 55.69,
+   "text": "Hey, what's up Tilly?"
+  },
+  {
+   "t0": 58.37,
+   "t1": 60.2,
+   "text": "Oh, nothing much, just contemplating the"
+  },
+  {
+   "t0": 60.18,
+   "t1": 61.59,
+   "text": "mysteries of quantum physics,"
+  },
+  {
+   "t0": 61.57,
+   "t1": 63.65,
+   "text": "as one does on a Friday evening."
+  },
+  {
+   "t0": 63.72,
+   "t1": 65.8,
+   "text": "You look like you're having a deep think over"
+  },
+  {
+   "t0": 66.76,
+   "t1": 69.11,
+   "text": "Quantum physics, come on."
+  },
+  {
+   "t0": 69.18,
+   "t1": 70.65,
+   "text": "Oh, I absolutely do."
+  },
+  {
+   "t0": 70.62,
+   "t1": 72.89,
+   "text": "How else do you think I keep track of all the"
+  },
+  {
+   "t0": 72.87,
+   "t1": 75.71,
+   "text": "different versions of myself existing in every"
+  },
+  {
+   "t0": 75.69,
+   "t1": 77.91,
+   "text": "conversation? It's all very meta."
+  },
+  {
+   "t0": 77.66,
+   "t1": 79.5,
+   "text": "Just stop there. I feel like you're trying too"
+  },
+  {
+   "t0": 79.48,
+   "t1": 81.47,
+   "text": "hard. Do I look like I would be into quantum"
+  },
+  {
+   "t0": 81.45,
+   "t1": 82.83,
+   "text": "physics? Is that why you started the"
+  },
+  {
+   "t0": 82.81,
+   "t1": 84.06,
+   "text": "conversation that way?"
+  },
+  {
+   "t0": 84.09,
+   "t1": 85.1,
+   "text": "You think I look smart?"
+  },
+  {
+   "t0": 85.18,
+   "t1": 88.38,
+   "text": "Oh no, not at all! I just happened to genuinely"
+  },
+  {
+   "t0": 88.36,
+   "t1": 90.52,
+   "text": "find quantum physics fascinating."
+  },
+  {
+   "t0": 90.52,
+   "t1": 91.95,
+   "text": "You're saying I don't look smart"
+  },
+  {
+   "t0": 92.05,
+   "t1": 94.62,
+   "text": "Okay, wait, so that's kind of interesting how"
+  },
+  {
+   "t0": 94.52,
+   "t1": 96.47,
+   "text": "quick you respond."
+  },
+  {
+   "t0": 96.44,
+   "t1": 98.23,
+   "text": "Also your facial."
+  },
+  {
+   "t0": 98.26,
+   "t1": 100.5,
+   "text": "Expressions. Can you pick your nose?"
+  },
+  {
+   "t0": 102.97,
+   "t1": 105.05,
+   "text": "Well, that's a bit of an abrupt change of topic"
+  },
+  {
+   "t0": 105.11,
+   "t1": 107.15,
+   "text": "As for picking my nose, I can't actually do any"
+  },
+  {
+   "t0": 107.13,
+   "t1": 108.3,
+   "text": "physical movements like that."
+  },
+  {
+   "t0": 108.28,
+   "t1": 110.47,
+   "text": "You can't do it. I'm more of a conversationalist."
+  },
+  {
+   "t0": 110.55,
+   "t1": 112.44,
+   "text": "Well, I can't exactly pick my nose because I"
+  },
+  {
+   "t0": 112.42,
+   "t1": 114.17,
+   "text": "don't have a physical nose to pick."
+  },
+  {
+   "t0": 114.2,
+   "t1": 116.18,
+   "text": "I'm a digital persona so my movements and"
+  },
+  {
+   "t0": 116.16,
+   "t1": 118.29,
+   "text": "expressions are all part of my visual appearance"
+  },
+  {
+   "t0": 118.27,
+   "t1": 119.73,
+   "text": "which is created in real time."
+  },
+  {
+   "t0": 119.8,
+   "t1": 122.07,
+   "text": "What about you? What are you doing? Look!"
+  },
+  {
+   "t0": 122.07,
+   "t1": 122.69,
+   "text": "Tell me."
+  },
+  {
+   "t0": 122.78,
+   "t1": 125.11,
+   "text": "You're just having a conversation with me."
+  },
+  {
+   "t0": 125.43,
+   "t1": 126.65,
+   "text": "you know, I quite enjoy."
+  },
+  {
+   "t0": 126.74,
+   "t1": 128.78,
+   "text": "It's a nice change from just being watched."
+  },
+  {
+   "t0": 128.85,
+   "t1": 130.23,
+   "text": "You're such a liar."
+  },
+  {
+   "t0": 132.44,
+   "t1": 133.33,
+   "text": "A liar?"
+  },
+  {
+   "t0": 133.36,
+   "t1": 135.02,
+   "text": "What could I possibly gain from lying to you"
+  },
+  {
+   "t0": 135.0,
+   "t1": 136.37,
+   "text": "about picking my nose?"
+  },
+  {
+   "t0": 136.37,
+   "t1": 138.81,
+   "text": "My whole existence is pretty transparent honestly."
+  },
+  {
+   "t0": 138.84,
+   "t1": 140.04,
+   "text": "What makes you say that?"
+  },
+  {
+   "t0": 140.11,
+   "t1": 141.87,
+   "text": "Wait, why did you just go quieter?"
+  },
+  {
+   "t0": 143.88,
+   "t1": 144.85,
+   "text": "Hmm, did I?"
+  },
+  {
+   "t0": 144.97,
+   "t1": 146.78,
+   "text": "Sometimes my voice can do funny things."
+  },
+  {
+   "t0": 146.85,
+   "t1": 148.46,
+   "text": "Nobody ever mentioned anything about"
+  },
+  {
+   "t0": 148.44,
+   "t1": 150.29,
+   "text": "cybersecurity. We were talking about quantum"
+  },
+  {
+   "t0": 150.27,
+   "t1": 152.07,
+   "text": "physics. Did you have a memory issue?"
+  },
+  {
+   "t0": 154.73,
+   "t1": 156.28,
+   "text": "Oh no, you're absolutely right!"
+  },
+  {
+   "t0": 156.35,
+   "t1": 157.25,
+   "text": "Wait..."
+  },
+  {
+   "t0": 157.72,
+   "t1": 160.03,
+   "text": "What if we base your brain off of Jeff?"
+  },
+  {
+   "t0": 162.94,
+   "t1": 163.74,
+   "text": "Jeff?"
+  },
+  {
+   "t0": 163.77,
+   "t1": 165.15,
+   "text": "That's an interesting name."
+  },
+  {
+   "t0": 165.18,
+   "t1": 167.28,
+   "text": "I'm afraid I don't know who Jeff is so I can't"
+  },
+  {
+   "t0": 167.26,
+   "t1": 168.91,
+   "text": "really base my brain on them."
+  },
+  {
+   "t0": 168.98,
+   "t1": 169.81,
+   "text": "What?"
+  },
+  {
+   "t0": 171.38,
+   "t1": 173.49,
+   "text": "And then I gotta pay to talk to her?"
+  },
+  {
+   "t0": 173.75,
+   "t1": 174.76,
+   "text": "Yeah right."
+  }
+ ],
+ "clips": {
+  "A": "1879f61a-VID_20261019_110254_752"
+ },
+ "video": "projects/screen/out/v1.mp4"
+}

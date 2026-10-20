@@ -4,6 +4,11 @@
   studio.py make <name> [--draft] [--target 45-60] run analyze -> plan -> audio -> render -> mix
   studio.py analyze|plan|audio|render|mix <name>   run a single stage
   studio.py redo <name> <frameA>-<frameB>          re-render only a frame range (chunk cache)
+  studio.py version <name> [note]                  snapshot this cut as versions/vN (never overwrites)
+  studio.py frameref <name> <sec>                  exact frame/source reference for feedback
+  studio.py wip [name...]                          export a WIP-app review workspace
+  studio.py privacy <name>                         scan transcripts for emails/phones/numbers
+  studio.py mv build|still|render|mix <name>       generative music video from story.json
   studio.py compress <file|name> [--preset share|small|tiny] [--target-mb N] [-o out.mp4]
 Outputs: projects/<name>/out/final.mp4 (+ preview.mp4), edit.json (the editable plan), director.json (your notes)."""
 import json, os, shutil, subprocess, sys, glob
@@ -118,6 +123,39 @@ def cmd_compress(a):
     out = a[a.index('-o') + 1] if '-o' in a else None
     compress.compress(src, out, preset, float(tgt) if tgt else None)
 
+def cmd_mv(a):
+    """mv build|still|render|mix <name> ...   (generative music video from story.json)"""
+    import mv as mvm
+    sub, name = a[0], a[1]; p = pdir(name)
+    if sub == 'build': mvm.build(p)
+    elif sub == 'still':
+        from PIL import Image
+        outs = []; os.makedirs(os.path.join(p, 'out', 'stills'), exist_ok=True)
+        for tsec in [float(x) for x in a[2:]]:
+            fr = int(round(tsec * 30)); out = os.path.join(p, 'out', 'stills', f'mv_{fr}.jpg')
+            subprocess.run(['npx', 'remotion', 'still', 'src/index.ts', 'MV', out, f'--frame={fr}', '--image-format=jpeg', f'--props={os.path.join(p, "mv_props.json")}', f'--browser-executable={HS}', '--gl=angle', '--log=error'], cwd=ROOT, check=True); outs.append(out)
+        sh_ = Image.new('RGB', (270 * len(outs), 480))
+        for i, o in enumerate(outs): sh_.paste(Image.open(o).resize((270, 480)), (i * 270, 0))
+        sh_.save(os.path.join(p, 'out', 'stills', 'mv_sheet.jpg')); print('sheet ->', os.path.join(p, 'out', 'stills', 'mv_sheet.jpg'))
+    elif sub in ('render', 'draft'):
+        mv = json.load(open(os.path.join(p, 'mv.json'))); total = mv['frames']; CH = 150; cd = os.path.join(p, 'mvchunks' + ('_draft' if sub == 'draft' else '')); os.makedirs(cd, exist_ok=True)
+        ch = [(i, i * CH, min(total, (i + 1) * CH) - 1) for i in range((total + CH - 1) // CH)]
+        for i, s_, e_ in ch:
+            out = os.path.join(cd, f'{i:04d}.mp4')
+            if os.path.exists(out): continue
+            print(f'  mv chunk {i + 1}/{len(ch)}', flush=True)
+            cmd = ['npx', 'remotion', 'render', 'src/index.ts', 'MV', out, '--muted', '--concurrency=4', f'--props={os.path.join(p, "mv_props.json")}', f'--browser-executable={HS}', '--gl=angle', '--log=error', f'--frames={s_}-{e_}'] + (['--scale=0.5'] if sub == 'draft' else [])
+            subprocess.run(cmd, cwd=ROOT, check=True)
+        lst = os.path.join(cd, 'list.txt'); open(lst, 'w').write(''.join(f"file '{os.path.join(cd, f'{i:04d}.mp4')}'\n" for i, _, _ in ch))
+        os.makedirs(os.path.join(p, 'out'), exist_ok=True); outv = os.path.join(p, 'out', 'mv_silent.mp4')
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', lst, '-c', 'copy', outv], check=True); print('video ->', outv)
+    elif sub == 'mix':
+        final = os.path.join(p, 'out', 'final.mp4')
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', os.path.join(p, 'out', 'mv_silent.mp4'), '-i', os.path.join(p, 'audio', 'song.wav'), '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', final], check=True)
+        import compress; T = json.load(open(os.path.join(p, 'mv.json')))['duration']
+        compress.compress(final, os.path.join(p, 'out', 'preview.mp4'), 'share', target_mb=24); compress.compress(final, os.path.join(p, 'out', 'archive.mp4'), 'tiny', target_mb=max(2.0, T / 60 * 4.5))
+        print('final ->', final)
+
 def main():
     a = sys.argv[1:]
     if not a: print(__doc__); return
@@ -131,6 +169,13 @@ def main():
     elif c == 'still': cmd_still(a[1], [int(x) for x in a[2:]])
     elif c == 'review': cmd_review(a[1])
     elif c == 'compress': cmd_compress(a[1:])
+    elif c == 'mv': cmd_mv(a[1:])
+    elif c in ('version', 'frameref', 'wip', 'privacy'):
+        import review
+        if c == 'version': review.version(a[1], ' '.join(a[2:]))
+        elif c == 'frameref': review.frameref(a[1], float(a[2]))
+        elif c == 'wip': review.wip_export(a[1:] or None)
+        else: review.privacy_scan(a[1])
     elif c == 'redo': x, y = map(int, a[2].split('-')); render(a[1], frames=(x, y)); mix(a[1])
     elif c == 'make':
         name = a[1]; draft = '--draft' in a; tgt = None

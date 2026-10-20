@@ -1,0 +1,443 @@
+{
+ "stem": "0310f176-So_Cold_For_You",
+ "file": "0310f176-So_Cold_For_You.mp4",
+ "title": "So Cold, For You",
+ "artist": "@professorfungi",
+ "theme": {
+  "warm": "#ffb869",
+  "cold": "#8fd8ff",
+  "deep": "#07121f",
+  "ice": "#e8f7ff"
+ },
+ "sections": [
+  {
+   "a": 0,
+   "b": 16.5,
+   "name": "WARM",
+   "mood": 0.0
+  },
+  {
+   "a": 16.5,
+   "b": 47,
+   "name": "VERSE",
+   "mood": 0.45
+  },
+  {
+   "a": 47,
+   "b": 104,
+   "name": "UNANSWERED",
+   "mood": 0.8
+  },
+  {
+   "a": 104,
+   "b": 132,
+   "name": "TYPING",
+   "mood": 0.95
+  },
+  {
+   "a": 132,
+   "b": 172.5,
+   "name": "SHATTER",
+   "mood": 1.0
+  },
+  {
+   "a": 172.5,
+   "b": 191.7,
+   "name": "BATTERY",
+   "mood": 1.0
+  }
+ ],
+ "lines": [
+  {
+   "t0": 16.7,
+   "t1": 20.1,
+   "text": "I hear it in your tone",
+   "hold": 2.0
+  },
+  {
+   "t0": 23.2,
+   "t1": 26.6,
+   "text": "You slowly let it go",
+   "hold": 2.2
+  },
+  {
+   "t0": 30.4,
+   "t1": 34.5,
+   "text": "Are you turning off your phone?",
+   "hold": 2.2
+  },
+  {
+   "t0": 38.8,
+   "t1": 41.3,
+   "text": "Feelings turn cold",
+   "hold": 1.2
+  },
+  {
+   "t0": 42.7,
+   "t1": 46.0,
+   "text": "So cold, for you",
+   "hold": 2.5
+  }
+ ],
+ "chat": [
+  {
+   "t": 4.2,
+   "from": "a",
+   "text": "can't wait to see you tomorrow"
+  },
+  {
+   "t": 6.6,
+   "from": "m",
+   "text": "me too"
+  },
+  {
+   "t": 8.8,
+   "from": "a",
+   "text": "love you"
+  },
+  {
+   "t": 11.0,
+   "from": "m",
+   "text": "love you more",
+   "status": "Delivered"
+  },
+  {
+   "t": 13.4,
+   "from": "a",
+   "text": "good night"
+  },
+  {
+   "t": 17.6,
+   "from": "a",
+   "text": "haha ok"
+  },
+  {
+   "t": 21.2,
+   "from": "a",
+   "text": "busy"
+  },
+  {
+   "t": 24.6,
+   "from": "m",
+   "text": "call me?"
+  },
+  {
+   "t": 27.8,
+   "from": "a",
+   "text": "later"
+  },
+  {
+   "t": 35.2,
+   "from": "m",
+   "text": "are you there?",
+   "status": "Delivered"
+  },
+  {
+   "t": 38.2,
+   "from": "a",
+   "text": "k."
+  },
+  {
+   "t": 48.0,
+   "from": "m",
+   "text": "hello?"
+  },
+  {
+   "t": 50.8,
+   "from": "m",
+   "text": "did I do something?"
+  },
+  {
+   "t": 53.6,
+   "from": "m",
+   "text": "please"
+  },
+  {
+   "t": 56.4,
+   "from": "m",
+   "text": "I'm sorry"
+  },
+  {
+   "t": 60.2,
+   "from": "m",
+   "text": "talk to me"
+  },
+  {
+   "t": 64.0,
+   "from": "m",
+   "text": "I miss you"
+  },
+  {
+   "t": 67.8,
+   "from": "m",
+   "text": "whatever I did"
+  },
+  {
+   "t": 71.6,
+   "from": "m",
+   "text": "just say something"
+  },
+  {
+   "t": 75.4,
+   "from": "m",
+   "text": "are you mad?"
+  },
+  {
+   "t": 79.2,
+   "from": "m",
+   "text": "okay"
+  },
+  {
+   "t": 83.0,
+   "from": "m",
+   "text": "..."
+  },
+  {
+   "t": 87.6,
+   "from": "m",
+   "text": "I'll wait",
+   "status": "Read 11:58 PM"
+  }
+ ],
+ "typing": [
+  {
+   "a": 90.5,
+   "b": 93.5
+  },
+  {
+   "a": 96.8,
+   "b": 98.6
+  },
+  {
+   "a": 104.5,
+   "b": 109.5
+  },
+  {
+   "a": 111.0,
+   "b": 114.0
+  },
+  {
+   "a": 116.5,
+   "b": 125.5
+  },
+  {
+   "a": 126.5,
+   "b": 128.0
+  }
+ ],
+ "temp": [
+  {
+   "t": 0,
+   "v": 72
+  },
+  {
+   "t": 8,
+   "v": 71
+  },
+  {
+   "t": 17,
+   "v": 64
+  },
+  {
+   "t": 22,
+   "v": 55
+  },
+  {
+   "t": 28,
+   "v": 47
+  },
+  {
+   "t": 34,
+   "v": 38
+  },
+  {
+   "t": 38.8,
+   "v": 19
+  },
+  {
+   "t": 47,
+   "v": 12
+  },
+  {
+   "t": 70,
+   "v": 4
+  },
+  {
+   "t": 104,
+   "v": -8
+  },
+  {
+   "t": 132,
+   "v": -30
+  },
+  {
+   "t": 172,
+   "v": -40
+  }
+ ],
+ "status": [
+  {
+   "t": 0,
+   "text": "Active now"
+  },
+  {
+   "t": 30.4,
+   "text": "Active 2h ago"
+  },
+  {
+   "t": 47,
+   "text": "Active yesterday"
+  },
+  {
+   "t": 104,
+   "text": "typing..."
+  }
+ ],
+ "narr": [
+  {
+   "a": 5.0,
+   "b": 10.0,
+   "text": "It started *warm*.",
+   "pos": "left"
+  },
+  {
+   "a": 47.2,
+   "b": 50.6,
+   "text": "*Delivered.*",
+   "pos": "left"
+  },
+  {
+   "a": 57.0,
+   "b": 60.0,
+   "text": "Delivered.",
+   "pos": "left"
+  },
+  {
+   "a": 68.0,
+   "b": 71.0,
+   "text": "Delivered.",
+   "pos": "left"
+  },
+  {
+   "a": 80.0,
+   "b": 83.5,
+   "text": "*Read.*",
+   "pos": "left"
+  },
+  {
+   "a": 88.0,
+   "b": 92.0,
+   "text": "No *reply*.",
+   "pos": "left"
+  },
+  {
+   "a": 92.8,
+   "b": 96.5,
+   "text": "Typing\u2026",
+   "pos": "left"
+  },
+  {
+   "a": 99.0,
+   "b": 103.0,
+   "text": "Stopped typing.",
+   "pos": "left"
+  },
+  {
+   "a": 106.5,
+   "b": 111.0,
+   "text": "They were *typing*.",
+   "pos": "left"
+  },
+  {
+   "a": 114.5,
+   "b": 119.5,
+   "text": "For a long *time*.",
+   "pos": "left"
+  },
+  {
+   "a": 122.5,
+   "b": 128.5,
+   "text": "And then, *nothing*.",
+   "pos": "left"
+  },
+  {
+   "a": 134.0,
+   "b": 139.0,
+   "text": "You kept *every* message.",
+   "pos": "left"
+  },
+  {
+   "a": 148.0,
+   "b": 153.5,
+   "text": "You read them *twice*.",
+   "pos": "left"
+  },
+  {
+   "a": 156.0,
+   "b": 160.0,
+   "text": "Their last word:",
+   "pos": "left"
+  },
+  {
+   "a": 176.0,
+   "b": 181.0,
+   "text": "The battery *dies* first.",
+   "pos": "left"
+  },
+  {
+   "a": 183.5,
+   "b": 188.0,
+   "text": "Are you still *there*?",
+   "pos": "center"
+  }
+ ],
+ "motif": [
+  {
+   "t": 50.0
+  },
+  {
+   "t": 81.1
+  },
+  {
+   "t": 140.6
+  },
+  {
+   "t": 151.0
+  },
+  {
+   "t": 166.5
+  }
+ ],
+ "subliminal": [
+  {
+   "t": 12.5,
+   "text": "STILL HERE"
+  },
+  {
+   "t": 36.3,
+   "text": "ANSWER"
+  },
+  {
+   "t": 49.3,
+   "text": "READ"
+  },
+  {
+   "t": 101.2,
+   "text": "STAY"
+  },
+  {
+   "t": 131.0,
+   "text": "NOW"
+  },
+  {
+   "t": 169.6,
+   "text": "BREATHE"
+  }
+ ],
+ "end": {
+  "final": "So cold, for you.",
+  "credit": "by @professorfungi  \u00b7  made with Suno",
+  "last": "k.",
+  "lastAt": 160.5
+ }
+}

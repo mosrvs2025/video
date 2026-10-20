@@ -16,4 +16,6 @@ description: Turn uploaded videos (vlogs, trips, talking clips, music videos) in
 
 **Privacy first:** for screen recordings / anything with emails, IDs, addresses, faces of others: scan the footage at ≥2 fps (and a frame-diff scan for popups), then use `redact` in director.json, and VERIFY on the final MP4 frames before delivering. Never rely on overlay-only blur.
 
+**Review loop (from the WIP repo):** after each render run `studio.py version <name> "what changed"`; talk about moments with `studio.py frameref`; never overwrite a version, never call a cut approved; `studio.py wip` exports a WIP-app workspace. Run `studio.py privacy <name>` early. For songs with no footage use `studio.py mv` (story.json → generative music video).
+
 Gotchas: never `pkill -f` with a pattern that matches your own bash command; use a unique process id. Don't claim you watched the video — you inspected stills. Keep captions honest (don't invent quotes); profanity: leave out of on-screen captions.

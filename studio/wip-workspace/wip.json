@@ -1,0 +1,8 @@
+{
+ "title": "Video Studio",
+ "content": "content",
+ "mounts": {
+  "studio": "../projects"
+ },
+ "port": 7353
+}

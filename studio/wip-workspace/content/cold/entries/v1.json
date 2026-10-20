@@ -1,0 +1,23 @@
+{
+ "id": "v1",
+ "title": "v1 \u2014 v1: story = a text thread going cold; lyrics timed from audio transcription (sung lines only)",
+ "summary": "Version 1",
+ "tags": [
+  "renders"
+ ],
+ "body": "**Status: needs human review.** v1: story = a text thread going cold; lyrics timed from audio transcription (sung lines only)\n\n- Length: 191.6s at 30 fps\n- Chapters: Warm (0s), Verse (16s), Unanswered (47s), Typing (104s), Shatter (132s), Battery (172s)\n- Captions/lines: 5\n\nPassing renders or checks does not mean this cut is approved.",
+ "format": "markdown",
+ "status": "needs review",
+ "createdAt": "2026-10-20T01:06:27Z",
+ "updatedAt": "2026-10-20T01:06:27Z",
+ "order": -1,
+ "revision": 1,
+ "media": [
+  {
+   "type": "video",
+   "src": "/media/studio/cold/out/v1.mp4",
+   "title": "v1",
+   "fps": 30
+  }
+ ]
+}
