@@ -131,11 +131,13 @@ def cmd_mv(a):
     elif sub == 'still':
         from PIL import Image
         outs = []; os.makedirs(os.path.join(p, 'out', 'stills'), exist_ok=True)
+        COMP = json.load(open(os.path.join(p, 'mv.json'))).get('comp', 'MV'); TW, TH = (480, 270) if COMP == 'MVWide' else (270, 480)
         for tsec in [float(x) for x in a[2:]]:
             fr = int(round(tsec * 30)); out = os.path.join(p, 'out', 'stills', f'mv_{fr}.jpg')
-            subprocess.run(['npx', 'remotion', 'still', 'src/index.ts', 'MV', out, f'--frame={fr}', '--image-format=jpeg', f'--props={os.path.join(p, "mv_props.json")}', f'--browser-executable={HS}', '--gl=angle', '--log=error'], cwd=ROOT, check=True); outs.append(out)
-        sh_ = Image.new('RGB', (270 * len(outs), 480))
-        for i, o in enumerate(outs): sh_.paste(Image.open(o).resize((270, 480)), (i * 270, 0))
+            subprocess.run(['npx', 'remotion', 'still', 'src/index.ts', COMP, out, f'--frame={fr}', '--image-format=jpeg', f'--props={os.path.join(p, "mv_props.json")}', f'--browser-executable={HS}', '--gl=angle', '--log=error'], cwd=ROOT, check=True); outs.append(out)
+        cols = min(len(outs), 4 if COMP == 'MVWide' else 8); rows = (len(outs) + cols - 1) // cols
+        sh_ = Image.new('RGB', (TW * cols, TH * rows))
+        for i, o in enumerate(outs): sh_.paste(Image.open(o).resize((TW, TH)), ((i % cols) * TW, (i // cols) * TH))
         sh_.save(os.path.join(p, 'out', 'stills', 'mv_sheet.jpg')); print('sheet ->', os.path.join(p, 'out', 'stills', 'mv_sheet.jpg'))
     elif sub in ('render', 'draft'):
         mv = json.load(open(os.path.join(p, 'mv.json'))); total = mv['frames']; CH = 150; cd = os.path.join(p, 'mvchunks' + ('_draft' if sub == 'draft' else '')); os.makedirs(cd, exist_ok=True)
@@ -144,7 +146,7 @@ def cmd_mv(a):
             out = os.path.join(cd, f'{i:04d}.mp4')
             if os.path.exists(out): continue
             print(f'  mv chunk {i + 1}/{len(ch)}', flush=True)
-            cmd = ['npx', 'remotion', 'render', 'src/index.ts', 'MV', out, '--muted', '--concurrency=4', f'--props={os.path.join(p, "mv_props.json")}', f'--browser-executable={HS}', '--gl=angle', '--log=error', f'--frames={s_}-{e_}'] + (['--scale=0.5'] if sub == 'draft' else [])
+            cmd = ['npx', 'remotion', 'render', 'src/index.ts', mv.get('comp', 'MV'), out, '--muted', '--concurrency=4', f'--props={os.path.join(p, "mv_props.json")}', f'--browser-executable={HS}', '--gl=angle', '--log=error', f'--frames={s_}-{e_}'] + (['--scale=0.5'] if sub == 'draft' else [])
             subprocess.run(cmd, cwd=ROOT, check=True)
         lst = os.path.join(cd, 'list.txt'); open(lst, 'w').write(''.join(f"file '{os.path.join(cd, f'{i:04d}.mp4')}'\n" for i, _, _ in ch))
         os.makedirs(os.path.join(p, 'out'), exist_ok=True); outv = os.path.join(p, 'out', 'mv_silent.mp4')

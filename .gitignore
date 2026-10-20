@@ -16,3 +16,8 @@ dist.html
 **/node_modules/
 **/.venv/
 studio/projects/*/render.log
+studio/projects/cold_wide/analysis/
+studio/projects/cold_wide/public/
+studio/projects/cold_wide/mv*.json
+studio/projects/cold_wide/mvchunks/
+studio/projects/cold_wide/audio/

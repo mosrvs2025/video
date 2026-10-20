@@ -20,7 +20,7 @@ const mixRaw = (a: string, b: string, u: number) => { const A = hex(a), B = hex(
 type MVData = any;
 
 // ---------- song-derived signals ----------
-const useSignals = (mv: MVData, frame: number) => {
+export const useSignals = (mv: MVData, frame: number) => {
   const t = frame / FPS;
   const ph = (t - mv.ph) / mv.bp, idx = Math.floor(ph), frac = ph - idx;
   const pulse = Math.exp(-frac * 5.5), down = idx % 4 === 0 ? Math.exp(-frac * 4) : 0;
@@ -40,12 +40,12 @@ const useSignals = (mv: MVData, frame: number) => {
   return {t, ph, idx, frac, pulse, down, sp, bass, mid, hi, c, sec};
 };
 
-const tempAt = (mv: MVData, t: number) => {
+export const tempAt = (mv: MVData, t: number) => {
   const k = mv.temp as {t: number; v: number}[]; if (t <= k[0].t) return k[0].v;
   for (let i = 0; i < k.length - 1; i++) if (t < k[i + 1].t) return lerp(k[i].v, k[i + 1].v, smooth((t - k[i].t) / (k[i + 1].t - k[i].t)));
   return k[k.length - 1].v;
 };
-const frostAt = (t: number) => t < 38 ? 0.02 : t < 47 ? lerp(0.02, 0.22, smooth((t - 38) / 9)) : t < 104 ? lerp(0.22, 0.62, smooth((t - 47) / 57)) : t < 132 ? lerp(0.62, 0.8, smooth((t - 104) / 28)) : t < 172 ? lerp(0.8, 1, smooth((t - 132) / 40)) : 1;
+export const frostAt = (t: number) => t < 38 ? 0.02 : t < 47 ? lerp(0.02, 0.22, smooth((t - 38) / 9)) : t < 104 ? lerp(0.22, 0.62, smooth((t - 47) / 57)) : t < 132 ? lerp(0.62, 0.8, smooth((t - 104) / 28)) : t < 172 ? lerp(0.8, 1, smooth((t - 132) / 40)) : 1;
 const batteryAt = (t: number) => t < 120 ? 100 : t < 172 ? lerp(100, 14, smooth((t - 120) / 52)) : t < 186 ? lerp(14, 1, (t - 172) / 14) : t < 189 ? 1 : 0;
 
 // ---------- 3D: snow + shards ----------
@@ -81,10 +81,10 @@ const Scene3D: React.FC<{sig: any; mv: MVData}> = ({sig, mv}) => {
 };
 
 // ---------- phone chat ----------
-const wrap = (s: string, n = 24) => { const w = s.split(' '); const out: string[] = []; let cur = ''; for (const x of w) { if ((cur + ' ' + x).trim().length > n && cur) { out.push(cur); cur = x; } else cur = (cur + ' ' + x).trim(); } if (cur) out.push(cur); return out; };
-const TONES: Record<string, {label: string; color: string}> = {warm: {label: 'WARM', color: '#ffb869'}, friendly: {label: 'FRIENDLY', color: '#ffd9a0'}, polite: {label: 'POLITE', color: '#e8f0ff'}, distant: {label: 'DISTANT', color: '#8fb8ff'}, flat: {label: 'FLAT', color: '#6f93cf'}};
+export const wrap = (s: string, n = 24) => { const w = s.split(' '); const out: string[] = []; let cur = ''; for (const x of w) { if ((cur + ' ' + x).trim().length > n && cur) { out.push(cur); cur = x; } else cur = (cur + ' ' + x).trim(); } if (cur) out.push(cur); return out; };
+export const TONES: Record<string, {label: string; color: string}> = {warm: {label: 'WARM', color: '#ffb869'}, friendly: {label: 'FRIENDLY', color: '#ffd9a0'}, polite: {label: 'POLITE', color: '#e8f0ff'}, distant: {label: 'DISTANT', color: '#8fb8ff'}, flat: {label: 'FLAT', color: '#6f93cf'}};
 
-const Phone: React.FC<{mv: MVData; sig: any}> = ({mv, sig}) => {
+export const Phone: React.FC<{mv: MVData; sig: any}> = ({mv, sig}) => {
   const {t, c, pulse} = sig;
   const X = 190, Y = 215, PW = 700, PH = 1200, R = 84, PAD = 16;
   const accent = mix('#ff9f4a', '#4aa8ff', c);
@@ -93,26 +93,29 @@ const Phone: React.FC<{mv: MVData; sig: any}> = ({mv, sig}) => {
   // tag reveal: messages before toneReveal get tags popped in sequence when "I hear it in your tone" is sung
   const early = (mv.chat as any[]).filter((m) => m.tone && m.t < mv.toneReveal);
   const tagAt = (m: any) => m.t < mv.toneReveal ? mv.toneReveal + early.indexOf(m) * 0.45 : m.t + 0.5;
+  const U = mv.phoneUI || {}, FS = U.fs || 34, LH = U.lh || 46, WR = U.wrap || 24, CW = U.cw || 19, BWM = U.bw || 470;
   const items = (mv.chat as any[]).filter((m) => t >= m.t).map((m) => {
-    if (m.type === 'sep') return {...m, kind: 'sep', h: 56};
-    if (m.type === 'sys') return {...m, kind: 'sys', h: 62};
-    const lines = wrap(m.text); return {...m, kind: 'msg', lines, h: lines.length * 46 + 28 + (m.status ? 34 : 0) + (m.tone ? 36 : 0) + 14};
+    if (m.type === 'sep') return {...m, kind: 'sep', h: U.fs ? 64 : 56};
+    if (m.type === 'sys') return {...m, kind: 'sys', h: U.fs ? 72 : 62};
+    const lines = wrap(m.text, WR); return {...m, kind: 'msg', lines, h: lines.length * LH + 28 + (m.status ? 34 : 0) + (m.tone ? 36 : 0) + 14};
   });
+  const newest = Math.max(-1, ...items.filter((m: any) => m.kind === 'msg').map((m: any) => m.t));
+  const spot = (m: any) => !U.spot ? 1 : m.t >= newest ? 1 : lerp(1, 0.42, smooth((t - newest) / 0.6));
   let yb = bottom; const nodes: React.ReactNode[] = [];
   for (let i = items.length - 1; i >= 0; i--) {
     const m: any = items[i], age = t - m.t, ap = easeOutBack(age / 0.4, 1.1), slide = (1 - easeOutCubic(age / 0.35)) * 36;
     const yTop = yb - m.h * clamp(ap, 0, 1.02);
     if (yTop + m.h < top - 80) break;
-    const fade = clamp((yTop - (top - 60)) / 90) * clamp(age / 0.2);
-    if (m.kind === 'sep') nodes.push(<div key={i} style={{position: 'absolute', left: 0, width: PW, top: yTop + slide - Y, textAlign: 'center', opacity: fade, fontFamily: MONO, fontSize: 21, letterSpacing: 4, color: 'rgba(255,255,255,.42)'}}>{m.text.toUpperCase()}</div>);
-    else if (m.kind === 'sys') nodes.push(<div key={i} style={{position: 'absolute', left: 0, width: PW, top: yTop + slide - Y + 6, textAlign: 'center', opacity: fade}}><span style={{fontFamily: SANS, fontSize: 24, fontStyle: 'italic', color: 'rgba(190,220,255,.7)', border: '1.5px solid rgba(190,220,255,.25)', borderRadius: 26, padding: '8px 22px'}}>{m.text}</span></div>);
+    const fade = clamp((yTop - (top - 60)) / 90) * clamp(age / 0.2) * spot(m);
+    if (m.kind === 'sep') nodes.push(<div key={i} style={{position: 'absolute', left: 0, width: PW, top: yTop + slide - Y, textAlign: 'center', opacity: fade, fontFamily: MONO, fontSize: U.fs ? 25 : 21, letterSpacing: 4, color: 'rgba(255,255,255,.5)'}}>{m.text.toUpperCase()}</div>);
+    else if (m.kind === 'sys') nodes.push(<div key={i} style={{position: 'absolute', left: 0, width: PW, top: yTop + slide - Y + 6, textAlign: 'center', opacity: fade}}><span style={{fontFamily: SANS, fontSize: U.fs ? 28 : 24, fontStyle: 'italic', color: 'rgba(190,220,255,.7)', border: '1.5px solid rgba(190,220,255,.25)', borderRadius: 26, padding: '8px 22px'}}>{m.text}</span></div>);
     else {
-      const mine = m.from === 'm'; const bw = Math.min(470, Math.max(...m.lines.map((l: string) => l.length)) * 19 + 44);
+      const mine = m.from === 'm'; const bw = Math.min(BWM, Math.max(...m.lines.map((l: string) => l.length)) * CW + 48);
       const tone = m.tone ? TONES[m.tone] : null; const tg = tone ? easeOutBack((t - tagAt(m)) / 0.35, 2) : 0;
       nodes.push(
         <div key={i} style={{position: 'absolute', left: mine ? PW - PAD - 28 - bw : PAD + 28, top: yTop + slide - Y, width: bw, opacity: fade}}>
           {tone && <div style={{height: 36, display: 'flex', alignItems: 'center', opacity: clamp(tg), transform: `translateY(${(1 - clamp(tg)) * 8}px) scale(${0.8 + 0.2 * clamp(tg)})`, transformOrigin: 'left center'}}><span style={{fontFamily: MONO, fontSize: 19, letterSpacing: 4, fontWeight: 700, color: tone.color, border: `1.5px solid ${tone.color}88`, borderRadius: 14, padding: '2px 12px', boxShadow: `0 0 14px ${tone.color}44`}}>{tone.label}</span></div>}
-          <div style={{background: mine ? accent : `rgba(255,255,255,${0.14 - c * 0.05})`, color: mine ? '#06121f' : '#fff', borderRadius: 32, borderBottomRightRadius: mine ? 10 : 32, borderBottomLeftRadius: mine ? 32 : 10, padding: '12px 22px', fontFamily: SANS, fontWeight: mine ? 700 : 500, fontSize: 34, lineHeight: '46px', boxShadow: mine ? `0 0 ${18 + pulse * 18}px ${accent}66` : 'none', border: mine ? 'none' : '1.5px solid rgba(255,255,255,.16)'}}>
+          <div style={{background: mine ? accent : `rgba(255,255,255,${0.14 - c * 0.05})`, color: mine ? '#06121f' : '#fff', borderRadius: 32, borderBottomRightRadius: mine ? 10 : 32, borderBottomLeftRadius: mine ? 32 : 10, padding: '12px 22px', fontFamily: SANS, fontWeight: mine ? 700 : 500, fontSize: FS, lineHeight: `${LH}px`, boxShadow: (U.spot && m.t >= newest && t - m.t < 3 ? `0 0 0 3px rgba(255,255,255,${0.55 * clamp(1 - (t - m.t) / 3)}), ` : '') + (mine ? `0 0 ${18 + pulse * 18}px ${accent}66` : '0 0 0 0 transparent'), border: mine ? 'none' : '1.5px solid rgba(255,255,255,.16)'}}>
             {m.lines.map((l: string, k: number) => <div key={k}>{l}</div>)}
           </div>
           {m.status && <div style={{textAlign: mine ? 'right' : 'left', fontFamily: MONO, fontSize: 21, letterSpacing: 2, color: 'rgba(255,255,255,.55)', marginTop: 8}}>{m.status}</div>}
@@ -123,7 +126,8 @@ const Phone: React.FC<{mv: MVData; sig: any}> = ({mv, sig}) => {
   const typing = (mv.typing as any[]).find((k) => t >= k.a && t < k.b);
   const st = [...mv.status].reverse().find((q: any) => t >= q.t);
   const tmin = 12 + Math.floor(t / 14), clock = `9:${String(tmin % 60).padStart(2, '0')} PM`;
-  const bat = batteryAt(t), off = clamp((t - 188.2) / 0.8), dim = smooth((t - 104) / 3) * (t < 132 ? 0.5 : 0.5 - 0.3 * smooth((t - 132) / 4));
+  const bat = batteryAt(t), off = clamp((t - 188.2) / 0.8), dim0 = smooth((t - 104) / 3) * (t < 132 ? 0.5 : 0.5 - 0.3 * smooth((t - 132) / 4));
+  const dim = (mv.phoneUI || {}).nodim ? 0 : dim0;
   const crackP = clamp((t - 140) / 22);
   const grey = smooth((t - contact.greyFrom) / 6), heart = t < contact.heartUntil;
   // draft in the input bar: types, then (maybe) deletes letter by letter
@@ -153,7 +157,7 @@ const Phone: React.FC<{mv: MVData; sig: any}> = ({mv, sig}) => {
           {draftTxt || 'iMessage'}{draftTxt && Math.floor(t * 2.2) % 2 === 0 && <span style={{display: 'inline-block', width: 3, height: 34, background: '#8fd8ff', marginLeft: 3}} />}
         </div>
         {crackP > 0 && <svg width={PW} height={PH} style={{position: 'absolute', left: 0, top: 0}}>
-          {Array.from({length: 9}).map((_, i) => { const a = rnd(i + 5) * Math.PI * 2, len = (200 + rnd(i + 9) * 520) * easeOutCubic(crackP); let x = 430, y = 560, d = `M${x} ${y}`; for (let k = 1; k <= 7; k++) { x += Math.cos(a + (rnd(i * 7 + k) - 0.5) * 0.9) * len / 7; y += Math.sin(a + (rnd(i * 7 + k + 3) - 0.5) * 0.9) * len / 7; d += ` L${x.toFixed(1)} ${y.toFixed(1)}`; } return <path key={i} d={d} stroke="rgba(235,248,255,.85)" strokeWidth={2.2} fill="none" style={{filter: 'drop-shadow(0 0 6px #8fd8ff)'}} />; })}
+          {Array.from({length: 9}).map((_, i) => { const a = rnd(i + 5) * Math.PI * 2, len = (200 + rnd(i + 9) * 520) * easeOutCubic(crackP); let x = 430, y = 560, d = `M${x} ${y}`; for (let k = 1; k <= 7; k++) { x += Math.cos(a + (rnd(i * 7 + k) - 0.5) * 0.9) * len / 7; y += Math.sin(a + (rnd(i * 7 + k + 3) - 0.5) * 0.9) * len / 7; d += ` L${x.toFixed(1)} ${y.toFixed(1)}`; } return <path key={i} d={d} stroke={`rgba(235,248,255,${U.fs ? 0.35 : 0.85})`} strokeWidth={U.fs ? 1.6 : 2.2} fill="none" style={{filter: 'drop-shadow(0 0 6px #8fd8ff)'}} />; })}
         </svg>}
         <div style={{position: 'absolute', inset: 0, background: '#000', opacity: Math.max(dim, off)}} />
       </div>
@@ -162,7 +166,7 @@ const Phone: React.FC<{mv: MVData; sig: any}> = ({mv, sig}) => {
 };
 
 // ---------- frost overlay ----------
-const Frost: React.FC<{f: number; pulse: number}> = ({f, pulse}) => {
+export const Frost: React.FC<{f: number; pulse: number}> = ({f, pulse}) => {
   if (f < 0.03) return null;
   const thr = 1.05 - f * 0.55;
   const m = `radial-gradient(ellipse ${80 - f * 18}% ${72 - f * 14}% at 50% 47%, transparent 0%, transparent 56%, #000 100%)`;

@@ -114,15 +114,22 @@ export const Figure: React.FC<{look: Look; pose: Pose}> = ({look, pose}) => {
   );
 };
 
+// ---------- shadows: every solid mesh casts and receives ----------
+const ShadowSetup: React.FC = () => {
+  const {scene} = useThree();
+  scene.traverse((o: any) => { if (o.isMesh) { const m = o.material; const solid = m && m.isMeshStandardMaterial && !(m.transparent && m.opacity < 0.95); o.castShadow = solid; o.receiveShadow = solid; } });
+  return null;
+};
+
 // ---------- camera ----------
 type Cam = {e: V3; l: V3; f?: number};
-const CamRig: React.FC<{cam: Cam; t: number; u: number; pulse: number; sway: number}> = ({cam, t, u, pulse, sway}) => {
+const CamRig: React.FC<{cam: Cam; t: number; u: number; pulse: number; sway: number; fs?: number; shift?: number}> = ({cam, t, u, pulse, sway, fs = 1, shift = 0}) => {
   const {camera} = useThree();
   const e = new THREE.Vector3(...cam.e), l = new THREE.Vector3(...cam.l);
   e.lerp(l, 0.1 * smooth(u)); // slow dolly in
   e.x += Math.sin(t * 0.9) * 0.04 * sway; e.y += Math.sin(t * 1.3 + 1) * 0.025 * sway;
   camera.position.copy(e); camera.lookAt(l);
-  const pc = camera as THREE.PerspectiveCamera; pc.fov = (cam.f || 40) - pulse * 0.6; pc.near = 0.05; pc.far = 400; pc.updateProjectionMatrix();
+  const pc = camera as THREE.PerspectiveCamera; pc.fov = ((cam.f || 40) - pulse * 0.6) * fs; pc.filmOffset = shift; pc.near = 0.05; pc.far = 400; pc.updateProjectionMatrix();
   return null;
 };
 
@@ -241,6 +248,22 @@ const RoomSet: React.FC<{t: number; v: string; idx: number; lightsOn: number; la
       <Box p={[1.38, 0.5, -1.8]} s={[0.22, 0.5, 0.95]} c={col('#56705f', '#3f4c5e', c)} /><Box p={[-1.38, 0.5, -1.8]} s={[0.22, 0.5, 0.95]} c={col('#56705f', '#3f4c5e', c)} />
       {[-0.62, 0.62].map((x, i) => <Box key={i} p={[x, 0.5, -1.72]} s={[1.18, 0.12, 0.82]} c={col('#6a8a78', '#4c5c70', c)} />)}
       {scarf > 0 && <group position={[0.7, 0.58, -1.6]} rotation={[0, 0.4, 0]}><Box p={[0, 0, 0]} s={[0.5, 0.04, 0.1]} c="#d8323c" /><Box p={[0.22, -0.02, 0.14]} s={[0.1, 0.04, 0.32]} c="#d8323c" r={[0, 0.3, 0]} /></group>}
+      {/* coffee table: two mugs while they're together, one after; the photo of them ends face down */}
+      <group position={[0, 0, -0.55]}>
+        <Box p={[0, 0.38, 0]} s={[1.3, 0.06, 0.6]} c={col('#8a5a3a', '#4a4a56', c)} />
+        {[[-0.58, -0.24], [0.58, -0.24], [-0.58, 0.24], [0.58, 0.24]].map(([x, z], i) => <Box key={i} p={[x, 0.18, z]} s={[0.05, 0.36, 0.05]} c="#3a2a20" />)}
+        {[-0.22, 0.2].map((x, i) => (i === 0 || !['alone', 'typing', 'dark'].includes(v)) && <group key={i} position={[x, 0.47, 0.05]}>
+          <mesh><cylinderGeometry args={[0.055, 0.05, 0.12, 12]} /><Mat c={i ? '#d8323c' : '#f2c230'} /></mesh>
+          <mesh position={[0.07, 0, 0]} rotation={[0, 0, Math.PI / 2]}><torusGeometry args={[0.03, 0.01, 6, 10]} /><Mat c={i ? '#d8323c' : '#f2c230'} /></mesh>
+          {!['alone', 'typing', 'dark'].includes(v) && [0, 1].map((k) => { const ph = (t * 0.35 + k * 0.5 + i * 0.3) % 1; return <Glow key={k} p={[Math.sin(ph * 7 + k) * 0.03, 0.1 + ph * 0.35, 0]} s={0.12} c="#ffffff" o={(1 - ph) * 0.35} />; })}
+        </group>)}
+        <group position={[0.45, 0.41, -0.12]} rotation={v === 'dark' ? [-Math.PI / 2, 0, 0.3] : [-0.25, -0.35, 0]}>
+          <Box p={[0, v === 'dark' ? 0.012 : 0.13, 0]} s={[0.26, 0.2, 0.02]} c="#2a211c" />
+          {v !== 'dark' && <><mesh position={[0, 0.13, 0.012]}><planeGeometry args={[0.22, 0.16]} /><meshBasicMaterial color={col('#ffb56b', '#7d93b8', c)} /></mesh>
+            <mesh position={[-0.04, 0.12, 0.014]}><circleGeometry args={[0.022, 10]} /><meshBasicMaterial color="#f2c230" /></mesh>
+            <mesh position={[0.035, 0.12, 0.014]}><circleGeometry args={[0.022, 10]} /><meshBasicMaterial color="#d8323c" /></mesh></>}
+        </group>
+      </group>
       {/* lamp */}
       <group position={[1.9, 0, -2.3]}>
         <Box p={[0, 0.03, 0]} s={[0.4, 0.06, 0.4]} c="#222" /><Box p={[0, 0.8, 0]} s={[0.05, 1.6, 0.05]} c="#222" />
@@ -362,7 +385,7 @@ const ORDER: Record<string, {o: number[]; n: number}> = {
   lookout_memory: {o: [1, 0, 2, 3], n: 2}, lookout_freeze: {o: [0, 2, 1, 0], n: 2}, lookout_shatter: {o: [0, 2, 3, 0], n: 2}, lookout_alone: {o: [1, 0, 3], n: 4},
 };
 
-export const World: React.FC<{mv: any; sig: any; dim?: number}> = ({mv, sig}) => {
+export const World: React.FC<{mv: any; sig: any; w?: number; h?: number; fs?: number; shift?: number; shadows?: boolean}> = ({mv, sig, w: CW = W, h: CH = H, fs = 1, shift = 0, shadows = false}) => {
   const {t, pulse, down, c, bass} = sig;
   const shot = shotAt(mv.world, t), key = `${shot.set}_${shot.v}`, lt = t - shot.a, u = lt / (shot.b - shot.a);
   const bp = mv.bp, bi = Math.floor((t - mv.ph) / bp), b0 = Math.floor((shot.a - mv.ph) / bp);
@@ -382,11 +405,13 @@ export const World: React.FC<{mv: any; sig: any; dim?: number}> = ({mv, sig}) =>
   const shardsN = 46;
   return (
     <div style={{position: 'absolute', inset: 0, background: `linear-gradient(180deg, ${sky[0]} 0%, ${sky[1]} 52%, ${sky[2]} 78%, ${sky[2]} 100%)`}}>
-      <div style={{position: 'absolute', left: 0, top: 0, width: W * RS, height: H * RS, transform: `scale(${1 / RS})`, transformOrigin: '0 0'}}><ThreeCanvas width={Math.round(W * RS)} height={Math.round(H * RS)} style={{position: 'absolute', inset: 0}} gl={{antialias: false, alpha: true}}>
-        <CamRig cam={cam} t={t} u={cu} pulse={pulse} sway={shot.v === 'together' || shot.v === 'memory_day' ? 1.6 : 1} />
+      <div style={{position: 'absolute', left: 0, top: 0, width: Math.round(CW * RS), height: Math.round(CH * RS), transform: `scale(${1 / RS})`, transformOrigin: '0 0'}}><ThreeCanvas width={Math.round(CW * RS)} height={Math.round(CH * RS)} style={{position: 'absolute', inset: 0}} gl={{antialias: false, alpha: true}} shadows={shadows}>
+        <CamRig fs={fs} shift={shift} cam={cam} t={t} u={cu} pulse={pulse} sway={shot.v === 'together' || shot.v === 'memory_day' ? 1.6 : 1} />
         <fog attach="fog" args={[sky[2], shot.set === 'room' ? 30 : 18, shot.set === 'room' ? 60 : shot.set === 'drive' ? 150 : 260]} />
-        <hemisphereLight args={[col('#ffe2c4', '#bcd8ff', cc), col('#2a1a12', '#0c1626', cc), shot.set === 'room' ? 0.55 : 0.9]} />
-        <directionalLight position={shot.set === 'lookout' ? [0, 6, -20] : [4, 8, 6]} intensity={shot.set === 'lookout' ? lerp(2.2, 0.8, cc) : shot.v === 'memory_day' ? 2.2 : 0.7} color={col('#ffc38a', '#a9c8ff', cc)} />
+        <hemisphereLight args={[col('#ffe2c4', '#bcd8ff', cc), col('#2a1a12', '#0c1626', cc), shot.set === 'room' ? 0.55 : shot.v === 'alone_snow' ? 1.5 : 0.9]} />
+        {shadows && <ShadowSetup />}
+        <directionalLight position={shot.set === 'lookout' ? [0, 6, -20] : shot.set === 'room' ? [3, 7, 5] : [4, 8, 6]} intensity={shot.set === 'lookout' ? lerp(2.2, 0.8, cc) : shot.v === 'memory_day' ? 2.2 : shot.v === 'alone_snow' ? 1.1 : 0.7} color={col('#ffc38a', '#a9c8ff', cc)}
+          castShadow={shadows} shadow-mapSize-width={1024} shadow-mapSize-height={1024} shadow-camera-left={-7} shadow-camera-right={7} shadow-camera-top={7} shadow-camera-bottom={-7} shadow-camera-near={0.5} shadow-camera-far={60} shadow-bias={-0.0008} shadow-radius={3} />
         {shot.set === 'lookout' && <directionalLight position={[2, 4, 8]} intensity={0.6} color={col('#9d8cff', '#7fa6d8', cc)} />}
         {shot.set === 'drive' && <group>
           <DriveSet t={t} v={shot.v} bp={bp} pulse={pulse} u={u} />
