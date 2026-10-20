@@ -536,5 +536,140 @@
    "delAt": 9999,
    "endAt": 9999
   }
+ ],
+ "world": [
+  {
+   "a": 0,
+   "b": 8,
+   "set": "drive",
+   "v": "together"
+  },
+  {
+   "a": 8,
+   "b": 16.5,
+   "set": "room",
+   "v": "dance"
+  },
+  {
+   "a": 16.5,
+   "b": 23.2,
+   "set": "room",
+   "v": "couch_phone"
+  },
+  {
+   "a": 23.2,
+   "b": 30.4,
+   "set": "room",
+   "v": "letgo"
+  },
+  {
+   "a": 30.4,
+   "b": 38.8,
+   "set": "drive",
+   "v": "quiet"
+  },
+  {
+   "a": 38.8,
+   "b": 47,
+   "set": "room",
+   "v": "leave"
+  },
+  {
+   "a": 47,
+   "b": 60,
+   "set": "lookout",
+   "v": "memory"
+  },
+  {
+   "a": 60,
+   "b": 75,
+   "set": "room",
+   "v": "alone"
+  },
+  {
+   "a": 75,
+   "b": 88,
+   "set": "drive",
+   "v": "memory_day"
+  },
+  {
+   "a": 88,
+   "b": 104,
+   "set": "drive",
+   "v": "alone_snow"
+  },
+  {
+   "a": 104,
+   "b": 132,
+   "set": "room",
+   "v": "typing"
+  },
+  {
+   "a": 132,
+   "b": 141,
+   "set": "lookout",
+   "v": "freeze"
+  },
+  {
+   "a": 141,
+   "b": 160.6,
+   "set": "lookout",
+   "v": "shatter"
+  },
+  {
+   "a": 160.6,
+   "b": 172.5,
+   "set": "lookout",
+   "v": "alone"
+  },
+  {
+   "a": 172.5,
+   "b": 191.7,
+   "set": "room",
+   "v": "dark"
+  }
+ ],
+ "phone": [
+  {
+   "t": 0,
+   "m": "pip"
+  },
+  {
+   "t": 104,
+   "m": "hero"
+  },
+  {
+   "t": 132,
+   "m": "pip"
+  },
+  {
+   "t": 146,
+   "m": "hero"
+  },
+  {
+   "t": 162.5,
+   "m": "pip"
+  },
+  {
+   "t": 174,
+   "m": "hero"
+  }
+ ],
+ "memories": [
+  {
+   "a": 47,
+   "b": 60,
+   "label": "JULY \u00b7 THE LOOKOUT"
+  },
+  {
+   "a": 75,
+   "b": 88,
+   "label": "AUGUST \u00b7 ROAD TRIP"
+  },
+  {
+   "a": 0,
+   "b": 16.5,
+   "label": "MAY \u00b7 LAST NIGHT"
+  }
  ]
 }

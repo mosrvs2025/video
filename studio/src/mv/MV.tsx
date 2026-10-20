@@ -2,6 +2,7 @@ import React, {useMemo} from 'react';
 import {AbsoluteFill, useCurrentFrame} from 'remotion';
 import {ThreeCanvas} from '@remotion/three';
 import * as THREE from 'three';
+import {World, shotAt} from './World';
 
 const W = 1080, H = 1920, FPS = 30;
 const SANS = 'Inter, sans-serif', SERIF = '"FreeSerif", "DejaVu Serif", serif', MONO = '"DejaVu Sans Mono", monospace';
@@ -189,7 +190,7 @@ const Lyrics: React.FC<{mv: MVData; sig: any}> = ({mv, sig}) => {
   const o = clamp((t - (L.t0 - 0.1)) / 0.2) * clamp((L.t1 + (L.hold ?? 1.5) - t) / 0.35);
   const words = L.text.split(' ');
   return (
-    <Plate o={o} y={1498} c={c}>
+    <Plate o={o} y={1650} c={c}>
       <div style={{fontFamily: SERIF, fontStyle: 'italic', fontSize: L.text.length > 26 ? 64 : 82, lineHeight: 1.12, color: '#fff', textAlign: 'center', textShadow: '0 4px 20px rgba(0,0,0,.6)'}}>
         {words.map((w: string, i: number) => { const p = easeOutExpo((t - L.tm[i]) / 0.35), on = t >= L.tm[i], cur = on && (i === words.length - 1 || t < L.tm[i + 1]);
           return <span key={i} style={{display: 'inline-block', marginRight: 18, opacity: on ? 0.35 + 0.65 * p : 0.18, transform: `translateY(${(1 - p) * 18}px)`, color: cur ? accent : '#fff', textShadow: cur ? `0 0 30px ${accent}aa` : undefined}}>{w}</span>; })}
@@ -202,7 +203,7 @@ const Narr: React.FC<{mv: MVData; sig: any}> = ({mv, sig}) => {
   const N = (mv.narr as any[]).find((n) => t >= n.a && t < n.b); if (!N) return null;
   const lt = t - N.a, o = clamp(lt / 0.25) * clamp((N.b - t) / 0.35), p = easeOutExpo(lt / 0.5);
   return (
-    <Plate o={o} left={N.pos !== 'center'} y={1530} c={c}>
+    <Plate o={o} left={N.pos !== 'center'} y={1650} c={c}>
       <div style={{fontFamily: SERIF, fontStyle: 'italic', fontSize: 66, color: '#eaf6ff', transform: `translateY(${(1 - p) * 16}px)`, textShadow: '0 4px 18px rgba(0,0,0,.6)'}}>{renderAccent(N.text, accent, 66)}</div>
     </Plate>
   );
@@ -210,7 +211,7 @@ const Narr: React.FC<{mv: MVData; sig: any}> = ({mv, sig}) => {
 const Motif: React.FC<{mv: MVData; sig: any}> = ({mv, sig}) => {
   const {t, c, pulse} = sig; const m = (mv.motif as any[]).find((k) => t >= k.t && t < k.t + 2.8); if (!m) return null;
   const lt = t - m.t, o = clamp(lt / 0.2) * clamp((2.8 - lt) / 0.8);
-  return <Plate o={o * 0.95} y={1510} c={c}><div style={{fontFamily: SERIF, fontStyle: 'italic', fontSize: 70, color: '#cfeaff', letterSpacing: 2 + lt * 3, textShadow: `0 0 ${24 + pulse * 20}px #8fd8ffaa`}}>So cold, for you</div></Plate>;
+  return <Plate o={o * 0.95} y={1650} c={c}><div style={{fontFamily: SERIF, fontStyle: 'italic', fontSize: 70, color: '#cfeaff', letterSpacing: 2 + lt * 3, textShadow: `0 0 ${24 + pulse * 20}px #8fd8ffaa`}}>So cold, for you</div></Plate>;
 };
 
 const Title: React.FC<{mv: MVData; sig: any}> = ({mv, sig}) => {
@@ -263,9 +264,20 @@ export const MV: React.FC<{mv: MVData}> = ({mv}) => {
   const camS = 1 + 0.012 * pulse + (t > 132 && t < 172 ? 0.012 * down : 0);
   const flashWhite = (t > 132 && t < 172 ? down * 0.14 : 0) + (t > 42.6 && t < 43.0 ? 0.25 * (1 - (t - 42.6) / 0.4) : 0);
   const sub = (mv.subliminal as any[]).find((s) => t >= s.t && t < s.t + 0.1);
+  const PL: Record<string, {dx: number; dy: number; s: number; ry: number}> = {pip: {dx: 330, dy: 480, s: 0.5, ry: -12}, hero: {dx: 0, dy: 280, s: 0.78, ry: 0}};
+  const pk = (mv.phone || []) as {t: number; m: string}[]; let ph = PL.pip;
+  for (let i = 0; i < pk.length; i++) if (t >= pk[i].t) { const prev = PL[(pk[i - 1] || pk[i]).m], cur = PL[pk[i].m], u = smooth((t - pk[i].t) / 0.7); ph = {dx: lerp(prev.dx, cur.dx, u), dy: lerp(prev.dy, cur.dy, u), s: lerp(prev.s, cur.s, u), ry: lerp(prev.ry, cur.ry, u)}; }
+  const hero = clamp((ph.s - 0.5) / 0.28);
+  const mem = ((mv.memories || []) as any[]).find((m) => t >= m.a && t < m.b && t > 4.4);
   const lastWord = t >= mv.end.lastAt && t < mv.end.lastAt + 12 ? easeOutBack((t - mv.end.lastAt) / 0.6) : 0;
   return (
     <AbsoluteFill style={{background: '#000', opacity: fadeIn}}>
+      {mv.world && mv.world.length ? <>
+        <AbsoluteFill style={{transform: `scale(${camS})`, filter: `brightness(${1 - 0.5 * hero}) blur(${hero * 3}px) saturate(${mem ? 1.15 : 1})`}}><World mv={mv} sig={sig} /></AbsoluteFill>
+        {mem && <AbsoluteFill style={{pointerEvents: 'none', background: 'radial-gradient(ellipse at 50% 40%, rgba(255,190,120,.10), rgba(60,30,10,.35) 100%)', mixBlendMode: 'multiply'}} />}
+        {mem && <div style={{position: 'absolute', left: 60, top: 222, fontFamily: MONO, fontSize: 24, letterSpacing: 6, color: '#ffe2b8', opacity: clamp((t - mem.a) / 0.4) * clamp((mem.b - t) / 0.4) * (0.75 + 0.25 * (Math.floor(t * 2) % 2)), textShadow: '0 0 12px rgba(0,0,0,.8)'}}><span style={{color: '#ff6a5a'}}>●</span> MEMORY · {mem.label}</div>}
+        <div style={{position: 'absolute', inset: 0, perspective: 1800}}><div style={{position: 'absolute', inset: 0, transform: `translate(${ph.dx}px, ${ph.dy}px) scale(${ph.s}) rotateY(${ph.ry}deg)`, transformOrigin: '540px 815px'}}><Phone mv={mv} sig={sig} /></div></div>
+      </> : <>
       <AbsoluteFill style={{background: bg}} />
       <AbsoluteFill style={{opacity: aur * 0.55, mixBlendMode: 'screen'}}>
         {[0, 1, 2].map((i) => <div key={i} style={{position: 'absolute', left: -200 + i * 360 + Math.sin(t * 0.18 + i * 2) * 140, top: 160 + i * 380 + Math.cos(t * 0.15 + i) * 90, width: 900, height: 420, borderRadius: '50%', background: `radial-gradient(ellipse, ${['#5fd0ff', '#7a8bff', '#6fffe0'][i]}99, transparent 68%)`, filter: 'blur(40px)', transform: `rotate(${-18 + i * 14 + Math.sin(t * 0.2 + i) * 6}deg)`}} />)}
@@ -274,10 +286,11 @@ export const MV: React.FC<{mv: MVData}> = ({mv}) => {
         <Scene3D sig={sig} mv={mv} />
         <Phone mv={mv} sig={sig} />
       </AbsoluteFill>
+      </>}
       <Frost f={frost} pulse={pulse} />
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0,0,0,.55) 100%)'}} />
       <Header mv={mv} sig={sig} /><Gauge mv={mv} sig={sig} />
-      <Bars sig={sig} />
+      {!(mv.world && mv.world.length) && <Bars sig={sig} />}
       <Lyrics mv={mv} sig={sig} /><Narr mv={mv} sig={sig} /><Motif mv={mv} sig={sig} />
       {lastWord > 0 && t < 172 && <div style={{position: 'absolute', left: 0, width: W, top: 700, textAlign: 'center', fontFamily: SANS, fontWeight: 900, fontSize: Math.min(420, Math.floor(1000 / (mv.end.last.length * 0.56))), color: '#eaf8ff', opacity: clamp((mv.end.lastAt + 11 - t) / 1.5) * clamp(lastWord), transform: `scale(${0.6 + 0.4 * lastWord})`, textShadow: '0 0 80px #8fd8ffcc'}}>{mv.end.last}</div>}
       <Title mv={mv} sig={sig} />
