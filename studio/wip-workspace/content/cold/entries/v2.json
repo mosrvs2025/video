@@ -1,0 +1,23 @@
+{
+ "id": "v2",
+ "title": "v2 \u2014 v2: Jasmine; tone-driven letting-go conversation (tone tags, growing gaps, deleted drafts, unsent ending)",
+ "summary": "Version 2",
+ "tags": [
+  "renders"
+ ],
+ "body": "**Status: needs human review.** v2: Jasmine; tone-driven letting-go conversation (tone tags, growing gaps, deleted drafts, unsent ending)\n\n- Length: 191.6s at 30 fps\n- Chapters: Warm (0s), Verse (16s), Unanswered (47s), Typing (104s), Shatter (132s), Battery (172s)\n- Captions/lines: 5\n\nPassing renders or checks does not mean this cut is approved.",
+ "format": "markdown",
+ "status": "needs review",
+ "createdAt": "2026-10-20T05:25:58Z",
+ "updatedAt": "2026-10-20T05:25:58Z",
+ "order": -2,
+ "revision": 1,
+ "media": [
+  {
+   "type": "video",
+   "src": "/media/studio/cold/out/v2.mp4",
+   "title": "v2",
+   "fps": 30
+  }
+ ]
+}

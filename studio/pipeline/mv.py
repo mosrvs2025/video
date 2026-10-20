@@ -63,7 +63,7 @@ def build(pdir):
         tm = words_across(l['text'], l['t0'], l['t1']); lines.append({**l, 'tm': tm})
     mv = {'fps': 30, 'w': 1080, 'h': 1920, 'duration': dur, 'frames': frames, 'bp': bp, 'ph': ph, 'beats': A['beats'], 'spectrum': sp.tolist(),
           'title': S.get('title', ''), 'artist': S.get('artist', ''), 'sections': S['sections'], 'lines': lines, 'chat': sn(S['chat']), 'typing': S.get('typing', []), 'temp': S.get('temp', []),
-          'narr': sn(S.get('narr', []), 'a'), 'subliminal': S.get('subliminal', []), 'motif': sn(S.get('motif', [])), 'status': S.get('status', []), 'theme': S.get('theme', {}), 'end': S.get('end', {})}
+          'narr': sn(S.get('narr', []), 'a'), 'subliminal': S.get('subliminal', []), 'motif': sn(S.get('motif', [])), 'status': S.get('status', []), 'contact': S.get('contact', {'name': 'Alex', 'initial': 'A', 'heartUntil': 0, 'greyFrom': 9999}), 'drafts': S.get('drafts', []), 'toneReveal': S.get('toneReveal', 0), 'theme': S.get('theme', {}), 'end': S.get('end', {})}
     json.dump(mv, open(os.path.join(pdir, 'mv.json'), 'w')); json.dump({'mv': mv}, open(os.path.join(pdir, 'mv_props.json'), 'w'))
     print('mv.json frames', frames, 'sections', len(mv['sections']), 'chat', len(mv['chat']), 'narr', len(mv['narr']))
 if __name__ == '__main__': build(sys.argv[1])

@@ -81,61 +81,76 @@ const Scene3D: React.FC<{sig: any; mv: MVData}> = ({sig, mv}) => {
 
 // ---------- phone chat ----------
 const wrap = (s: string, n = 24) => { const w = s.split(' '); const out: string[] = []; let cur = ''; for (const x of w) { if ((cur + ' ' + x).trim().length > n && cur) { out.push(cur); cur = x; } else cur = (cur + ' ' + x).trim(); } if (cur) out.push(cur); return out; };
+const TONES: Record<string, {label: string; color: string}> = {warm: {label: 'WARM', color: '#ffb869'}, friendly: {label: 'FRIENDLY', color: '#ffd9a0'}, polite: {label: 'POLITE', color: '#e8f0ff'}, distant: {label: 'DISTANT', color: '#8fb8ff'}, flat: {label: 'FLAT', color: '#6f93cf'}};
 
 const Phone: React.FC<{mv: MVData; sig: any}> = ({mv, sig}) => {
   const {t, c, pulse} = sig;
   const X = 190, Y = 215, PW = 700, PH = 1200, R = 84, PAD = 16;
-  const msgs = (mv.chat as any[]).filter((m) => t >= m.t);
   const accent = mix('#ff9f4a', '#4aa8ff', c);
-  const top = Y + PAD + 150, bottom = Y + PH - PAD - 112; const area = bottom - top;
-  // layout bottom-up; newest slides in
-  const items = msgs.map((m) => { const lines = wrap(m.text); return {...m, lines, h: lines.length * 46 + 28 + (m.status ? 34 : 0) + 14}; });
+  const top = Y + PAD + 150, bottom = Y + PH - PAD - 112;
+  const contact = mv.contact || {name: 'Jasmine', initial: 'J', heartUntil: 0, greyFrom: 9999};
+  // tag reveal: messages before toneReveal get tags popped in sequence when "I hear it in your tone" is sung
+  const early = (mv.chat as any[]).filter((m) => m.tone && m.t < mv.toneReveal);
+  const tagAt = (m: any) => m.t < mv.toneReveal ? mv.toneReveal + early.indexOf(m) * 0.45 : m.t + 0.5;
+  const items = (mv.chat as any[]).filter((m) => t >= m.t).map((m) => {
+    if (m.type === 'sep') return {...m, kind: 'sep', h: 56};
+    if (m.type === 'sys') return {...m, kind: 'sys', h: 62};
+    const lines = wrap(m.text); return {...m, kind: 'msg', lines, h: lines.length * 46 + 28 + (m.status ? 34 : 0) + (m.tone ? 36 : 0) + 14};
+  });
   let yb = bottom; const nodes: React.ReactNode[] = [];
   for (let i = items.length - 1; i >= 0; i--) {
-    const m = items[i], age = t - m.t, ap = easeOutBack(age / 0.4, 1.2), slide = (1 - easeOutCubic(age / 0.35)) * 40;
+    const m: any = items[i], age = t - m.t, ap = easeOutBack(age / 0.4, 1.1), slide = (1 - easeOutCubic(age / 0.35)) * 36;
     const yTop = yb - m.h * clamp(ap, 0, 1.02);
     if (yTop + m.h < top - 80) break;
-    const mine = m.from === 'm'; const bw = Math.min(470, Math.max(...m.lines.map((l: string) => l.length)) * 19 + 44);
-    const warmth = clamp(1 - c * 1.2 + (m.t < 14 ? 0.5 : 0)); const fade = clamp((yTop - (top - 60)) / 90);
-    nodes.push(
-      <div key={i} style={{position: 'absolute', left: mine ? X + PW - PAD - 28 - bw : X + PAD + 28, top: yTop + slide, width: bw, opacity: clamp(age / 0.2) * fade}}>
-        <div style={{background: mine ? accent : `rgba(255,255,255,${0.13 - c * 0.04})`, color: mine ? '#06121f' : '#fff', borderRadius: 32, borderBottomRightRadius: mine ? 10 : 32, borderBottomLeftRadius: mine ? 32 : 10, padding: '12px 22px', fontFamily: SANS, fontWeight: mine ? 700 : 500, fontSize: 34, lineHeight: '46px', boxShadow: mine ? `0 0 ${18 + pulse * 18}px ${accent}66` : 'none', border: mine ? 'none' : `1.5px solid rgba(255,255,255,${0.16 - warmth * 0.0})`}}>
-          {m.lines.map((l: string, k: number) => <div key={k}>{l}</div>)}
-        </div>
-        {m.status && <div style={{textAlign: mine ? 'right' : 'left', fontFamily: MONO, fontSize: 21, letterSpacing: 2, color: 'rgba(255,255,255,.55)', marginTop: 8}}>{m.status}</div>}
-      </div>);
-    yb = yTop - 14;
+    const fade = clamp((yTop - (top - 60)) / 90) * clamp(age / 0.2);
+    if (m.kind === 'sep') nodes.push(<div key={i} style={{position: 'absolute', left: 0, width: PW, top: yTop + slide - Y, textAlign: 'center', opacity: fade, fontFamily: MONO, fontSize: 21, letterSpacing: 4, color: 'rgba(255,255,255,.42)'}}>{m.text.toUpperCase()}</div>);
+    else if (m.kind === 'sys') nodes.push(<div key={i} style={{position: 'absolute', left: 0, width: PW, top: yTop + slide - Y + 6, textAlign: 'center', opacity: fade}}><span style={{fontFamily: SANS, fontSize: 24, fontStyle: 'italic', color: 'rgba(190,220,255,.7)', border: '1.5px solid rgba(190,220,255,.25)', borderRadius: 26, padding: '8px 22px'}}>{m.text}</span></div>);
+    else {
+      const mine = m.from === 'm'; const bw = Math.min(470, Math.max(...m.lines.map((l: string) => l.length)) * 19 + 44);
+      const tone = m.tone ? TONES[m.tone] : null; const tg = tone ? easeOutBack((t - tagAt(m)) / 0.35, 2) : 0;
+      nodes.push(
+        <div key={i} style={{position: 'absolute', left: mine ? PW - PAD - 28 - bw : PAD + 28, top: yTop + slide - Y, width: bw, opacity: fade}}>
+          {tone && <div style={{height: 36, display: 'flex', alignItems: 'center', opacity: clamp(tg), transform: `translateY(${(1 - clamp(tg)) * 8}px) scale(${0.8 + 0.2 * clamp(tg)})`, transformOrigin: 'left center'}}><span style={{fontFamily: MONO, fontSize: 19, letterSpacing: 4, fontWeight: 700, color: tone.color, border: `1.5px solid ${tone.color}88`, borderRadius: 14, padding: '2px 12px', boxShadow: `0 0 14px ${tone.color}44`}}>{tone.label}</span></div>}
+          <div style={{background: mine ? accent : `rgba(255,255,255,${0.14 - c * 0.05})`, color: mine ? '#06121f' : '#fff', borderRadius: 32, borderBottomRightRadius: mine ? 10 : 32, borderBottomLeftRadius: mine ? 32 : 10, padding: '12px 22px', fontFamily: SANS, fontWeight: mine ? 700 : 500, fontSize: 34, lineHeight: '46px', boxShadow: mine ? `0 0 ${18 + pulse * 18}px ${accent}66` : 'none', border: mine ? 'none' : '1.5px solid rgba(255,255,255,.16)'}}>
+            {m.lines.map((l: string, k: number) => <div key={k}>{l}</div>)}
+          </div>
+          {m.status && <div style={{textAlign: mine ? 'right' : 'left', fontFamily: MONO, fontSize: 21, letterSpacing: 2, color: 'rgba(255,255,255,.55)', marginTop: 8}}>{m.status}</div>}
+        </div>);
+    }
+    yb = yTop - 12;
   }
   const typing = (mv.typing as any[]).find((k) => t >= k.a && t < k.b);
-  const st = [...mv.status].reverse().find((s: any) => t >= s.t);
-  const tmin = 42 + Math.floor(t / 14), clock = `11:${String(tmin % 60).padStart(2, '0')} PM`;
-  const bat = batteryAt(t), off = clamp((t - 188.2) / 0.8), dim = smooth((t - 104) / 3) * (t < 132 ? 0.5 : 0.5 - 0.3 * smooth((t - 132) / 4)) ;
-  const crackP = clamp((t - 140) / 22) ;
+  const st = [...mv.status].reverse().find((q: any) => t >= q.t);
+  const tmin = 12 + Math.floor(t / 14), clock = `9:${String(tmin % 60).padStart(2, '0')} PM`;
+  const bat = batteryAt(t), off = clamp((t - 188.2) / 0.8), dim = smooth((t - 104) / 3) * (t < 132 ? 0.5 : 0.5 - 0.3 * smooth((t - 132) / 4));
+  const crackP = clamp((t - 140) / 22);
+  const grey = smooth((t - contact.greyFrom) / 6), heart = t < contact.heartUntil;
+  // draft in the input bar: types, then (maybe) deletes letter by letter
+  const dr = (mv.drafts as any[]).find((d) => t >= d.a && t < d.endAt);
+  let draftTxt = ''; if (dr) { const typed = Math.min(dr.text.length, Math.floor((t - dr.a) * 13)); const del = t >= dr.delAt ? Math.floor((t - dr.delAt) * 16) : 0; draftTxt = dr.text.slice(0, Math.max(0, typed - del)); }
   return (
     <div style={{position: 'absolute', inset: 0, transform: `translateY(${Math.sin(t * 0.7) * 5}px) scale(${1 + 0.008 * pulse})`, transformOrigin: '540px 800px'}}>
       <div style={{position: 'absolute', left: X - 10, top: Y - 10, width: PW + 20, height: PH + 20, borderRadius: R + 10, background: 'linear-gradient(145deg,#2a3340,#0c1118)', boxShadow: `0 40px 120px rgba(0,0,0,.65), 0 0 ${60 + 80 * c}px ${mix('#ffb869', '#6fc9ff', c)}55`}} />
       <div style={{position: 'absolute', left: X, top: Y, width: PW, height: PH, borderRadius: R, overflow: 'hidden', background: `linear-gradient(180deg, ${mix('#1a1410', '#07121f', c)}, ${mix('#0d0a08', '#030a12', c)})`}}>
-        {/* status bar */}
         <div style={{position: 'absolute', left: 36, right: 36, top: 20, display: 'flex', justifyContent: 'space-between', fontFamily: SANS, fontWeight: 700, fontSize: 25, color: '#fff'}}>
           <span>{clock}</span>
           <span style={{display: 'flex', alignItems: 'center', gap: 10}}>
-            {t > 30.4 && <svg width={26} height={26} viewBox="0 0 26 26"><path d="M18 14.5A8 8 0 0 1 9.5 6a8 8 0 1 0 8.5 8.5z" fill="#cfe7ff" /></svg>}
+            {t > 30.6 && <svg width={26} height={26} viewBox="0 0 26 26"><path d="M18 14.5A8 8 0 0 1 9.5 6a8 8 0 1 0 8.5 8.5z" fill="#cfe7ff" /></svg>}
             <svg width={52} height={26} viewBox="0 0 52 26"><rect x={1} y={4} width={44} height={18} rx={5} fill="none" stroke="#fff" strokeWidth={2} /><rect x={46} y={9} width={4} height={8} rx={2} fill="#fff" /><rect x={4} y={7} width={Math.max(0, 38 * bat / 100)} height={12} rx={3} fill={bat < 20 ? '#ff5a5a' : '#fff'} /></svg>
           </span>
         </div>
-        {/* header */}
         <div style={{position: 'absolute', left: 0, right: 0, top: 64, height: 110, display: 'flex', alignItems: 'center', gap: 18, padding: '0 34px', borderBottom: '1.5px solid rgba(255,255,255,.1)'}}>
-          <div style={{width: 74, height: 74, borderRadius: 37, background: `linear-gradient(135deg, ${mix('#ffb869', '#8fd8ff', c)}, ${mix('#ff7a59', '#4aa8ff', c)})`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: SANS, fontWeight: 900, fontSize: 38, color: '#06121f'}}>A</div>
-          <div><div style={{fontFamily: SANS, fontWeight: 800, fontSize: 36, color: '#fff'}}>Alex</div><div style={{fontFamily: MONO, fontSize: 21, letterSpacing: 2, color: st && st.text === 'typing...' ? '#8fd8ff' : 'rgba(255,255,255,.55)'}}>{st ? st.text : ''}</div></div>
+          <div style={{width: 74, height: 74, borderRadius: 37, background: `linear-gradient(135deg, ${mix('#ffb869', '#8fd8ff', c)}, ${mix('#ff7a59', '#4aa8ff', c)})`, filter: `saturate(${1 - grey * 0.9}) brightness(${1 - grey * 0.35})`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: SANS, fontWeight: 900, fontSize: 38, color: '#06121f'}}>{contact.initial}</div>
+          <div><div style={{fontFamily: SANS, fontWeight: 800, fontSize: 36, color: '#fff'}}>{contact.name}{heart && <span style={{color: '#ff7a8a', marginLeft: 10}}>♥</span>}</div><div style={{fontFamily: MONO, fontSize: 21, letterSpacing: 2, color: st && st.text === 'typing...' ? '#8fd8ff' : 'rgba(255,255,255,.55)', height: 26}}>{st ? st.text : ''}</div></div>
         </div>
-        {nodes.map((n, i) => React.cloneElement(n as any, {style: {...(n as any).props.style, left: (n as any).props.style.left - X, top: (n as any).props.style.top - Y}}))}
+        {nodes}
         {typing && (
-          <div style={{position: 'absolute', left: PAD + 28, top: bottom - Y - 52 - (nodes.length ? 0 : 0), background: 'rgba(255,255,255,.14)', borderRadius: 30, borderBottomLeftRadius: 10, padding: '16px 26px', display: 'flex', gap: 10, opacity: clamp((t - typing.a) / 0.25) * clamp((typing.b - t) / 0.25), transform: 'translateY(30px)'}}>
+          <div style={{position: 'absolute', left: PAD + 28, top: bottom - Y - 52, background: 'rgba(255,255,255,.14)', borderRadius: 30, borderBottomLeftRadius: 10, padding: '16px 26px', display: 'flex', gap: 10, opacity: clamp((t - typing.a) / 0.25) * clamp((typing.b - t) / 0.25), transform: 'translateY(30px)'}}>
             {[0, 1, 2].map((d) => <div key={d} style={{width: 14, height: 14, borderRadius: 7, background: '#fff', opacity: 0.45 + 0.55 * Math.max(0, Math.sin(t * 7 - d * 0.9))}} />)}
           </div>)}
-        {/* input bar */}
-        <div style={{position: 'absolute', left: 28, right: 28, bottom: 28, height: 76, borderRadius: 38, border: '1.5px solid rgba(255,255,255,.2)', display: 'flex', alignItems: 'center', padding: '0 28px', fontFamily: SANS, fontSize: 28, color: 'rgba(255,255,255,.4)'}}>iMessage</div>
-        {/* cracks */}
+        <div style={{position: 'absolute', left: 28, right: 28, bottom: 28, height: 76, borderRadius: 38, border: `1.5px solid ${draftTxt ? 'rgba(160,215,255,.6)' : 'rgba(255,255,255,.2)'}`, display: 'flex', alignItems: 'center', padding: '0 28px', fontFamily: SANS, fontSize: 30, color: draftTxt ? '#fff' : 'rgba(255,255,255,.4)'}}>
+          {draftTxt || 'iMessage'}{draftTxt && Math.floor(t * 2.2) % 2 === 0 && <span style={{display: 'inline-block', width: 3, height: 34, background: '#8fd8ff', marginLeft: 3}} />}
+        </div>
         {crackP > 0 && <svg width={PW} height={PH} style={{position: 'absolute', left: 0, top: 0}}>
           {Array.from({length: 9}).map((_, i) => { const a = rnd(i + 5) * Math.PI * 2, len = (200 + rnd(i + 9) * 520) * easeOutCubic(crackP); let x = 430, y = 560, d = `M${x} ${y}`; for (let k = 1; k <= 7; k++) { x += Math.cos(a + (rnd(i * 7 + k) - 0.5) * 0.9) * len / 7; y += Math.sin(a + (rnd(i * 7 + k + 3) - 0.5) * 0.9) * len / 7; d += ` L${x.toFixed(1)} ${y.toFixed(1)}`; } return <path key={i} d={d} stroke="rgba(235,248,255,.85)" strokeWidth={2.2} fill="none" style={{filter: 'drop-shadow(0 0 6px #8fd8ff)'}} />; })}
         </svg>}
@@ -264,7 +279,7 @@ export const MV: React.FC<{mv: MVData}> = ({mv}) => {
       <Header mv={mv} sig={sig} /><Gauge mv={mv} sig={sig} />
       <Bars sig={sig} />
       <Lyrics mv={mv} sig={sig} /><Narr mv={mv} sig={sig} /><Motif mv={mv} sig={sig} />
-      {lastWord > 0 && t < 172 && <div style={{position: 'absolute', left: 0, width: W, top: 640, textAlign: 'center', fontFamily: SANS, fontWeight: 900, fontSize: 420, color: '#eaf8ff', opacity: clamp((mv.end.lastAt + 11 - t) / 1.5) * clamp(lastWord), transform: `scale(${0.6 + 0.4 * lastWord})`, textShadow: '0 0 80px #8fd8ffcc'}}>{mv.end.last}</div>}
+      {lastWord > 0 && t < 172 && <div style={{position: 'absolute', left: 0, width: W, top: 700, textAlign: 'center', fontFamily: SANS, fontWeight: 900, fontSize: Math.min(420, Math.floor(1000 / (mv.end.last.length * 0.56))), color: '#eaf8ff', opacity: clamp((mv.end.lastAt + 11 - t) / 1.5) * clamp(lastWord), transform: `scale(${0.6 + 0.4 * lastWord})`, textShadow: '0 0 80px #8fd8ffcc'}}>{mv.end.last}</div>}
       <Title mv={mv} sig={sig} />
       <AbsoluteFill style={{background: '#fff', opacity: flashWhite, mixBlendMode: 'screen'}} />
       {sub && <AbsoluteFill style={{background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><div style={{fontFamily: SANS, fontWeight: 900, fontSize: 190, letterSpacing: -4, color: '#fff'}}>{sub.text}</div></AbsoluteFill>}

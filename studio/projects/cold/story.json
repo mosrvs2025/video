@@ -81,133 +81,176 @@
  ],
  "chat": [
   {
+   "t": 3.0,
+   "type": "sep",
+   "text": "Monday 9:12 PM"
+  },
+  {
    "t": 4.2,
    "from": "a",
-   "text": "can't wait to see you tomorrow"
+   "text": "I can't stop smiling about last night",
+   "tone": "warm"
   },
   {
    "t": 6.6,
    "from": "m",
-   "text": "me too"
+   "text": "me neither"
   },
   {
    "t": 8.8,
    "from": "a",
-   "text": "love you"
+   "text": "text me when you're home!!",
+   "tone": "warm"
   },
   {
    "t": 11.0,
    "from": "m",
-   "text": "love you more",
-   "status": "Delivered"
+   "text": "just got in. miss you already"
   },
   {
    "t": 13.4,
    "from": "a",
-   "text": "good night"
+   "text": "miss you too xx",
+   "tone": "warm"
+  },
+  {
+   "t": 15.4,
+   "type": "sep",
+   "text": "Thursday"
   },
   {
    "t": 17.6,
    "from": "a",
-   "text": "haha ok"
+   "text": "hey! sorry, long day",
+   "tone": "friendly"
   },
   {
-   "t": 21.2,
-   "from": "a",
-   "text": "busy"
-  },
-  {
-   "t": 24.6,
+   "t": 20.4,
    "from": "m",
-   "text": "call me?"
+   "text": "no worries. call tonight?"
   },
   {
-   "t": 27.8,
+   "t": 22.4,
+   "type": "sep",
+   "text": "Sunday"
+  },
+  {
+   "t": 24.0,
    "from": "a",
-   "text": "later"
+   "text": "can't tonight. rain check?",
+   "tone": "polite"
   },
   {
-   "t": 35.2,
+   "t": 27.0,
    "from": "m",
-   "text": "are you there?",
+   "text": "of course. thinking of you"
+  },
+  {
+   "t": 30.6,
+   "type": "sys",
+   "text": "Jasmine muted notifications"
+  },
+  {
+   "t": 33.0,
+   "from": "m",
+   "text": "are you okay?",
    "status": "Delivered"
   },
   {
-   "t": 38.2,
+   "t": 35.6,
+   "type": "sep",
+   "text": "Tuesday 8:15 AM"
+  },
+  {
+   "t": 38.4,
    "from": "a",
-   "text": "k."
+   "text": "Yeah. I'm fine.",
+   "tone": "flat"
   },
   {
    "t": 48.0,
-   "from": "m",
-   "text": "hello?"
+   "type": "sep",
+   "text": "Two weeks later"
   },
   {
-   "t": 50.8,
+   "t": 49.8,
    "from": "m",
-   "text": "did I do something?"
+   "text": "heard our song today",
+   "status": "Read 9:41 PM"
   },
   {
-   "t": 53.6,
-   "from": "m",
-   "text": "please"
+   "t": 59.5,
+   "from": "a",
+   "text": "that's sweet.",
+   "tone": "distant"
   },
   {
-   "t": 56.4,
+   "t": 63.5,
    "from": "m",
-   "text": "I'm sorry"
+   "text": "do you want to talk?"
   },
   {
-   "t": 60.2,
-   "from": "m",
-   "text": "talk to me"
+   "t": 68.6,
+   "from": "a",
+   "text": "I think I need some space.",
+   "tone": "distant"
   },
   {
-   "t": 64.0,
+   "t": 73.4,
    "from": "m",
-   "text": "I miss you"
+   "text": "okay."
   },
   {
-   "t": 67.8,
-   "from": "m",
-   "text": "whatever I did"
+   "t": 88.0,
+   "type": "sep",
+   "text": "A month later"
   },
   {
-   "t": 71.6,
-   "from": "m",
-   "text": "just say something"
+   "t": 90.0,
+   "from": "a",
+   "text": "Hope you're doing well.",
+   "tone": "flat"
   },
   {
-   "t": 75.4,
+   "t": 93.8,
    "from": "m",
-   "text": "are you mad?"
+   "text": "you too."
   },
   {
-   "t": 79.2,
-   "from": "m",
-   "text": "okay"
+   "t": 98.2,
+   "type": "sys",
+   "text": "Jasmine turned off read receipts"
   },
   {
-   "t": 83.0,
+   "t": 124.4,
    "from": "m",
-   "text": "..."
+   "text": "I understand."
   },
   {
-   "t": 87.6,
+   "t": 133.0,
+   "from": "a",
+   "text": "Thank you.",
+   "tone": "flat"
+  },
+  {
+   "t": 138.0,
    "from": "m",
-   "text": "I'll wait",
-   "status": "Read 11:58 PM"
+   "text": "take care of yourself",
+   "status": "Delivered"
+  },
+  {
+   "t": 160.4,
+   "from": "a",
+   "text": "Take care.",
+   "tone": "flat"
+  },
+  {
+   "t": 163.6,
+   "type": "sep",
+   "text": "Now"
   }
  ],
  "typing": [
-  {
-   "a": 90.5,
-   "b": 93.5
-  },
-  {
-   "a": 96.8,
-   "b": 98.6
-  },
   {
    "a": 104.5,
    "b": 109.5
@@ -218,11 +261,11 @@
   },
   {
    "a": 116.5,
-   "b": 125.5
+   "b": 125.0
   },
   {
-   "a": 126.5,
-   "b": 128.0
+   "a": 127.0,
+   "b": 132.6
   }
  ],
  "temp": [
@@ -281,114 +324,132 @@
    "text": "Active now"
   },
   {
-   "t": 30.4,
+   "t": 30.6,
    "text": "Active 2h ago"
   },
   {
-   "t": 47,
+   "t": 48,
    "text": "Active yesterday"
   },
   {
-   "t": 104,
+   "t": 104.2,
    "text": "typing..."
+  },
+  {
+   "t": 126.0,
+   "text": "typing..."
+  },
+  {
+   "t": 132.8,
+   "text": "Active yesterday"
+  },
+  {
+   "t": 150,
+   "text": ""
   }
  ],
  "narr": [
   {
-   "a": 5.0,
-   "b": 10.0,
+   "a": 5,
+   "b": 10,
    "text": "It started *warm*.",
    "pos": "left"
   },
   {
-   "a": 47.2,
-   "b": 50.6,
-   "text": "*Delivered.*",
+   "a": 53,
+   "b": 57,
+   "text": "Same words. *Different* tone.",
    "pos": "left"
   },
   {
-   "a": 57.0,
-   "b": 60.0,
-   "text": "Delivered.",
+   "a": 60,
+   "b": 64,
+   "text": "Polite. Kind. *Further away*.",
    "pos": "left"
   },
   {
-   "a": 68.0,
-   "b": 71.0,
-   "text": "Delivered.",
+   "a": 70,
+   "b": 74,
+   "text": "You asked for *nothing*.",
    "pos": "left"
   },
   {
-   "a": 80.0,
-   "b": 83.5,
-   "text": "*Read.*",
+   "a": 75,
+   "b": 79,
+   "text": "You said *okay*.",
    "pos": "left"
   },
   {
-   "a": 88.0,
-   "b": 92.0,
-   "text": "No *reply*.",
+   "a": 81,
+   "b": 86,
+   "text": "And typed the *truth*.",
    "pos": "left"
   },
   {
-   "a": 92.8,
-   "b": 96.5,
-   "text": "Typing\u2026",
+   "a": 98.5,
+   "b": 103,
+   "text": "Read receipts: *off*.",
    "pos": "left"
   },
   {
-   "a": 99.0,
-   "b": 103.0,
-   "text": "Stopped typing.",
-   "pos": "left"
-  },
-  {
-   "a": 106.5,
-   "b": 111.0,
+   "a": 106,
+   "b": 111,
    "text": "They were *typing*.",
    "pos": "left"
   },
   {
-   "a": 114.5,
-   "b": 119.5,
+   "a": 113,
+   "b": 118,
    "text": "For a long *time*.",
    "pos": "left"
   },
   {
-   "a": 122.5,
-   "b": 128.5,
-   "text": "And then, *nothing*.",
+   "a": 121,
+   "b": 126,
+   "text": "Then: *nothing*.",
    "pos": "left"
   },
   {
-   "a": 134.0,
-   "b": 139.0,
-   "text": "You kept *every* message.",
+   "a": 126.5,
+   "b": 131,
+   "text": "So you said it *yourself*.",
    "pos": "left"
   },
   {
-   "a": 148.0,
-   "b": 153.5,
-   "text": "You read them *twice*.",
+   "a": 134,
+   "b": 140,
+   "text": "And they said *thank you*.",
    "pos": "left"
   },
   {
-   "a": 156.0,
-   "b": 160.0,
-   "text": "Their last word:",
+   "a": 146,
+   "b": 152,
+   "text": "You read it *twice*.",
    "pos": "left"
   },
   {
-   "a": 176.0,
-   "b": 181.0,
-   "text": "The battery *dies* first.",
+   "a": 153,
+   "b": 158,
+   "text": "Hoping for *more*.",
    "pos": "left"
   },
   {
-   "a": 183.5,
-   "b": 188.0,
-   "text": "Are you still *there*?",
-   "pos": "center"
+   "a": 158.5,
+   "b": 160.4,
+   "text": "Their last words:",
+   "pos": "left"
+  },
+  {
+   "a": 176,
+   "b": 181,
+   "text": "Letting go is *quiet*.",
+   "pos": "left"
+  },
+  {
+   "a": 183,
+   "b": 188,
+   "text": "You never sent the *last one*.",
+   "pos": "left"
   }
  ],
  "motif": [
@@ -396,16 +457,13 @@
    "t": 50.0
   },
   {
-   "t": 81.1
+   "t": 87.0
   },
   {
-   "t": 140.6
+   "t": 141.0
   },
   {
-   "t": 151.0
-  },
-  {
-   "t": 166.5
+   "t": 165.0
   }
  ],
  "subliminal": [
@@ -437,7 +495,46 @@
  "end": {
   "final": "So cold, for you.",
   "credit": "by @professorfungi  \u00b7  made with Suno",
-  "last": "k.",
-  "lastAt": 160.5
- }
+  "last": "Take care.",
+  "lastAt": 160.6
+ },
+ "contact": {
+  "name": "Jasmine",
+  "initial": "J",
+  "heartUntil": 38.8,
+  "greyFrom": 140
+ },
+ "toneReveal": 16.7,
+ "drafts": [
+  {
+   "a": 40.6,
+   "text": "I miss the way you said my name",
+   "delAt": 44.6,
+   "endAt": 47.0
+  },
+  {
+   "a": 76.0,
+   "text": "please don't go",
+   "delAt": 82.5,
+   "endAt": 86.0
+  },
+  {
+   "a": 100.0,
+   "text": "I'm still here",
+   "delAt": 103.0,
+   "endAt": 106.0
+  },
+  {
+   "a": 118.0,
+   "text": "I understand.",
+   "delAt": 999,
+   "endAt": 124.3
+  },
+  {
+   "a": 174.0,
+   "text": "I let go too.",
+   "delAt": 9999,
+   "endAt": 9999
+  }
+ ]
 }
