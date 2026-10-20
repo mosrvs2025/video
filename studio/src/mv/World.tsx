@@ -5,7 +5,7 @@ import {ThreeCanvas} from '@remotion/three';
 import {useThree} from '@react-three/fiber';
 import * as THREE from 'three';
 
-const W = 1080, H = 1920;
+const W = 1080, H = 1920, RS = 2 / 3; // 3D renders at 720x1280 and is scaled up (software GL is the bottleneck)
 const clamp = (x: number, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 const lerp = (a: number, b: number, u: number) => a + (b - a) * u;
 const smooth = (x: number) => { const c = clamp(x); return c * c * (3 - 2 * c); };
@@ -31,6 +31,7 @@ export type Pose = {
   head?: [number, number, number]; // yaw, pitch, roll
   aL?: [number, number, number]; aR?: [number, number, number]; // shoulder pitch (- = forward/up), shoulder roll (+ = out), elbow
   ice?: number; phone?: number; // phone glow 0..1 in hands
+  wave?: number; amp?: number; tt?: number; // voice 'tone' wave above the head: 1 = warm and lively, 0 = flat line
 };
 type Look = {top: string; legs: string; skin: string; hat?: string; hair?: string; scarf?: string};
 export const YOU: Look = {top: '#2d3b5c', legs: '#1b2030', skin: '#c99b7b', hat: '#f2c230'};
@@ -46,6 +47,24 @@ const Limb: React.FC<{p: V3; r: V3; l1: number; l2: number; k: number; w: number
   </group>
 );
 
+// the "tone" of a voice, drawn above the head: warm = bouncing orange, cold = a flat thin blue line
+const VoiceWave: React.FC<{y: number; w: number; amp: number; t: number; seed: number; ry: number}> = ({y, w, amp, t, seed, ry}) => {
+  const {camera} = useThree();
+  const pts: THREE.Vector3[] = []; const N = 36, A = lerp(0.006, 0.075, w) * (0.55 + amp * 0.8);
+  for (let i = 0; i <= N; i++) { const x = i / N, env = Math.sin(x * Math.PI); pts.push(new THREE.Vector3((x - 0.5) * 0.62, Math.sin(x * lerp(6, 16, w) + t * lerp(2, 9, w) + seed) * A * env + Math.sin(x * 31 + t * 13 + seed) * A * 0.3 * env * w, 0)); }
+  const geo = useMemo(() => ({g: null as any}), []);
+  if (geo.g) geo.g.dispose(); geo.g = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 48, lerp(0.006, 0.012, w), 5, false);
+  const q = camera.quaternion; const c = col('#7fb6ff', '#ffb35c', w);
+  return (
+    <group position={[0, y, 0]}>
+      <group quaternion={new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), -ry).multiply(q)}>
+        <mesh geometry={geo.g}><meshBasicMaterial color={c} transparent opacity={0.95} /></mesh>
+        <Glow p={[0, 0, -0.01]} s={0.9} c={c} o={0.35 + 0.35 * w} />
+      </group>
+    </group>
+  );
+};
+
 export const Figure: React.FC<{look: Look; pose: Pose}> = ({look, pose}) => {
   const ice = pose.ice || 0, sit = pose.sit, walk = pose.walk || 0, bob = pose.bob || 0;
   const hip = sit ? (pose.seat ?? 0.46) : 0.93 + Math.abs(Math.sin(walk)) * 0.03;
@@ -59,6 +78,7 @@ export const Figure: React.FC<{look: Look; pose: Pose}> = ({look, pose}) => {
   const ph = pose.phone || 0;
   return (
     <group position={pose.p} rotation={[0, pose.ry, 0]}>
+      {pose.wave !== undefined && <VoiceWave y={hip + 1.06} w={pose.wave} amp={pose.amp || 0} t={pose.tt || 0} seed={look.hat ? 0 : 2} ry={pose.ry} />}
       {/* blob shadow */}
       <mesh position={[0, 0.012, sit ? 0.18 : 0]} rotation={[-Math.PI / 2, 0, 0]}><circleGeometry args={[0.42, 20]} /><meshBasicMaterial color="#000" transparent opacity={0.28} depthWrite={false} /></mesh>
       <Limb p={[0.1, hip, 0]} r={[lL, 0, 0]} l1={0.45} l2={0.45} k={kL} w={0.075} c={look.legs} ice={ice} end={<mesh position={[0, -0.02, 0.06]}><boxGeometry args={[0.11, 0.07, 0.24]} /><Mat c="#1a1a1e" ice={ice} /></mesh>} />
@@ -286,9 +306,9 @@ const cast = (x: Ctx): {you?: Pose; jas?: Pose; shards?: {at: V3; t0: number}} =
     const seatY = 0.66, z = -0.4;
     const youP: Pose = {p: [-0.38, 0, z], ry: 0, sit: 1, seat: seatY, aR: [-1.15, -0.05, -0.5], aL: [-1.1, 0.25, -0.6], head: [0, 0, 0]};
     const jasP: Pose = {p: [0.38, 0, z], ry: 0, sit: 1, seat: seatY};
-    if (v === 'together') return {you: {...youP, bob: beatBob, head: [0.25 * Math.sin(t * 0.4), 0.05, Math.sin(t * 3.4) * 0.06]}, jas: {...jasP, bob: beatBob, head: [-0.3 + Math.sin(t * 0.8) * 0.2, -0.1, Math.sin(t * 3.4 + 1) * 0.1], aL: [-0.4 + Math.sin(t * 6.9) * 0.25, 1.3, -0.4], aR: [-0.5, -0.12, -0.9]}};
-    if (v === 'quiet') return {you: {...youP, head: [0.35 * smooth((lt - 2) / 1.5), 0, 0]}, jas: {...jasP, head: [1.15, 0.2, 0], phone: lt < 2.5 ? 1 : clamp(1 - (lt - 2.5) / 0.4), aL: [-0.75, 0.05, -1.2], aR: [-0.75, -0.05, -1.2]}};
-    if (v === 'memory_day') return {you: {...youP, bob: beatBob * 0.7}, jas: {...jasP, bob: beatBob, head: [-0.5, -0.05, 0.1], aL: [-0.3 + Math.sin(t * 6.9) * 0.3, 1.45, -0.2]}};
+    if (v === 'together') return {you: {...youP, wave: 1, amp: x.pulse, tt: t, bob: beatBob, head: [0.25 * Math.sin(t * 0.4), 0.05, Math.sin(t * 3.4) * 0.06]}, jas: {...jasP, wave: 1, amp: x.pulse, tt: t, bob: beatBob, head: [-0.3 + Math.sin(t * 0.8) * 0.2, -0.1, Math.sin(t * 3.4 + 1) * 0.1], aL: [-0.4 + Math.sin(t * 6.9) * 0.25, 1.3, -0.4], aR: [-0.5, -0.12, -0.9]}};
+    if (v === 'quiet') return {you: {...youP, ...(lt < 3.2 ? {wave: 0.55, amp: 0.4, tt: t} : {}), head: [0.35 * smooth((lt - 2) / 1.5), 0, 0]}, jas: {...jasP, wave: 0, tt: t, head: [1.15, 0.2, 0], phone: lt < 2.5 ? 1 : clamp(1 - (lt - 2.5) / 0.4), aL: [-0.75, 0.05, -1.2], aR: [-0.75, -0.05, -1.2]}};
+    if (v === 'memory_day') return {you: {...youP, wave: 1, amp: x.pulse, tt: t, bob: beatBob * 0.7}, jas: {...jasP, wave: 1, amp: x.pulse, tt: t, bob: beatBob, head: [-0.5, -0.05, 0.1], aL: [-0.3 + Math.sin(t * 6.9) * 0.3, 1.45, -0.2]}};
     if (v === 'alone_snow') return {you: {...youP, head: [0.6 * smooth((lt - 4) / 2) * (lt < 9 ? 1 : 1 - smooth((lt - 9) / 2)), 0.05, 0]}};
   }
   if (shot.set === 'room') {
@@ -299,11 +319,11 @@ const cast = (x: Ctx): {you?: Pose; jas?: Pose; shards?: {at: V3; t0: number}} =
       return {you: {p: [-0.32 + sway, 0, -0.4], ry: 0.9 + spin * 0.3, sit: 0, walk: Math.sin(t * 3.45) * 0.25, bob: beatBob, aL: [-1.3, 0.3, -0.5], aR: [-0.9, -0.25, -0.6], head: [0, -0.1, sway]},
         jas: {p: [0.32 + sway, 0, -0.4], ry: -2.25 + spin * 0.3, sit: 0, walk: -Math.sin(t * 3.45) * 0.25, bob: beatBob, aL: [-1.4, 0.2, -0.4], aR: [-2.5, -0.1, -0.2], head: [0, -0.15, -sway]}};
     }
-    if (v === 'couch_phone') return {you: {...youS, p: [-0.25, 0, -1.65], head: [-0.5 * smooth((lt - 3) / 1.2), 0, 0], aR: [-0.5, -0.12, -0.9]}, jas: {...jasS, p: [0.25, 0, -1.65], phone: 1, aL: [-0.8, 0.05, -1.2], aR: [-0.8, -0.05, -1.2], head: [0.1, 0.45, 0]}};
+    if (v === 'couch_phone') return {you: {...youS, wave: 0.9, amp: x.pulse, tt: t, p: [-0.25, 0, -1.65], head: [-0.5 * smooth((lt - 3) / 1.2), 0, 0], aR: [-0.5, -0.12, -0.9]}, jas: {...jasS, wave: lerp(0.75, 0, smooth((lt - 0.6) / 3.2)), amp: x.pulse * 0.5, tt: t, p: [0.25, 0, -1.65], phone: 1, aL: [-0.8, 0.05, -1.2], aR: [-0.8, -0.05, -1.2], head: [0.1, 0.45, 0]}};
     if (v === 'letgo') {
       const go = smooth((lt - 1.4) / 1.6), apart = smooth((lt - 3.5) / 2.5);
-      return {you: {...youS, p: [-0.25, 0, -1.65], aL: [lerp(-0.55, -0.5, go), lerp(-0.42, 0.1, go), lerp(-0.4, -0.9, go)], head: [-0.45, lerp(0.05, 0.35, apart), 0]},
-        jas: {...jasS, p: [lerp(0.25, 0.85, apart), 0, -1.65], aR: [lerp(-0.55, -0.6, go), lerp(0.42, -0.1, go), lerp(-0.4, -1.1, go)], head: [lerp(-0.2, 0.9, go), 0.2, 0]}};
+      return {you: {...youS, wave: lerp(0.6, 0.15, smooth(lt / 5)), amp: 0.3, tt: t, p: [-0.25, 0, -1.65], aL: [lerp(-0.55, -0.5, go), lerp(-0.42, 0.1, go), lerp(-0.4, -0.9, go)], head: [-0.45, lerp(0.05, 0.35, apart), 0]},
+        jas: {...jasS, wave: 0, tt: t, p: [lerp(0.25, 0.85, apart), 0, -1.65], aR: [lerp(-0.55, -0.6, go), lerp(0.42, -0.1, go), lerp(-0.4, -1.1, go)], head: [lerp(-0.2, 0.9, go), 0.2, 0]}};
     }
     if (v === 'leave') {
       // stands at 1.5s, walks to the door, gone by ~6.5s
@@ -322,7 +342,7 @@ const cast = (x: Ctx): {you?: Pose; jas?: Pose; shards?: {at: V3; t0: number}} =
     // car faces -z (the sunset); they sit on the front of the hood, facing it
     const youH: Pose = {p: [0.32, 0, -1.9], ry: Math.PI, sit: 1, seat: hood, aL: [-0.35, -0.2, -0.6], aR: [-0.2, -0.35, -0.2]};
     const jasH: Pose = {p: [-0.32, 0, -1.9], ry: Math.PI, sit: 1, seat: hood, head: [-0.15, 0.1, 0.42], lean: 0.05, aL: [-0.2, 0.3, -0.2], aR: [-0.5, -0.4, -0.7]};
-    if (v === 'memory') return {you: {...youH, head: [0, 0, -0.08]}, jas: jasH};
+    if (v === 'memory') return {you: {...youH, wave: 1, amp: x.pulse, tt: t, head: [0, 0, -0.08]}, jas: {...jasH, wave: 1, amp: x.pulse, tt: t}};
     if (v === 'freeze') { const ice = smooth((t - shot.a) / (shot.b - shot.a)); return {you: youH, jas: {...jasH, ice, head: [lerp(-0.15, 0.3, ice), 0.1, lerp(0.42, 0, ice)]}}; }
     if (v === 'shatter') return {you: {...youH, head: [-0.5 * smooth((lt - 1) / 2), 0.25, 0]}, shards: {at: [-0.32, 0, -1.9], t0: shot.a}};
     if (v === 'alone') return {you: {...youH, lean: 0.3, head: [0, 0.45, 0], aL: [-0.6, 0.1, -1.1], aR: [-0.6, -0.1, -1.1]}};
@@ -338,7 +358,7 @@ const CAMS: Record<string, Cam[]> = {
 // state-specific camera orders (indices into CAMS[set]) and beats per cut
 const ORDER: Record<string, {o: number[]; n: number}> = {
   drive_together: {o: [0, 1, 2, 3, 0, 4], n: 2}, drive_quiet: {o: [2, 3, 0, 2], n: 4}, drive_memory_day: {o: [0, 4, 1, 3, 2], n: 2}, drive_alone_snow: {o: [1, 0, 3, 2, 4], n: 4},
-  room_dance: {o: [0, 2, 3, 0], n: 2}, room_couch_phone: {o: [0, 1, 2], n: 2}, room_letgo: {o: [1, 0, 1], n: 3}, room_leave: {o: [0, 3, 0], n: 3}, room_alone: {o: [0, 2, 1, 3], n: 4}, room_typing: {o: [1, 0, 2], n: 4}, room_dark: {o: [0, 1, 0], n: 6},
+  room_dance: {o: [0, 3, 0, 3], n: 2}, room_couch_phone: {o: [0, 1, 2], n: 2}, room_letgo: {o: [1, 0, 1], n: 3}, room_leave: {o: [0, 3, 0], n: 3}, room_alone: {o: [0, 2, 1, 3], n: 4}, room_typing: {o: [1, 0, 2], n: 4}, room_dark: {o: [0, 1, 0], n: 6},
   lookout_memory: {o: [1, 0, 2, 3], n: 2}, lookout_freeze: {o: [0, 2, 1, 0], n: 2}, lookout_shatter: {o: [0, 2, 3, 0], n: 2}, lookout_alone: {o: [1, 0, 3], n: 4},
 };
 
@@ -362,7 +382,7 @@ export const World: React.FC<{mv: any; sig: any; dim?: number}> = ({mv, sig}) =>
   const shardsN = 46;
   return (
     <div style={{position: 'absolute', inset: 0, background: `linear-gradient(180deg, ${sky[0]} 0%, ${sky[1]} 52%, ${sky[2]} 78%, ${sky[2]} 100%)`}}>
-      <ThreeCanvas width={W} height={H} style={{position: 'absolute', inset: 0}} gl={{antialias: true, alpha: true}}>
+      <div style={{position: 'absolute', left: 0, top: 0, width: W * RS, height: H * RS, transform: `scale(${1 / RS})`, transformOrigin: '0 0'}}><ThreeCanvas width={Math.round(W * RS)} height={Math.round(H * RS)} style={{position: 'absolute', inset: 0}} gl={{antialias: false, alpha: true}}>
         <CamRig cam={cam} t={t} u={cu} pulse={pulse} sway={shot.v === 'together' || shot.v === 'memory_day' ? 1.6 : 1} />
         <fog attach="fog" args={[sky[2], shot.set === 'room' ? 30 : 18, shot.set === 'room' ? 60 : shot.set === 'drive' ? 150 : 260]} />
         <hemisphereLight args={[col('#ffe2c4', '#bcd8ff', cc), col('#2a1a12', '#0c1626', cc), shot.set === 'room' ? 0.55 : 0.9]} />
@@ -390,7 +410,7 @@ export const World: React.FC<{mv: any; sig: any; dim?: number}> = ({mv, sig}) =>
             <octahedronGeometry args={[1, 0]} /><meshStandardMaterial color="#d6f1ff" emissive="#58b7ff" emissiveIntensity={0.6 + bass} metalness={0.3} roughness={0.1} flatShading transparent opacity={0.92} />
           </mesh>;
         })}
-      </ThreeCanvas>
+      </ThreeCanvas></div>
     </div>
   );
 };

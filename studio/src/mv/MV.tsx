@@ -273,7 +273,8 @@ export const MV: React.FC<{mv: MVData}> = ({mv}) => {
   return (
     <AbsoluteFill style={{background: '#000', opacity: fadeIn}}>
       {mv.world && mv.world.length ? <>
-        <AbsoluteFill style={{transform: `scale(${camS})`, filter: `brightness(${1 - 0.5 * hero}) blur(${hero * 3}px) saturate(${mem ? 1.15 : 1})`}}><World mv={mv} sig={sig} /></AbsoluteFill>
+        <AbsoluteFill style={{transform: `scale(${camS})`}}><World mv={mv} sig={sig} /></AbsoluteFill>
+        <AbsoluteFill style={{background: '#02050a', opacity: 0.5 * hero}} />
         {mem && <AbsoluteFill style={{pointerEvents: 'none', background: 'radial-gradient(ellipse at 50% 40%, rgba(255,190,120,.10), rgba(60,30,10,.35) 100%)', mixBlendMode: 'multiply'}} />}
         {mem && <div style={{position: 'absolute', left: 60, top: 222, fontFamily: MONO, fontSize: 24, letterSpacing: 6, color: '#ffe2b8', opacity: clamp((t - mem.a) / 0.4) * clamp((mem.b - t) / 0.4) * (0.75 + 0.25 * (Math.floor(t * 2) % 2)), textShadow: '0 0 12px rgba(0,0,0,.8)'}}><span style={{color: '#ff6a5a'}}>●</span> MEMORY · {mem.label}</div>}
         <div style={{position: 'absolute', inset: 0, perspective: 1800}}><div style={{position: 'absolute', inset: 0, transform: `translate(${ph.dx}px, ${ph.dy}px) scale(${ph.s}) rotateY(${ph.ry}deg)`, transformOrigin: '540px 815px'}}><Phone mv={mv} sig={sig} /></div></div>
