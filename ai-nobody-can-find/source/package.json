@@ -4,15 +4,15 @@
   "version": "1.0.0",
   "scripts": {},
   "dependencies": {
-    "@react-three/fiber": "^8.15.19",
+    "@react-three/fiber": "8.15.19",
     "@remotion/cli": "4.0.235",
     "@remotion/renderer": "4.0.235",
-    "@remotion/three": "^4.0.235",
-    "@types/three": "^0.160.0",
+    "@remotion/three": "4.0.235",
+    "@types/three": "0.160.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "remotion": "4.0.235",
-    "three": "^0.160.0"
+    "three": "0.160.0"
   },
   "devDependencies": {
     "@types/react": "18.3.3",

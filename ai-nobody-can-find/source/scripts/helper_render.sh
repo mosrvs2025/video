@@ -11,7 +11,7 @@ T1=$(date +%s)
 python3 scripts/render.py "$COMP" /dev/null "$SCALE" --chunks "$RANGE"
 T2=$(date +%s)
 D=data/chunks_${COMP}_$(python3 -c "print(f'{float(\"$SCALE\"):g}')")
-git checkout -q -b "$BR"
+git checkout -q -B "$BR"
 git add -f "$D"/[0-9]*.mp4
 git -c user.name="render-helper" -c user.email="render-helper@users.noreply.github.com" commit -q -m "render parts $COMP $RANGE (setup $((T1-T0))s, render $((T2-T1))s)"
 git push -q -u origin "$BR"
