@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import {AbsoluteFill} from 'remotion';
 import * as THREE from 'three';
-import {Stage, Cam, P, F, SceneProps, keys, keys3, clamp, smooth, easeOut, rnd, ph, line, Label, Glow, Process, V3, win, project} from '../lib';
+import {Stage, Cam, P, F, SceneProps, keys, keys3, clamp, smooth, easeOut, rnd, ph, line, Label, Glow, Process, Shaft, V3, win, project} from '../lib';
 import {Earth, Arc, ll, city} from '../shared';
 
 const T_GLOBE = 78.2;
@@ -19,12 +19,12 @@ const Laptop: React.FC<{on: number}> = ({on}) => (
     {/* window with moonlight */}
     <mesh position={[0.2, 1.6, -0.9]}><planeGeometry args={[1.2, 1.4]} /><meshBasicMaterial color="#0f1824" /></mesh>
     {[[0.2, 1.6, 0.04, 1.4], [0.2, 1.6, 1.2, 0.04]].map(([x, y, sw, sh], i) => <mesh key={i} position={[x, y, -0.88]}><boxGeometry args={[sw, sh, 0.03]} /><meshStandardMaterial color="#1a1c20" /></mesh>)}
-    <pointLight position={[0.3, 2.0, -0.4]} intensity={2.2} distance={3.5} color="#8fa6c4" />
+    <pointLight position={[0.3, 2.0, -0.4]} intensity={3.4} distance={3.5} color="#8fa6c4" />
   </group>
 );
 const Workstation: React.FC = () => (
   <group>
-    <mesh position={[0, 0.72, 0]}><boxGeometry args={[1.8, 0.04, 0.85]} /><meshStandardMaterial color="#b9b6ae" roughness={0.7} /></mesh>
+    <mesh position={[0, 0.72, 0]}><boxGeometry args={[1.8, 0.04, 0.85]} /><meshStandardMaterial color="#77746d" roughness={0.7} /></mesh>
     <mesh position={[-0.6, 0.98, -0.05]}><boxGeometry args={[0.2, 0.48, 0.45]} /><meshStandardMaterial color="#1b1c1f" roughness={0.5} /></mesh>
     <mesh position={[-0.6, 1.0, 0.176]}><planeGeometry args={[0.012, 0.012]} /><meshBasicMaterial color="#8fd0ff" /></mesh>
     <mesh position={[0.15, 1.12, -0.2]}><boxGeometry args={[0.62, 0.38, 0.03]} /><meshStandardMaterial color="#111" /></mesh>
@@ -32,7 +32,7 @@ const Workstation: React.FC = () => (
     <mesh position={[0.15, 0.85, -0.2]}><boxGeometry args={[0.05, 0.22, 0.05]} /><meshStandardMaterial color="#222" /></mesh>
     <mesh position={[0, 1.4, -0.5]}><boxGeometry args={[2.0, 1.4, 0.05]} /><meshStandardMaterial color="#5a5f66" roughness={0.9} /></mesh>
     <mesh position={[0, 2.6, 0]}><boxGeometry args={[1.2, 0.03, 0.2]} /><meshBasicMaterial color="#e8eef4" /></mesh>
-    <pointLight position={[0, 2.3, 0.4]} intensity={3.2} distance={3.6} color="#dde6ee" />
+    <pointLight position={[0, 2.3, 0.4]} intensity={1.6} distance={3.6} color="#dde6ee" />
   </group>
 );
 const Server: React.FC<{t: number}> = ({t}) => (
@@ -42,7 +42,7 @@ const Server: React.FC<{t: number}> = ({t}) => (
       {Array.from({length: 14}).map((_, i) => <mesh key={i} position={[0, 0.25 + i * 0.13, 0.502]}><planeGeometry args={[0.5, 0.08]} /><meshStandardMaterial color="#22262b" /></mesh>)}
       {Array.from({length: 14}).map((_, i) => <mesh key={`l${i}`} position={[0.2, 0.25 + i * 0.13, 0.504]}><planeGeometry args={[0.02, 0.02]} /><meshBasicMaterial color={rnd(i + k * 20 + Math.floor(t * 4)) > 0.4 ? '#7fb0e0' : '#1d2a38'} /></mesh>)}
     </group>)}
-    <pointLight position={[0, 2.6, 1.6]} intensity={3.4} distance={4.5} color="#b6c8dc" />
+    <pointLight position={[0, 2.6, 1.6]} intensity={5} distance={4.5} color="#b6c8dc" />
   </group>
 );
 const Speaker: React.FC<{t: number}> = ({t}) => (
@@ -52,7 +52,7 @@ const Speaker: React.FC<{t: number}> = ({t}) => (
     <mesh position={[0.25, 1.0, 0]}><cylinderGeometry args={[0.07, 0.075, 0.18, 32]} /><meshStandardMaterial color="#4a4d52" roughness={0.95} /></mesh>
     <mesh position={[0.25, 1.091, 0]} rotation={[-Math.PI / 2, 0, 0]}><ringGeometry args={[0.045, 0.058, 40]} /><meshBasicMaterial color={new THREE.Color().setHSL(0.55, 0.6, 0.35 + 0.2 * Math.sin(t * 2))} /></mesh>
     <mesh position={[-0.5, 0.97, 0.05]}><cylinderGeometry args={[0.04, 0.035, 0.12, 16]} /><meshStandardMaterial color="#e9e4da" roughness={0.3} /></mesh>
-    <mesh position={[0, 1.6, -0.36]}><boxGeometry args={[2.2, 1.3, 0.04]} /><meshStandardMaterial color="#6b675f" roughness={0.6} /></mesh>
+    <mesh position={[0, 1.6, -0.36]}><boxGeometry args={[2.2, 1.3, 0.04]} /><meshStandardMaterial color="#3e3b36" roughness={0.6} /></mesh>
     <pointLight position={[-0.2, 1.5, 0.7]} intensity={1.6} distance={2.4} color="#f1e5d0" />
   </group>
 );
@@ -89,7 +89,8 @@ export const S3Network: React.FC<SceneProps> = ({t, w, h, v}) => {
       {!globe ? <Stage w={w} h={h}>
         <Cam pos={dpos} look={dlook} fov={dfov} />
         <fog attach="fog" args={['#050608', 6, 40]} />
-        <hemisphereLight args={['#3a4450', '#050608', 0.35]} />
+        <hemisphereLight args={['#4a5662', '#050608', 0.6]} />
+        {DX.map((x, i) => <Shaft key={i} p={[x, 2.9, 0]} r={1.25} len={2.9} c={['#9fb6d2', '#e3e9ef', '#b6c8dc', '#f1e5d0'][i]} o={0.11} />)}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[10, 0, 0]}><planeGeometry args={[60, 30]} /><meshStandardMaterial color="#0a0b0d" roughness={0.6} metalness={0.3} /></mesh>
         <group position={[DX[0], 0, 0]}><Laptop on={1} /></group>
         <group position={[DX[1], 0, 0]}><Workstation /></group>

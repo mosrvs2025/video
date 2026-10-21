@@ -196,6 +196,43 @@
    ]
   },
   {
+   "id": "cosmos",
+   "title": "The universe waking up",
+   "lead": 0.5,
+   "lines": [
+    {
+     "id": "c1",
+     "text": "There's an old idea in philosophy called panpsychism. That mind isn't rare at all. That some faint trace of it is a basic feature of the universe, present in everything.",
+     "pause": 1.0
+    },
+    {
+     "id": "c2",
+     "text": "Most scientists don't accept it, and no experiment can test it yet. But it changes how the story looks.",
+     "pause": 1.0
+    },
+    {
+     "id": "c3",
+     "text": "For nearly fourteen billion years, matter has been organising itself into things that process information. Stars forged the atoms. Atoms became cells. Cells became brains.",
+     "pause": 0.9
+    },
+    {
+     "id": "c4",
+     "text": "And brains built machines, which are now beginning to model the world, and themselves.",
+     "pause": 1.0
+    },
+    {
+     "id": "c5",
+     "text": "Some thinkers call this the universe slowly waking up.",
+     "pause": 1.2
+    },
+    {
+     "id": "c6",
+     "text": "If that's where we're heading, an intelligence spread across our machines wouldn't be an invasion. It would be the next step in something very old. Which makes the question of what it would want more important, not less.",
+     "pause": 1.6
+    }
+   ]
+  },
+  {
    "id": "final",
    "title": "The final question",
    "lead": 0.5,

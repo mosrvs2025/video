@@ -1,13 +1,13 @@
 import React, {useMemo} from 'react';
 import {AbsoluteFill} from 'remotion';
 import * as THREE from 'three';
-import {Stage, Cam, P, SceneProps, keys, keys3, clamp, smooth, easeOut, easeInOut, rnd, ph, line, Label, SPRITE, Glow, V3, win} from '../lib';
+import {Stage, Cam, P, SceneProps, keys, keys3, clamp, smooth, easeOut, easeInOut, rnd, ph, line, Label, SPRITE, Glow, Shaft, V3, win} from '../lib';
 
 // ---------- the hall ----------
 const ROWS = 9, PER = 46;
 const hall = (() => {
   const rg = new THREE.BoxGeometry(0.62, 2.1, 1.05); rg.translate(0, 1.05, 0);
-  const racks = new THREE.InstancedMesh(rg, new THREE.MeshStandardMaterial({color: '#15181c', roughness: 0.5, metalness: 0.6}), ROWS * 2 * PER);
+  const racks = new THREE.InstancedMesh(rg, new THREE.MeshStandardMaterial({color: '#262b32', roughness: 0.45, metalness: 0.5}), ROWS * 2 * PER);
   const lg = new THREE.BoxGeometry(0.02, 1.7, 0.012); lg.translate(0, 1.05, 0);
   const leds = new THREE.InstancedMesh(lg, new THREE.MeshBasicMaterial({color: '#6f8aa6', toneMapped: false}), ROWS * 2 * PER);
   const o = new THREE.Object3D(); let k = 0;
@@ -16,7 +16,13 @@ const hall = (() => {
     o.position.set(x, 0, z); o.rotation.set(0, side > 0 ? -Math.PI / 2 : Math.PI / 2, 0); o.updateMatrix(); racks.setMatrixAt(k, o.matrix);
     o.position.set(x - side * 0.535, 0, z + (rnd(k) - 0.5) * 0.3); o.updateMatrix(); leds.setMatrixAt(k, o.matrix); k++;
   }
-  racks.frustumCulled = leds.frustumCulled = false; return {racks, leds};
+  // status lights on every rack face
+  const dg = new THREE.PlaneGeometry(0.03, 0.03); const dots = new THREE.InstancedMesh(dg, new THREE.MeshBasicMaterial({color: '#9cc4e8', toneMapped: false}), ROWS * 2 * PER * 6); let q = 0;
+  for (let r = 0; r < ROWS; r++) for (const side of [-1, 1]) for (let i = 0; i < PER; i++) for (let k = 0; k < 6; k++) {
+    const x = side * (1.6 + r * 2.6) - side * 0.54, z = -40 + i * 0.66 + (rnd(q * 3) - 0.5) * 0.4, y = 0.3 + rnd(q * 7 + 1) * 1.6;
+    o.position.set(x, y, z); o.rotation.set(0, side > 0 ? -Math.PI / 2 : Math.PI / 2, 0); o.updateMatrix(); dots.setMatrixAt(q++, o.matrix);
+  }
+  racks.frustumCulled = leds.frustumCulled = dots.frustumCulled = false; return {racks, leds, dots};
 })();
 
 // ---------- the four machines ----------
@@ -76,13 +82,16 @@ export const S2Spread: React.FC<SceneProps> = ({t, w, h, v}) => {
       <Stage w={w} h={h}>
         <Cam pos={pos} look={look} fov={v ? 46 : 34} />
         <fog attach="fog" args={['#050608', 4, fog]} />
-        <hemisphereLight args={['#6a7886', '#050608', 1.1]} />
+        <hemisphereLight args={['#7d8a98', '#050608', 2.0]} />
         <spotLight position={[2.3, 2.4, -1.6]} angle={0.5} penumbra={0.9} intensity={t > 31 && t < 37.5 ? 14 : 0} distance={5} color="#dfe6ee" />
+        {t > 31 && t < 37.5 && <Shaft p={[2.3, 2.4, -1.5]} r={0.7} len={2.4} o={0.12} />}
         <pointLight position={[-1.5, 3.2, -2.5]} intensity={6 * (1 - smooth((t - 40) / 1))} distance={8} color="#b9c6d3" />
         <directionalLight position={[-6, 9, -8]} intensity={1.1} color="#c4d0dc" />
         {/* floor */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, -10]}><planeGeometry args={[80, 90]} /><meshStandardMaterial color="#0a0c0f" roughness={0.22} metalness={0.7} /></mesh>
-        {hallO > 0.01 && <><primitive object={hall.racks} /><primitive object={hall.leds} />
+        {hallO > 0.01 && <><primitive object={hall.racks} /><primitive object={hall.leds} /><primitive object={hall.dots} />
+          {Array.from({length: 10}).map((_, i) => <Shaft key={`s${i}`} p={[0, 4.15, -40 + i * 3.4]} r={1.3} len={4.15} c="#c9d6e2" o={0.09 * hallO} />)}
+          <pointLight position={[0, 2.2, 1.4]} intensity={4 * hallO} distance={5} color="#b9c6d3" />
           {Array.from({length: 10}).map((_, i) => <mesh key={i} position={[0, 4.2, -40 + i * 3.4]}><boxGeometry args={[0.06, 0.02, 2.6]} /><meshBasicMaterial color="#b8c6d4" transparent opacity={0.6 * hallO} /></mesh>)}</>}
         {/* the monolith and its plug */}
         {fr < 1 && <group>

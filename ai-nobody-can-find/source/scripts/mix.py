@@ -28,12 +28,12 @@ du = np.zeros_like(on); a_, r_ = 1 - np.exp(-1 / 6), 1 - np.exp(-1 / 60)
 for i in range(1, len(on)): du[i] = du[i - 1] + (on[i] - du[i - 1]) * (a_ if on[i] > du[i - 1] else r_)
 du = np.interp(np.arange(n), np.arange(len(du)) * hop, du).astype(np.float32)
 gm = (1 - 0.55 * du)[:, None]; gs = (1 - 0.3 * du)[:, None]
-mix = np.stack([v, v], 1) * 0.9 + m * 1.6 * gm + s * 1.25 * gs
+mix = np.stack([v, v], 1) * 0.9 + m * 1.6 * gm + s * 0.85 * gs
 pre = os.path.join(D, 'mix_pre.wav'); wr(pre, mix * 0.5)
 loudnorm(pre, os.path.join(D, 'mix.wav'))
 os.makedirs(os.path.join(OUT, 'stems'), exist_ok=True)
 loudnorm(voice, os.path.join(OUT, 'narration.wav'), I=-16.0)
-mm = os.path.join(D, 'music_sfx.wav'); wr(mm, (m * 1.6 + s * 1.25) * 0.5); loudnorm(mm, os.path.join(OUT, 'stems', 'music-and-sfx.wav'), I=-18.0)
+mm = os.path.join(D, 'music_sfx.wav'); wr(mm, (m * 1.6 + s * 0.85) * 0.5); loudnorm(mm, os.path.join(OUT, 'stems', 'music-and-sfx.wav'), I=-18.0)
 shutil.copy(os.path.join(D, 'music.wav'), os.path.join(OUT, 'stems', 'music-only.wav')); shutil.copy(os.path.join(D, 'sfx.wav'), os.path.join(OUT, 'stems', 'sfx-only.wav'))
 r = subprocess.run(['ffmpeg', '-hide_banner', '-i', os.path.join(D, 'mix.wav'), '-af', 'ebur128=peak=true', '-f', 'null', '-'], capture_output=True, text=True).stderr
 print('\n'.join(l for l in r.splitlines()[-12:] if any(k in l for k in ('I:', 'LRA:', 'Peak:'))))

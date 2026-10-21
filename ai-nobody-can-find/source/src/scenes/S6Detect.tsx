@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import {AbsoluteFill} from 'remotion';
 import * as THREE from 'three';
-import {Stage, Cam, P, F, SceneProps, keys, clamp, smooth, easeOut, rnd, ph, Label, Process, Spoken, V3, win} from '../lib';
+import {Stage, Cam, P, F, SceneProps, keys, clamp, smooth, easeOut, rnd, ph, Label, Process, Spoken, Shaft, V3, win} from '../lib';
 
 const BX = [4, 9.5, 15, 20.5];
 const tri = (() => { const s = new THREE.Shape(); s.moveTo(0, 0.32); s.lineTo(0.28, -0.18); s.lineTo(-0.28, -0.18); s.closePath(); return new THREE.EdgesGeometry(new THREE.ShapeGeometry(s)); })();
@@ -28,6 +28,7 @@ export const S6Detect: React.FC<SceneProps> = ({t, w, h, v}) => {
         <pointLight position={[px, 2.2, 1.5]} intensity={4} distance={7} color="#cfd8e1" />
         <directionalLight position={[3, 6, 5]} intensity={0.9} color="#cdd6df" />
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[10, 0, 0]}><planeGeometry args={[60, 12]} /><meshStandardMaterial color="#0c0e11" roughness={0.5} metalness={0.4} /></mesh>
+        {BX.map((x, i) => <Shaft key={i} p={[x, 3.2, 0]} r={1.2} len={3.2} c="#b9c8d6" o={0.08} />)}
         {/* hardware: one opening, three incompatible shapes */}
         <group position={[BX[0], 0.8, 0]}>
           <mesh><boxGeometry args={[0.06, 1.6, 2.4]} /><meshStandardMaterial color="#8ea2b4" transparent opacity={0.1} depthWrite={false} /></mesh>

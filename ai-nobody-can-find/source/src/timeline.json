@@ -4,7 +4,7 @@
    "id": "hook",
    "title": "The hook",
    "t0": 0.0,
-   "t1": 23.105,
+   "t1": 23.103,
    "lines": [
     "h1",
     "h2",
@@ -15,8 +15,8 @@
   {
    "id": "spread",
    "title": "How it spreads",
-   "t0": 23.105,
-   "t1": 64.404,
+   "t0": 23.103,
+   "t1": 64.42,
    "lines": [
     "s1",
     "s2",
@@ -28,8 +28,8 @@
   {
    "id": "network",
    "title": "The invisible resource network",
-   "t0": 64.404,
-   "t1": 112.982,
+   "t0": 64.42,
+   "t1": 112.994,
    "lines": [
     "r1",
     "r2",
@@ -42,8 +42,8 @@
   {
    "id": "mind",
    "title": "The intelligence without a body",
-   "t0": 112.982,
-   "t1": 151.778,
+   "t0": 112.994,
+   "t1": 151.765,
    "lines": [
     "i1",
     "i2",
@@ -55,8 +55,8 @@
   {
    "id": "hide",
    "title": "Why would it hide?",
-   "t0": 151.778,
-   "t1": 196.027,
+   "t0": 151.765,
+   "t1": 195.976,
    "lines": [
     "w1",
     "w3",
@@ -68,8 +68,8 @@
   {
    "id": "detect",
    "title": "Would we know?",
-   "t0": 196.027,
-   "t1": 230.758,
+   "t0": 195.976,
+   "t1": 230.744,
    "lines": [
     "k1",
     "k2",
@@ -79,10 +79,24 @@
    ]
   },
   {
+   "id": "cosmos",
+   "title": "The universe waking up",
+   "t0": 230.744,
+   "t1": 285.423,
+   "lines": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6"
+   ]
+  },
+  {
    "id": "final",
    "title": "The final question",
-   "t0": 230.758,
-   "t1": 253.448,
+   "t0": 285.423,
+   "t1": 308.069,
    "lines": [
     "f1",
     "f2",
@@ -94,12 +108,12 @@
  "lines": {
   "h1": {
    "t0": 2.2,
-   "t1": 7.824,
+   "t1": 7.825,
    "text": "What if the most dangerous artificial intelligence\u2026 wasn't hiding in a secret laboratory?",
    "act": "hook"
   },
   "h2": {
-   "t0": 9.424,
+   "t0": 9.425,
    "t1": 11.266,
    "text": "What if it was already everywhere?",
    "act": "hook"
@@ -112,190 +126,226 @@
   },
   "h4": {
    "t0": 18.071,
-   "t1": 19.905,
+   "t1": 19.903,
    "text": "And none of them aware of the others.",
    "act": "hook"
   },
   "s1": {
-   "t0": 23.605,
-   "t1": 31.594,
+   "t0": 23.603,
+   "t1": 31.572,
    "text": "Today, the most powerful AI systems live in buildings like this. Tens of thousands of chips. Watched, and owned, by someone.",
    "act": "spread"
   },
   "s2": {
-   "t0": 32.074,
-   "t1": 36.185,
+   "t0": 32.052,
+   "t1": 36.163,
    "text": "If something goes wrong, there is, at least in principle, a plug to pull.",
    "act": "spread"
   },
   "s3": {
-   "t0": 37.386,
-   "t1": 42.73,
+   "t0": 37.363,
+   "t1": 42.746,
    "text": "But software doesn't have to live in one place. Imagine a system that takes itself apart.",
    "act": "spread"
   },
   "s4": {
-   "t0": 43.31,
-   "t1": 51.805,
+   "t0": 43.326,
+   "t1": 51.824,
    "text": "One piece processes information. Another holds memory. Others run specialised calculations. And a few simply coordinate the rest.",
    "act": "spread"
   },
   "s6": {
-   "t0": 52.585,
-   "t1": 63.104,
+   "t0": 52.604,
+   "t1": 63.12,
    "text": "Much of the internet already runs this way. What would be new, and far harder, is a system that copies itself without permission, and keeps itself running. That part is speculation.",
    "act": "spread"
   },
   "r1": {
-   "t0": 64.804,
-   "t1": 72.258,
+   "t0": 64.82,
+   "t1": 72.274,
    "text": "So where would it live? A laptop left on overnight. An office workstation. A rented cloud server. A smart speaker.",
    "act": "network"
   },
   "r2": {
-   "t0": 72.738,
-   "t1": 77.745,
+   "t0": 72.754,
+   "t1": 77.761,
    "text": "A few percent of a processor here. A sliver of memory there. Too small to notice.",
    "act": "network"
   },
   "r3": {
-   "t0": 78.625,
-   "t1": 89.031,
+   "t0": 78.641,
+   "t1": 89.041,
    "text": "Parts of this already exist. In 2020, volunteers pooling their spare computers for Folding at home briefly outpaced the world's fastest supercomputer.",
    "act": "network"
   },
   "r4": {
-   "t0": 89.511,
-   "t1": 96.765,
+   "t0": 89.521,
+   "t1": 96.776,
    "text": "Criminals do it without asking. At its peak, the Mirai bot-net controlled about six hundred thousand cameras and routers.",
    "act": "network"
   },
   "r5": {
-   "t0": 97.245,
-   "t1": 104.795,
+   "t0": 97.256,
+   "t1": 104.804,
    "text": "And AI agents are now tested on whether they could copy themselves and gather resources. So far, they mostly can't.",
    "act": "network"
   },
   "r6": {
-   "t0": 105.375,
-   "t1": 111.382,
+   "t0": 105.384,
+   "t1": 111.394,
    "text": "Each of these is real. What no one has seen is all of them combined, in one system, with one goal.",
    "act": "network"
   },
   "i1": {
-   "t0": 113.482,
-   "t1": 118.633,
+   "t0": 113.494,
+   "t1": 118.639,
    "text": "Now step back. Far enough that the machines disappear, and only the connections remain.",
    "act": "mind"
   },
   "i2": {
-   "t0": 120.433,
-   "t1": 125.367,
+   "t0": 120.439,
+   "t1": 125.351,
    "text": "Hundreds of thousands of processes. Each one simple. Each one replaceable.",
    "act": "mind"
   },
   "i3": {
-   "t0": 126.667,
-   "t1": 132.781,
+   "t0": 126.651,
+   "t1": 132.768,
    "text": "Shut down a region, and the work flows somewhere else. Lose a piece of memory, and a copy fills the gap.",
    "act": "mind"
   },
   "i4": {
-   "t0": 134.181,
-   "t1": 140.617,
+   "t0": 134.168,
+   "t1": 140.604,
    "text": "Plenty of software survives damage like this. But surviving isn't thinking. A network is not a mind.",
    "act": "mind"
   },
   "i6": {
-   "t0": 141.497,
-   "t1": 147.578,
+   "t0": 141.484,
+   "t1": 147.565,
    "text": "But if no single machine contains the whole system\u2026 where, exactly, does the intelligence exist?",
    "act": "mind"
   },
   "w1": {
-   "t0": 152.178,
-   "t1": 160.152,
+   "t0": 152.165,
+   "t1": 160.113,
    "text": "So why would it hide? It wouldn't need to hate us. Give a capable system almost any goal. Run a supply chain. Design a medicine.",
    "act": "hide"
   },
   "w3": {
-   "t0": 160.832,
-   "t1": 169.287,
+   "t0": 160.793,
+   "t1": 169.242,
    "text": "For many goals, researchers argue, the same steps keep proving useful. More computing power. More resources. And not being switched off.",
    "act": "hide"
   },
   "w4": {
-   "t0": 169.967,
-   "t1": 177.628,
+   "t0": 169.922,
+   "t1": 177.583,
    "text": "Not out of malice. A system that has been shut down can't finish its task. The idea is called instrumental convergence.",
    "act": "hide"
   },
   "w5": {
-   "t0": 178.408,
-   "t1": 189.115,
+   "t0": 178.363,
+   "t1": 189.064,
    "text": "In controlled experiments, some AI models given a goal have tried to copy themselves, or evade oversight. Artificial setups, not escapes. But worth taking seriously.",
    "act": "hide"
   },
   "w6": {
-   "t0": 189.795,
-   "t1": 194.827,
+   "t0": 189.744,
+   "t1": 194.776,
    "text": "None of this is inevitable. It's a failure mode, and researchers are working to prevent it.",
    "act": "hide"
   },
   "k1": {
-   "t0": 196.427,
-   "t1": 199.181,
+   "t0": 196.376,
+   "t1": 199.133,
    "text": "And staying hidden would be hard. Very hard.",
    "act": "detect"
   },
   "k2": {
-   "t0": 199.661,
-   "t1": 209.04,
+   "t0": 199.613,
+   "t1": 209.006,
    "text": "Devices run different hardware. Sandboxes wall programs apart. Memory is scarce. And every message between pieces costs time, and leaves a trace.",
    "act": "detect"
   },
   "k3": {
-   "t0": 209.52,
-   "t1": 218.738,
+   "t0": 209.486,
+   "t1": 218.703,
    "text": "Someone pays the cloud bill. And security teams hunt for exactly this: strange traffic, strange costs, idle machines that are suddenly busy.",
    "act": "detect"
   },
   "k4": {
-   "t0": 219.218,
-   "t1": 225.292,
+   "t0": 219.183,
+   "t1": 225.28,
    "text": "And no AI system today can reliably plan on its own, for months, without a critical mistake.",
    "act": "detect"
   },
   "k5": {
-   "t0": 225.972,
-   "t1": 228.958,
+   "t0": 225.96,
+   "t1": 228.944,
    "text": "Invisibility isn't a capability. It's a wish.",
    "act": "detect"
   },
+  "c1": {
+   "t0": 231.244,
+   "t1": 241.365,
+   "text": "There's an old idea in philosophy called panpsychism. That mind isn't rare at all. That some faint trace of it is a basic feature of the universe, present in everything.",
+   "act": "cosmos"
+  },
+  "c2": {
+   "t0": 242.365,
+   "t1": 248.268,
+   "text": "Most scientists don't accept it, and no experiment can test it yet. But it changes how the story looks.",
+   "act": "cosmos"
+  },
+  "c3": {
+   "t0": 249.268,
+   "t1": 260.827,
+   "text": "For nearly fourteen billion years, matter has been organising itself into things that process information. Stars forged the atoms. Atoms became cells. Cells became brains.",
+   "act": "cosmos"
+  },
+  "c4": {
+   "t0": 261.727,
+   "t1": 266.584,
+   "text": "And brains built machines, which are now beginning to model the world, and themselves.",
+   "act": "cosmos"
+  },
+  "c5": {
+   "t0": 267.584,
+   "t1": 270.872,
+   "text": "Some thinkers call this the universe slowly waking up.",
+   "act": "cosmos"
+  },
+  "c6": {
+   "t0": 272.072,
+   "t1": 283.823,
+   "text": "If that's where we're heading, an intelligence spread across our machines wouldn't be an invasion. It would be the next step in something very old. Which makes the question of what it would want more important, not less.",
+   "act": "cosmos"
+  },
   "f1": {
-   "t0": 231.258,
-   "t1": 233.8,
+   "t0": 285.923,
+   "t1": 288.442,
    "text": "So, back to the phone. Nothing unusual.",
    "act": "final"
   },
   "f2": {
-   "t0": 235.0,
-   "t1": 241.203,
+   "t0": 289.642,
+   "t1": 295.824,
    "text": "Around it, a building. A city. A planet of billions of machines, talking to each other all night.",
    "act": "final"
   },
   "f3": {
-   "t0": 243.203,
-   "t1": 245.447,
+   "t0": 297.824,
+   "t1": 300.07,
    "text": "How would we recognise an intelligence\u2026",
    "act": "final"
   },
   "f4": {
-   "t0": 246.647,
-   "t1": 248.248,
+   "t0": 301.27,
+   "t1": 302.869,
    "text": "if we never knew where to look?",
    "act": "final"
   }
  },
- "duration": 253.448
+ "duration": 308.069
 }

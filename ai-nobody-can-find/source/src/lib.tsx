@@ -117,3 +117,13 @@ export const project = (p: V3, pos: V3, look: V3, fov: number, w: number, h: num
   cam.lookAt(...look); cam.updateMatrixWorld(); cam.updateProjectionMatrix();
   const v = new THREE.Vector3(...p).project(cam); return [(v.x + 1) / 2 * w, (1 - v.y) / 2 * h, v.z < 1];
 };
+
+// a volumetric light shaft: an open cone, brightest at the source, fading downward (additive, no fog)
+const SHAFT = new THREE.ShaderMaterial({transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, fog: false,
+  uniforms: {c: {value: new THREE.Color('#dfe6ee')}, o: {value: 0.1}},
+  vertexShader: 'varying float vY; varying vec3 vN; varying vec3 vV; void main(){ vY = uv.y; vec4 mv = modelViewMatrix * vec4(position, 1.0); vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz); gl_Position = projectionMatrix * mv; }',
+  fragmentShader: 'uniform vec3 c; uniform float o; varying float vY; varying vec3 vN; varying vec3 vV; void main(){ float edge = pow(abs(dot(vN, vV)), 0.8); gl_FragColor = vec4(c, o * 2.2 * vY * vY * edge); }'});
+export const Shaft: React.FC<{p: V3; r?: number; len?: number; c?: string; o?: number}> = ({p, r = 1, len = 4, c = '#dfe6ee', o = 0.1}) => {
+  const m = React.useMemo(() => SHAFT.clone(), []); m.uniforms.c.value.set(c); m.uniforms.o.value = o;
+  return <mesh position={[p[0], p[1] - len / 2, p[2]]} material={m}><cylinderGeometry args={[r * 0.12, r, len, 40, 1, true]} /></mesh>;
+};

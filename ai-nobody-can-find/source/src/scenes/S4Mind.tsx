@@ -78,8 +78,8 @@ const mkMat = (frag: string) => new THREE.ShaderMaterial({
   vertexShader: VERT, fragmentShader: frag, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
   uniforms: {uT: {value: 0}, uMorph: {value: 0}, uScale: {value: 6}, uSize: {value: 1}, uA1: {value: 0}, uA2: {value: 0}, uA3: {value: 0}, uK1: {value: new THREE.Vector4(0, 0, 0, 0)}, uK2: {value: new THREE.Vector4(0, 0, 0, 0)}, uK1a: {value: 0}, uK2a: {value: 0}, uHeal: {value: 0}, uFlow: {value: 0}, uO: {value: 1}, uGain: {value: 1}},
 });
-const MP = mkMat(FRAG_P), ML = mkMat(FRAG_L);
-const POINTS = new THREE.Points(GEO.g, MP), LINES = new THREE.LineSegments(GEO.lg, ML); POINTS.renderOrder = 2; LINES.renderOrder = 1;
+export const MP = mkMat(FRAG_P), ML = mkMat(FRAG_L);
+export const POINTS = new THREE.Points(GEO.g, MP), LINES = new THREE.LineSegments(GEO.lg, ML); POINTS.renderOrder = 2; LINES.renderOrder = 1;
 POINTS.frustumCulled = LINES.frustumCulled = false;
 // the far lattice: 26 sparser copies of the same structure, each at its own phase
 const LAT = Array.from({length: 26}).map((_, i) => { const m = mkMat(FRAG_P); const o = new THREE.Points(GEO.s2, m); o.frustumCulled = false; const a = rnd(i) * Math.PI * 2, e = (rnd(i + 5) - 0.5) * 1.6, r = 110 + rnd(i + 9) * 260; o.position.set(Math.cos(a) * Math.cos(e) * r, Math.sin(e) * r, Math.sin(a) * Math.cos(e) * r); return {o, m, ph: rnd(i + 3) * 6}; });

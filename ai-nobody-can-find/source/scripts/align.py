@@ -32,11 +32,24 @@ def main():
         x, sr = load(os.path.join(ROOT, 'data', 'lines', lid + '.wav')); d = len(x) / sr
         text = L['text']; parts = [p.strip() for p in re.split(r'(?<=[.,?:;!…])\s+', text) if p.strip()]
         G = gaps(x, sr); need = len(parts) - 1
-        # choose the `need` longest gaps, keep them in time order
-        G = sorted(sorted(G, key=lambda g: -g[1])[:need]); cuts = [g[0] for g in G]
-        if len(cuts) < need:  # fall back: proportional to characters
-            tot = sum(len(p) for p in parts); acc = 0; cuts = []
-            for p in parts[:-1]: acc += len(p); cuts.append(d * acc / tot)
+        # match each phrase boundary to a pause: minimise distance to the boundary's expected time (by characters),
+        # favouring longer pauses, keeping order (small DP)
+        tot = sum(len(p) for p in parts); acc = 0; exp = []
+        for p in parts[:-1]: acc += len(p); exp.append(d * acc / tot)
+        cuts = []
+        if len(G) >= need and need > 0:
+            INF = 1e9; m = len(G); cost = [[INF] * m for _ in range(need)]; back = [[-1] * m for _ in range(need)]
+            c = lambda k, j: abs(G[j][0] - exp[k]) - 0.8 * G[j][1]
+            for j in range(m): cost[0][j] = c(0, j)
+            for k in range(1, need):
+                best, bj = INF, -1
+                for j in range(m):
+                    if j > 0 and cost[k - 1][j - 1] < best: best, bj = cost[k - 1][j - 1], j - 1
+                    if bj >= 0: cost[k][j] = best + c(k, j); back[k][j] = bj
+            j = min(range(m), key=lambda j: cost[need - 1][j]); sel = []
+            for k in range(need - 1, -1, -1): sel.append(j); j = back[k][j]
+            cuts = [G[j][0] for j in reversed(sel)]
+        if len(cuts) < need: cuts = exp  # fall back: proportional to characters
         bounds = [0.0] + cuts + [d]; phrases = []
         for k, p in enumerate(parts):
             a, b = bounds[k] + (0.05 if k else 0), bounds[k + 1] - (0.05 if k < len(parts) - 1 else 0)

@@ -1,14 +1,14 @@
 1
-00:00:02,200 --> 00:00:03,755
+00:00:02,200 --> 00:00:04,585
 What if the most dangerous artificial
 intelligence…
 
 2
-00:00:03,805 --> 00:00:08,174
+00:00:04,635 --> 00:00:08,175
 wasn't hiding in a secret laboratory?
 
 3
-00:00:09,424 --> 00:00:11,616
+00:00:09,425 --> 00:00:11,616
 What if it was already everywhere?
 
 4
@@ -17,275 +17,349 @@ Not in one machine. In millions of them,
 each doing almost nothing.
 
 5
-00:00:18,071 --> 00:00:20,255
+00:00:18,071 --> 00:00:20,253
 And none of them aware of the others.
 
 6
-00:00:23,605 --> 00:00:27,834
+00:00:23,603 --> 00:00:27,822
 Today, the most powerful AI systems live
 in buildings like this.
 
 7
-00:00:27,884 --> 00:00:31,944
+00:00:27,872 --> 00:00:31,922
 Tens of thousands of chips. Watched, and
 owned, by someone.
 
 8
-00:00:32,074 --> 00:00:36,535
+00:00:32,052 --> 00:00:36,513
 If something goes wrong, there is, at
 least in principle, a plug to pull.
 
 9
-00:00:37,386 --> 00:00:40,056
+00:00:37,363 --> 00:00:40,033
 But software doesn't have to live in one
 place.
 
 10
-00:00:40,106 --> 00:00:43,080
+00:00:40,083 --> 00:00:43,096
 Imagine a system that takes itself apart.
 
 11
-00:00:43,310 --> 00:00:46,830
+00:00:43,326 --> 00:00:46,846
 One piece processes information. Another
 holds memory.
 
 12
-00:00:46,880 --> 00:00:52,155
+00:00:46,896 --> 00:00:52,174
 Others run specialised calculations. And a
 few simply coordinate the rest.
 
 13
-00:00:52,585 --> 00:00:57,127
+00:00:52,604 --> 00:00:57,145
 Much of the internet already runs this
 way. What would be new, and far harder,
 
 14
-00:00:57,177 --> 00:01:01,609
+00:00:57,195 --> 00:01:01,626
 is a system that copies itself without
 permission, and keeps itself running.
 
 15
-00:01:01,659 --> 00:01:03,454
+00:01:01,676 --> 00:01:03,470
 That part is speculation.
 
 16
-00:01:04,804 --> 00:01:09,509
+00:01:04,820 --> 00:01:09,525
 So where would it live? A laptop left on
 overnight. An office workstation.
 
 17
-00:01:09,559 --> 00:01:12,608
+00:01:09,575 --> 00:01:12,624
 A rented cloud server. A smart speaker.
 
 18
-00:01:12,738 --> 00:01:16,293
+00:01:12,754 --> 00:01:16,309
 A few percent of a processor here. A
 sliver of memory there.
 
 19
-00:01:16,343 --> 00:01:18,095
+00:01:16,359 --> 00:01:18,111
 Too small to notice.
 
 20
-00:01:18,625 --> 00:01:21,785
+00:01:18,641 --> 00:01:21,801
 Parts of this already exist. In 2020,
 
 21
-00:01:21,835 --> 00:01:25,356
+00:01:21,851 --> 00:01:25,370
 volunteers pooling their spare computers
 for Folding
 
 22
-00:01:25,356 --> 00:01:29,381
+00:01:25,370 --> 00:01:29,391
 at home briefly outpaced the world's
 fastest supercomputer.
 
 23
-00:01:29,511 --> 00:01:31,326
+00:01:29,521 --> 00:01:31,336
 Criminals do it without asking.
 
 24
-00:01:31,376 --> 00:01:36,541
+00:01:31,386 --> 00:01:36,551
 At its peak,
 
 25
-00:01:36,591 --> 00:01:37,591
+00:01:36,601 --> 00:01:37,601
 the Mirai botnet controlled about six
 hundred thousand cameras and routers.
 
 26
-00:01:37,245 --> 00:01:38,245
+00:01:37,256 --> 00:01:39,911
 And AI agents are now tested on
 
 27
-00:01:37,896 --> 00:01:38,896
+00:01:39,911 --> 00:01:42,946
 whether they could copy themselves and
 gather resources.
 
 28
-00:01:38,690 --> 00:01:45,145
+00:01:42,996 --> 00:01:45,154
 So far, they mostly can't.
 
 29
-00:01:45,375 --> 00:01:49,612
+00:01:45,384 --> 00:01:49,622
 Each of these is real. What no one has
 seen is all of them combined,
 
 30
-00:01:49,662 --> 00:01:51,732
+00:01:49,672 --> 00:01:51,744
 in one system, with one goal.
 
 31
-00:01:53,482 --> 00:01:56,907
+00:01:53,494 --> 00:01:56,909
 Now step back. Far enough that the
 machines disappear,
 
 32
-00:01:56,957 --> 00:01:58,983
+00:01:56,959 --> 00:01:58,989
 and only the connections remain.
 
 33
-00:02:00,433 --> 00:02:05,717
+00:02:00,439 --> 00:02:05,701
 Hundreds of thousands of processes. Each
 one simple. Each one replaceable.
 
 34
-00:02:06,667 --> 00:02:11,268
+00:02:06,651 --> 00:02:12,641
 Shut down a region, and the work flows
 somewhere else. Lose a piece of memory,
 
 35
-00:02:11,318 --> 00:02:13,131
+00:02:12,691 --> 00:02:13,691
 and a copy fills the gap.
 
 36
-00:02:14,181 --> 00:02:18,906
+00:02:14,168 --> 00:02:18,893
 Plenty of software survives damage like
 this. But surviving isn't thinking.
 
 37
-00:02:18,956 --> 00:02:20,967
+00:02:18,943 --> 00:02:20,954
 A network is not a mind.
 
 38
-00:02:21,497 --> 00:02:25,748
+00:02:21,484 --> 00:02:25,734
 But if no single machine contains the
 whole system… where, exactly,
 
 39
-00:02:25,798 --> 00:02:27,928
+00:02:25,784 --> 00:02:27,915
 does the intelligence exist?
 
 40
-00:02:32,178 --> 00:02:34,958
+00:02:32,165 --> 00:02:34,945
 So why would it hide? It wouldn't need to
 hate us.
 
 41
-00:02:35,008 --> 00:02:40,502
+00:02:34,995 --> 00:02:40,463
 Give a capable system almost any goal. Run
 a supply chain. Design a medicine.
 
 42
-00:02:40,832 --> 00:02:45,221
+00:02:40,793 --> 00:02:45,179
 For many goals, researchers argue, the
 same steps keep proving useful.
 
 43
-00:02:45,271 --> 00:02:49,637
+00:02:45,229 --> 00:02:49,592
 More computing power. More resources. And
 not being switched off.
 
 44
-00:02:49,967 --> 00:02:54,482
+00:02:49,922 --> 00:02:54,437
 Not out of malice. A system that has been
 shut down can't finish its task.
 
 45
-00:02:54,532 --> 00:02:57,978
+00:02:54,487 --> 00:02:57,933
 The idea is called instrumental
 convergence.
 
 46
-00:02:58,408 --> 00:03:00,148
+00:02:58,363 --> 00:03:00,102
 In controlled experiments,
 
 47
-00:03:00,198 --> 00:03:05,301
+00:03:00,152 --> 00:03:05,252
 some AI models given a goal have tried to
 copy themselves, or evade oversight.
 
 48
-00:03:05,351 --> 00:03:09,465
+00:03:05,302 --> 00:03:09,414
 Artificial setups, not escapes. But worth
 taking seriously.
 
 49
-00:03:09,795 --> 00:03:12,645
+00:03:09,744 --> 00:03:12,594
 None of this is inevitable. It's a failure
 mode,
 
 50
-00:03:12,695 --> 00:03:15,177
+00:03:12,644 --> 00:03:15,126
 and researchers are working to prevent it.
 
 51
-00:03:16,427 --> 00:03:19,531
+00:03:16,376 --> 00:03:19,483
 And staying hidden would be hard. Very
 hard.
 
 52
-00:03:19,661 --> 00:03:24,849
+00:03:19,613 --> 00:03:24,809
 Devices run different hardware. Sandboxes
 wall programs apart. Memory is scarce.
 
 53
-00:03:24,899 --> 00:03:29,390
+00:03:24,859 --> 00:03:29,356
 And every message between pieces costs
 time, and leaves a trace.
 
 54
-00:03:29,520 --> 00:03:34,197
+00:03:29,486 --> 00:03:34,162
 Someone pays the cloud bill. And security
 teams hunt for exactly this:
 
 55
-00:03:34,247 --> 00:03:39,088
+00:03:34,212 --> 00:03:39,053
 strange traffic, strange costs, idle
 machines that are suddenly busy.
 
 56
-00:03:39,218 --> 00:03:43,773
+00:03:39,183 --> 00:03:43,763
 And no AI system today can reliably plan
 on its own, for months,
 
 57
-00:03:43,823 --> 00:03:45,642
+00:03:43,813 --> 00:03:45,630
 without a critical mistake.
 
 58
-00:03:45,972 --> 00:03:49,308
+00:03:45,960 --> 00:03:49,294
 Invisibility isn't a capability. It's a
 wish.
 
 59
-00:03:51,258 --> 00:03:54,150
-So, back to the phone. Nothing unusual.
+00:03:51,244 --> 00:03:54,476
+There's an old idea in philosophy called
+panpsychism.
 
 60
-00:03:55,000 --> 00:03:59,068
+00:03:54,526 --> 00:03:56,183
+That mind isn't rare at all.
+
+61
+00:03:56,233 --> 00:04:00,024
+That some faint trace of it is a basic
+feature of the universe,
+
+62
+00:04:00,074 --> 00:04:01,715
+present in everything.
+
+63
+00:04:02,365 --> 00:04:06,222
+Most scientists don't accept it, and no
+experiment can test it yet.
+
+64
+00:04:06,272 --> 00:04:08,618
+But it changes how the story looks.
+
+65
+00:04:09,268 --> 00:04:11,438
+For nearly fourteen billion years,
+
+66
+00:04:11,488 --> 00:04:15,993
+matter has been organising itself into
+things that process information.
+
+67
+00:04:16,043 --> 00:04:21,177
+Stars forged the atoms. Atoms became
+cells. Cells became brains.
+
+68
+00:04:21,727 --> 00:04:26,342
+And brains built machines, which are now
+beginning to model the world,
+
+69
+00:04:26,392 --> 00:04:27,392
+and themselves.
+
+70
+00:04:27,584 --> 00:04:31,222
+Some thinkers call this the universe
+slowly waking up.
+
+71
+00:04:32,072 --> 00:04:33,704
+If that's where we're heading,
+
+72
+00:04:33,754 --> 00:04:37,349
+an intelligence spread across our machines
+wouldn't be an invasion.
+
+73
+00:04:37,399 --> 00:04:39,961
+It would be the next step in something
+very old.
+
+74
+00:04:40,011 --> 00:04:44,173
+Which makes the question of what it would
+want more important, not less.
+
+75
+00:04:45,923 --> 00:04:48,792
+So, back to the phone. Nothing unusual.
+
+76
+00:04:49,642 --> 00:04:53,697
 Around it, a building. A city. A planet of
 billions of machines,
 
-61
-00:03:59,118 --> 00:04:01,553
+77
+00:04:53,747 --> 00:04:56,174
 talking to each other all night.
 
-62
-00:04:03,203 --> 00:04:05,797
+78
+00:04:57,824 --> 00:05:00,420
 How would we recognise an intelligence…
 
-63
-00:04:06,647 --> 00:04:08,598
+79
+00:05:01,270 --> 00:05:03,219
 if we never knew where to look?
 

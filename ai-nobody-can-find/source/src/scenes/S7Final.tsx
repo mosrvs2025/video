@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import * as THREE from 'three';
-import {Stage, Cam, P, F, SceneProps, keys, keys3, clamp, smooth, easeOut, expoOut, rnd, ph, Spoken, SPRITE, V3, win} from '../lib';
+import {Stage, Cam, P, F, SceneProps, keys, keys3, clamp, smooth, easeOut, expoOut, rnd, ph, line, act, Spoken, SPRITE, Shaft, V3, win} from '../lib';
 import {Phone, Table, Earth, Arc, ll} from '../shared';
 
 // ---------- building and city (instanced, built once) ----------
@@ -24,25 +24,25 @@ const city = (() => {
 const ARCS: Arc[] = Array.from({length: 70}).map((_, i) => ({a: Math.floor(rnd(i * 3 + 900) * 900), b: Math.floor(rnd(i * 5 + 901) * 900), color: '#a9bccd', lift: 0.05 + rnd(i) * 0.08, speed: 0.15 + rnd(i + 2) * 0.2}));
 
 export const S7Final: React.FC<SceneProps> = ({t, w, h, v}) => {
-  const tB = ph('f2', 1) - 0.3, tC = ph('f2', 2) + 0.35, tE = ph('f2', 3) + 1.4, tBlack = 249.4, tLine = 250.1;
+  const tB = ph('f2', 1) - 0.3, tC = ph('f2', 2) + 0.35, tE = ph('f2', 3) + 1.4, tBlack = line('f4').t1 + 1.15, tLine = tBlack + 0.7, A0 = act('final').t0;
   const stage = t < tB ? 'room' : t < tC ? 'building' : t < tE ? 'city' : 'earth';
   const dis = (a: number) => win(t, a - 0.25, a + 0.35, 0.25, 0.35);
   // room: the same table, the same phone, nothing happening
-  const rp = keys3(t, [[230.4, v ? [0.3, 0.55, 0.45] : [0.42, 0.36, 0.5]], [tB, v ? [1.0, 1.5, 1.6] : [1.5, 1.2, 1.8]]]);
+  const rp = keys3(t, [[A0 - 0.4, v ? [0.3, 0.55, 0.45] : [0.42, 0.36, 0.5]], [tB, v ? [1.0, 1.5, 1.6] : [1.5, 1.2, 1.8]]]);
   // building: back away from one window
   const bp = keys3(t, [[tB, [2, 30, 16]], [tC + 0.3, [40, 44, 110]]]);
   // city: rise
   const cp = keys3(t, [[tC, [160, 110, 420]], [tE + 0.3, [320, 380, 1250]]]);
   // earth: from low orbit to the whole night side
-  const ed = keys(t, [[tE, 17], [243, 30], [249.4, 38]]) * (v ? 1.35 : 1); const ea = keys(t, [[tE, 0.3], [249.4, -0.25]]), ee = keys(t, [[tE, 0.62], [249.4, 0.3]]);
+  const ed = keys(t, [[tE, 17], [ph('f3', 0) - 0.2, 30], [tBlack, 38]]) * (v ? 1.35 : 1); const ea = keys(t, [[tE, 0.3], [tBlack, -0.25]]), ee = keys(t, [[tE, 0.62], [tBlack, 0.3]]);
   const ep: V3 = [Math.sin(ea) * Math.cos(ee) * ed, Math.sin(ee) * ed, Math.cos(ea) * Math.cos(ee) * ed];
-  const netO = smooth((t - ph('f2', 4)) / 1.5) * (1 - smooth((t - 247.6) / 1.6));
+  const netO = smooth((t - ph('f2', 4)) / 1.5) * (1 - smooth((t - (tBlack - 1.8)) / 1.6));
   return (
     <AbsoluteFill style={{background: P.ink}}>
       {t < tBlack && <Stage w={w} h={h} shadows={stage === 'room'}>
         {stage === 'room' && <>
           <Cam pos={rp} look={[0, 0, 0]} fov={30} />
-          <Table light={0.85} /><Phone on={0} t={t} /><ambientLight intensity={0.03} /><fog attach="fog" args={['#050608', 1.5, 6]} />
+          <Table light={0.85} /><Phone on={0} t={t} /><Shaft p={[0.15, 2.2, 0.3]} r={0.95} len={2.95} c="#dfe6ee" o={0.07} /><ambientLight intensity={0.03} /><fog attach="fog" args={['#050608', 1.5, 6]} />
           {/* walls and a window, revealed as we pull back */}
           <mesh position={[0, 0.6, -2.2]}><planeGeometry args={[6, 3]} /><meshStandardMaterial color="#121418" roughness={0.9} /></mesh>
           <mesh position={[-0.6, 0.9, -2.19]}><planeGeometry args={[1.2, 1.1]} /><meshBasicMaterial color="#0d1626" /></mesh>
@@ -73,7 +73,7 @@ export const S7Final: React.FC<SceneProps> = ({t, w, h, v}) => {
       </Stage>}
       <AbsoluteFill style={{background: '#000', opacity: Math.max(dis(tB), dis(tC), dis(tE))}} />
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(0,0,0,.7) 100%)'}} />
-      {[['A ROOM', ph('f1', 1), tB], ['A BUILDING', tB + 0.2, tC], ['A CITY', tC + 0.15, tE], ['A PLANET', tE + 0.3, 242.6]].map(([l, a, b], i) => <div key={i} style={{position: 'absolute', left: v ? 70 : 120, bottom: v ? 420 : 110, fontFamily: F.mono, fontSize: 18, letterSpacing: 8, color: P.paperDim, opacity: win(t, a as number, b as number, 0.25, 0.3)}}>{l}</div>)}
+      {[['A ROOM', ph('f1', 1), tB], ['A BUILDING', tB + 0.2, tC], ['A CITY', tC + 0.15, tE], ['A PLANET', tE + 0.3, ph('f3', 0) - 0.4]].map(([l, a, b], i) => <div key={i} style={{position: 'absolute', left: v ? 70 : 120, bottom: v ? 420 : 110, fontFamily: F.mono, fontSize: 18, letterSpacing: 8, color: P.paperDim, opacity: win(t, a as number, b as number, 0.25, 0.3)}}>{l}</div>)}
       <Spoken id="f3" t={t} x={w / 2} y={v ? 760 : 420} w={v ? 940 : 1500} size={v ? 66 : 72} hold={3.9} />
       <Spoken id="f4" t={t} x={w / 2} y={v ? 760 + 170 : 420 + 100} w={v ? 940 : 1500} size={v ? 66 : 72} hold={1.2} accent={['look?']} />
       {t >= tBlack && <AbsoluteFill style={{background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
