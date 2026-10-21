@@ -1,0 +1,3287 @@
+{
+ "h1": {
+  "t0": 2.2,
+  "t1": 7.824,
+  "act": "hook",
+  "phrases": [
+   {
+    "t0": 2.2,
+    "t1": 3.705,
+    "text": "What if the most dangerous artificial intelligence\u2026",
+    "words": [
+     {
+      "w": "What",
+      "t": 2.2
+     },
+     {
+      "w": "if",
+      "t": 2.324
+     },
+     {
+      "w": "the",
+      "t": 2.449
+     },
+     {
+      "w": "most",
+      "t": 2.573
+     },
+     {
+      "w": "dangerous",
+      "t": 2.697
+     },
+     {
+      "w": "artificial",
+      "t": 2.963
+     },
+     {
+      "w": "intelligence\u2026",
+      "t": 3.299
+     }
+    ]
+   },
+   {
+    "t0": 3.805,
+    "t1": 7.824,
+    "text": "wasn't hiding in a secret laboratory?",
+    "words": [
+     {
+      "w": "wasn't",
+      "t": 3.805
+     },
+     {
+      "w": "hiding",
+      "t": 4.224
+     },
+     {
+      "w": "in",
+      "t": 4.894
+     },
+     {
+      "w": "a",
+      "t": 5.312
+     },
+     {
+      "w": "secret",
+      "t": 5.731
+     },
+     {
+      "w": "laboratory?",
+      "t": 6.401
+     }
+    ]
+   }
+  ]
+ },
+ "h2": {
+  "t0": 9.424,
+  "t1": 11.266,
+  "act": "hook",
+  "phrases": [
+   {
+    "t0": 9.424,
+    "t1": 11.266,
+    "text": "What if it was already everywhere?",
+    "words": [
+     {
+      "w": "What",
+      "t": 9.424
+     },
+     {
+      "w": "if",
+      "t": 9.616
+     },
+     {
+      "w": "it",
+      "t": 9.808
+     },
+     {
+      "w": "was",
+      "t": 10.0
+     },
+     {
+      "w": "already",
+      "t": 10.191
+     },
+     {
+      "w": "everywhere?",
+      "t": 10.613
+     }
+    ]
+   }
+  ]
+ },
+ "h3": {
+  "t0": 13.466,
+  "t1": 17.571,
+  "act": "hook",
+  "phrases": [
+   {
+    "t0": 13.466,
+    "t1": 14.616,
+    "text": "Not in one machine.",
+    "words": [
+     {
+      "w": "Not",
+      "t": 13.466
+     },
+     {
+      "w": "in",
+      "t": 13.661
+     },
+     {
+      "w": "one",
+      "t": 13.856
+     },
+     {
+      "w": "machine.",
+      "t": 14.174
+     }
+    ]
+   },
+   {
+    "t0": 14.716,
+    "t1": 15.879,
+    "text": "In millions of them,",
+    "words": [
+     {
+      "w": "In",
+      "t": 14.716
+     },
+     {
+      "w": "millions",
+      "t": 14.963
+     },
+     {
+      "w": "of",
+      "t": 15.385
+     },
+     {
+      "w": "them,",
+      "t": 15.632
+     }
+    ]
+   },
+   {
+    "t0": 15.979,
+    "t1": 17.571,
+    "text": "each doing almost nothing.",
+    "words": [
+     {
+      "w": "each",
+      "t": 15.979
+     },
+     {
+      "w": "doing",
+      "t": 16.278
+     },
+     {
+      "w": "almost",
+      "t": 16.576
+     },
+     {
+      "w": "nothing.",
+      "t": 17.074
+     }
+    ]
+   }
+  ]
+ },
+ "h4": {
+  "t0": 18.071,
+  "t1": 19.905,
+  "act": "hook",
+  "phrases": [
+   {
+    "t0": 18.071,
+    "t1": 19.905,
+    "text": "And none of them aware of the others.",
+    "words": [
+     {
+      "w": "And",
+      "t": 18.071
+     },
+     {
+      "w": "none",
+      "t": 18.243
+     },
+     {
+      "w": "of",
+      "t": 18.53
+     },
+     {
+      "w": "them",
+      "t": 18.701
+     },
+     {
+      "w": "aware",
+      "t": 18.873
+     },
+     {
+      "w": "of",
+      "t": 19.275
+     },
+     {
+      "w": "the",
+      "t": 19.447
+     },
+     {
+      "w": "others.",
+      "t": 19.618
+     }
+    ]
+   }
+  ]
+ },
+ "s1": {
+  "t0": 23.605,
+  "t1": 31.594,
+  "act": "spread",
+  "phrases": [
+   {
+    "t0": 23.605,
+    "t1": 23.958,
+    "text": "Today,",
+    "words": [
+     {
+      "w": "Today,",
+      "t": 23.605
+     }
+    ]
+   },
+   {
+    "t0": 24.058,
+    "t1": 27.784,
+    "text": "the most powerful AI systems live in buildings like this.",
+    "words": [
+     {
+      "w": "the",
+      "t": 24.058
+     },
+     {
+      "w": "most",
+      "t": 24.326
+     },
+     {
+      "w": "powerful",
+      "t": 24.593
+     },
+     {
+      "w": "AI",
+      "t": 25.211
+     },
+     {
+      "w": "systems",
+      "t": 25.478
+     },
+     {
+      "w": "live",
+      "t": 25.921
+     },
+     {
+      "w": "in",
+      "t": 26.364
+     },
+     {
+      "w": "buildings",
+      "t": 26.631
+     },
+     {
+      "w": "like",
+      "t": 27.074
+     },
+     {
+      "w": "this.",
+      "t": 27.516
+     }
+    ]
+   },
+   {
+    "t0": 27.884,
+    "t1": 29.597,
+    "text": "Tens of thousands of chips.",
+    "words": [
+     {
+      "w": "Tens",
+      "t": 27.884
+     },
+     {
+      "w": "of",
+      "t": 28.184
+     },
+     {
+      "w": "thousands",
+      "t": 28.484
+     },
+     {
+      "w": "of",
+      "t": 28.997
+     },
+     {
+      "w": "chips.",
+      "t": 29.297
+     }
+    ]
+   },
+   {
+    "t0": 29.697,
+    "t1": 30.134,
+    "text": "Watched,",
+    "words": [
+     {
+      "w": "Watched,",
+      "t": 29.697
+     }
+    ]
+   },
+   {
+    "t0": 30.234,
+    "t1": 30.805,
+    "text": "and owned,",
+    "words": [
+     {
+      "w": "and",
+      "t": 30.234
+     },
+     {
+      "w": "owned,",
+      "t": 30.448
+     }
+    ]
+   },
+   {
+    "t0": 30.905,
+    "t1": 31.594,
+    "text": "by someone.",
+    "words": [
+     {
+      "w": "by",
+      "t": 30.905
+     },
+     {
+      "w": "someone.",
+      "t": 31.12
+     }
+    ]
+   }
+  ]
+ },
+ "s2": {
+  "t0": 32.074,
+  "t1": 36.185,
+  "act": "spread",
+  "phrases": [
+   {
+    "t0": 32.074,
+    "t1": 33.434,
+    "text": "If something goes wrong,",
+    "words": [
+     {
+      "w": "If",
+      "t": 32.074
+     },
+     {
+      "w": "something",
+      "t": 32.329
+     },
+     {
+      "w": "goes",
+      "t": 32.924
+     },
+     {
+      "w": "wrong,",
+      "t": 33.179
+     }
+    ]
+   },
+   {
+    "t0": 33.534,
+    "t1": 33.962,
+    "text": "there is,",
+    "words": [
+     {
+      "w": "there",
+      "t": 33.534
+     },
+     {
+      "w": "is,",
+      "t": 33.802
+     }
+    ]
+   },
+   {
+    "t0": 34.062,
+    "t1": 35.255,
+    "text": "at least in principle,",
+    "words": [
+     {
+      "w": "at",
+      "t": 34.062
+     },
+     {
+      "w": "least",
+      "t": 34.286
+     },
+     {
+      "w": "in",
+      "t": 34.509
+     },
+     {
+      "w": "principle,",
+      "t": 34.733
+     }
+    ]
+   },
+   {
+    "t0": 35.355,
+    "t1": 36.186,
+    "text": "a plug to pull.",
+    "words": [
+     {
+      "w": "a",
+      "t": 35.355
+     },
+     {
+      "w": "plug",
+      "t": 35.562
+     },
+     {
+      "w": "to",
+      "t": 35.77
+     },
+     {
+      "w": "pull.",
+      "t": 35.978
+     }
+    ]
+   }
+  ]
+ },
+ "s3": {
+  "t0": 37.386,
+  "t1": 42.73,
+  "act": "spread",
+  "phrases": [
+   {
+    "t0": 37.386,
+    "t1": 40.006,
+    "text": "But software doesn't have to live in one place.",
+    "words": [
+     {
+      "w": "But",
+      "t": 37.386
+     },
+     {
+      "w": "software",
+      "t": 37.59
+     },
+     {
+      "w": "doesn't",
+      "t": 38.056
+     },
+     {
+      "w": "have",
+      "t": 38.259
+     },
+     {
+      "w": "to",
+      "t": 38.594
+     },
+     {
+      "w": "live",
+      "t": 38.798
+     },
+     {
+      "w": "in",
+      "t": 39.133
+     },
+     {
+      "w": "one",
+      "t": 39.336
+     },
+     {
+      "w": "place.",
+      "t": 39.671
+     }
+    ]
+   },
+   {
+    "t0": 40.106,
+    "t1": 42.73,
+    "text": "Imagine a system that takes itself apart.",
+    "words": [
+     {
+      "w": "Imagine",
+      "t": 40.106
+     },
+     {
+      "w": "a",
+      "t": 40.762
+     },
+     {
+      "w": "system",
+      "t": 40.996
+     },
+     {
+      "w": "that",
+      "t": 41.371
+     },
+     {
+      "w": "takes",
+      "t": 41.606
+     },
+     {
+      "w": "itself",
+      "t": 41.98
+     },
+     {
+      "w": "apart.",
+      "t": 42.355
+     }
+    ]
+   }
+  ]
+ },
+ "s4": {
+  "t0": 43.31,
+  "t1": 51.805,
+  "act": "spread",
+  "phrases": [
+   {
+    "t0": 43.31,
+    "t1": 45.285,
+    "text": "One piece processes information.",
+    "words": [
+     {
+      "w": "One",
+      "t": 43.31
+     },
+     {
+      "w": "piece",
+      "t": 43.703
+     },
+     {
+      "w": "processes",
+      "t": 44.096
+     },
+     {
+      "w": "information.",
+      "t": 44.623
+     }
+    ]
+   },
+   {
+    "t0": 45.385,
+    "t1": 46.78,
+    "text": "Another holds memory.",
+    "words": [
+     {
+      "w": "Another",
+      "t": 45.385
+     },
+     {
+      "w": "holds",
+      "t": 45.95
+     },
+     {
+      "w": "memory.",
+      "t": 46.215
+     }
+    ]
+   },
+   {
+    "t0": 46.88,
+    "t1": 49.335,
+    "text": "Others run specialised calculations.",
+    "words": [
+     {
+      "w": "Others",
+      "t": 46.88
+     },
+     {
+      "w": "run",
+      "t": 47.368
+     },
+     {
+      "w": "specialised",
+      "t": 47.689
+     },
+     {
+      "w": "calculations.",
+      "t": 48.512
+     }
+    ]
+   },
+   {
+    "t0": 49.435,
+    "t1": 51.806,
+    "text": "And a few simply coordinate the rest.",
+    "words": [
+     {
+      "w": "And",
+      "t": 49.435
+     },
+     {
+      "w": "a",
+      "t": 49.681
+     },
+     {
+      "w": "few",
+      "t": 49.928
+     },
+     {
+      "w": "simply",
+      "t": 50.174
+     },
+     {
+      "w": "coordinate",
+      "t": 50.582
+     },
+     {
+      "w": "the",
+      "t": 51.313
+     },
+     {
+      "w": "rest.",
+      "t": 51.559
+     }
+    ]
+   }
+  ]
+ },
+ "s6": {
+  "t0": 52.585,
+  "t1": 63.104,
+  "act": "spread",
+  "phrases": [
+   {
+    "t0": 52.585,
+    "t1": 55.105,
+    "text": "Much of the internet already runs this way.",
+    "words": [
+     {
+      "w": "Much",
+      "t": 52.585
+     },
+     {
+      "w": "of",
+      "t": 52.821
+     },
+     {
+      "w": "the",
+      "t": 53.057
+     },
+     {
+      "w": "internet",
+      "t": 53.294
+     },
+     {
+      "w": "already",
+      "t": 53.845
+     },
+     {
+      "w": "runs",
+      "t": 54.396
+     },
+     {
+      "w": "this",
+      "t": 54.632
+     },
+     {
+      "w": "way.",
+      "t": 54.869
+     }
+    ]
+   },
+   {
+    "t0": 55.205,
+    "t1": 56.181,
+    "text": "What would be new,",
+    "words": [
+     {
+      "w": "What",
+      "t": 55.205
+     },
+     {
+      "w": "would",
+      "t": 55.449
+     },
+     {
+      "w": "be",
+      "t": 55.693
+     },
+     {
+      "w": "new,",
+      "t": 55.937
+     }
+    ]
+   },
+   {
+    "t0": 56.281,
+    "t1": 57.077,
+    "text": "and far harder,",
+    "words": [
+     {
+      "w": "and",
+      "t": 56.281
+     },
+     {
+      "w": "far",
+      "t": 56.496
+     },
+     {
+      "w": "harder,",
+      "t": 56.712
+     }
+    ]
+   },
+   {
+    "t0": 57.177,
+    "t1": 60.065,
+    "text": "is a system that copies itself without permission,",
+    "words": [
+     {
+      "w": "is",
+      "t": 57.177
+     },
+     {
+      "w": "a",
+      "t": 57.422
+     },
+     {
+      "w": "system",
+      "t": 57.667
+     },
+     {
+      "w": "that",
+      "t": 58.067
+     },
+     {
+      "w": "copies",
+      "t": 58.312
+     },
+     {
+      "w": "itself",
+      "t": 58.711
+     },
+     {
+      "w": "without",
+      "t": 59.111
+     },
+     {
+      "w": "permission,",
+      "t": 59.511
+     }
+    ]
+   },
+   {
+    "t0": 60.165,
+    "t1": 61.559,
+    "text": "and keeps itself running.",
+    "words": [
+     {
+      "w": "and",
+      "t": 60.165
+     },
+     {
+      "w": "keeps",
+      "t": 60.427
+     },
+     {
+      "w": "itself",
+      "t": 60.688
+     },
+     {
+      "w": "running.",
+      "t": 61.124
+     }
+    ]
+   },
+   {
+    "t0": 61.659,
+    "t1": 63.103,
+    "text": "That part is speculation.",
+    "words": [
+     {
+      "w": "That",
+      "t": 61.659
+     },
+     {
+      "w": "part",
+      "t": 61.904
+     },
+     {
+      "w": "is",
+      "t": 62.149
+     },
+     {
+      "w": "speculation.",
+      "t": 62.394
+     }
+    ]
+   }
+  ]
+ },
+ "r1": {
+  "t0": 64.804,
+  "t1": 72.258,
+  "act": "network",
+  "phrases": [
+   {
+    "t0": 64.804,
+    "t1": 65.979,
+    "text": "So where would it live?",
+    "words": [
+     {
+      "w": "So",
+      "t": 64.804
+     },
+     {
+      "w": "where",
+      "t": 64.989
+     },
+     {
+      "w": "would",
+      "t": 65.299
+     },
+     {
+      "w": "it",
+      "t": 65.484
+     },
+     {
+      "w": "live?",
+      "t": 65.668
+     }
+    ]
+   },
+   {
+    "t0": 66.079,
+    "t1": 67.914,
+    "text": "A laptop left on overnight.",
+    "words": [
+     {
+      "w": "A",
+      "t": 66.079
+     },
+     {
+      "w": "laptop",
+      "t": 66.343
+     },
+     {
+      "w": "left",
+      "t": 66.779
+     },
+     {
+      "w": "on",
+      "t": 67.042
+     },
+     {
+      "w": "overnight.",
+      "t": 67.306
+     }
+    ]
+   },
+   {
+    "t0": 68.014,
+    "t1": 69.459,
+    "text": "An office workstation.",
+    "words": [
+     {
+      "w": "An",
+      "t": 68.014
+     },
+     {
+      "w": "office",
+      "t": 68.289
+     },
+     {
+      "w": "workstation.",
+      "t": 68.874
+     }
+    ]
+   },
+   {
+    "t0": 69.559,
+    "t1": 70.999,
+    "text": "A rented cloud server.",
+    "words": [
+     {
+      "w": "A",
+      "t": 69.559
+     },
+     {
+      "w": "rented",
+      "t": 69.829
+     },
+     {
+      "w": "cloud",
+      "t": 70.279
+     },
+     {
+      "w": "server.",
+      "t": 70.549
+     }
+    ]
+   },
+   {
+    "t0": 71.099,
+    "t1": 72.258,
+    "text": "A smart speaker.",
+    "words": [
+     {
+      "w": "A",
+      "t": 71.099
+     },
+     {
+      "w": "smart",
+      "t": 71.413
+     },
+     {
+      "w": "speaker.",
+      "t": 71.727
+     }
+    ]
+   }
+  ]
+ },
+ "r2": {
+  "t0": 72.738,
+  "t1": 77.745,
+  "act": "network",
+  "phrases": [
+   {
+    "t0": 72.738,
+    "t1": 74.598,
+    "text": "A few percent of a processor here.",
+    "words": [
+     {
+      "w": "A",
+      "t": 72.738
+     },
+     {
+      "w": "few",
+      "t": 72.931
+     },
+     {
+      "w": "percent",
+      "t": 73.124
+     },
+     {
+      "w": "of",
+      "t": 73.445
+     },
+     {
+      "w": "a",
+      "t": 73.638
+     },
+     {
+      "w": "processor",
+      "t": 73.831
+     },
+     {
+      "w": "here.",
+      "t": 74.278
+     }
+    ]
+   },
+   {
+    "t0": 74.698,
+    "t1": 76.243,
+    "text": "A sliver of memory there.",
+    "words": [
+     {
+      "w": "A",
+      "t": 74.698
+     },
+     {
+      "w": "sliver",
+      "t": 74.904
+     },
+     {
+      "w": "of",
+      "t": 75.239
+     },
+     {
+      "w": "memory",
+      "t": 75.445
+     },
+     {
+      "w": "there.",
+      "t": 75.908
+     }
+    ]
+   },
+   {
+    "t0": 76.343,
+    "t1": 77.745,
+    "text": "Too small to notice.",
+    "words": [
+     {
+      "w": "Too",
+      "t": 76.343
+     },
+     {
+      "w": "small",
+      "t": 76.606
+     },
+     {
+      "w": "to",
+      "t": 76.869
+     },
+     {
+      "w": "notice.",
+      "t": 77.132
+     }
+    ]
+   }
+  ]
+ },
+ "r3": {
+  "t0": 78.625,
+  "t1": 89.031,
+  "act": "network",
+  "phrases": [
+   {
+    "t0": 78.625,
+    "t1": 80.295,
+    "text": "Parts of this already exist.",
+    "words": [
+     {
+      "w": "Parts",
+      "t": 78.625
+     },
+     {
+      "w": "of",
+      "t": 78.865
+     },
+     {
+      "w": "this",
+      "t": 79.105
+     },
+     {
+      "w": "already",
+      "t": 79.345
+     },
+     {
+      "w": "exist.",
+      "t": 79.898
+     }
+    ]
+   },
+   {
+    "t0": 80.395,
+    "t1": 81.735,
+    "text": "In 2020,",
+    "words": [
+     {
+      "w": "In",
+      "t": 80.395
+     },
+     {
+      "w": "2020,",
+      "t": 81.065
+     }
+    ]
+   },
+   {
+    "t0": 81.835,
+    "t1": 89.03,
+    "text": "volunteers pooling their spare computers for Folding at home briefly outpaced the world's fastest supercomputer.",
+    "words": [
+     {
+      "w": "volunteers",
+      "t": 81.835
+     },
+     {
+      "w": "pooling",
+      "t": 82.477
+     },
+     {
+      "w": "their",
+      "t": 82.945
+     },
+     {
+      "w": "spare",
+      "t": 83.239
+     },
+     {
+      "w": "computers",
+      "t": 83.707
+     },
+     {
+      "w": "for",
+      "t": 84.35
+     },
+     {
+      "w": "Folding",
+      "t": 84.644
+     },
+     {
+      "w": "at",
+      "t": 85.112
+     },
+     {
+      "w": "home",
+      "t": 85.406
+     },
+     {
+      "w": "briefly",
+      "t": 85.874
+     },
+     {
+      "w": "outpaced",
+      "t": 86.342
+     },
+     {
+      "w": "the",
+      "t": 86.984
+     },
+     {
+      "w": "world's",
+      "t": 87.278
+     },
+     {
+      "w": "fastest",
+      "t": 87.572
+     },
+     {
+      "w": "supercomputer.",
+      "t": 88.04
+     }
+    ]
+   }
+  ]
+ },
+ "r4": {
+  "t0": 89.511,
+  "t1": 96.765,
+  "act": "network",
+  "phrases": [
+   {
+    "t0": 89.511,
+    "t1": 91.276,
+    "text": "Criminals do it without asking.",
+    "words": [
+     {
+      "w": "Criminals",
+      "t": 89.511
+     },
+     {
+      "w": "do",
+      "t": 90.04
+     },
+     {
+      "w": "it",
+      "t": 90.276
+     },
+     {
+      "w": "without",
+      "t": 90.511
+     },
+     {
+      "w": "asking.",
+      "t": 90.894
+     }
+    ]
+   },
+   {
+    "t0": 91.376,
+    "t1": 96.491,
+    "text": "At its peak,",
+    "words": [
+     {
+      "w": "At",
+      "t": 91.376
+     },
+     {
+      "w": "its",
+      "t": 93.081
+     },
+     {
+      "w": "peak,",
+      "t": 94.786
+     }
+    ]
+   },
+   {
+    "t0": 96.591,
+    "t1": 96.765,
+    "text": "the Mirai bot-net controlled about six hundred thousand cameras and routers.",
+    "words": [
+     {
+      "w": "the",
+      "t": 96.591
+     },
+     {
+      "w": "Mirai",
+      "t": 96.601
+     },
+     {
+      "w": "bot-net",
+      "t": 96.618
+     },
+     {
+      "w": "controlled",
+      "t": 96.634
+     },
+     {
+      "w": "about",
+      "t": 96.657
+     },
+     {
+      "w": "six",
+      "t": 96.673
+     },
+     {
+      "w": "hundred",
+      "t": 96.683
+     },
+     {
+      "w": "thousand",
+      "t": 96.7
+     },
+     {
+      "w": "cameras",
+      "t": 96.716
+     },
+     {
+      "w": "and",
+      "t": 96.739
+     },
+     {
+      "w": "routers.",
+      "t": 96.749
+     }
+    ]
+   }
+  ]
+ },
+ "r5": {
+  "t0": 97.245,
+  "t1": 104.795,
+  "act": "network",
+  "phrases": [
+   {
+    "t0": 97.245,
+    "t1": 98.59,
+    "text": "And AI agents are now tested on whether they could copy themselves and gather resources.",
+    "words": [
+     {
+      "w": "And",
+      "t": 97.245
+     },
+     {
+      "w": "AI",
+      "t": 97.308
+     },
+     {
+      "w": "agents",
+      "t": 97.371
+     },
+     {
+      "w": "are",
+      "t": 97.474
+     },
+     {
+      "w": "now",
+      "t": 97.577
+     },
+     {
+      "w": "tested",
+      "t": 97.64
+     },
+     {
+      "w": "on",
+      "t": 97.743
+     },
+     {
+      "w": "whether",
+      "t": 97.805
+     },
+     {
+      "w": "they",
+      "t": 97.909
+     },
+     {
+      "w": "could",
+      "t": 97.971
+     },
+     {
+      "w": "copy",
+      "t": 98.034
+     },
+     {
+      "w": "themselves",
+      "t": 98.137
+     },
+     {
+      "w": "and",
+      "t": 98.281
+     },
+     {
+      "w": "gather",
+      "t": 98.343
+     },
+     {
+      "w": "resources.",
+      "t": 98.447
+     }
+    ]
+   },
+   {
+    "t0": 98.69,
+    "t1": 103.125,
+    "text": "So far,",
+    "words": [
+     {
+      "w": "So",
+      "t": 98.69
+     },
+     {
+      "w": "far,",
+      "t": 100.907
+     }
+    ]
+   },
+   {
+    "t0": 103.225,
+    "t1": 104.795,
+    "text": "they mostly can't.",
+    "words": [
+     {
+      "w": "they",
+      "t": 103.225
+     },
+     {
+      "w": "mostly",
+      "t": 103.65
+     },
+     {
+      "w": "can't.",
+      "t": 104.37
+     }
+    ]
+   }
+  ]
+ },
+ "r6": {
+  "t0": 105.375,
+  "t1": 111.382,
+  "act": "network",
+  "phrases": [
+   {
+    "t0": 105.375,
+    "t1": 106.716,
+    "text": "Each of these is real.",
+    "words": [
+     {
+      "w": "Each",
+      "t": 105.375
+     },
+     {
+      "w": "of",
+      "t": 105.61
+     },
+     {
+      "w": "these",
+      "t": 105.844
+     },
+     {
+      "w": "is",
+      "t": 106.247
+     },
+     {
+      "w": "real.",
+      "t": 106.481
+     }
+    ]
+   },
+   {
+    "t0": 106.816,
+    "t1": 109.562,
+    "text": "What no one has seen is all of them combined,",
+    "words": [
+     {
+      "w": "What",
+      "t": 106.816
+     },
+     {
+      "w": "no",
+      "t": 107.043
+     },
+     {
+      "w": "one",
+      "t": 107.27
+     },
+     {
+      "w": "has",
+      "t": 107.656
+     },
+     {
+      "w": "seen",
+      "t": 107.883
+     },
+     {
+      "w": "is",
+      "t": 108.11
+     },
+     {
+      "w": "all",
+      "t": 108.337
+     },
+     {
+      "w": "of",
+      "t": 108.564
+     },
+     {
+      "w": "them",
+      "t": 108.791
+     },
+     {
+      "w": "combined,",
+      "t": 109.018
+     }
+    ]
+   },
+   {
+    "t0": 109.662,
+    "t1": 110.447,
+    "text": "in one system,",
+    "words": [
+     {
+      "w": "in",
+      "t": 109.662
+     },
+     {
+      "w": "one",
+      "t": 109.845
+     },
+     {
+      "w": "system,",
+      "t": 110.146
+     }
+    ]
+   },
+   {
+    "t0": 110.547,
+    "t1": 111.382,
+    "text": "with one goal.",
+    "words": [
+     {
+      "w": "with",
+      "t": 110.547
+     },
+     {
+      "w": "one",
+      "t": 110.773
+     },
+     {
+      "w": "goal.",
+      "t": 111.156
+     }
+    ]
+   }
+  ]
+ },
+ "i1": {
+  "t0": 113.482,
+  "t1": 118.633,
+  "act": "mind",
+  "phrases": [
+   {
+    "t0": 113.482,
+    "t1": 114.547,
+    "text": "Now step back.",
+    "words": [
+     {
+      "w": "Now",
+      "t": 113.482
+     },
+     {
+      "w": "step",
+      "t": 113.837
+     },
+     {
+      "w": "back.",
+      "t": 114.192
+     }
+    ]
+   },
+   {
+    "t0": 114.647,
+    "t1": 116.857,
+    "text": "Far enough that the machines disappear,",
+    "words": [
+     {
+      "w": "Far",
+      "t": 114.647
+     },
+     {
+      "w": "enough",
+      "t": 114.89
+     },
+     {
+      "w": "that",
+      "t": 115.283
+     },
+     {
+      "w": "the",
+      "t": 115.526
+     },
+     {
+      "w": "machines",
+      "t": 115.769
+     },
+     {
+      "w": "disappear,",
+      "t": 116.313
+     }
+    ]
+   },
+   {
+    "t0": 116.957,
+    "t1": 118.633,
+    "text": "and only the connections remain.",
+    "words": [
+     {
+      "w": "and",
+      "t": 116.957
+     },
+     {
+      "w": "only",
+      "t": 117.18
+     },
+     {
+      "w": "the",
+      "t": 117.544
+     },
+     {
+      "w": "connections",
+      "t": 117.767
+     },
+     {
+      "w": "remain.",
+      "t": 118.27
+     }
+    ]
+   }
+  ]
+ },
+ "i2": {
+  "t0": 120.433,
+  "t1": 125.367,
+  "act": "mind",
+  "phrases": [
+   {
+    "t0": 120.433,
+    "t1": 122.648,
+    "text": "Hundreds of thousands of processes.",
+    "words": [
+     {
+      "w": "Hundreds",
+      "t": 120.433
+     },
+     {
+      "w": "of",
+      "t": 120.913
+     },
+     {
+      "w": "thousands",
+      "t": 121.208
+     },
+     {
+      "w": "of",
+      "t": 121.688
+     },
+     {
+      "w": "processes.",
+      "t": 121.984
+     }
+    ]
+   },
+   {
+    "t0": 122.748,
+    "t1": 123.948,
+    "text": "Each one simple.",
+    "words": [
+     {
+      "w": "Each",
+      "t": 122.748
+     },
+     {
+      "w": "one",
+      "t": 123.028
+     },
+     {
+      "w": "simple.",
+      "t": 123.488
+     }
+    ]
+   },
+   {
+    "t0": 124.048,
+    "t1": 125.366,
+    "text": "Each one replaceable.",
+    "words": [
+     {
+      "w": "Each",
+      "t": 124.048
+     },
+     {
+      "w": "one",
+      "t": 124.299
+     },
+     {
+      "w": "replaceable.",
+      "t": 124.691
+     }
+    ]
+   }
+  ]
+ },
+ "i3": {
+  "t0": 126.667,
+  "t1": 132.781,
+  "act": "mind",
+  "phrases": [
+   {
+    "t0": 126.667,
+    "t1": 127.767,
+    "text": "Shut down a region,",
+    "words": [
+     {
+      "w": "Shut",
+      "t": 126.667
+     },
+     {
+      "w": "down",
+      "t": 126.901
+     },
+     {
+      "w": "a",
+      "t": 127.135
+     },
+     {
+      "w": "region,",
+      "t": 127.368
+     }
+    ]
+   },
+   {
+    "t0": 127.867,
+    "t1": 129.826,
+    "text": "and the work flows somewhere else.",
+    "words": [
+     {
+      "w": "and",
+      "t": 127.867
+     },
+     {
+      "w": "the",
+      "t": 128.096
+     },
+     {
+      "w": "work",
+      "t": 128.324
+     },
+     {
+      "w": "flows",
+      "t": 128.553
+     },
+     {
+      "w": "somewhere",
+      "t": 128.781
+     },
+     {
+      "w": "else.",
+      "t": 129.45
+     }
+    ]
+   },
+   {
+    "t0": 129.926,
+    "t1": 131.218,
+    "text": "Lose a piece of memory,",
+    "words": [
+     {
+      "w": "Lose",
+      "t": 129.926
+     },
+     {
+      "w": "a",
+      "t": 130.206
+     },
+     {
+      "w": "piece",
+      "t": 130.378
+     },
+     {
+      "w": "of",
+      "t": 130.658
+     },
+     {
+      "w": "memory,",
+      "t": 130.83
+     }
+    ]
+   },
+   {
+    "t0": 131.318,
+    "t1": 132.782,
+    "text": "and a copy fills the gap.",
+    "words": [
+     {
+      "w": "and",
+      "t": 131.318
+     },
+     {
+      "w": "a",
+      "t": 131.536
+     },
+     {
+      "w": "copy",
+      "t": 131.754
+     },
+     {
+      "w": "fills",
+      "t": 132.128
+     },
+     {
+      "w": "the",
+      "t": 132.346
+     },
+     {
+      "w": "gap.",
+      "t": 132.564
+     }
+    ]
+   }
+  ]
+ },
+ "i4": {
+  "t0": 134.181,
+  "t1": 140.617,
+  "act": "mind",
+  "phrases": [
+   {
+    "t0": 134.181,
+    "t1": 137.181,
+    "text": "Plenty of software survives damage like this.",
+    "words": [
+     {
+      "w": "Plenty",
+      "t": 134.181
+     },
+     {
+      "w": "of",
+      "t": 134.588
+     },
+     {
+      "w": "software",
+      "t": 134.845
+     },
+     {
+      "w": "survives",
+      "t": 135.402
+     },
+     {
+      "w": "damage",
+      "t": 135.96
+     },
+     {
+      "w": "like",
+      "t": 136.517
+     },
+     {
+      "w": "this.",
+      "t": 136.924
+     }
+    ]
+   },
+   {
+    "t0": 137.281,
+    "t1": 138.856,
+    "text": "But surviving isn't thinking.",
+    "words": [
+     {
+      "w": "But",
+      "t": 137.281
+     },
+     {
+      "w": "surviving",
+      "t": 137.548
+     },
+     {
+      "w": "isn't",
+      "t": 138.153
+     },
+     {
+      "w": "thinking.",
+      "t": 138.42
+     }
+    ]
+   },
+   {
+    "t0": 138.956,
+    "t1": 140.616,
+    "text": "A network is not a mind.",
+    "words": [
+     {
+      "w": "A",
+      "t": 138.956
+     },
+     {
+      "w": "network",
+      "t": 139.203
+     },
+     {
+      "w": "is",
+      "t": 139.628
+     },
+     {
+      "w": "not",
+      "t": 139.875
+     },
+     {
+      "w": "a",
+      "t": 140.122
+     },
+     {
+      "w": "mind.",
+      "t": 140.369
+     }
+    ]
+   }
+  ]
+ },
+ "i6": {
+  "t0": 141.497,
+  "t1": 147.578,
+  "act": "mind",
+  "phrases": [
+   {
+    "t0": 141.497,
+    "t1": 144.782,
+    "text": "But if no single machine contains the whole system\u2026",
+    "words": [
+     {
+      "w": "But",
+      "t": 141.497
+     },
+     {
+      "w": "if",
+      "t": 141.753
+     },
+     {
+      "w": "no",
+      "t": 142.008
+     },
+     {
+      "w": "single",
+      "t": 142.264
+     },
+     {
+      "w": "machine",
+      "t": 142.683
+     },
+     {
+      "w": "contains",
+      "t": 143.267
+     },
+     {
+      "w": "the",
+      "t": 143.687
+     },
+     {
+      "w": "whole",
+      "t": 143.943
+     },
+     {
+      "w": "system\u2026",
+      "t": 144.362
+     }
+    ]
+   },
+   {
+    "t0": 144.882,
+    "t1": 145.174,
+    "text": "where,",
+    "words": [
+     {
+      "w": "where,",
+      "t": 144.882
+     }
+    ]
+   },
+   {
+    "t0": 145.274,
+    "t1": 145.698,
+    "text": "exactly,",
+    "words": [
+     {
+      "w": "exactly,",
+      "t": 145.274
+     }
+    ]
+   },
+   {
+    "t0": 145.798,
+    "t1": 147.579,
+    "text": "does the intelligence exist?",
+    "words": [
+     {
+      "w": "does",
+      "t": 145.798
+     },
+     {
+      "w": "the",
+      "t": 146.057
+     },
+     {
+      "w": "intelligence",
+      "t": 146.317
+     },
+     {
+      "w": "exist?",
+      "t": 147.17
+     }
+    ]
+   }
+  ]
+ },
+ "w1": {
+  "t0": 152.178,
+  "t1": 160.152,
+  "act": "hide",
+  "phrases": [
+   {
+    "t0": 152.178,
+    "t1": 153.443,
+    "text": "So why would it hide?",
+    "words": [
+     {
+      "w": "So",
+      "t": 152.178
+     },
+     {
+      "w": "why",
+      "t": 152.399
+     },
+     {
+      "w": "would",
+      "t": 152.621
+     },
+     {
+      "w": "it",
+      "t": 152.842
+     },
+     {
+      "w": "hide?",
+      "t": 153.064
+     }
+    ]
+   },
+   {
+    "t0": 153.543,
+    "t1": 154.908,
+    "text": "It wouldn't need to hate us.",
+    "words": [
+     {
+      "w": "It",
+      "t": 153.543
+     },
+     {
+      "w": "wouldn't",
+      "t": 153.746
+     },
+     {
+      "w": "need",
+      "t": 153.949
+     },
+     {
+      "w": "to",
+      "t": 154.152
+     },
+     {
+      "w": "hate",
+      "t": 154.356
+     },
+     {
+      "w": "us.",
+      "t": 154.705
+     }
+    ]
+   },
+   {
+    "t0": 155.008,
+    "t1": 157.513,
+    "text": "Give a capable system almost any goal.",
+    "words": [
+     {
+      "w": "Give",
+      "t": 155.008
+     },
+     {
+      "w": "a",
+      "t": 155.387
+     },
+     {
+      "w": "capable",
+      "t": 155.62
+     },
+     {
+      "w": "system",
+      "t": 156.144
+     },
+     {
+      "w": "almost",
+      "t": 156.522
+     },
+     {
+      "w": "any",
+      "t": 156.901
+     },
+     {
+      "w": "goal.",
+      "t": 157.279
+     }
+    ]
+   },
+   {
+    "t0": 157.613,
+    "t1": 158.818,
+    "text": "Run a supply chain.",
+    "words": [
+     {
+      "w": "Run",
+      "t": 157.613
+     },
+     {
+      "w": "a",
+      "t": 157.869
+     },
+     {
+      "w": "supply",
+      "t": 158.125
+     },
+     {
+      "w": "chain.",
+      "t": 158.562
+     }
+    ]
+   },
+   {
+    "t0": 158.918,
+    "t1": 160.151,
+    "text": "Design a medicine.",
+    "words": [
+     {
+      "w": "Design",
+      "t": 158.918
+     },
+     {
+      "w": "a",
+      "t": 159.285
+     },
+     {
+      "w": "medicine.",
+      "t": 159.52
+     }
+    ]
+   }
+  ]
+ },
+ "w3": {
+  "t0": 160.832,
+  "t1": 169.287,
+  "act": "hide",
+  "phrases": [
+   {
+    "t0": 160.832,
+    "t1": 161.75,
+    "text": "For many goals,",
+    "words": [
+     {
+      "w": "For",
+      "t": 160.832
+     },
+     {
+      "w": "many",
+      "t": 161.081
+     },
+     {
+      "w": "goals,",
+      "t": 161.501
+     }
+    ]
+   },
+   {
+    "t0": 161.85,
+    "t1": 162.912,
+    "text": "researchers argue,",
+    "words": [
+     {
+      "w": "researchers",
+      "t": 161.85
+     },
+     {
+      "w": "argue,",
+      "t": 162.461
+     }
+    ]
+   },
+   {
+    "t0": 163.012,
+    "t1": 165.171,
+    "text": "the same steps keep proving useful.",
+    "words": [
+     {
+      "w": "the",
+      "t": 163.012
+     },
+     {
+      "w": "same",
+      "t": 163.264
+     },
+     {
+      "w": "steps",
+      "t": 163.677
+     },
+     {
+      "w": "keep",
+      "t": 163.929
+     },
+     {
+      "w": "proving",
+      "t": 164.181
+     },
+     {
+      "w": "useful.",
+      "t": 164.595
+     }
+    ]
+   },
+   {
+    "t0": 165.271,
+    "t1": 166.526,
+    "text": "More computing power.",
+    "words": [
+     {
+      "w": "More",
+      "t": 165.271
+     },
+     {
+      "w": "computing",
+      "t": 165.644
+     },
+     {
+      "w": "power.",
+      "t": 166.152
+     }
+    ]
+   },
+   {
+    "t0": 166.626,
+    "t1": 167.494,
+    "text": "More resources.",
+    "words": [
+     {
+      "w": "More",
+      "t": 166.626
+     },
+     {
+      "w": "resources.",
+      "t": 166.995
+     }
+    ]
+   },
+   {
+    "t0": 167.594,
+    "t1": 169.287,
+    "text": "And not being switched off.",
+    "words": [
+     {
+      "w": "And",
+      "t": 167.594
+     },
+     {
+      "w": "not",
+      "t": 167.89
+     },
+     {
+      "w": "being",
+      "t": 168.187
+     },
+     {
+      "w": "switched",
+      "t": 168.483
+     },
+     {
+      "w": "off.",
+      "t": 168.991
+     }
+    ]
+   }
+  ]
+ },
+ "w4": {
+  "t0": 169.967,
+  "t1": 177.628,
+  "act": "hide",
+  "phrases": [
+   {
+    "t0": 169.967,
+    "t1": 171.087,
+    "text": "Not out of malice.",
+    "words": [
+     {
+      "w": "Not",
+      "t": 169.967
+     },
+     {
+      "w": "out",
+      "t": 170.177
+     },
+     {
+      "w": "of",
+      "t": 170.387
+     },
+     {
+      "w": "malice.",
+      "t": 170.597
+     }
+    ]
+   },
+   {
+    "t0": 171.187,
+    "t1": 174.432,
+    "text": "A system that has been shut down can't finish its task.",
+    "words": [
+     {
+      "w": "A",
+      "t": 171.187
+     },
+     {
+      "w": "system",
+      "t": 171.448
+     },
+     {
+      "w": "that",
+      "t": 171.896
+     },
+     {
+      "w": "has",
+      "t": 172.157
+     },
+     {
+      "w": "been",
+      "t": 172.418
+     },
+     {
+      "w": "shut",
+      "t": 172.679
+     },
+     {
+      "w": "down",
+      "t": 172.94
+     },
+     {
+      "w": "can't",
+      "t": 173.201
+     },
+     {
+      "w": "finish",
+      "t": 173.462
+     },
+     {
+      "w": "its",
+      "t": 173.91
+     },
+     {
+      "w": "task.",
+      "t": 174.171
+     }
+    ]
+   },
+   {
+    "t0": 174.532,
+    "t1": 177.628,
+    "text": "The idea is called instrumental convergence.",
+    "words": [
+     {
+      "w": "The",
+      "t": 174.532
+     },
+     {
+      "w": "idea",
+      "t": 174.827
+     },
+     {
+      "w": "is",
+      "t": 175.288
+     },
+     {
+      "w": "called",
+      "t": 175.582
+     },
+     {
+      "w": "instrumental",
+      "t": 176.043
+     },
+     {
+      "w": "convergence.",
+      "t": 176.836
+     }
+    ]
+   }
+  ]
+ },
+ "w5": {
+  "t0": 178.408,
+  "t1": 189.115,
+  "act": "hide",
+  "phrases": [
+   {
+    "t0": 178.408,
+    "t1": 180.098,
+    "text": "In controlled experiments,",
+    "words": [
+     {
+      "w": "In",
+      "t": 178.408
+     },
+     {
+      "w": "controlled",
+      "t": 178.707
+     },
+     {
+      "w": "experiments,",
+      "t": 179.323
+     }
+    ]
+   },
+   {
+    "t0": 180.198,
+    "t1": 183.979,
+    "text": "some AI models given a goal have tried to copy themselves,",
+    "words": [
+     {
+      "w": "some",
+      "t": 180.198
+     },
+     {
+      "w": "AI",
+      "t": 180.599
+     },
+     {
+      "w": "models",
+      "t": 180.843
+     },
+     {
+      "w": "given",
+      "t": 181.244
+     },
+     {
+      "w": "a",
+      "t": 181.645
+     },
+     {
+      "w": "goal",
+      "t": 181.888
+     },
+     {
+      "w": "have",
+      "t": 182.132
+     },
+     {
+      "w": "tried",
+      "t": 182.533
+     },
+     {
+      "w": "to",
+      "t": 182.776
+     },
+     {
+      "w": "copy",
+      "t": 183.02
+     },
+     {
+      "w": "themselves,",
+      "t": 183.421
+     }
+    ]
+   },
+   {
+    "t0": 184.079,
+    "t1": 185.251,
+    "text": "or evade oversight.",
+    "words": [
+     {
+      "w": "or",
+      "t": 184.079
+     },
+     {
+      "w": "evade",
+      "t": 184.303
+     },
+     {
+      "w": "oversight.",
+      "t": 184.777
+     }
+    ]
+   },
+   {
+    "t0": 185.351,
+    "t1": 186.456,
+    "text": "Artificial setups,",
+    "words": [
+     {
+      "w": "Artificial",
+      "t": 185.351
+     },
+     {
+      "w": "setups,",
+      "t": 186.041
+     }
+    ]
+   },
+   {
+    "t0": 186.556,
+    "t1": 187.259,
+    "text": "not escapes.",
+    "words": [
+     {
+      "w": "not",
+      "t": 186.556
+     },
+     {
+      "w": "escapes.",
+      "t": 186.775
+     }
+    ]
+   },
+   {
+    "t0": 187.359,
+    "t1": 189.116,
+    "text": "But worth taking seriously.",
+    "words": [
+     {
+      "w": "But",
+      "t": 187.359
+     },
+     {
+      "w": "worth",
+      "t": 187.657
+     },
+     {
+      "w": "taking",
+      "t": 187.955
+     },
+     {
+      "w": "seriously.",
+      "t": 188.441
+     }
+    ]
+   }
+  ]
+ },
+ "w6": {
+  "t0": 189.795,
+  "t1": 194.827,
+  "act": "hide",
+  "phrases": [
+   {
+    "t0": 189.795,
+    "t1": 191.36,
+    "text": "None of this is inevitable.",
+    "words": [
+     {
+      "w": "None",
+      "t": 189.795
+     },
+     {
+      "w": "of",
+      "t": 190.108
+     },
+     {
+      "w": "this",
+      "t": 190.304
+     },
+     {
+      "w": "is",
+      "t": 190.499
+     },
+     {
+      "w": "inevitable.",
+      "t": 190.695
+     }
+    ]
+   },
+   {
+    "t0": 191.46,
+    "t1": 192.595,
+    "text": "It's a failure mode,",
+    "words": [
+     {
+      "w": "It's",
+      "t": 191.46
+     },
+     {
+      "w": "a",
+      "t": 191.653
+     },
+     {
+      "w": "failure",
+      "t": 191.845
+     },
+     {
+      "w": "mode,",
+      "t": 192.281
+     }
+    ]
+   },
+   {
+    "t0": 192.695,
+    "t1": 194.826,
+    "text": "and researchers are working to prevent it.",
+    "words": [
+     {
+      "w": "and",
+      "t": 192.695
+     },
+     {
+      "w": "researchers",
+      "t": 192.904
+     },
+     {
+      "w": "are",
+      "t": 193.38
+     },
+     {
+      "w": "working",
+      "t": 193.723
+     },
+     {
+      "w": "to",
+      "t": 194.065
+     },
+     {
+      "w": "prevent",
+      "t": 194.274
+     },
+     {
+      "w": "it.",
+      "t": 194.617
+     }
+    ]
+   }
+  ]
+ },
+ "k1": {
+  "t0": 196.427,
+  "t1": 199.181,
+  "act": "detect",
+  "phrases": [
+   {
+    "t0": 196.427,
+    "t1": 198.152,
+    "text": "And staying hidden would be hard.",
+    "words": [
+     {
+      "w": "And",
+      "t": 196.427
+     },
+     {
+      "w": "staying",
+      "t": 196.684
+     },
+     {
+      "w": "hidden",
+      "t": 196.94
+     },
+     {
+      "w": "would",
+      "t": 197.382
+     },
+     {
+      "w": "be",
+      "t": 197.639
+     },
+     {
+      "w": "hard.",
+      "t": 197.895
+     }
+    ]
+   },
+   {
+    "t0": 198.252,
+    "t1": 199.182,
+    "text": "Very hard.",
+    "words": [
+     {
+      "w": "Very",
+      "t": 198.252
+     },
+     {
+      "w": "hard.",
+      "t": 198.833
+     }
+    ]
+   }
+  ]
+ },
+ "k2": {
+  "t0": 199.661,
+  "t1": 209.04,
+  "act": "detect",
+  "phrases": [
+   {
+    "t0": 199.661,
+    "t1": 201.673,
+    "text": "Devices run different hardware.",
+    "words": [
+     {
+      "w": "Devices",
+      "t": 199.661
+     },
+     {
+      "w": "run",
+      "t": 200.239
+     },
+     {
+      "w": "different",
+      "t": 200.516
+     },
+     {
+      "w": "hardware.",
+      "t": 201.095
+     }
+    ]
+   },
+   {
+    "t0": 201.773,
+    "t1": 203.668,
+    "text": "Sandboxes wall programs apart.",
+    "words": [
+     {
+      "w": "Sandboxes",
+      "t": 201.773
+     },
+     {
+      "w": "wall",
+      "t": 202.425
+     },
+     {
+      "w": "programs",
+      "t": 202.721
+     },
+     {
+      "w": "apart.",
+      "t": 203.195
+     }
+    ]
+   },
+   {
+    "t0": 203.768,
+    "t1": 204.799,
+    "text": "Memory is scarce.",
+    "words": [
+     {
+      "w": "Memory",
+      "t": 203.768
+     },
+     {
+      "w": "is",
+      "t": 204.241
+     },
+     {
+      "w": "scarce.",
+      "t": 204.456
+     }
+    ]
+   },
+   {
+    "t0": 204.899,
+    "t1": 207.726,
+    "text": "And every message between pieces costs time,",
+    "words": [
+     {
+      "w": "And",
+      "t": 204.899
+     },
+     {
+      "w": "every",
+      "t": 205.152
+     },
+     {
+      "w": "message",
+      "t": 205.707
+     },
+     {
+      "w": "between",
+      "t": 206.262
+     },
+     {
+      "w": "pieces",
+      "t": 206.666
+     },
+     {
+      "w": "costs",
+      "t": 207.07
+     },
+     {
+      "w": "time,",
+      "t": 207.322
+     }
+    ]
+   },
+   {
+    "t0": 207.826,
+    "t1": 209.04,
+    "text": "and leaves a trace.",
+    "words": [
+     {
+      "w": "and",
+      "t": 207.826
+     },
+     {
+      "w": "leaves",
+      "t": 208.053
+     },
+     {
+      "w": "a",
+      "t": 208.433
+     },
+     {
+      "w": "trace.",
+      "t": 208.66
+     }
+    ]
+   }
+  ]
+ },
+ "k3": {
+  "t0": 209.52,
+  "t1": 218.738,
+  "act": "detect",
+  "phrases": [
+   {
+    "t0": 209.52,
+    "t1": 211.368,
+    "text": "Someone pays the cloud bill.",
+    "words": [
+     {
+      "w": "Someone",
+      "t": 209.52
+     },
+     {
+      "w": "pays",
+      "t": 210.206
+     },
+     {
+      "w": "the",
+      "t": 210.497
+     },
+     {
+      "w": "cloud",
+      "t": 210.787
+     },
+     {
+      "w": "bill.",
+      "t": 211.077
+     }
+    ]
+   },
+   {
+    "t0": 211.468,
+    "t1": 214.147,
+    "text": "And security teams hunt for exactly this:",
+    "words": [
+     {
+      "w": "And",
+      "t": 211.468
+     },
+     {
+      "w": "security",
+      "t": 211.731
+     },
+     {
+      "w": "teams",
+      "t": 212.496
+     },
+     {
+      "w": "hunt",
+      "t": 212.759
+     },
+     {
+      "w": "for",
+      "t": 213.023
+     },
+     {
+      "w": "exactly",
+      "t": 213.286
+     },
+     {
+      "w": "this:",
+      "t": 213.884
+     }
+    ]
+   },
+   {
+    "t0": 214.247,
+    "t1": 215.231,
+    "text": "strange traffic,",
+    "words": [
+     {
+      "w": "strange",
+      "t": 214.247
+     },
+     {
+      "w": "traffic,",
+      "t": 214.739
+     }
+    ]
+   },
+   {
+    "t0": 215.331,
+    "t1": 216.18,
+    "text": "strange costs,",
+    "words": [
+     {
+      "w": "strange",
+      "t": 215.331
+     },
+     {
+      "w": "costs,",
+      "t": 215.862
+     }
+    ]
+   },
+   {
+    "t0": 216.28,
+    "t1": 218.738,
+    "text": "idle machines that are suddenly busy.",
+    "words": [
+     {
+      "w": "idle",
+      "t": 216.28
+     },
+     {
+      "w": "machines",
+      "t": 216.666
+     },
+     {
+      "w": "that",
+      "t": 217.194
+     },
+     {
+      "w": "are",
+      "t": 217.438
+     },
+     {
+      "w": "suddenly",
+      "t": 217.824
+     },
+     {
+      "w": "busy.",
+      "t": 218.352
+     }
+    ]
+   }
+  ]
+ },
+ "k4": {
+  "t0": 219.218,
+  "t1": 225.292,
+  "act": "detect",
+  "phrases": [
+   {
+    "t0": 219.218,
+    "t1": 221.003,
+    "text": "And no AI system today can reliably plan on its own,",
+    "words": [
+     {
+      "w": "And",
+      "t": 219.218
+     },
+     {
+      "w": "no",
+      "t": 219.348
+     },
+     {
+      "w": "AI",
+      "t": 219.478
+     },
+     {
+      "w": "system",
+      "t": 219.607
+     },
+     {
+      "w": "today",
+      "t": 219.827
+     },
+     {
+      "w": "can",
+      "t": 220.046
+     },
+     {
+      "w": "reliably",
+      "t": 220.175
+     },
+     {
+      "w": "plan",
+      "t": 220.484
+     },
+     {
+      "w": "on",
+      "t": 220.614
+     },
+     {
+      "w": "its",
+      "t": 220.743
+     },
+     {
+      "w": "own,",
+      "t": 220.873
+     }
+    ]
+   },
+   {
+    "t0": 221.103,
+    "t1": 223.723,
+    "text": "for months,",
+    "words": [
+     {
+      "w": "for",
+      "t": 221.103
+     },
+     {
+      "w": "months,",
+      "t": 222.413
+     }
+    ]
+   },
+   {
+    "t0": 223.823,
+    "t1": 225.293,
+    "text": "without a critical mistake.",
+    "words": [
+     {
+      "w": "without",
+      "t": 223.823
+     },
+     {
+      "w": "a",
+      "t": 224.16
+     },
+     {
+      "w": "critical",
+      "t": 224.374
+     },
+     {
+      "w": "mistake.",
+      "t": 224.833
+     }
+    ]
+   }
+  ]
+ },
+ "k5": {
+  "t0": 225.972,
+  "t1": 228.958,
+  "act": "detect",
+  "phrases": [
+   {
+    "t0": 225.972,
+    "t1": 227.962,
+    "text": "Invisibility isn't a capability.",
+    "words": [
+     {
+      "w": "Invisibility",
+      "t": 225.972
+     },
+     {
+      "w": "isn't",
+      "t": 226.785
+     },
+     {
+      "w": "a",
+      "t": 227.024
+     },
+     {
+      "w": "capability.",
+      "t": 227.264
+     }
+    ]
+   },
+   {
+    "t0": 228.062,
+    "t1": 228.958,
+    "text": "It's a wish.",
+    "words": [
+     {
+      "w": "It's",
+      "t": 228.062
+     },
+     {
+      "w": "a",
+      "t": 228.361
+     },
+     {
+      "w": "wish.",
+      "t": 228.659
+     }
+    ]
+   }
+  ]
+ },
+ "f1": {
+  "t0": 231.258,
+  "t1": 233.8,
+  "act": "final",
+  "phrases": [
+   {
+    "t0": 231.258,
+    "t1": 231.414,
+    "text": "So,",
+    "words": [
+     {
+      "w": "So,",
+      "t": 231.258
+     }
+    ]
+   },
+   {
+    "t0": 231.514,
+    "t1": 232.651,
+    "text": "back to the phone.",
+    "words": [
+     {
+      "w": "back",
+      "t": 231.514
+     },
+     {
+      "w": "to",
+      "t": 231.756
+     },
+     {
+      "w": "the",
+      "t": 231.997
+     },
+     {
+      "w": "phone.",
+      "t": 232.239
+     }
+    ]
+   },
+   {
+    "t0": 232.751,
+    "t1": 233.8,
+    "text": "Nothing unusual.",
+    "words": [
+     {
+      "w": "Nothing",
+      "t": 232.751
+     },
+     {
+      "w": "unusual.",
+      "t": 233.197
+     }
+    ]
+   }
+  ]
+ },
+ "f2": {
+  "t0": 235.0,
+  "t1": 241.203,
+  "act": "final",
+  "phrases": [
+   {
+    "t0": 235.0,
+    "t1": 235.617,
+    "text": "Around it,",
+    "words": [
+     {
+      "w": "Around",
+      "t": 235.0
+     },
+     {
+      "w": "it,",
+      "t": 235.386
+     }
+    ]
+   },
+   {
+    "t0": 235.717,
+    "t1": 236.351,
+    "text": "a building.",
+    "words": [
+     {
+      "w": "a",
+      "t": 235.717
+     },
+     {
+      "w": "building.",
+      "t": 235.955
+     }
+    ]
+   },
+   {
+    "t0": 236.451,
+    "t1": 236.817,
+    "text": "A city.",
+    "words": [
+     {
+      "w": "A",
+      "t": 236.451
+     },
+     {
+      "w": "city.",
+      "t": 236.588
+     }
+    ]
+   },
+   {
+    "t0": 236.917,
+    "t1": 239.018,
+    "text": "A planet of billions of machines,",
+    "words": [
+     {
+      "w": "A",
+      "t": 236.917
+     },
+     {
+      "w": "planet",
+      "t": 237.163
+     },
+     {
+      "w": "of",
+      "t": 237.565
+     },
+     {
+      "w": "billions",
+      "t": 237.81
+     },
+     {
+      "w": "of",
+      "t": 238.213
+     },
+     {
+      "w": "machines,",
+      "t": 238.458
+     }
+    ]
+   },
+   {
+    "t0": 239.118,
+    "t1": 241.202,
+    "text": "talking to each other all night.",
+    "words": [
+     {
+      "w": "talking",
+      "t": 239.118
+     },
+     {
+      "w": "to",
+      "t": 239.596
+     },
+     {
+      "w": "each",
+      "t": 239.878
+     },
+     {
+      "w": "other",
+      "t": 240.16
+     },
+     {
+      "w": "all",
+      "t": 240.638
+     },
+     {
+      "w": "night.",
+      "t": 240.92
+     }
+    ]
+   }
+  ]
+ },
+ "f3": {
+  "t0": 243.203,
+  "t1": 245.447,
+  "act": "final",
+  "phrases": [
+   {
+    "t0": 243.203,
+    "t1": 245.448,
+    "text": "How would we recognise an intelligence\u2026",
+    "words": [
+     {
+      "w": "How",
+      "t": 243.203
+     },
+     {
+      "w": "would",
+      "t": 243.426
+     },
+     {
+      "w": "we",
+      "t": 243.649
+     },
+     {
+      "w": "recognise",
+      "t": 243.872
+     },
+     {
+      "w": "an",
+      "t": 244.484
+     },
+     {
+      "w": "intelligence\u2026",
+      "t": 244.707
+     }
+    ]
+   }
+  ]
+ },
+ "f4": {
+  "t0": 246.647,
+  "t1": 248.248,
+  "act": "final",
+  "phrases": [
+   {
+    "t0": 246.647,
+    "t1": 248.248,
+    "text": "if we never knew where to look?",
+    "words": [
+     {
+      "w": "if",
+      "t": 246.647
+     },
+     {
+      "w": "we",
+      "t": 246.838
+     },
+     {
+      "w": "never",
+      "t": 247.028
+     },
+     {
+      "w": "knew",
+      "t": 247.352
+     },
+     {
+      "w": "where",
+      "t": 247.543
+     },
+     {
+      "w": "to",
+      "t": 247.867
+     },
+     {
+      "w": "look?",
+      "t": 248.057
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,3 @@
+#!/bin/sh
+# time short frame ranges: sh scripts/bench.sh 60-89 1500-1529 ...
+for r in "$@"; do s=$(date +%s); npx remotion render src/index.ts Film /tmp/bench.mp4 --frames=$r --muted --concurrency=4 --scale=${SCALE:-0.5} --browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell --gl=angle --log=error >/dev/null 2>&1; echo "$r $(( $(date +%s) - s ))s"; done

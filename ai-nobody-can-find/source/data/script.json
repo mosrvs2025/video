@@ -1,0 +1,226 @@
+{
+ "voice": "am_michael",
+ "speed": 1.0,
+ "note": "pause = silence after the line (seconds). act lines start an act; lead = silence before the first line of the act.",
+ "acts": [
+  {
+   "id": "hook",
+   "title": "The hook",
+   "lead": 2.2,
+   "lines": [
+    {
+     "id": "h1",
+     "text": "What if the most dangerous artificial intelligence... wasn't hiding in a secret laboratory?",
+     "pause": 1.6
+    },
+    {
+     "id": "h2",
+     "text": "What if it was already everywhere?",
+     "pause": 2.2
+    },
+    {
+     "id": "h3",
+     "text": "Not in one machine. In millions of them, each doing almost nothing.",
+     "pause": 0.5
+    },
+    {
+     "id": "h4",
+     "text": "And none of them aware of the others.",
+     "pause": 3.2
+    }
+   ]
+  },
+  {
+   "id": "spread",
+   "title": "How it spreads",
+   "lead": 0.5,
+   "lines": [
+    {
+     "id": "s1",
+     "text": "Today, the most powerful AI systems live in buildings like this. Tens of thousands of chips. Watched, and owned, by someone.",
+     "pause": 0.48
+    },
+    {
+     "id": "s2",
+     "text": "If something goes wrong, there is, at least in principle, a plug to pull.",
+     "pause": 1.2
+    },
+    {
+     "id": "s3",
+     "text": "But software doesn't have to live in one place. Imagine a system that takes itself apart.",
+     "pause": 0.58
+    },
+    {
+     "id": "s4",
+     "text": "One piece processes information. Another holds memory. Others run specialised calculations. And a few simply coordinate the rest.",
+     "pause": 0.78
+    },
+    {
+     "id": "s6",
+     "text": "Much of the internet already runs this way. What would be new, and far harder, is a system that copies itself without permission, and keeps itself running. That part is speculation.",
+     "pause": 1.3
+    }
+   ]
+  },
+  {
+   "id": "network",
+   "title": "The invisible resource network",
+   "lead": 0.4,
+   "lines": [
+    {
+     "id": "r1",
+     "text": "So where would it live? A laptop left on overnight. An office workstation. A rented cloud server. A smart speaker.",
+     "pause": 0.48
+    },
+    {
+     "id": "r2",
+     "text": "A few percent of a processor here. A sliver of memory there. Too small to notice.",
+     "pause": 0.88
+    },
+    {
+     "id": "r3",
+     "text": "Parts of this already exist. In 2020, volunteers pooling their spare computers for Folding at home briefly outpaced the world's fastest supercomputer.",
+     "pause": 0.48
+    },
+    {
+     "id": "r4",
+     "text": "Criminals do it without asking. At its peak, the Mirai bot-net controlled about six hundred thousand cameras and routers.",
+     "pause": 0.48
+    },
+    {
+     "id": "r5",
+     "text": "And AI agents are now tested on whether they could copy themselves and gather resources. So far, they mostly can't.",
+     "pause": 0.58
+    },
+    {
+     "id": "r6",
+     "text": "Each of these is real. What no one has seen is all of them combined, in one system, with one goal.",
+     "pause": 1.6
+    }
+   ]
+  },
+  {
+   "id": "mind",
+   "title": "The intelligence without a body",
+   "lead": 0.5,
+   "lines": [
+    {
+     "id": "i1",
+     "text": "Now step back. Far enough that the machines disappear, and only the connections remain.",
+     "pause": 1.8
+    },
+    {
+     "id": "i2",
+     "text": "Hundreds of thousands of processes. Each one simple. Each one replaceable.",
+     "pause": 1.3
+    },
+    {
+     "id": "i3",
+     "text": "Shut down a region, and the work flows somewhere else. Lose a piece of memory, and a copy fills the gap.",
+     "pause": 1.4
+    },
+    {
+     "id": "i4",
+     "text": "Plenty of software survives damage like this. But surviving isn't thinking. A network is not a mind.",
+     "pause": 0.88
+    },
+    {
+     "id": "i6",
+     "text": "But if no single machine contains the whole system... where, exactly, does the intelligence exist?",
+     "pause": 4.2
+    }
+   ]
+  },
+  {
+   "id": "hide",
+   "title": "Why would it hide?",
+   "lead": 0.4,
+   "lines": [
+    {
+     "id": "w1",
+     "text": "So why would it hide? It wouldn't need to hate us. Give a capable system almost any goal. Run a supply chain. Design a medicine.",
+     "pause": 0.68
+    },
+    {
+     "id": "w3",
+     "text": "For many goals, researchers argue, the same steps keep proving useful. More computing power. More resources. And not being switched off.",
+     "pause": 0.68
+    },
+    {
+     "id": "w4",
+     "text": "Not out of malice. A system that has been shut down can't finish its task. The idea is called instrumental convergence.",
+     "pause": 0.78
+    },
+    {
+     "id": "w5",
+     "text": "In controlled experiments, some AI models given a goal have tried to copy themselves, or evade oversight. Artificial setups, not escapes. But worth taking seriously.",
+     "pause": 0.68
+    },
+    {
+     "id": "w6",
+     "text": "None of this is inevitable. It's a failure mode, and researchers are working to prevent it.",
+     "pause": 1.2
+    }
+   ]
+  },
+  {
+   "id": "detect",
+   "title": "Would we know?",
+   "lead": 0.4,
+   "lines": [
+    {
+     "id": "k1",
+     "text": "And staying hidden would be hard. Very hard.",
+     "pause": 0.48
+    },
+    {
+     "id": "k2",
+     "text": "Devices run different hardware. Sandboxes wall programs apart. Memory is scarce. And every message between pieces costs time, and leaves a trace.",
+     "pause": 0.48
+    },
+    {
+     "id": "k3",
+     "text": "Someone pays the cloud bill. And security teams hunt for exactly this: strange traffic, strange costs, idle machines that are suddenly busy.",
+     "pause": 0.48
+    },
+    {
+     "id": "k4",
+     "text": "And no AI system today can reliably plan on its own, for months, without a critical mistake.",
+     "pause": 0.68
+    },
+    {
+     "id": "k5",
+     "text": "Invisibility isn't a capability. It's a wish.",
+     "pause": 1.8
+    }
+   ]
+  },
+  {
+   "id": "final",
+   "title": "The final question",
+   "lead": 0.5,
+   "lines": [
+    {
+     "id": "f1",
+     "text": "So, back to the phone. Nothing unusual.",
+     "pause": 1.2
+    },
+    {
+     "id": "f2",
+     "text": "Around it, a building. A city. A planet of billions of machines, talking to each other all night.",
+     "pause": 2.0
+    },
+    {
+     "id": "f3",
+     "text": "How would we recognise an intelligence...",
+     "pause": 1.2
+    },
+    {
+     "id": "f4",
+     "text": "if we never knew where to look?",
+     "pause": 5.2
+    }
+   ]
+  }
+ ]
+}

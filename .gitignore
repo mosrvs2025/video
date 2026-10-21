@@ -21,3 +21,8 @@ studio/projects/cold_wide/public/
 studio/projects/cold_wide/mv*.json
 studio/projects/cold_wide/mvchunks/
 studio/projects/cold_wide/audio/
+ai-nobody-can-find/source/data/geo/
+ai-nobody-can-find/source/data/chunks_*/
+ai-nobody-can-find/source/data/*.log
+ai-nobody-can-find/output/*.png
+ai-nobody-can-find/source/node_modules
