@@ -62,6 +62,15 @@ python3 scripts/captions.py ../output/captions.srt
 npx remotion still src/index.ts Thumb ../output/thumbnail.png --frame=0
 ```
 
+### Fast rendering (measured)
+
+| Lever | Speed-up | How |
+|---|---|---|
+| Review drafts | 2× | `python3 scripts/render.py FilmDraft data/draft_silent.mp4 0.5`: 15 fps, lighter 3-D. Review these; render the final once. |
+| Re-render only what changed | proportional | chunks are 10 s and resumable; delete only the chunks an edit touches |
+| Split across cloud sessions | ≈ N× for N helpers | `python3 scripts/fanout.py plan Film 6` prints one command per helper; each helper session runs `scripts/helper_render.sh` (16 s setup, renders at the same speed as the main machine, output byte-identical), pushes its chunks to a `render-parts/*` branch; `fanout.py collect` pulls them in, then `render.py` concatenates |
+| Other GL backends (EGL, SwiftShader) / tab concurrency | none | measured: the software-GL process already saturates every core |
+
 3-D is rendered with `--gl=angle`. In software GL, cost scales with pixels, so every 3-D layer renders at 0.75× and is upscaled, while typography stays native 1080p. A full film render takes about 3 hours on a 4-core CPU with no GPU, and a GPU machine is much faster.
 
 ## Credits and rights
