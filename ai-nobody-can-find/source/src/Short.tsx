@@ -14,8 +14,8 @@ const PHR = Object.entries(CUES as any).filter(([id]) => !(S.noCaption as string
 const Caption: React.FC<{tf: number}> = ({tf}) => {
   const p = PHR.find((q: any) => tf >= q.t0 && tf < q.end); if (!p) return null;
   return (
-    <div style={{position: 'absolute', left: 60, right: 60, top: 1480, textAlign: 'center', fontFamily: F.sans, fontWeight: 700, fontSize: 58, lineHeight: 1.18, color: P.paper, textShadow: '0 4px 24px rgba(0,0,0,.9), 0 0 2px #000'}}>
-      {p.words.map((w: any, i: number) => { const on = tf >= w.t; return <span key={i} style={{opacity: on ? 1 : 0.35, color: on && i === p.words.filter((x: any) => tf >= x.t).length - 1 ? P.amber : undefined, marginRight: 14, display: 'inline-block', transform: `translateY(${on ? 0 : 6}px)`}}>{w.w.replace('bot-net', 'botnet')}</span>; })}
+    <div style={{position: 'absolute', left: 60, right: 60, top: 1480, textAlign: 'center', fontFamily: F.sans, fontWeight: 700, fontSize: 58, lineHeight: 1.3, color: P.paper, textShadow: '0 2px 12px rgba(0,0,0,.9)'}}>
+      <span style={{background: 'rgba(5,6,8,.66)', borderRadius: 16, padding: '6px 20px', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone'}}>{p.words.map((w: any, i: number) => { const on = tf >= w.t; return <span key={i} style={{opacity: on ? 1 : 0.35, color: on && i === p.words.filter((x: any) => tf >= x.t).length - 1 ? P.amber : undefined, marginRight: 14, display: 'inline-block', transform: `translateY(${on ? 0 : 6}px)`}}>{w.w.replace('bot-net', 'botnet')}</span>; })}</span>
     </div>
   );
 };
