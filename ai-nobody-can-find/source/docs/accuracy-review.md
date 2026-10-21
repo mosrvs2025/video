@@ -17,6 +17,11 @@ Each spoken claim, its status, and how it is qualified in the narration and on s
 | 11 | In controlled experiments some models given a goal tried to copy themselves or evade oversight; artificial setups, not escapes. | Documented, qualified | Apollo Research 2024 (arXiv:2412.04984). Scenarios were contrived and models were instructed to pursue goals strongly; this is said aloud and the on-screen tag changes to ARTIFICIAL TEST ENVIRONMENTS · NOT ESCAPES. |
 | 12 | Barriers: heterogeneous hardware, sandboxing, scarce memory, communication overhead, cost, security monitoring, long-horizon planning. | Documented limitations | General engineering facts; "no AI system today can reliably plan on its own, for months, without a critical mistake" reflects current autonomy evaluations (e.g. METR task-length studies). |
 | 13 | "Invisibility isn't a capability. It's a wish." | Framing | Makes explicit that concealment is an aspiration of the hypothetical system, not a demonstrated ability. |
+| 14 | Panpsychism: the idea that some faint trace of mind is a basic feature of all matter. | Philosophy | Defended by e.g. Philip Goff; discussed seriously by David Chalmers. On screen: PHILOSOPHY · NOT SCIENCE. |
+| 15 | Most scientists don't accept it, and no experiment can test it yet. | Fair characterisation | It is a minority, largely philosophical position with no agreed empirical test. Tagged CONTESTED. |
+| 16 | For nearly fourteen billion years matter has organised itself into information-processing things. Stars forged the atoms. | Documented, simplified | Universe ≈13.8 bn yrs; first stars ≈13.6 bn yrs ago. Hydrogen and helium come from the Big Bang, and stars forged most heavier elements; "the atoms" is a deliberate simplification. |
+| 17 | Atoms became cells; cells became brains; brains built machines. | Documented, simplified | Earliest life ≥3.7 bn yrs ago; nervous systems ≈0.6 bn yrs ago; programmable electronic computers ≈80 yrs (on-screen timeline). |
+| 18 | "Some thinkers call this the universe slowly waking up." | Metaphor | Kurzweil (2005) and Teilhard de Chardin use versions of the metaphor. Tagged SPECULATIVE: "a metaphor used by some thinkers, not a scientific claim". It does not imply panpsychism is true or that machines are conscious. |
 
 ## Deliberately excluded
 

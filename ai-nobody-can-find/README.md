@@ -1,13 +1,13 @@
 # The AI That Nobody Can Find
 
-A cinematic speculative threat-model explainer (4:13, 1920×1080, 30 fps) and a 57-second vertical Short, built entirely in code: Remotion + React + TypeScript for the timeline, three.js / React Three Fiber for every 3-D scene (including a 120,000-point GPU shader for Act 4), locally synthesized narration, and an original score generated with numpy.
+A cinematic speculative threat-model explainer (5:08, 1920×1080, 30 fps) and a 57-second vertical Short, built entirely in code: Remotion + React + TypeScript for the timeline, three.js / React Three Fiber for every 3-D scene (including a 120,000-point GPU shader for Act 4), locally synthesized narration, and an original score generated with numpy.
 
 ## Deliverables (`output/`)
 
 | File | What it is |
 |---|---|
 | `the-ai-nobody-can-find.mp4` | Finished film: H.264 High, 1920×1080, 30 fps, AAC 256 kb/s 48 kHz, −14 LUFS integrated, −1 dBTP |
-| `the-ai-nobody-can-find-short.mp4` | Vertical Short: 1080×1920, 56.5 s, recomposed scenes and burned-in captions |
+| `the-ai-nobody-can-find-short.mp4` | Vertical Short: 1080×1920, 57.5 s, recomposed scenes and burned-in captions |
 | `captions.srt` / `captions-short.srt` | Subtitles, phrase-synchronized |
 | `narration.wav` | Processed narration only (48 kHz, −16 LUFS) |
 | `stems/music-and-sfx.wav`, `stems/music-only.wav`, `stems/sfx-only.wav` | Score and sound-design stems (no voice) |
