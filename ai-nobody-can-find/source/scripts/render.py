@@ -10,7 +10,7 @@ while any(a.startswith('--') for a in args):
 comp, out = args[0], args[1]; scale = float(args[2]) if len(args) > 2 else 1.0
 GL = opt.get('gl', 'angle'); CONC = opt.get('concurrency', '4')
 import math
-if comp == 'Film': total = math.ceil(json.load(open(os.path.join(ROOT, 'src', 'timeline.json')))['duration'] * 30)
+if comp in ('Film', 'FilmDraft'): total = math.ceil(json.load(open(os.path.join(ROOT, 'src', 'timeline.json')))['duration'] * 30) // (2 if comp == 'FilmDraft' else 1)
 else: total = math.ceil(sum(b - a for a, b in json.load(open(os.path.join(ROOT, 'src', 'short.json')))['segments']) * 30)
 CH = 300
 cd = os.path.join(ROOT, 'data', f'chunks_{comp}_{scale:g}'); os.makedirs(cd, exist_ok=True)

@@ -26,3 +26,4 @@ ai-nobody-can-find/source/data/chunks_*/
 ai-nobody-can-find/source/data/*.log
 ai-nobody-can-find/output/*.png
 ai-nobody-can-find/source/node_modules
+ai-nobody-can-find/source/data/bundle/

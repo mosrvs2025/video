@@ -2,6 +2,7 @@ import React from 'react';
 import * as THREE from 'three';
 import {useThree} from '@react-three/fiber';
 import {ThreeCanvas} from '@remotion/three';
+import {useVideoConfig} from 'remotion';
 import timeline from './timeline.json';
 import cues from './cues.json';
 
@@ -101,13 +102,16 @@ export const GLLayer: React.FC<{w: number; h: number; rs?: number; children: Rea
   <div style={{position: 'absolute', left: 0, top: 0, width: Math.round(w * rs), height: Math.round(h * rs), transform: `scale(${1 / rs})`, transformOrigin: '0 0'}}>{children}</div>
 );
 
-export const Stage: React.FC<{w: number; h: number; rs?: number; shadows?: boolean; children: React.ReactNode}> = ({w, h, rs = 0.75, shadows = false, children}) => (
+export const Stage: React.FC<{w: number; h: number; rs?: number; shadows?: boolean; children: React.ReactNode}> = ({w, h, rs: rsIn, shadows = false, children}) => {
+  const {fps} = useVideoConfig(); const rs = rsIn ?? (fps < 30 ? 0.5 : 0.75); // drafts (15 fps) render 3-D lighter
+  return (
   <GLLayer w={w} h={h} rs={rs}>
     <ThreeCanvas width={Math.round(w * rs)} height={Math.round(h * rs)} style={{position: 'absolute', inset: 0}} gl={{antialias: false, alpha: true, preserveDrawingBuffer: true}} shadows={shadows}>
       {children}
     </ThreeCanvas>
   </GLLayer>
-);
+  );
+};
 export type SceneProps = {t: number; w: number; h: number; v: boolean};
 
 // project a world point to frame pixels for a camera (for DOM labels pinned to 3D objects)
