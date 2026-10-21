@@ -41,7 +41,7 @@ const Die: React.FC<{t: number}> = ({t}) => {
 // ---------- the field: thousands of phones, then a plane of a million points ----------
 const FN = 90, FS = 0.32;
 const field = (() => {
-  const body = new THREE.InstancedMesh(phoneGeo, new THREE.MeshStandardMaterial({color: '#14161a', roughness: 0.4, metalness: 0.6}), FN * FN);
+  const body = new THREE.InstancedMesh(new THREE.BoxGeometry(0.074, 0.156, 0.008), new THREE.MeshStandardMaterial({color: '#14161a', roughness: 0.4, metalness: 0.6}), FN * FN); // simple box: 8,100 bevelled phones cost ~20M vertices per frame
   const sg = new THREE.PlaneGeometry(0.068, 0.15); const scr = new THREE.InstancedMesh(sg, new THREE.MeshBasicMaterial({map: screenTex, color: '#ffffff', toneMapped: false}), FN * FN); body.frustumCulled = false; scr.frustumCulled = false;
   const o = new THREE.Object3D(); let k = 0;
   for (let i = 0; i < FN; i++) for (let j = 0; j < FN; j++) {
