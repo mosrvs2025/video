@@ -12,7 +12,7 @@ def rd(p):
     return x.reshape(-1, ch)
 def wr(p, x):
     x = np.clip(x, -1, 1); w = wave.open(p, 'wb'); w.setnchannels(x.shape[1]); w.setsampwidth(2); w.setframerate(SR); w.writeframes((x * 32767).astype(np.int16).tobytes()); w.close()
-def loudnorm(src, dst, I=-14.0, TP=-1.0):
+def loudnorm(src, dst, I=-14.0, TP=-1.5):
     r = subprocess.run(['ffmpeg', '-hide_banner', '-i', src, '-af', f'loudnorm=I={I}:TP={TP}:LRA=11:print_format=json', '-f', 'null', '-'], capture_output=True, text=True).stderr
     m = json.loads(r[r.rindex('{'):r.rindex('}') + 1])
     ff('-i', src, '-af', f"loudnorm=I={I}:TP={TP}:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,aresample=48000", '-ar', '48000', '-c:a', 'pcm_s24le', dst)

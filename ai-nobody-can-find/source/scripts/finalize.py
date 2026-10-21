@@ -16,7 +16,7 @@ def report(p):
     j, l = probe(p); f = j['format']; print(f"{os.path.basename(p)}  {float(f['duration']):.2f}s  {int(f['size']) / 1048576:.1f} MB")
     for s in j['streams']: print('  ', s.get('codec_type'), s.get('codec_name'), s.get('width', ''), s.get('height', ''), s.get('r_frame_rate', ''), s.get('sample_rate', ''), s.get('channels', ''))
     print('  ', ' | '.join(l))
-def loudnorm(src, dst, I=-14.0, TP=-1.0):
+def loudnorm(src, dst, I=-14.0, TP=-1.5):
     r = subprocess.run(['ffmpeg', '-hide_banner', '-i', src, '-af', f'loudnorm=I={I}:TP={TP}:LRA=11:print_format=json', '-f', 'null', '-'], capture_output=True, text=True).stderr
     m = json.loads(r[r.rindex('{'):r.rindex('}') + 1])
     ff('-i', src, '-af', f"loudnorm=I={I}:TP={TP}:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,aresample=48000", '-ar', '48000', '-c:a', 'pcm_s24le', dst)
