@@ -1,0 +1,162 @@
+{
+ "note": "Line starts/ends in seconds. Anchored to Whisper phrases and the player's scroll events where available; the others are interpolated (\u00b11 s).",
+ "lines": [
+  {
+   "id": "v1a",
+   "t0": 44.7,
+   "t1": 47.6,
+   "text": "I hear you everywhere"
+  },
+  {
+   "id": "v1b",
+   "t0": 48.7,
+   "t1": 51.3,
+   "text": "In the room before the day begins"
+  },
+  {
+   "id": "v1c",
+   "t0": 52.2,
+   "t1": 54.2,
+   "text": "I hear you everywhere"
+  },
+  {
+   "id": "v1d",
+   "t0": 54.6,
+   "t1": 58.5,
+   "text": "In the pause between the closing doors"
+  },
+  {
+   "id": "c1a",
+   "t0": 59.6,
+   "t1": 60.8,
+   "text": "Echoes in my head"
+  },
+  {
+   "id": "c1b",
+   "t0": 61.4,
+   "t1": 63.1,
+   "text": "echoes in my head"
+  },
+  {
+   "id": "c1c",
+   "t0": 63.3,
+   "t1": 66.8,
+   "text": "Every word returns, then turns to air"
+  },
+  {
+   "id": "c1d",
+   "t0": 67.1,
+   "t1": 69.4,
+   "text": "Echoes in my head, echoes in my head"
+  },
+  {
+   "id": "c1e",
+   "t0": 70.5,
+   "t1": 76.0,
+   "text": "I reach for you and find the empty chair"
+  },
+  {
+   "id": "v2a",
+   "t0": 89.5,
+   "t1": 94.7,
+   "text": "Even sounds like you"
+  },
+  {
+   "id": "v2b",
+   "t0": 98.4,
+   "t1": 102.2,
+   "text": "A breath against the window pane"
+  },
+  {
+   "id": "v2c",
+   "t0": 105.9,
+   "t1": 109.8,
+   "text": "I keep the little things you knew"
+  },
+  {
+   "id": "v2d",
+   "t0": 111.8,
+   "t1": 117.3,
+   "text": "And let them pass through me again"
+  },
+  {
+   "id": "b1",
+   "t0": 153.4,
+   "t1": 155.0,
+   "text": "you everywhere"
+  },
+  {
+   "id": "b2",
+   "t0": 157.2,
+   "t1": 160.3,
+   "text": "Though the rooms have changed their names"
+  },
+  {
+   "id": "b3",
+   "t0": 160.8,
+   "t1": 162.6,
+   "text": "I hear you everywhere"
+  },
+  {
+   "id": "b4",
+   "t0": 162.9,
+   "t1": 166.6,
+   "text": "Like a fire with no flame"
+  },
+  {
+   "id": "f1a",
+   "t0": 167.3,
+   "t1": 170.8,
+   "text": "Echoes in my head, echoes in my head"
+  },
+  {
+   "id": "f1b",
+   "t0": 171.2,
+   "t1": 175.2,
+   "text": "Every word returns, then turns to air"
+  },
+  {
+   "id": "f1c",
+   "t0": 176.0,
+   "t1": 178.6,
+   "text": "Echoes in my head, echoes in my head"
+  },
+  {
+   "id": "f1d",
+   "t0": 179.2,
+   "t1": 184.0,
+   "text": "I reach for you and find the empty chair"
+  },
+  {
+   "id": "w1",
+   "t0": 184.0,
+   "t1": 199.0,
+   "text": "Ah, ah-ah"
+  },
+  {
+   "id": "o1",
+   "t0": 204.4,
+   "t1": 205.6,
+   "text": "And"
+  },
+  {
+   "id": "o2",
+   "t0": 206.4,
+   "t1": 207.4,
+   "text": "nothing."
+  }
+ ],
+ "moments": {
+  "hit_cut": 139.03,
+  "stutter_start": 153.83,
+  "stutter_end": 156.1,
+  "abrupt_stop": 199.0,
+  "surge_start": 208.0,
+  "surge_peak": 211.0,
+  "last_hits": [
+   213.67,
+   213.9
+  ],
+  "silence": 214.1
+ }
+}

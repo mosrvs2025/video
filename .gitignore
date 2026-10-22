@@ -27,3 +27,11 @@ ai-nobody-can-find/source/data/*.log
 ai-nobody-can-find/output/*.png
 ai-nobody-can-find/source/node_modules
 ai-nobody-can-find/source/data/bundle/
+experience/source/node_modules
+experience/source/data/*.wav
+experience/source/data/*.npy
+experience/source/data/chunks_*/
+experience/source/data/bundle/
+experience/source/data/*.log
+experience/source/data/*.mp4
+studio/projects/experience/

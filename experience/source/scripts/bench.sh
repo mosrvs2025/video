@@ -1,0 +1,3 @@
+#!/bin/sh
+# time short frame ranges at full res: GL=angle CONC=4 sh scripts/bench.sh 450-479 900-929 ...
+for r in "$@"; do s=$(date +%s); npx remotion render src/index.ts ${COMP:-Exp} /tmp/bench.mp4 --frames=$r --muted --concurrency=${CONC:-4} --scale=${SCALE:-1} --browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell --gl=${GL:-angle} --log=error >/tmp/bench.log 2>&1; echo "gl=${GL:-angle} conc=${CONC:-4} $r $(( $(date +%s) - s ))s $(grep -ci error /tmp/bench.log)err"; done
