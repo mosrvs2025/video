@@ -4,6 +4,8 @@ import * as THREE from 'three';
 import {Cam, Glow, P, F, Stage, clamp, col, easeOut, keys, keys3, lerp, rnd, smooth, win, V3} from './lib';
 import {AUD, DUR, FRAMES, LINES, M, bands, line, onsetsIn, pulse, sig} from './sig';
 import {CHAIR_POS, Chair, DOOR, PALS, Room} from './Room';
+import {Tunnel, TunPal} from './Tunnel';
+import {Lyrics, Strip} from './Overlay';
 import {Beam, Dust, FloorPatch, GhostChairs, FogGlass, Presence, Ripples, Ring} from './Fx';
 
 // ------------------------------------------------------------------------------------------------
@@ -66,6 +68,12 @@ const presenceAt = (t: number) => {
   return {asm, fray, ember, bright: bright * (0.75 + 0.5 * pulse(t, 'mid', 0.25, 0.3))};
 };
 
+// the song as a place: cut to the tunnel on the choruses' repeated lines and the last surge
+const TUN: [number, number, TunPal][] = [[59.5, 63.2, 'cool'], [67.0, 70.4, 'cool'], [167.2, 171.0, 'warm'], [175.9, 179.0, 'warm'], [M.surge_start, M.last_hits[0], 'white']];
+const tunAt = (t: number) => { const i = TUN.findIndex(([a, b]) => t >= a && t < b); return i < 0 ? null : {a: TUN[i][0], pal: TUN[i][2]}; };
+const cutFlash = (t: number) => TUN.reduce((m, [a, b]) => Math.max(m, t >= a && t < a + 0.25 ? 0.75 * (1 - (t - a) / 0.25) : 0, t >= b && t < b + 0.2 ? 0.6 * (1 - (t - b) / 0.2) : 0), 0);
+const STRIP_COL = (t: number) => t < 60 ? '#ffc890' : t < 77 ? '#bcd8ff' : t < 139 ? '#ffd9a8' : t < 167 ? '#8fa6cf' : t < 199 ? '#ff9a4a' : '#9fb8e0';
+
 const jamb = (t: number) => { for (const h of HOPS) if (Math.abs(t - h) < 0.26) return clamp((t - (h - 0.26)) / 0.52); return -1; };
 
 export const Exp: React.FC = () => {
@@ -86,15 +94,19 @@ export const Exp: React.FC = () => {
   const flicker = 0.6 + 0.8 * s.rms;
   const beamI = mood.beam * (0.55 + 0.9 * s.rms);
   const dirI = mood.dir * (t >= M.stutter_start && t < M.stutter_end ? 0.3 + 1.4 * s.rms : 1) * (0.8 + 0.4 * s.rms);
-  const wash = t >= 138.2 && t < M.hit_cut ? smooth((t - 138.2) / 0.8) * 0.85 : surge ? clamp((t - 209.0) / 3.5) * 0.9 + pulse(t, 'any', 0.15, 0.6) * 0.1 : 0;
+  const wash = t >= 138.2 && t < M.hit_cut ? smooth((t - 138.2) / 0.8) * 0.85 : surge ? clamp((t - 212.0) / 1.6) * 0.9 + pulse(t, 'any', 0.15, 0.6) * 0.1 : 0;
   const flashHit = t >= M.last_hits[0] - 0.02 && t < M.silence ? 0.6 + 0.4 * pulse(t, 'any', 0.1) : 0;
-  const J = jamb(t);
+  const J = jamb(t); const tun = tunAt(t); const cf = cutFlash(t);
   const titleO = win(t, 3.2, 10.5, 1.6, 1.8), endO = win(t, 214.9, 217.3, 0.9, 0.2);
   const fadeIn = clamp(t / 1.2) * 0 + 1;
   return (
     <AbsoluteFill style={{background: '#000'}}>
-      {!dark && <Stage w={w} h={h} shadows>
-        <Cam pos={cam.pos} look={cam.look} fov={cam.fov} far={60} />
+      {!dark && tun && <Stage w={w} h={h} rs={0.5}>
+        <Cam pos={[0, 0, 0]} look={[0, 0, -10]} fov={72 - 10 * pulse(t, 'low', 0.18, 0.4)} far={60} roll={0.1 * Math.sin(t * 0.7)} />
+        <Tunnel t={t} t0={tun.a} pal={tun.pal} speed={tun.pal === 'white' ? 5 + 9 * clamp((t - M.surge_start) / 5.6) : 4.5} kick={Math.min(1, pulse(t, 'low', 0.2, 0.4))} energy={s.rms} />
+      </Stage>}
+      {!dark && !tun && <Stage w={w} h={h} shadows>
+        <Cam pos={[cam.pos[0], cam.pos[1] + 0.025 * pulse(t, 'low', 0.12, 0.5), cam.pos[2]]} look={cam.look} fov={cam.fov} far={60} />
         <fog attach="fog" args={['#07080b', 9, 26]} />
         <Room pal={PALS[pi]} door={door} plate={plateAt(t)} objGlow={objGlow} objVis={objVis * 1.7} bright={0.5 + 0.9 * clamp(mood.dir / 1.6)} />
         <directionalLight position={[0.35, 8.9, -11]} target-position={[0.35, 0.9, -3]} intensity={dirI} color={mood.c} castShadow shadow-mapSize-width={1024} shadow-mapSize-height={1024} shadow-camera-left={-5} shadow-camera-right={5} shadow-camera-top={6} shadow-camera-bottom={-4} shadow-camera-near={1} shadow-camera-far={30} shadow-bias={-0.0006} />
@@ -110,6 +122,9 @@ export const Exp: React.FC = () => {
         <mesh position={[0.35, 2.15, -4.9]}><planeGeometry args={[40, 30]} /><meshBasicMaterial color={skyAt(t)} toneMapped={false} /></mesh>
       </Stage>}
       <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 55%, transparent 40%, rgba(0,0,0,.62) 100%)'}} />
+      {!dark && t < 199 && <Lyrics t={t} big={!!tun} color={tun ? (tun.pal === 'warm' ? '#ff8a3a' : '#5aa0ff') : '#fff'} />}
+      {!dark && t < 214.0 && <Strip t={t} color={STRIP_COL(t)} o={t < 4 ? t / 4 * 0.9 : 0.9} />}
+      {cf > 0 && <AbsoluteFill style={{background: '#fff', opacity: cf}} />}
       {titleO > 0 && <div style={{position: 'absolute', left: 0, right: 0, top: 1500, textAlign: 'center', opacity: titleO, fontFamily: F.sans, color: P.paper, textShadow: '0 4px 28px rgba(0,0,0,.8)'}}>
         <div style={{fontSize: 74, fontWeight: 300, letterSpacing: 16}}>EXPERIENCE 1</div>
         <div style={{fontSize: 34, letterSpacing: 6, marginTop: 14, color: P.paperDim, fontFamily: F.mono}}>by @professorfungi</div>
