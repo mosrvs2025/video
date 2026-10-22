@@ -25,9 +25,9 @@ def plan(comp, helpers):
             if b != a + 1: runs.append(f'{s}-{a}'); s = b
         br = f'render-parts/{comp.lower()}-{gi + 1}'
         cmds = ' && '.join(f'sh scripts/helper_render.sh {comp} {r} {br}' for r in runs)
-        print(f'--- helper {gi + 1}: chunks {",".join(runs)}  branch {br}\ncd ai-nobody-can-find/source && {cmds}\n')
+        print(f'--- helper {gi + 1}: chunks {",".join(runs)}  branch {br}\ncd {os.path.relpath(ROOT, REPO)} && {cmds}\n')
 def collect(comp, branches):
-    cd = os.path.join(ROOT, 'data', f'chunks_{comp}_1'); os.makedirs(cd, exist_ok=True); rel = f'ai-nobody-can-find/source/data/chunks_{comp}_1'
+    cd = os.path.join(ROOT, 'data', f'chunks_{comp}_1'); os.makedirs(cd, exist_ok=True); rel = f'{os.path.relpath(ROOT, REPO)}/data/chunks_{comp}_1'
     for br in branches:
         subprocess.run(['git', '-C', REPO, 'fetch', '-q', 'origin', br], check=True)
         files = subprocess.run(['git', '-C', REPO, 'ls-tree', '--name-only', 'FETCH_HEAD', rel + '/'], capture_output=True, text=True).stdout.split()
