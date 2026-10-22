@@ -35,5 +35,10 @@ os.makedirs(os.path.join(OUT, 'stems'), exist_ok=True)
 loudnorm(voice, os.path.join(OUT, 'narration.wav'), I=-16.0)
 mm = os.path.join(D, 'music_sfx.wav'); wr(mm, (m * 1.6 + s * 0.85) * 0.5); loudnorm(mm, os.path.join(OUT, 'stems', 'music-and-sfx.wav'), I=-18.0)
 shutil.copy(os.path.join(D, 'music.wav'), os.path.join(OUT, 'stems', 'music-only.wav')); shutil.copy(os.path.join(D, 'sfx.wav'), os.path.join(OUT, 'stems', 'sfx-only.wav'))
+def bands(p):
+    x = rd(p).mean(1); X = np.abs(np.fft.rfft(x)) ** 2; f = np.fft.rfftfreq(len(x), 1 / SR); t = X.sum() + 1e-12
+    return f'<150Hz {100 * X[f < 150].sum() / t:4.1f}%  150-1k {100 * X[(f >= 150) & (f < 1000)].sum() / t:4.1f}%  >1k {100 * X[f >= 1000].sum() / t:4.1f}%'
+for nm, p_ in (('music', os.path.join(D, 'music.wav')), ('sfx', os.path.join(D, 'sfx.wav')), ('mix', os.path.join(D, 'mix.wav'))): print(f'{nm:6s} energy {bands(p_)}')
+print('(phone speakers drop everything under ~150 Hz: keep a real share of music/sfx energy above it)')
 r = subprocess.run(['ffmpeg', '-hide_banner', '-i', os.path.join(D, 'mix.wav'), '-af', 'ebur128=peak=true', '-f', 'null', '-'], capture_output=True, text=True).stderr
 print('\n'.join(l for l in r.splitlines()[-12:] if any(k in l for k in ('I:', 'LRA:', 'Peak:'))))
